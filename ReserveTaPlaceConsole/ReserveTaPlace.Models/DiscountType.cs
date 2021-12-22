@@ -1,0 +1,32 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ReserveTaPlace.Models
+{
+    internal class DiscountType
+    {
+        private Guid _id;
+        private string _name;
+        private string _description;
+        private uint? _rate;
+        private decimal? _amount;
+
+        public DiscountType(string name, string description, uint? rate, decimal? amount)
+        {
+            _id = Guid.NewGuid();
+            _name = name;
+            _description = description;
+            _rate = rate;
+            _amount = amount;
+        }
+        public Guid Id { get { return _id; } }
+        public string Name { get { return _name;} }
+        public string Description { get { return _description;} }
+        public uint? Rate { get { return _rate;} }
+        public decimal? Amount { get { return _amount;} }
+
+    }
+}
