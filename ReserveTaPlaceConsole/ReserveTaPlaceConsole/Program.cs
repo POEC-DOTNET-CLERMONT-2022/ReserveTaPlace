@@ -5,4 +5,4 @@ Console.WriteLine("Hello, World!");
 
 
 var movieProvider = new MovieProvider();
-movieProvider.GetMovie("Dune");
+await movieProvider.GetMovie("Dune");

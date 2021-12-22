@@ -8,13 +8,14 @@ namespace ReserveTaPlace.Models
 {
     public class MovieProvider
     {
-        public async void GetMovie(string movie)
+        public async Task GetMovie(string movie)
         {
+
             var client = new HttpClient(); 
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Get,
-                RequestUri = new Uri("https://movie-database-imdb-alternative.p.rapidapi.com/?s=" + movie + "&r=json&page=1"),
+                RequestUri = new Uri($"https://movie-database-imdb-alternative.p.rapidapi.com/?s={movie}&r=json&page=1"),
                 Headers =
                 {
                     { "x-rapidapi-host", "movie-database-imdb-alternative.p.rapidapi.com" },
