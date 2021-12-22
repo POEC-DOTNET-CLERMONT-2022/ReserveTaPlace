@@ -82847,7 +82847,7 @@
 											"top": 955.5,
 											"width": 248,
 											"height": 13,
-											"text": "Ajouter un film"
+											"text": "Ajouter un film a la base"
 										},
 										{
 											"_type": "LabelView",
@@ -92846,7 +92846,7 @@
 					"_parent": {
 						"$ref": "AAAAAAF9vwsw5ZYTJuo="
 					},
-					"name": "Ajouter un film",
+					"name": "Ajouter un film a la base",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",
