@@ -21,7 +21,8 @@ namespace ReserveTaPlaceConsole
                 Writer.Display($"Le nom de film : {movieName} indiqué est incorrect");
                 return ReadMovie();
             }
-            return GetMovie();
+            var movie = new Movie("Alien", DateTime.Now);
+            return movie ;
         }
     }
 }

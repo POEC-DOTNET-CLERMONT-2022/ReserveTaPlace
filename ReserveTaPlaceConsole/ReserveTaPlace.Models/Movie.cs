@@ -16,15 +16,15 @@ namespace ReserveTaPlace.Models
         private DateTime _releaseDate;
         private DateTime _duration;
 
-        public Movie(string title, string description, DateTime castStartDate, DateTime castEndDate, DateTime releaseDate, DateTime duration)
+        public Movie(string title, DateTime releaseDate)
         {
             _id = Guid.NewGuid();
             _title = title;
-            _description = description;
-            _castStartDate = castStartDate;
-            _castEndDate = castEndDate;
+            //_description = description;
+            //_castStartDate = castStartDate;
+            //_castEndDate = castEndDate;
             _releaseDate = releaseDate;
-            _duration = duration;
+            //_duration = duration;
         }
         public Guid Id { get { return _id; } }
         public string Title { get { return _title; } set { _title = value; } }
