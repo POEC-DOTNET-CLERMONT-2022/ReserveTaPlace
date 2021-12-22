@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Models.Interfaces
 {
-    public interface IReader
+    internal interface IReader
     {
-        public IWriter Writer { get; set; }
-        public Movie ReadMovie();
     }
 }
