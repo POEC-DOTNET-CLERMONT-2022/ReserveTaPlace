@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Models.Interfaces
 {
-    internal interface IWriter
+    public interface IWriter
     {
+        public void Display(string message);
+        public void DisplayMovie(Movie movie);
+        public void DisplayMovies(IEnumerable<Movie> movies);
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Models
+{ 
     internal class User
     {
         private readonly Guid _id;
