@@ -19,7 +19,7 @@ namespace ReserveTaPlace.Models
                 Headers =
                 {
                     { "x-rapidapi-host", "movie-database-imdb-alternative.p.rapidapi.com" },
-                    { "x-rapidapi-key", "6be4c3adaemsh1b7bf45019b2f71p1a3972jsnebc833006f22" },
+                    { "x-rapidapi-key", "" },
                 },
             };
             using (var response = await client.SendAsync(request))
