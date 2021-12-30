@@ -16,7 +16,10 @@ namespace ReserveTaPlace.RTPManager
         private IWriter _writer { get; }
 
         private IList<Movie> Movies { get; set; } = new List<Movie>();
+        public MovieManager()
+        {
 
+        }
         public MovieManager(IReader reader, IWriter writer)
         {
             _reader = reader;
