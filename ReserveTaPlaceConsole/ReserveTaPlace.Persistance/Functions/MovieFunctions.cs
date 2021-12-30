@@ -12,12 +12,8 @@ namespace ReserveTaPlace.Persistance.Functions
     {
         public List<Movie> LoadMovies()
         {
-            var movies = new List<Movie>();
-            using (FileStream fs = File.OpenRead(@"movieList.txt"))
-            {
-                movies = JsonConvert.DeserializeObject<List<Movie>>(@"movieList.txt");
-                fs.Close();
-            }
+            var jsonMovies = File.ReadAllText(@"movieList.txt");
+            var movies = JsonConvert.DeserializeObject<List<Movie>>(jsonMovies);
             return movies;
         }
 
@@ -25,10 +21,12 @@ namespace ReserveTaPlace.Persistance.Functions
         {
             using(FileStream fs = File.Create(@"movieList.txt"))
             {
-                var jsonString = JsonConvert.SerializeObject(movieList);
-                File.WriteAllText(@"movieList.txt", jsonString);
+
                 fs.Close();
             }
+            var jsonString = JsonConvert.SerializeObject(movieList);
+            File.WriteAllText(@"movieList.txt", jsonString);
+
         }
     }
 }

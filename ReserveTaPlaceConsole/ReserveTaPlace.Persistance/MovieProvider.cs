@@ -1,14 +1,15 @@
-﻿using System;
+﻿using ReserveTaPlace.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ReserveTaPlace.Models
+namespace ReserveTaPlace.Persistance
 {
-    public class MovieProvider
+    public class MovieProvider : IMovieProvider
     {
-        public async Task GetMovie(string movie)
+        public async Task<Movie> GetMovie(string movie)
         {
 
             var client = new HttpClient(); 
@@ -30,6 +31,8 @@ namespace ReserveTaPlace.Models
                 Console.WriteLine(body);
                 Console.ReadLine();
             }
+            var mov = new Movie("dune");
+            return mov;
         }
     }
 }

@@ -25,7 +25,7 @@ namespace ReserveTaPlace.Logic
 
         public void SaveMovies(List<Movie> movieList)
         {
-            _persistance.SaveMovies();
+            _persistance.SaveMovies(movieList);
         }
     }
 }

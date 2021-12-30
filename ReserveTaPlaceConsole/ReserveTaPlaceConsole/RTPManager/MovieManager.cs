@@ -1,14 +1,17 @@
-﻿using ReserveTaPlace.Models.Interfaces;
+﻿using ReserveTaPlace.Logic;
+using ReserveTaPlace.Models;
+using ReserveTaPlace.RTPManager.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ReserveTaPlace.Models
+namespace ReserveTaPlace.RTPManager
 {
-    internal class MovieManager
+    public class MovieManager
     {
+        private PersistanceLogic _persistanceLogic = new PersistanceLogic();
         private IReader _reader { get; }
         private IWriter _writer { get; }
 
@@ -30,9 +33,13 @@ namespace ReserveTaPlace.Models
             _writer.DisplayMovies(Movies);
 
         }
+        public void SaveMovies(List<Movie> movies)
+        {
+            _persistanceLogic.SaveMovies(movies);
+        }
         public void LoadMovies()
         {
-
+            Movies = _persistanceLogic.LoadMovies();
         }
 
     }

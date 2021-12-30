@@ -8,7 +8,7 @@ Console.WriteLine("Bienvenue chez ResrveTaPlace.com version console !!!");
 Console.WriteLine();
 
 var manager = new Manager();
-
+App.InitializedMoviesList();
 App.Menu();
 
 
@@ -18,5 +18,3 @@ App.Menu();
 //Console.WriteLine(reponse.Text);
 //Console.ReadLine();
 
-var movieProvider = new MovieProvider();
-await movieProvider.GetMovie("Dune");

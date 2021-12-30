@@ -1,12 +1,12 @@
 ﻿using ReserveTaPlace.Models;
-using ReserveTaPlace.Models.Interfaces;
+using ReserveTaPlace.RTPManager.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ReserveTaPlaceConsole
+namespace ReserveTaPlaceConsole.RTPManager
 {
     internal class Reader
     {

@@ -2,7 +2,9 @@
 using ConsoleManager.Data.Models;
 using ReserveTaPlace.Logic;
 using ReserveTaPlace.Models;
-using ReserveTaPlace.Persistance;
+using ReserveTaPlace.RTPManager;
+using ReserveTaPlace.RTPManager.Interfaces;
+using ReserveTaPlaceConsole.RTPManager;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +15,13 @@ namespace ReserveTaPlaceConsole
 {
     abstract class App
     {
+        private IReader _reader;
+        private IWriter _writer;
         public static void Menu()
         {
             var manager = new Manager();
-
+            var movieProvider = new MovieProviderLogic();
+            var movieManager = new MovieManager(_reader, _writer);
             var question = new Question("Choisir une action a effectuer : \n" +
                 "1.Afficher la liste des films disponibles\n" +
                 "2.Choisir un film a mettre a l'affiche\n" +
@@ -26,13 +31,14 @@ namespace ReserveTaPlaceConsole
                 5, null, null, QuestionType.ChoixMultiple, null);
 
             manager.WriteQuestion(question);
-            
             var answer = manager.ReadUserEntry(question);
 
             switch (answer.Choice)
             {
                 case 1:
-
+                    movieManager.LoadMovies();
+                    movieManager.Read();
+                    Console.ReadLine();
                     break;
                 case 2:
                     break;
@@ -55,7 +61,7 @@ namespace ReserveTaPlaceConsole
 
         public static void InitializedMoviesList()
         {
-            var movieLogic = new PersistanceLogic();
+            var movieManager = new MovieManager();
 
             List<Movie> movieList = new List<Movie>() {
                 new Movie("Alien"), 
@@ -67,7 +73,7 @@ namespace ReserveTaPlaceConsole
                 new Movie("Le dernier duel"),
                 new Movie("Detective Pikachu")};
 
-            movieLogic.SaveMovies(movieList);
+            movieManager.SaveMovies(movieList);
         }
     }
 }
