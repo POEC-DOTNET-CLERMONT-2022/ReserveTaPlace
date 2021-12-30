@@ -15,8 +15,6 @@ namespace ReserveTaPlaceConsole
 {
     abstract class App
     {
-        IReader _reader = new Reader();
-        IWriter _writer = new Writer();
         public static void Menu()
         {
             var manager = new Manager();
@@ -28,7 +26,7 @@ namespace ReserveTaPlaceConsole
                 "3.Ajouter un film\n" +
                 "4.Supprimer un film\n" +
                 "5.Modifier un film",
-                5, null, null, QuestionType.ChoixMultiple, null);
+                5,QuestionType.ChoixMultiple);
 
             manager.WriteQuestion(question);
             var answer = manager.ReadUserEntry(question);
