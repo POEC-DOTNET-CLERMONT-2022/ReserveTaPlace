@@ -30,5 +30,10 @@ namespace ReserveTaPlace.Models
             _writer.DisplayMovies(Movies);
 
         }
+        public void LoadMovies()
+        {
+
+        }
+
     }
 }

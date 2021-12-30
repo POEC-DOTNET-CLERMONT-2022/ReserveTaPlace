@@ -2,15 +2,21 @@
 using ConsoleManage.Manager;
 using ConsoleManager.Data.Models;
 using ReserveTaPlace.Models;
+using ReserveTaPlaceConsole;
 
-Console.WriteLine("Hello, World!");
+Console.WriteLine("Bienvenue chez ResrveTaPlace.com version console !!!");
+Console.WriteLine();
+
 var manager = new Manager();
-var question1 = new Question("Quel film voulez vous ajouter ?", 0, null, null, QuestionType.ReponseLibre, null );
 
-manager.WriteQuestion(question1);
-var reponse = manager.ReadUserEntry(question1);
-Console.WriteLine(reponse.Text);
-Console.ReadLine();
+App.Menu();
 
-//var movieProvider = new MovieProvider();
-//await movieProvider.GetMovie("Dune");
+
+
+//manager.WriteQuestion(question1);
+//var reponse = manager.ReadUserEntry(question1);
+//Console.WriteLine(reponse.Text);
+//Console.ReadLine();
+
+var movieProvider = new MovieProvider();
+await movieProvider.GetMovie("Dune");

@@ -15,16 +15,20 @@ namespace ReserveTaPlace.Models
         private DateTime _castEndDate;
         private DateTime _releaseDate;
         private DateTime _duration;
+        private bool _isMovieOnDisplay;
 
-        public Movie(string title, DateTime releaseDate)
+
+
+        public Movie(string title)
         {
             _id = Guid.NewGuid();
             _title = title;
             //_description = description;
             //_castStartDate = castStartDate;
             //_castEndDate = castEndDate;
-            _releaseDate = releaseDate;
+            //_releaseDate = releaseDate;
             //_duration = duration;
+            _isMovieOnDisplay = false;
         }
         public Guid Id { get { return _id; } }
         public string Title { get { return _title; } set { _title = value; } }
@@ -33,6 +37,11 @@ namespace ReserveTaPlace.Models
         public DateTime CastEndDate { get { return _castEndDate; } set { _castEndDate = value; } }
         public DateTime ReleaseDate { get { return _releaseDate; } set { _releaseDate = value; } }
         public DateTime Duration { get { return _duration; } set { _duration = value; } }
+        public bool IsMovieOnDisplay
+        {
+            get { return _isMovieOnDisplay; }
+            set { _isMovieOnDisplay = value; }
+        }
 
 
     }
