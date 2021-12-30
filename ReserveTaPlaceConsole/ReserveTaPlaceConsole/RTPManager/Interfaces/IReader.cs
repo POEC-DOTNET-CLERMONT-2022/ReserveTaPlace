@@ -9,7 +9,6 @@ namespace ReserveTaPlace.RTPManager.Interfaces
 {
     public interface IReader
     {
-        public IWriter Writer { get; set; }
         public Movie ReadMovie();
     }
 

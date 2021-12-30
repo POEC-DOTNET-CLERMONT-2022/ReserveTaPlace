@@ -1,6 +1,7 @@
 ﻿using ReserveTaPlace.Logic;
 using ReserveTaPlace.Models;
 using ReserveTaPlace.RTPManager.Interfaces;
+using ReserveTaPlaceConsole.RTPManager;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,15 +16,12 @@ namespace ReserveTaPlace.RTPManager
         private IReader _reader { get; }
         private IWriter _writer { get; }
 
-        private IList<Movie> Movies { get; set; } = new List<Movie>();
+        private List<Movie> Movies { get; set; } = new List<Movie>();
+
         public MovieManager()
         {
-
-        }
-        public MovieManager(IReader reader, IWriter writer)
-        {
-            _reader = reader;
-            _writer = writer;
+            _reader = new Reader();
+            _writer = new Writer();
         }
 
         public void Add()

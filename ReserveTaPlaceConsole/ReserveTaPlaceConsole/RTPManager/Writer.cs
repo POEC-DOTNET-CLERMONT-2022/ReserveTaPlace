@@ -1,4 +1,5 @@
 ﻿using ReserveTaPlace.Models;
+using ReserveTaPlace.RTPManager.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,21 +8,22 @@ using System.Threading.Tasks;
 
 namespace ReserveTaPlaceConsole.RTPManager
 {
-    internal class Writer
+    internal class Writer : IWriter
     {
         public void Display(string message)
         {
             Console.WriteLine(message);
         }
 
-        public void DisplayMovie(Movie movie)
+        public void DisplayMovie(Movie movie,int id)
         {
-            Console.WriteLine(movie.Title);
+            Console.WriteLine($"ID : {id} Titre : {movie.Title}");
         }
 
         public void DisplayMovies(IEnumerable<Movie> movies)
         {
-            foreach (Movie movie in movies) { DisplayMovie(movie); }
+            int id = 0;
+            foreach (Movie movie in movies) { id++; DisplayMovie(movie,id); }
         }
     }
 }

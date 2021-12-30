@@ -15,13 +15,13 @@ namespace ReserveTaPlaceConsole
 {
     abstract class App
     {
-        private IReader _reader;
-        private IWriter _writer;
+        IReader _reader = new Reader();
+        IWriter _writer = new Writer();
         public static void Menu()
         {
             var manager = new Manager();
             var movieProvider = new MovieProviderLogic();
-            var movieManager = new MovieManager(_reader, _writer);
+            var movieManager = new MovieManager();
             var question = new Question("Choisir une action a effectuer : \n" +
                 "1.Afficher la liste des films disponibles\n" +
                 "2.Choisir un film a mettre a l'affiche\n" +
