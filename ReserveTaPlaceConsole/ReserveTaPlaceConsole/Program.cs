@@ -18,5 +18,6 @@ Console.WriteLine();
 //App.Menu();
 
 var movieProvider = new MovieProvider();
-var movies = await movieProvider.GetMovie("dune");
+
+await movieProvider.GetMovie("dune");
 Console.ReadLine();
