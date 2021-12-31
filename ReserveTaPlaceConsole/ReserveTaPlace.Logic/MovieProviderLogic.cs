@@ -10,10 +10,10 @@ namespace ReserveTaPlace.Logic
 {
     public class MovieProviderLogic
     {
-        private readonly IMovieProvider MovieProvider;
-        public async Task<Movie> GetMovie(string movie)
+        private readonly IMovieProvider _movieProvider = new MovieProvider();
+        public async Task<List<Movie>> GetMovie(string movie)
         {
-            return await MovieProvider.GetMovie(movie);
+            return await _movieProvider.GetMovie(movie);
         }
     }
 }

@@ -9,6 +9,6 @@ namespace ReserveTaPlace.Persistance
 {
     public interface IMovieProvider
     {
-        Task<Movie> GetMovie(string movie);
+        Task<List<Movie>> GetMovie(string movie);
     }
 }

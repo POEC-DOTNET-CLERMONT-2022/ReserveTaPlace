@@ -2,6 +2,7 @@
 using ConsoleManage.Manager;
 using ConsoleManager.Data.Models;
 using ReserveTaPlace.Models;
+using ReserveTaPlace.Persistance;
 using ReserveTaPlaceConsole;
 
 
@@ -13,7 +14,9 @@ Console.WriteLine("                  ╦═╗╔═╗╔═╗╔═╗╦═�
                   "                              ║  │ ││││└─┐│ ││  ├┤   \n"+
                   "                              ╚═╝└─┘┘└┘└─┘└─┘┴─┘└─┘────── ");
 Console.WriteLine();
-App.InitializedMoviesList();
-App.Menu();
+//App.InitializedMoviesList();
+//App.Menu();
 
-
+var movieProvider = new MovieProvider();
+var movies = await movieProvider.GetMovie("dune");
+Console.ReadLine();

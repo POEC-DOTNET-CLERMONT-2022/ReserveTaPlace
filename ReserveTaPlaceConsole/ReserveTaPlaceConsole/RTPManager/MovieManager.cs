@@ -36,9 +36,7 @@ namespace ReserveTaPlace.RTPManager
         }
         public void DisplayMovies()
         {
-
             _writer.DisplayMovies(Movies);
-
         }
         public void SaveMovies(List<Movie> movies)
         {
@@ -47,6 +45,10 @@ namespace ReserveTaPlace.RTPManager
         public void LoadMovies()
         {
             Movies = _persistanceLogic.LoadMovies();
+        }
+        public async Task<List<Movie>> SearchMovie(string movieName)
+        {
+            return await _reader.SearchMovie(movieName); 
         }
 
     }

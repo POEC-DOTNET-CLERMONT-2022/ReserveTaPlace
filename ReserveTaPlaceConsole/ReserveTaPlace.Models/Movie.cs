@@ -17,8 +17,6 @@ namespace ReserveTaPlace.Models
         private DateTime _duration;
         private bool _isMovieOnDisplay;
 
-
-
         public Movie(string title)
         {
             _id = Guid.NewGuid();

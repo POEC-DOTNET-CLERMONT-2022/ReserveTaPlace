@@ -10,6 +10,7 @@ namespace ReserveTaPlace.RTPManager.Interfaces
     public interface IReader
     {
         public Movie ReadMovie();
+        public Task<List<Movie>> SearchMovie(string movieName);
     }
 
 }

@@ -1,4 +1,5 @@
-﻿using ReserveTaPlace.Models;
+﻿using ReserveTaPlace.Logic;
+using ReserveTaPlace.Models;
 using ReserveTaPlace.RTPManager.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -10,22 +11,16 @@ namespace ReserveTaPlaceConsole.RTPManager
 {
     public class Reader : IReader
     {
+        private MovieProviderLogic _movieProvider = new MovieProviderLogic();
         public Movie ReadMovie()
         {
             throw new NotImplementedException();
         }
 
-        public Movie SearchMovie()
+        public async Task<List<Movie>> SearchMovie(string movieName)
         {
-            //Writer.Display("Indiquer le film à ajouter :");
-            //var movieName = Console.ReadLine().Trim();
-            //if (String.IsNullOrEmpty(movieName))
-            //{
-            //    Writer.Display($"Le nom de film : {movieName} indiqué est incorrect");
-            //    return SearchMovie();
-            //}
-            var movie = new Movie("Alien");
-            return movie ;
+   
+            return await _movieProvider.GetMovie(movieName);
         }
     }
 }

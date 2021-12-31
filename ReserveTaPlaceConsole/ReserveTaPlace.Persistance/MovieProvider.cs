@@ -1,4 +1,5 @@
-﻿using ReserveTaPlace.Models;
+﻿using Newtonsoft.Json;
+using ReserveTaPlace.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,9 @@ namespace ReserveTaPlace.Persistance
 {
     public class MovieProvider : IMovieProvider
     {
-        public async Task<Movie> GetMovie(string movie)
+        public async Task<List<Movie>> GetMovie(string movie)
         {
-
+            List<Movie> movies = new List<Movie>();
             var client = new HttpClient(); 
             var request = new HttpRequestMessage
             {
@@ -20,19 +21,23 @@ namespace ReserveTaPlace.Persistance
                 Headers =
                 {
                     { "x-rapidapi-host", "movie-database-imdb-alternative.p.rapidapi.com" },
-                    {  "x-rapidapi-key", "" },
+                    {  "x-rapidapi-key", "6be4c3adaemsh1b7bf45019b2f71p1a3972jsnebc833006f22" },
                 },
             };
             using (var response = await client.SendAsync(request))
             {
-                //var movie = await response.Content.
                 response.EnsureSuccessStatusCode();
                 var body = await response.Content.ReadAsStringAsync();
-                Console.WriteLine(body);
+                var result = JsonConvert.DeserializeObject<List<object>>(body);
+                foreach (var item in result)
+                {
+                    var mov = new Movie(item.ToString());
+                    movies.Add(mov);
+                }
+                Console.WriteLine(movies.Count);
                 Console.ReadLine();
             }
-            var mov = new Movie("dune");
-            return mov;
+            return movies;
         }
     }
 }

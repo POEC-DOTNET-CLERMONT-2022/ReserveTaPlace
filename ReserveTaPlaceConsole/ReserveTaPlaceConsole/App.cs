@@ -15,10 +15,9 @@ namespace ReserveTaPlaceConsole
 {
     abstract class App
     {
-        public static void Menu()
+        public async static void Menu()
         {
             var manager = new Manager();
-            var movieProvider = new MovieProviderLogic();
             var movieManager = new MovieManager();
             var question = new Question("Choisir une action a effectuer : \n" +
                 "1.Afficher la liste des films disponibles\n" +
@@ -41,6 +40,12 @@ namespace ReserveTaPlaceConsole
                 case 2:
                     break;
                 case 3:
+                    var question1 = new Question("Quel film voulez vous ajouter ?", 0, QuestionType.ReponseLibre);
+                    manager.WriteQuestion(question1);
+                    answer = manager.ReadUserEntry(question1);
+                    var movie = await movieManager.SearchMovie(answer.Text);
+                    Console.WriteLine($"Le ");
+                    Console.ReadLine();
                     break;
                 case 4:
                     break;
@@ -51,7 +56,6 @@ namespace ReserveTaPlaceConsole
             }
 
 
-            var question1 = new Question("Quel film voulez vous ajouter ?", 0, null, null, QuestionType.ReponseLibre, null);
 
             var question2 = new Question("Selectionner le film :", 0, null, null, QuestionType.ReponseLibre, null);
 
