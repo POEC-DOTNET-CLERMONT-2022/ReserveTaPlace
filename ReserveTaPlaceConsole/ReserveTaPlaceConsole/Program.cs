@@ -14,10 +14,9 @@ Console.WriteLine("                  ╦═╗╔═╗╔═╗╔═╗╦═�
                   "                              ║  │ ││││└─┐│ ││  ├┤   \n"+
                   "                              ╚═╝└─┘┘└┘└─┘└─┘┴─┘└─┘────── ");
 Console.WriteLine();
-//App.InitializedMoviesList();
-//App.Menu();
+App.InitializedMoviesList();
+App.Menu();
 
 var movieProvider = new MovieProvider();
 
-await movieProvider.GetMovie("dune");
 Console.ReadLine();

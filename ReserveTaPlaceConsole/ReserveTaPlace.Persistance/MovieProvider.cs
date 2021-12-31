@@ -28,17 +28,17 @@ namespace ReserveTaPlace.Persistance
             {
                 response.EnsureSuccessStatusCode();
                 var body = await response.Content.ReadAsStringAsync();
-                var result = JsonConvert.DeserializeObject<dynamic>(body);
-                var test = result.Search;
-                test = (List)test;
-                foreach (var item in test)
+                var result = JsonConvert.DeserializeObject<ImdbSearch>(body);
+                foreach (var item in result.ImdbMovies)
                 {
                     var teestt = item;
-                    var mov = new Movie(item[0]);
-                    movies.Add(mov);
+                    if (item.Type!="series")
+                    {
+                        var mov = new Movie(item.Title);
+                        movies.Add(mov);
+                    }
+
                 }
-                Console.WriteLine(movies.Count);
-                Console.ReadLine();
             }
             return movies;
         }
