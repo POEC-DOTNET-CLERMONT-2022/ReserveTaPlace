@@ -35,7 +35,7 @@ namespace ReserveTaPlaceConsole
             {
                 case 1:
                     movieManager.LoadMovies();
-                    movieManager.Read();
+                    movieManager.DisplayMovies();
                     Console.ReadLine();
                     break;
                 case 2:
