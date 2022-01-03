@@ -9,6 +9,8 @@ namespace ReserveTaPlace.Persistance.Interfaces
     public interface IUser
     {
         void GetUser(string login, string password);
-
+        void CreateUser(string login, string password, string confirmedPassword);
+        void UpdatePassword(string password, string confirmedPassword);
+        void UpdateUser(string login);
     }
 }
