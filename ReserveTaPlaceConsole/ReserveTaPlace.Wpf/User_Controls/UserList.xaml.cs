@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ReserveTaPlace.Logic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,16 +14,18 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ReserveTaPlace.Wpf.UserControl
+namespace ReserveTaPlace.Wpf.User_Controls
 {
     /// <summary>
     /// Logique d'interaction pour UserList.xaml
     /// </summary>
     public partial class UserList : UserControl
     {
+        UserLogic userLogic = new UserLogic();
         public UserList()
         {
             InitializeComponent();
+            UserLV.ItemsSource = userLogic.GetUsers();
         }
     }
 }

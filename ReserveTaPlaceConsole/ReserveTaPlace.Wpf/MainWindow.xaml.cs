@@ -1,4 +1,5 @@
 ﻿using ReserveTaPlace.Logic;
+using ReserveTaPlace.Wpf.User_Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,12 +28,18 @@ namespace ReserveTaPlace.Wpf
             InitializeComponent();
             App.InitializedUserList();
             App.InitializedMoviesList();
-            UserLV.ItemsSource = userLogic.GetUsers();
+            //UserLV.ItemsSource = userLogic.GetUsers();
         }
 
         private void LoginBTN_Click(object sender, RoutedEventArgs e)
         {
             ResultTB.Text = userLogic.GetUser(LoginTB.Text, PasswordTB.Text);
+        }
+
+        private void ViewListBTN_Click(object sender, RoutedEventArgs e)
+        {
+            LoginGrid.Visibility = Visibility.Hidden;
+            UserListUC.Visibility = Visibility.Visible;
         }
     }
 }
