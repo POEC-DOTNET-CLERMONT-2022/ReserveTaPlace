@@ -13,9 +13,7 @@ namespace ReserveTaPlace.Logic
     public class PersistanceLogic
     {
         private readonly IPersistance _persistance;
-        private readonly IUser _user;
-
-
+        
         public PersistanceLogic()
         {
             _persistance = new MovieFunctions();
@@ -26,10 +24,6 @@ namespace ReserveTaPlace.Logic
             return _persistance.LoadMovies();
         }
 
-        public void SaveUsers(List<User> userList)
-        {
-            _user.SaveUsers(userList);
-        }
 
         public void SaveMovies(List<Movie> movieList)
         {

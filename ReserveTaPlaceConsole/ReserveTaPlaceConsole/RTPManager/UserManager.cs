@@ -12,8 +12,7 @@ namespace ReserveTaPlaceConsole.RTPManager
     {
         private readonly List<User> _users;
 
-        private PersistanceLogic _persistanceLogic = new PersistanceLogic();
-
+        private readonly UserLogic  _userLogic;
         public UserManager(List<User> users)
         {
             _users = users;
@@ -21,7 +20,7 @@ namespace ReserveTaPlaceConsole.RTPManager
 
         internal void SaveUsers(List<User> userList)
         {
-            _persistanceLogic.SaveUsers(userList);
+            _userLogic.SaveUsers(userList);
         }
     }
 }

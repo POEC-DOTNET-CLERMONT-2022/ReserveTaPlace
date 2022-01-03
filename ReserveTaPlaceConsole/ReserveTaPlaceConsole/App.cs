@@ -81,7 +81,6 @@ namespace ReserveTaPlaceConsole
                 new User("Jean", "Casser", "casser.j@hotmail.fr", "1234", UserRoles.AdminGlobal)};
 
             var userManager = new UserManager(userList);
-
             userManager.SaveUsers(userList);
 
         }

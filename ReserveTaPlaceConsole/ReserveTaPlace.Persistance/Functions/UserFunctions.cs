@@ -16,11 +16,20 @@ namespace ReserveTaPlace.Persistance.Functions
             throw new NotImplementedException();
         }
 
-        public List<User> GetUser(string login, string password)
+        public string GetUser(string login, string password)
         {
             var jsonUsers = File.ReadAllText(@"userList.txt");
             var users = JsonConvert.DeserializeObject<List<User>>(jsonUsers);
-            return users;
+            var user = users.FirstOrDefault(u=>u.Email == login);
+            if (user == null)
+            {
+                return "user non trouvé";
+            }
+            if(user.Password != password)
+            {
+                return $"Mot de passe incorrect {password}";
+            }
+            return "success";
         }
 
         public void UpdatePassword(string password, string confirmedPassword)

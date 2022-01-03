@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ReserveTaPlace.Logic\ReserveTaPlace.Logic.csproj" />
+    <ProjectReference Include="..\ReserveTaPlace.Models\ReserveTaPlace.Models.csproj" />
   </ItemGroup>
 
 </Project>
