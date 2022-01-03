@@ -1,6 +1,7 @@
 ﻿using ReserveTaPlace.Models;
 using ReserveTaPlace.Persistance;
 using ReserveTaPlace.Persistance.Functions;
+using ReserveTaPlace.Persistance.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,8 @@ namespace ReserveTaPlace.Logic
     public class PersistanceLogic
     {
         private readonly IPersistance _persistance;
+        private readonly IUser _user;
+
 
         public PersistanceLogic()
         {
@@ -26,6 +29,11 @@ namespace ReserveTaPlace.Logic
         public void SaveMovies(List<Movie> movieList)
         {
             _persistance.SaveMovies(movieList);
+        }
+        /// USER
+        public void GetUser(string login, string password)
+        {
+            _user.GetUser(login, password);
         }
     }
 }
