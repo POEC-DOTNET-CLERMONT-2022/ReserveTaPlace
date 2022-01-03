@@ -27,11 +27,12 @@ namespace ReserveTaPlace.Wpf
             InitializeComponent();
             App.InitializedUserList();
             App.InitializedMoviesList();
+            UserLV.ItemsSource = userLogic.GetUsers();
         }
 
         private void LoginBTN_Click(object sender, RoutedEventArgs e)
         {
-            userLogic.GetUser(LoginTB.Text, PasswordTB.Text);
+            ResultTB.Text = userLogic.GetUser(LoginTB.Text, PasswordTB.Text);
         }
     }
 }

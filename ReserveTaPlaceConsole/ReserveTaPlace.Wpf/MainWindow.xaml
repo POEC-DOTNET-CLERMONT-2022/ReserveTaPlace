@@ -7,18 +7,23 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
+        <Grid Grid.Row="0" Grid.Column="1">
             <StackPanel VerticalAlignment="Center">
                 <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Bienvenu" FontSize="20" FontWeight="Bold"/>
                 <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Veuillez vous connecter"/>
             </StackPanel>
         </Grid>
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" Grid.Column="1">
             <StackPanel VerticalAlignment="Center">
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
                     <TextBlock TextWrapping="Wrap" Text="Login :"/>
@@ -30,10 +35,11 @@
                 </WrapPanel>
             </StackPanel>
         </Grid>
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="2" Grid.Column="1">
             <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Button x:Name="ForgetPasswordBTN" Margin="10">Mot de passe perdu ?</Button>
                 <Button x:Name="LoginBTN" Margin="10" Click="LoginBTN_Click">Se connecter</Button>
+                <TextBlock x:Name="ResultTB"/>
             </WrapPanel>
         </Grid>
     </Grid>

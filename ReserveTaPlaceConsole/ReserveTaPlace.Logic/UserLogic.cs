@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections;
 
 namespace ReserveTaPlace.Logic
 {
@@ -28,6 +29,12 @@ namespace ReserveTaPlace.Logic
         {
             _user.CreateUser(login, password, confirmedPassword);
         }
+
+        public List<User> GetUsers()
+        {
+            return _user.GetUsers();
+        }
+
         public void UpdatePassword(string password, string confirmedPassword)
         {
              _user.UpdatePassword(password, confirmedPassword);

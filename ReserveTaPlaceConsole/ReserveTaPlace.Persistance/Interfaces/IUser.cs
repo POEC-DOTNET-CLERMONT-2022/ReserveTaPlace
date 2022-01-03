@@ -15,5 +15,6 @@ namespace ReserveTaPlace.Persistance.Interfaces
         void CreateUser(string login, string password, string confirmedPassword);
         void UpdatePassword(string password, string confirmedPassword);
         void UpdateUser(string login);
+        List<User> GetUsers();
     }
 }

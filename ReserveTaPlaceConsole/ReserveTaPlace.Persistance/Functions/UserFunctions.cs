@@ -20,7 +20,7 @@ namespace ReserveTaPlace.Persistance.Functions
         {
             var jsonUsers = File.ReadAllText(@"userList.txt");
             var users = JsonConvert.DeserializeObject<List<User>>(jsonUsers);
-            var user = users.FirstOrDefault(u=>u.Email == login);
+            var user = users.FirstOrDefault(u=>u.FirstName == login);
             if (user == null)
             {
                 return "user non trouvé";
@@ -30,6 +30,12 @@ namespace ReserveTaPlace.Persistance.Functions
                 return $"Mot de passe incorrect {password}";
             }
             return "success";
+        }
+        public List<User> GetUsers()
+        {
+            var jsonUsers = File.ReadAllText(@"userList.txt");
+            var users = JsonConvert.DeserializeObject<List<User>>(jsonUsers);
+            return users;
         }
 
         public void UpdatePassword(string password, string confirmedPassword)
@@ -45,7 +51,6 @@ namespace ReserveTaPlace.Persistance.Functions
         {
             using (FileStream fs = File.Create(@"userList.txt"))
             {
-
                 fs.Close();
             }
             var jsonString = JsonConvert.SerializeObject(userList);
