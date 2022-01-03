@@ -25,11 +25,13 @@ namespace ReserveTaPlace.Wpf
         public MainWindow()
         {
             InitializeComponent();
+            App.InitializedUserList();
+            App.InitializedMoviesList();
         }
 
         private void LoginBTN_Click(object sender, RoutedEventArgs e)
         {
-            userLogic.ge
+            userLogic.GetUser(LoginTB.Text, PasswordTB.Text);
         }
     }
 }

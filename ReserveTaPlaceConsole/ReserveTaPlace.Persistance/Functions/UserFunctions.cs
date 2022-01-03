@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Persistance.Functions
 {
-    internal class UserFunctions : IUser
+    public class UserFunctions : IUser
     {
         public void CreateUser(string login, string password, string confirmedPassword)
         {
