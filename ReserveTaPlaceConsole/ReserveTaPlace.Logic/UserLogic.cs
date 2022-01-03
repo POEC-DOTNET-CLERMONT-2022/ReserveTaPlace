@@ -15,5 +15,21 @@ namespace ReserveTaPlace.Logic
         {
             _user.SaveUsers(userList);
         }
+        public User GetUser(string login, string password)
+        {
+            return _user.GetUser(login, password);
+        }
+        public void CreateUser(string login, string password, string confirmedPassword)
+        {
+            _user.CreateUser(login, password, confirmedPassword);
+        }
+        public void UpdatePassword(string password, string confirmedPassword)
+        {
+             _user.UpdatePassword(password, confirmedPassword);
+        }
+        public void UpdateUser(string login)
+        {
+            _user.UpdateUser(login);
+        }
     }
 }

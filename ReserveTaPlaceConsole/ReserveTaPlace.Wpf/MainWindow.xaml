@@ -33,7 +33,7 @@
         <Grid Grid.Row="2">
             <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Button x:Name="ForgetPasswordBTN" Margin="10">Mot de passe perdu ?</Button>
-                <Button x:Name="LoginBTN" Margin="10">Se connecter</Button>
+                <Button x:Name="LoginBTN" Margin="10" Click="LoginBTN_Click">Se connecter</Button>
             </WrapPanel>
         </Grid>
     </Grid>

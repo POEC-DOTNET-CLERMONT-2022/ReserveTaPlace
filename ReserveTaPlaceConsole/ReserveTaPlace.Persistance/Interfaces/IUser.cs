@@ -10,7 +10,7 @@ namespace ReserveTaPlace.Persistance.Interfaces
 {
     public interface IUser
     {
-        List<User> GetUser(string login, string password);
+        User GetUser(string login, string password);
         void SaveUsers(List<User> userList);
         void CreateUser(string login, string password, string confirmedPassword);
         void UpdatePassword(string password, string confirmedPassword);

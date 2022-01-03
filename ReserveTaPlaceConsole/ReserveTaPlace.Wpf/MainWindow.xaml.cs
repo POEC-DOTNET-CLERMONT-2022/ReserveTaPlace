@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ReserveTaPlace.Logic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,15 @@ namespace ReserveTaPlace.Wpf
     /// </summary>
     public partial class MainWindow : Window
     {
+        UserLogic userLogic = new UserLogic();
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void LoginBTN_Click(object sender, RoutedEventArgs e)
+        {
+            userLogic.ge
         }
     }
 }
