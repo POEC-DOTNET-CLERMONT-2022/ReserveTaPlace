@@ -11,11 +11,25 @@ namespace ReserveTaPlace.Persistance.Functions
 {
     internal class UserFunctions : IUser
     {
+        public void CreateUser(string login, string password, string confirmedPassword)
+        {
+            throw new NotImplementedException();
+        }
+
         public void GetUser(string login, string password)
         {
 
         }
 
+        public void UpdatePassword(string password, string confirmedPassword)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateUser(string login)
+        {
+            throw new NotImplementedException();
+        }
         public void SaveUsers(List<User> userList)
         {
             using (FileStream fs = File.Create(@"userList.txt"))

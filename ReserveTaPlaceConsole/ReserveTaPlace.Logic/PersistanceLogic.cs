@@ -36,9 +36,21 @@ namespace ReserveTaPlace.Logic
             _persistance.SaveMovies(movieList);
         }
         /// USER
+        public void CreateUser(string login, string password, string confirmedPassword)
+        {
+            _user.CreateUser(login, password, confirmedPassword);
+        }
         public void GetUser(string login, string password)
         {
             _user.GetUser(login, password);
+        }
+        public void UpdatePassword(string password, string confirmedPassword)
+        {
+            _user.UpdatePassword(password, confirmedPassword);
+        }
+        public void UpdateUser(string login)
+        {
+            _user.UpdateUser(login);
         }
     }
 }
