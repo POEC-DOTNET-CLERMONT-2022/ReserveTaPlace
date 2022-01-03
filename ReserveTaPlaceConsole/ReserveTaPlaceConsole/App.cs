@@ -1,9 +1,7 @@
 ﻿using ConsoleManage.Manager;
 using ConsoleManager.Data.Models;
-using ReserveTaPlace.Logic;
 using ReserveTaPlace.Models;
 using ReserveTaPlace.RTPManager;
-using ReserveTaPlace.RTPManager.Interfaces;
 using ReserveTaPlaceConsole.RTPManager;
 using System;
 using System.Collections.Generic;
@@ -54,11 +52,7 @@ namespace ReserveTaPlaceConsole
                 default:
                     break;
             }
-
-
-
             var question2 = new Question("Selectionner le film :", 0, null, null, QuestionType.ReponseLibre, null);
-
         }
 
         public static void InitializedMoviesList()
@@ -76,6 +70,19 @@ namespace ReserveTaPlaceConsole
                 new Movie("Detective Pikachu")};
 
             movieManager.SaveMovies(movieList);
+        }
+
+        public static void InitializedUserList()
+        {
+            var userList = new List<User>() { 
+                new User("Gilbert", "Hugo", "hugo.g@hotmail.fr", "1234"),
+                new User("Gerard", "Bidon", "bidon.g@hotmail.fr", "1234",UserRoles.AdminLocal),
+                new User("Bernard", "Petard", "petard.b@hotmail.fr", "1234", UserRoles.AdminGroupe),
+                new User("Jean", "Casser", "casser.j@hotmail.fr", "1234", UserRoles.AdminGlobal)};
+
+            var userManager = new UserManager(userList);
+
+            userManager.SaveUsers(userList);
         }
     }
 }

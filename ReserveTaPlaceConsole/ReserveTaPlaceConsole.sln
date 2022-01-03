@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleManager", "ConsoleMa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleManager.Data", "ConsoleManager.Class\ConsoleManager.Data.csproj", "{496CE91D-45E9-4C16-9BDC-E76CDDC0A4E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReserveTaPlace.Logic", "ReserveTaPlace.Logic\ReserveTaPlace.Logic.csproj", "{526B2E7E-5618-4AF4-99A1-DAE923FCA695}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReserveTaPlace.Logic", "ReserveTaPlace.Logic\ReserveTaPlace.Logic.csproj", "{526B2E7E-5618-4AF4-99A1-DAE923FCA695}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReserveTaPlace.Wpf", "ReserveTaPlace.Wpf\ReserveTaPlace.Wpf.csproj", "{F739D4E8-6524-4974-BAA5-C1D7A4F7CDD0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{526B2E7E-5618-4AF4-99A1-DAE923FCA695}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{526B2E7E-5618-4AF4-99A1-DAE923FCA695}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{526B2E7E-5618-4AF4-99A1-DAE923FCA695}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F739D4E8-6524-4974-BAA5-C1D7A4F7CDD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F739D4E8-6524-4974-BAA5-C1D7A4F7CDD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F739D4E8-6524-4974-BAA5-C1D7A4F7CDD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F739D4E8-6524-4974-BAA5-C1D7A4F7CDD0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
