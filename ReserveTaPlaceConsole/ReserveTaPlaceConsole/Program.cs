@@ -15,6 +15,7 @@ Console.WriteLine("                  ╦═╗╔═╗╔═╗╔═╗╦═�
                   "                              ╚═╝└─┘┘└┘└─┘└─┘┴─┘└─┘────── ");
 Console.WriteLine();
 App.InitializedMoviesList();
+App.InitializedUserList();
 App.Menu();
 
 var movieProvider = new MovieProvider();

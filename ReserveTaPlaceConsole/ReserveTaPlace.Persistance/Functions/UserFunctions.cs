@@ -16,9 +16,11 @@ namespace ReserveTaPlace.Persistance.Functions
             throw new NotImplementedException();
         }
 
-        public void GetUser(string login, string password)
+        public List<User> GetUser(string login, string password)
         {
-
+            var jsonUsers = File.ReadAllText(@"userList.txt");
+            var users = JsonConvert.DeserializeObject<List<User>>(jsonUsers);
+            return users;
         }
 
         public void UpdatePassword(string password, string confirmedPassword)
