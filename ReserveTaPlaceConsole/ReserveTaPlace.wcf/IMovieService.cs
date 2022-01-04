@@ -1,4 +1,4 @@
-﻿using ReserveTaPlace.wcf.Models;
+﻿using ReserveTaPlace.DTOS;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +6,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ReserveTaPlace.wcf
 {
@@ -22,7 +23,7 @@ namespace ReserveTaPlace.wcf
 
         // TODO: Add your service operations here
         [OperationContract]
-        List<Movie> GetAll();
+        List<MovieDto> GetAllMovies();
 
     }
 

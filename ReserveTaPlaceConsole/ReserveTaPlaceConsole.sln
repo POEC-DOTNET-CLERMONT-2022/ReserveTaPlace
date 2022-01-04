@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReserveTaPlace.Wpf", "Reser
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReserveTaPlace.wcf", "ReserveTaPlace.wcf\ReserveTaPlace.wcf.csproj", "{62F37905-7F84-4E6B-926C-1B85F87663AD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReserveTaPlace.DTOS", "ReserveTaPlace.DTOS\ReserveTaPlace.DTOS.csproj", "{AF0BEC67-51E3-4190-9E03-85C778451A55}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{62F37905-7F84-4E6B-926C-1B85F87663AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62F37905-7F84-4E6B-926C-1B85F87663AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62F37905-7F84-4E6B-926C-1B85F87663AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF0BEC67-51E3-4190-9E03-85C778451A55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF0BEC67-51E3-4190-9E03-85C778451A55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF0BEC67-51E3-4190-9E03-85C778451A55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF0BEC67-51E3-4190-9E03-85C778451A55}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

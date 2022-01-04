@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ServiceReference1
+namespace ServiceReference
 {
     using System.Runtime.Serialization;
     
@@ -51,116 +51,11 @@ namespace ServiceReference1
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Movie", Namespace="http://schemas.datacontract.org/2004/07/ReserveTaPlace.wcf.Models")]
-    public partial class Movie : object
+    [System.Runtime.Serialization.DataContractAttribute(Name="MovieDto", Namespace="http://schemas.datacontract.org/2004/07/ReserveTaPlace.DTOS")]
+    public partial class MovieDto : object
     {
         
-        private System.DateTime CastEndDateField;
-        
-        private System.DateTime CastStartDateField;
-        
-        private string DescriptionField;
-        
-        private System.DateTime DurationField;
-        
-        private System.Guid IdField;
-        
-        private bool IsMovieOnDisplayField;
-        
-        private System.DateTime ReleaseDateField;
-        
         private string TitleField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime CastEndDate
-        {
-            get
-            {
-                return this.CastEndDateField;
-            }
-            set
-            {
-                this.CastEndDateField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime CastStartDate
-        {
-            get
-            {
-                return this.CastStartDateField;
-            }
-            set
-            {
-                this.CastStartDateField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Description
-        {
-            get
-            {
-                return this.DescriptionField;
-            }
-            set
-            {
-                this.DescriptionField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime Duration
-        {
-            get
-            {
-                return this.DurationField;
-            }
-            set
-            {
-                this.DurationField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Guid Id
-        {
-            get
-            {
-                return this.IdField;
-            }
-            set
-            {
-                this.IdField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool IsMovieOnDisplay
-        {
-            get
-            {
-                return this.IsMovieOnDisplayField;
-            }
-            set
-            {
-                this.IsMovieOnDisplayField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime ReleaseDate
-        {
-            get
-            {
-                return this.ReleaseDateField;
-            }
-            set
-            {
-                this.ReleaseDateField = value;
-            }
-        }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string Title
@@ -177,28 +72,37 @@ namespace ServiceReference1
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IMovieService")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference.IMovieService")]
     public interface IMovieService
     {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMovieService/GetData", ReplyAction="http://tempuri.org/IMovieService/GetDataResponse")]
+        string GetData(int value);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMovieService/GetData", ReplyAction="http://tempuri.org/IMovieService/GetDataResponse")]
         System.Threading.Tasks.Task<string> GetDataAsync(int value);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMovieService/GetDataUsingDataContract", ReplyAction="http://tempuri.org/IMovieService/GetDataUsingDataContractResponse")]
-        System.Threading.Tasks.Task<ServiceReference1.CompositeType> GetDataUsingDataContractAsync(ServiceReference1.CompositeType composite);
+        ServiceReference.CompositeType GetDataUsingDataContract(ServiceReference.CompositeType composite);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMovieService/GetAll", ReplyAction="http://tempuri.org/IMovieService/GetAllResponse")]
-        System.Threading.Tasks.Task<ServiceReference1.Movie[]> GetAllAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMovieService/GetDataUsingDataContract", ReplyAction="http://tempuri.org/IMovieService/GetDataUsingDataContractResponse")]
+        System.Threading.Tasks.Task<ServiceReference.CompositeType> GetDataUsingDataContractAsync(ServiceReference.CompositeType composite);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMovieService/GetAllMovies", ReplyAction="http://tempuri.org/IMovieService/GetAllMoviesResponse")]
+        ServiceReference.MovieDto[] GetAllMovies();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMovieService/GetAllMovies", ReplyAction="http://tempuri.org/IMovieService/GetAllMoviesResponse")]
+        System.Threading.Tasks.Task<ServiceReference.MovieDto[]> GetAllMoviesAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
-    public interface IMovieServiceChannel : ServiceReference1.IMovieService, System.ServiceModel.IClientChannel
+    public interface IMovieServiceChannel : ServiceReference.IMovieService, System.ServiceModel.IClientChannel
     {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
-    public partial class MovieServiceClient : System.ServiceModel.ClientBase<ServiceReference1.IMovieService>, ServiceReference1.IMovieService
+    public partial class MovieServiceClient : System.ServiceModel.ClientBase<ServiceReference.IMovieService>, ServiceReference.IMovieService
     {
         
         /// <summary>
@@ -241,19 +145,34 @@ namespace ServiceReference1
         {
         }
         
+        public string GetData(int value)
+        {
+            return base.Channel.GetData(value);
+        }
+        
         public System.Threading.Tasks.Task<string> GetDataAsync(int value)
         {
             return base.Channel.GetDataAsync(value);
         }
         
-        public System.Threading.Tasks.Task<ServiceReference1.CompositeType> GetDataUsingDataContractAsync(ServiceReference1.CompositeType composite)
+        public ServiceReference.CompositeType GetDataUsingDataContract(ServiceReference.CompositeType composite)
+        {
+            return base.Channel.GetDataUsingDataContract(composite);
+        }
+        
+        public System.Threading.Tasks.Task<ServiceReference.CompositeType> GetDataUsingDataContractAsync(ServiceReference.CompositeType composite)
         {
             return base.Channel.GetDataUsingDataContractAsync(composite);
         }
         
-        public System.Threading.Tasks.Task<ServiceReference1.Movie[]> GetAllAsync()
+        public ServiceReference.MovieDto[] GetAllMovies()
         {
-            return base.Channel.GetAllAsync();
+            return base.Channel.GetAllMovies();
+        }
+        
+        public System.Threading.Tasks.Task<ServiceReference.MovieDto[]> GetAllMoviesAsync()
+        {
+            return base.Channel.GetAllMoviesAsync();
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()

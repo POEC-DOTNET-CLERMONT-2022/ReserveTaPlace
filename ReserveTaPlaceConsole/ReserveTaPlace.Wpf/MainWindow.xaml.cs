@@ -1,6 +1,7 @@
 ﻿using ReserveTaPlace.Logic;
 using ReserveTaPlace.Wpf.User_Controls;
-using ServiceReference1;
+using ServiceReference;
+using ServiceReference;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,7 +47,9 @@ namespace ReserveTaPlace.Wpf
         private void listmovieBTN_Click(object sender, RoutedEventArgs e)
         {
             var client = new MovieServiceClient();
-            var listMovie = client.GetAllAsync();
+            //var listMovie = await client.GetAllMoviesAsync();
+            var test = client.GetData(50);
+            var listMovie2 = client.GetAllMovies();
             client.Close();
 
         }

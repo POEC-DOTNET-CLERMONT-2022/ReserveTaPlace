@@ -1,4 +1,4 @@
-﻿using ReserveTaPlace.wcf.Models;
+﻿using ReserveTaPlace.DTOS;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +6,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ReserveTaPlace.wcf
 {
@@ -13,17 +14,18 @@ namespace ReserveTaPlace.wcf
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class MovieService : IMovieService
     {
-        public List<Movie> GetAll()
+        public List<MovieDto> GetAllMovies()
         {
-             List<Movie> movieList = new List<Movie>() {
-                new Movie("Alien"),
-                new Movie("Dune"),
-                new Movie("Terminator"),
-                new Movie("Iron Man"),
-                new Movie("La vie d'Adèle"),
-                new Movie("Matrix 4"),
-                new Movie("Le dernier duel"),
-                new Movie("Detective Pikachu")};
+             List<MovieDto> movieList = new List<MovieDto>() {
+                new MovieDto("Alien"),
+                new MovieDto("Dune"),
+                new MovieDto("Terminator"),
+                new MovieDto("Iron Man"),
+                new MovieDto("La vie d'Adèle"),
+                new MovieDto("Matrix 4"),
+                new MovieDto("Le dernier duel"),
+                new MovieDto("Detective Pikachu")};
+
             return movieList;
         }
 
