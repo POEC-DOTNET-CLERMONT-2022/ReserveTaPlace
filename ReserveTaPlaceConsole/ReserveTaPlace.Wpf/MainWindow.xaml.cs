@@ -25,6 +25,7 @@ namespace ReserveTaPlace.Wpf
     public partial class MainWindow : Window
     {
         UserLogic userLogic = new UserLogic();
+        MovieLogic movieLogic = new MovieLogic();
         public MainWindow()
         {
             InitializeComponent();
@@ -50,6 +51,7 @@ namespace ReserveTaPlace.Wpf
             //var listMovie = await client.GetAllMoviesAsync();
             var test = client.GetData(50);
             var listMovie2 = client.GetAllMovies();
+            var listMovie3 = movieLogic.GetAllMovies();
             client.Close();
 
         }

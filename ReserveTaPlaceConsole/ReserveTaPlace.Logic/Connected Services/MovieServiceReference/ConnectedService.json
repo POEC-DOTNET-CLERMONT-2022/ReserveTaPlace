@@ -1,0 +1,22 @@
+{
+  "ExtendedData": {
+    "inputs": [
+      "http://localhost:63465/MovieService.svc"
+    ],
+    "collectionTypes": [
+      "System.Array",
+      "System.Collections.Generic.Dictionary`2"
+    ],
+    "namespaceMappings": [
+      "*, MovieServiceReference"
+    ],
+    "references": [
+      "C:\\ProjetIFPME\\ReserveTaPlaceConsole\\ReserveTaPlace.Logic\\bin\\Debug\\net6.0\\ReserveTaPlace.Models.dll",
+      "C:\\ProjetIFPME\\ReserveTaPlaceConsole\\ReserveTaPlace.Logic\\bin\\Debug\\net6.0\\ReserveTaPlace.Persistance.dll",
+      "Newtonsoft.Json, {Newtonsoft.Json, 13.0.1}"
+    ],
+    "sync": true,
+    "targetFramework": "net6.0",
+    "typeReuseMode": "All"
+  }
+}
