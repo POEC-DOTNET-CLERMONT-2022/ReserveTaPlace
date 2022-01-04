@@ -43,10 +43,10 @@ namespace ReserveTaPlace.Wpf
             UserListUC.Visibility = Visibility.Visible;
         }
 
-        private async void listmovieBTN_Click(object sender, RoutedEventArgs e)
+        private void listmovieBTN_Click(object sender, RoutedEventArgs e)
         {
             var client = new MovieServiceClient();
-            var listMovie = await client.GetAllAsync();
+            var listMovie = client.GetAllAsync();
             client.Close();
 
         }
