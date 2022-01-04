@@ -1,4 +1,5 @@
 ﻿using ReserveTaPlace.Logic;
+using ReserveTaPlace.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,11 @@ namespace ReserveTaPlace.Wpf.User_Controls
         public UserList()
         {
             InitializeComponent();
-            //UserLV.ItemsSource = userLogic.GetUsers();
+
+        }
+        private async void UserLV_Loaded(object sender, RoutedEventArgs e)
+        {
+            UserLV.ItemsSource = await userLogic.GetUsers();
         }
     }
 }

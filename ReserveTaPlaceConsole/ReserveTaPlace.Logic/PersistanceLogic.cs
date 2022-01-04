@@ -19,9 +19,9 @@ namespace ReserveTaPlace.Logic
             _persistance = new MovieFunctions();
         }
 
-        public List<Movie> LoadMovies()
+        public async Task<List<Movie>> LoadMovies()
         {
-            return _persistance.LoadMovies();
+            return await _persistance.LoadMovies();
         }
 
 

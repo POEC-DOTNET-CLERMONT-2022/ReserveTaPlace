@@ -31,9 +31,9 @@ namespace ReserveTaPlace.Persistance.Functions
             }
             return "success";
         }
-        public List<User> GetUsers()
+        public async Task<List<User>> GetUsers()
         {
-            var jsonUsers = File.ReadAllText(@"userList.txt");
+            var jsonUsers = await File.ReadAllTextAsync(@"userList.txt");
             var users = JsonConvert.DeserializeObject<List<User>>(jsonUsers);
             return users;
         }

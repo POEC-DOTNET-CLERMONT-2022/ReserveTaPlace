@@ -30,9 +30,9 @@ namespace ReserveTaPlace.Logic
             _user.CreateUser(login, password, confirmedPassword);
         }
 
-        public List<User> GetUsers()
+        public async Task<List<User>> GetUsers()
         {
-            return _user.GetUsers();
+            return await _user.GetUsers();
         }
 
         public void UpdatePassword(string password, string confirmedPassword)

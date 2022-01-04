@@ -29,8 +29,9 @@ namespace ReserveTaPlace.Wpf
         public MainWindow()
         {
             InitializeComponent();
-            //App.InitializedUserList();
-            //App.InitializedMoviesList();
+            App.InitializedUserList();
+            App.InitializedMoviesList();
+            
             //UserLV.ItemsSource = userLogic.GetUsers();
         }
 
@@ -55,5 +56,6 @@ namespace ReserveTaPlace.Wpf
             client.Close();
 
         }
+
     }
 }
