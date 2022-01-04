@@ -25,7 +25,7 @@ namespace ReserveTaPlace.Wpf.User_Controls
         public UserList()
         {
             InitializeComponent();
-            UserLV.ItemsSource = userLogic.GetUsers();
+            //UserLV.ItemsSource = userLogic.GetUsers();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using ReserveTaPlace.Logic;
 using ReserveTaPlace.Wpf.User_Controls;
+using ServiceReference1;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,8 +27,8 @@ namespace ReserveTaPlace.Wpf
         public MainWindow()
         {
             InitializeComponent();
-            App.InitializedUserList();
-            App.InitializedMoviesList();
+            //App.InitializedUserList();
+            //App.InitializedMoviesList();
             //UserLV.ItemsSource = userLogic.GetUsers();
         }
 
@@ -40,6 +41,14 @@ namespace ReserveTaPlace.Wpf
         {
             LoginGrid.Visibility = Visibility.Hidden;
             UserListUC.Visibility = Visibility.Visible;
+        }
+
+        private async void listmovieBTN_Click(object sender, RoutedEventArgs e)
+        {
+            var client = new MovieServiceClient();
+            var listMovie = await client.GetAllAsync();
+            client.Close();
+
         }
     }
 }

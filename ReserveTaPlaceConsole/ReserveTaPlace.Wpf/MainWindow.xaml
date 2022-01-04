@@ -36,7 +36,8 @@
             <WrapPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Button x:Name="ForgetPasswordBTN" Margin="10">Mot de passe perdu ?</Button>
                 <Button x:Name="LoginBTN" Margin="10" Click="LoginBTN_Click">Se connecter</Button>
-                <Button x:Name="ViewListBTN" Margin="10" Click="ViewListBTN_Click">Voir liste</Button> 
+                <Button x:Name="ViewListBTN" Margin="10" Click="ViewListBTN_Click">Voir liste utilisateurs</Button>
+                <Button x:Name="listmovieBTN" Margin="10" Click="listmovieBTN_Click">Voir liste film</Button>
                 <TextBlock x:Name="ResultTB"/>
             </WrapPanel>
         </Grid>
