@@ -73,7 +73,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Factories\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Web.Debug.config">
@@ -87,6 +86,10 @@
     <ProjectReference Include="..\ReserveTaPlace.DTOS\ReserveTaPlace.DTOS.csproj">
       <Project>{68f04033-4fac-4ac9-9b1c-e7ee45a23eb6}</Project>
       <Name>ReserveTaPlace.DTOS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ReserveTaPlace.Models\ReserveTaPlace.Models.csproj">
+      <Project>{6f23ab86-d3ac-4611-9352-54872e628aed}</Project>
+      <Name>ReserveTaPlace.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
