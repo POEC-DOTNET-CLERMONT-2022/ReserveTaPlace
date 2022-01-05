@@ -29,11 +29,11 @@ namespace ReserveTaPlace.Wpf
         }
         public static void InitializedMoviesList()
         {
-            var movieManager = new PersistanceLogic();
+            var movieLogic = new MovieLogic();
 
-            var movieList =
+            var movieList = movieLogic.GetAllMovies();
 
-            movieManager.SaveMovies(movieList);
+            //movieLogic.SaveMovies(movieList);
         }
     }
 }
