@@ -1,7 +1,5 @@
 ﻿using ReserveTaPlace.Logic;
 using ReserveTaPlace.Wpf.User_Controls;
-using ServiceReference;
-using ServiceReference;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,8 +29,6 @@ namespace ReserveTaPlace.Wpf
             InitializeComponent();
             App.InitializedUserList();
             App.InitializedMoviesList();
-            
-            //UserLV.ItemsSource = userLogic.GetUsers();
         }
 
         private void LoginBTN_Click(object sender, RoutedEventArgs e)
@@ -48,13 +44,7 @@ namespace ReserveTaPlace.Wpf
 
         private void listmovieBTN_Click(object sender, RoutedEventArgs e)
         {
-            var client = new MovieServiceClient();
-            //var listMovie = await client.GetAllMoviesAsync();
-            var test = client.GetData(50);
-            var listMovie2 = client.GetAllMovies();
             var listMovie3 = movieLogic.GetAllMovies();
-            client.Close();
-
         }
 
     }
