@@ -45,9 +45,10 @@ namespace ReserveTaPlaceConsole
                     manager.WriteQuestion(question2);
                     var answer2 = manager.ReadUserEntry(question2);
                     var movie = await movieManager.GetMovie(answer1.Text, answer2.Text);
-                    movieManager.Movies.Append(movie);
-                    movieManager.SaveMovies(movieManager.Movies);
+                    movieManager.Movies.ToList().Add(movie);
+                    await movieManager.SaveMovies(movieManager.Movies);
                     Console.WriteLine($"Le film {movie.Title} est ajouté à la liste des films disponibles.");
+                    movieManager.DisplayMovies();
                     //App.Menu();
                     break;
                 case 4:
@@ -60,13 +61,13 @@ namespace ReserveTaPlaceConsole
             var question3 = new Question("Selectionner le film :", 0, null, null, QuestionType.ReponseLibre, null);
         }
 
-        public static void InitializedMoviesList()
+        public async static void InitializedMoviesList()
         {
             var movieManager = new MovieManager();
 
             List<Movie> movieList = new List<Movie>();
 
-            movieManager.SaveMovies(movieList);
+            await movieManager.SaveMovies(movieList);
         }
 
         public static void InitializedUserList()

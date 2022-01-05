@@ -17,15 +17,15 @@ namespace ReserveTaPlace.Persistance.Functions
             return movies;
         }
 
-        public void SaveMovies(IEnumerable<Movie> movieList)
+        public async Task SaveMovies(IEnumerable<Movie> movieList)
         {
-            using(FileStream fs = File.Create(@"movieList.txt"))
-            {
+            //using(FileStream fs = File.Create(@"movieList.txt"))
+            //{
 
-                fs.Close();
-            }
+            //    fs.Close();
+            //}
             var jsonString = JsonConvert.SerializeObject(movieList);
-            File.WriteAllText(@"movieList.txt", jsonString);
+            await File.WriteAllTextAsync(@"movieList.txt", jsonString);
 
         }
     }

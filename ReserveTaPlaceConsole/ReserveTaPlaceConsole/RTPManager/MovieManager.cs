@@ -41,9 +41,9 @@ namespace ReserveTaPlace.RTPManager
         {
             _writer.DisplayMovies(Movies);
         }
-        public void SaveMovies(IEnumerable<Movie> movies)
+        public async Task SaveMovies(IEnumerable<Movie> movies)
         {
-            _persistanceLogic.SaveMovies(movies);
+            await _persistanceLogic.SaveMovies(movies);
         }
         public async Task GetAllMovies()
         {

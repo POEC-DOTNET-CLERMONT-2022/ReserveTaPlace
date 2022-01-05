@@ -25,9 +25,9 @@ namespace ReserveTaPlace.Logic
         }
 
 
-        public void SaveMovies(IEnumerable<Movie> movieList)
+        public async Task SaveMovies(IEnumerable<Movie> movieList)
         {
-            _persistance.SaveMovies(movieList);
+            await _persistance.SaveMovies(movieList);
         }
 
     }
