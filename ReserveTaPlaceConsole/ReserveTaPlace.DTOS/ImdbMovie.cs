@@ -1,11 +1,9 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace ReserveTaPlace.Models
+namespace ReserveTaPlace.DTOS
 {
     public class ImdbMovie
     {
@@ -13,11 +11,11 @@ namespace ReserveTaPlace.Models
         public string Title;
         [JsonProperty(PropertyName = "Year")]
         public string Year;
-        [JsonProperty(PropertyName = "imdbID")]
-        public string imdbID;
-        [JsonProperty(PropertyName = "Type")]
-        public string Type;
+        [JsonProperty(PropertyName = "ImdbID")]
+        public string ImdbID;
         [JsonProperty(PropertyName = "Poster")]
         public string Poster;
+        [JsonProperty(PropertyName = "Country")]
+        public string Country;
     }
 }

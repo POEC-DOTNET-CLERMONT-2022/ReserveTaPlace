@@ -33,7 +33,7 @@ namespace ReserveTaPlaceConsole
                 case 1:
                     await movieManager.GetAllMovies();
                     movieManager.DisplayMovies();
-                    Console.ReadLine();
+                    //App.Menu();
                     break;
                 case 2:
                     break;
@@ -48,7 +48,7 @@ namespace ReserveTaPlaceConsole
                     movieManager.Movies.Append(movie);
                     movieManager.SaveMovies(movieManager.Movies);
                     Console.WriteLine($"Le film {movie.Title} est ajouté à la liste des films disponibles.");
-                    Console.ReadLine();
+                    //App.Menu();
                     break;
                 case 4:
                     break;
@@ -64,15 +64,7 @@ namespace ReserveTaPlaceConsole
         {
             var movieManager = new MovieManager();
 
-            List<Movie> movieList = new List<Movie>() {
-                new Movie("Alien"), 
-                new Movie("Dune"), 
-                new Movie("Terminator"),
-                new Movie("Iron Man"),
-                new Movie("La vie d'Adèle"),
-                new Movie("Matrix 4"),
-                new Movie("Le dernier duel"),
-                new Movie("Detective Pikachu")};
+            List<Movie> movieList = new List<Movie>();
 
             movieManager.SaveMovies(movieList);
         }

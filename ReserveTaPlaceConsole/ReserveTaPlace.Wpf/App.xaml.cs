@@ -31,15 +31,7 @@ namespace ReserveTaPlace.Wpf
         {
             var movieManager = new PersistanceLogic();
 
-            List<Movie> movieList = new List<Movie>() {
-                new Movie("Alien"),
-                new Movie("Dune"),
-                new Movie("Terminator"),
-                new Movie("Iron Man"),
-                new Movie("La vie d'Adèle"),
-                new Movie("Matrix 4"),
-                new Movie("Le dernier duel"),
-                new Movie("Detective Pikachu")};
+            var movieList =
 
             movieManager.SaveMovies(movieList);
         }

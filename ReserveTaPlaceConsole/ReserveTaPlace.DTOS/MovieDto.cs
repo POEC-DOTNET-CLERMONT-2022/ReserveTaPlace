@@ -10,5 +10,7 @@ namespace ReserveTaPlace.DTOS
     {
         [DataMember]
         public string Title { get; set; }
+        [DataMember]
+        public string ImdbID { get; set; }
     }
 }

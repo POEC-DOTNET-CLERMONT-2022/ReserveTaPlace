@@ -34,7 +34,11 @@ namespace ReserveTaPlace.Extensions.Factories
 
         public static Movie ToModel(this MovieDto movie)
         {
-            return new Movie(movie.Title);
+            return new Movie(movie.Title, movie.ImdbID);
+        }
+        public static Movie ToMovie(this ImdbMovie imdbMovie)
+        {
+            return new Movie(imdbMovie.Title,imdbMovie.ImdbID);
         }
     }
 }
