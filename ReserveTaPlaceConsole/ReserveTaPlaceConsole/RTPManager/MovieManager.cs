@@ -13,10 +13,11 @@ namespace ReserveTaPlace.RTPManager
     public class MovieManager
     {
         private PersistanceLogic _persistanceLogic = new PersistanceLogic();
+        private MovieLogic _movieLogic = new MovieLogic();
         private IReader _reader { get; }
         private IWriter _writer { get; }
 
-        private List<Movie>_movies;
+        private List<Movie> _movies;
         public List<Movie> Movies
         {
             get { return _movies; }
@@ -42,9 +43,9 @@ namespace ReserveTaPlace.RTPManager
         {
             _persistanceLogic.SaveMovies(movies);
         }
-        public void LoadMovies()
+        public void GetAllMovies()
         {
-            Movies = _persistanceLogic.LoadMovies();
+            Movies = _movieLogic.GetAllMovies();
         }
         public async Task<List<Movie>> SearchMovie(string movieName)
         {
