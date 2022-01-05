@@ -17,10 +17,9 @@ namespace ReserveTaPlaceConsole.RTPManager
             throw new NotImplementedException();
         }
 
-        public async Task<List<Movie>> SearchMovie(string movieName)
+        public async Task<Movie> GetMovie(string title, string year)
         {
-   
-            return await _movieProvider.GetMovie(movieName);
+            return await _movieProvider.GetMovie(title, year);
         }
     }
 }

@@ -18,6 +18,4 @@ App.InitializedMoviesList();
 App.InitializedUserList();
 App.Menu();
 
-var movieProvider = new MovieProvider();
-
 Console.ReadLine();

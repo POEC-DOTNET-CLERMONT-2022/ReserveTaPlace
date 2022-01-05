@@ -19,13 +19,13 @@ namespace ReserveTaPlace.Logic
             _persistance = new MovieFunctions();
         }
 
-        public async Task<List<Movie>> LoadMovies()
+        public async Task<IEnumerable<Movie>> GetAllMovies()
         {
-            return await _persistance.LoadMovies();
+            return await _persistance.GetAllMovies();
         }
 
 
-        public void SaveMovies(List<Movie> movieList)
+        public void SaveMovies(IEnumerable<Movie> movieList)
         {
             _persistance.SaveMovies(movieList);
         }

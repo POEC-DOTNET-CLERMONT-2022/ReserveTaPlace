@@ -83,6 +83,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ReserveTaPlace.Data\ReserveTaPlace.Data.csproj">
+      <Project>{af7efd42-81c8-475f-a35d-a1e45f158a39}</Project>
+      <Name>ReserveTaPlace.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ReserveTaPlace.DTOS\ReserveTaPlace.DTOS.csproj">
       <Project>{68f04033-4fac-4ac9-9b1c-e7ee45a23eb6}</Project>
       <Name>ReserveTaPlace.DTOS</Name>
@@ -90,6 +94,10 @@
     <ProjectReference Include="..\ReserveTaPlace.Models\ReserveTaPlace.Models.csproj">
       <Project>{6f23ab86-d3ac-4611-9352-54872e628aed}</Project>
       <Name>ReserveTaPlace.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ResrveTaPlace.Extensions\ReserveTaPlace.Extensions.csproj">
+      <Project>{0f66583f-3738-4355-b317-af5363dd7cf0}</Project>
+      <Name>ReserveTaPlace.Extensions</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

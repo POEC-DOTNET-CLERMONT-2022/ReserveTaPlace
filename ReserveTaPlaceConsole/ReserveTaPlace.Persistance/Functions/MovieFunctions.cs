@@ -10,14 +10,14 @@ namespace ReserveTaPlace.Persistance.Functions
 {
     public class MovieFunctions : IPersistance
     {
-        public async Task<List<Movie>> LoadMovies()
+        public async Task<IEnumerable<Movie>> GetAllMovies()
         {
             var jsonMovies = await File.ReadAllTextAsync(@"movieList.txt");
-            var movies = JsonConvert.DeserializeObject<List<Movie>>(jsonMovies);
+            var movies = JsonConvert.DeserializeObject<IEnumerable<Movie>>(jsonMovies);
             return movies;
         }
 
-        public void SaveMovies(List<Movie> movieList)
+        public void SaveMovies(IEnumerable<Movie> movieList)
         {
             using(FileStream fs = File.Create(@"movieList.txt"))
             {

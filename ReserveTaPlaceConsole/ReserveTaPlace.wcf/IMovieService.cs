@@ -23,7 +23,7 @@ namespace ReserveTaPlace.wcf
 
         // TODO: Add your service operations here
         [OperationContract]
-        List<MovieDto> GetAllMovies();
+        IEnumerable<MovieDto> GetAllMovies();
 
     }
 

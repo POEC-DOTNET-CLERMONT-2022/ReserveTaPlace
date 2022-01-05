@@ -9,7 +9,7 @@ namespace ReserveTaPlace.Persistance
 {
     public interface IPersistance
     {
-        Task<List<Movie>> LoadMovies();
-        void SaveMovies(List<Movie> movies);
+        Task<IEnumerable<Movie>> GetAllMovies();
+        void SaveMovies(IEnumerable<Movie> movies);
     }
 }

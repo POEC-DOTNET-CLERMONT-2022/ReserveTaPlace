@@ -31,18 +31,23 @@ namespace ReserveTaPlaceConsole
             switch (answer.Choice)
             {
                 case 1:
-                    movieManager.GetAllMovies();
+                    await movieManager.GetAllMovies();
                     movieManager.DisplayMovies();
                     Console.ReadLine();
                     break;
                 case 2:
                     break;
                 case 3:
-                    var question1 = new Question("Quel film voulez vous ajouter ?", 0, QuestionType.ReponseLibre);
+                    var question1 = new Question("Quel est le titre du film que vous voulez ajouter ?", 0, QuestionType.ReponseLibre);
                     manager.WriteQuestion(question1);
-                    answer = manager.ReadUserEntry(question1);
-                    var movie = await movieManager.SearchMovie(answer.Text);
-                    Console.WriteLine($"Le ");
+                    var answer1 = manager.ReadUserEntry(question1);
+                    var question2 = new Question($"Indiquez l'année de sortie du film : {answer1.Text}", 0, QuestionType.ReponseLibre);
+                    manager.WriteQuestion(question2);
+                    var answer2 = manager.ReadUserEntry(question2);
+                    var movie = await movieManager.GetMovie(answer1.Text, answer2.Text);
+                    movieManager.Movies.Append(movie);
+                    movieManager.SaveMovies(movieManager.Movies);
+                    Console.WriteLine($"Le film {movie.Title} est ajouté à la liste des films disponibles.");
                     Console.ReadLine();
                     break;
                 case 4:
@@ -52,7 +57,7 @@ namespace ReserveTaPlaceConsole
                 default:
                     break;
             }
-            var question2 = new Question("Selectionner le film :", 0, null, null, QuestionType.ReponseLibre, null);
+            var question3 = new Question("Selectionner le film :", 0, null, null, QuestionType.ReponseLibre, null);
         }
 
         public static void InitializedMoviesList()

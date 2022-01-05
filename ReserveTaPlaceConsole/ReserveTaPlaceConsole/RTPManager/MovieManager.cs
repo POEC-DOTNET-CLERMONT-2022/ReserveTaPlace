@@ -2,11 +2,13 @@
 using ReserveTaPlace.Models;
 using ReserveTaPlace.RTPManager.Interfaces;
 using ReserveTaPlaceConsole.RTPManager;
+using ReserveTaPlace.Extensions.Factories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ReserveTaPlace.DTOS;
 
 namespace ReserveTaPlace.RTPManager
 {
@@ -17,8 +19,8 @@ namespace ReserveTaPlace.RTPManager
         private IReader _reader { get; }
         private IWriter _writer { get; }
 
-        private List<Movie> _movies;
-        public List<Movie> Movies
+        private IEnumerable<Movie> _movies;
+        public IEnumerable<Movie> Movies
         {
             get { return _movies; }
             set { _movies = value; }
@@ -33,23 +35,25 @@ namespace ReserveTaPlace.RTPManager
 
         public void Add()
         {
-            Movies.Add(_reader.ReadMovie());
+            Movies.ToList().Add(_reader.ReadMovie());
         }
         public void DisplayMovies()
         {
             _writer.DisplayMovies(Movies);
         }
-        public void SaveMovies(List<Movie> movies)
+        public void SaveMovies(IEnumerable<Movie> movies)
         {
             _persistanceLogic.SaveMovies(movies);
         }
-        public void GetAllMovies()
+        public async Task GetAllMovies()
         {
-            Movies = _movieLogic.GetAllMovies();
+            Movies = await _persistanceLogic.GetAllMovies();
+            //var  movies = (IEnumerable<MovieDto>)_movieLogic.GetAllMovies();
+            //Movies = movies.ToModel();
         }
-        public async Task<List<Movie>> SearchMovie(string movieName)
+        public async Task<Movie> GetMovie(string title,string year)
         {
-            return await _reader.SearchMovie(movieName); 
+            return await _reader.GetMovie(title,year); 
         }
 
     }

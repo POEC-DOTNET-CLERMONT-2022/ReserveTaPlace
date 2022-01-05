@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ResrveTaPlace.Extensions.Factories
+namespace ReserveTaPlace.Extensions.Factories
 {
     public static class MovieFactory
     {
@@ -34,7 +34,7 @@ namespace ResrveTaPlace.Extensions.Factories
 
         public static Movie ToModel(this MovieDto movie)
         {
-            return new Movie { Title = movie.Title };
+            return new Movie(movie.Title);
         }
     }
 }

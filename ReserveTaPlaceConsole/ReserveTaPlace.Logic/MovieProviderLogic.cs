@@ -1,5 +1,5 @@
 ﻿using ReserveTaPlace.Models;
-using ReserveTaPlace.Persistance;
+using ReserveTaPlace.MovieDataBaseService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +11,9 @@ namespace ReserveTaPlace.Logic
     public class MovieProviderLogic
     {
         private readonly IMovieProvider _movieProvider = new MovieProvider();
-        public async Task<List<Movie>> GetMovie(string movie)
+        public async Task<Movie> GetMovie(string title,string year)
         {
-            return await _movieProvider.GetMovie(movie);
+            return await _movieProvider.GetMovie(title,year);
         }
     }
 }

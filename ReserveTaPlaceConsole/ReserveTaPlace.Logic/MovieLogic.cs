@@ -11,10 +11,9 @@ namespace ReserveTaPlace.Logic
     public class MovieLogic
     {
         private MovieServiceClient _movieServiceClient = new MovieServiceClient();
-        public ICollection<MovieDto> GetAllMovies()
+        public IEnumerable<MovieDto> GetAllMovies()
         {
-            ICollection<MovieDto> listMovies = _movieServiceClient.GetAllMovies();
-            return listMovies;
+            return _movieServiceClient.GetAllMovies();
         }
     }
 }
