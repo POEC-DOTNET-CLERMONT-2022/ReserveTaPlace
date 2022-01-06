@@ -27,7 +27,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReserveTaPlace.Extensions",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReserveTaPlace.Data", "ReserveTaPlace.Data\ReserveTaPlace.Data.csproj", "{AF7EFD42-81C8-475F-A35D-A1E45F158A39}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReserveTaPlace.MovieDataBaseService", "ReserveTaPlace.MovieDataBaseService\ReserveTaPlace.MovieDataBaseService.csproj", "{9096AEA5-3033-49B9-8E51-3F62EA2BFB43}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReserveTaPlace.MovieDataBaseService", "ReserveTaPlace.MovieDataBaseService\ReserveTaPlace.MovieDataBaseService.csproj", "{9096AEA5-3033-49B9-8E51-3F62EA2BFB43}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatternObserver", "PatternObserver\PatternObserver.csproj", "{06B2B4D9-B332-44F8-8886-567D573DF565}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +89,10 @@ Global
 		{9096AEA5-3033-49B9-8E51-3F62EA2BFB43}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9096AEA5-3033-49B9-8E51-3F62EA2BFB43}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9096AEA5-3033-49B9-8E51-3F62EA2BFB43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06B2B4D9-B332-44F8-8886-567D573DF565}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06B2B4D9-B332-44F8-8886-567D573DF565}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06B2B4D9-B332-44F8-8886-567D573DF565}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06B2B4D9-B332-44F8-8886-567D573DF565}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
