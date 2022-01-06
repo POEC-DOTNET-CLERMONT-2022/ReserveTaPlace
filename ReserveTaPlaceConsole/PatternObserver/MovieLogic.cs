@@ -22,14 +22,14 @@ namespace PatternObserver
 
         public void Attach(IObserver observer)
         {
-            Console.WriteLine("Subject : Attached an observer.");
+            Console.WriteLine("MovieLogic : Attached an observer.");
             this._observers.Add(observer);
         }
 
         public void Detach(IObserver observer)
         {
             this._observers.Remove(observer);
-            Console.WriteLine("Subject: Detached an observer.");
+            Console.WriteLine("MovieLogic: Detached an observer.");
         }
 
         public void Notify(Movie movie)
