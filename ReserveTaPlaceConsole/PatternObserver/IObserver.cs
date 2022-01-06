@@ -8,6 +8,6 @@ namespace PatternObserver
 {
     public interface IObserver
     {
-        void Update(ISubject subject);
+        void Update(Movie movie);
     }
 }

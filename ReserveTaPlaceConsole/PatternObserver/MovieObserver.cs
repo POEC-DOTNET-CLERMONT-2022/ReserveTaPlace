@@ -8,9 +8,9 @@ namespace PatternObserver
 {
     public class MovieObserver : IObserver
     {
-        public void Update(ISubject subject)
+        public void Update(Movie movie)
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"le film {movie.Title}");
         }
     }
 }

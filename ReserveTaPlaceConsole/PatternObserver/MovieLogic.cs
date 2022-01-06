@@ -10,7 +10,10 @@ namespace PatternObserver
     {
         private readonly IMovie _movie;
         private List<IObserver> _observers = new List<IObserver>();
-
+        public MovieLogic()
+        {
+            _movie= new MovieFunction();
+        }
         public Movie AddNewMovie(Movie movie)
         {
             Notify(movie);
@@ -31,11 +34,9 @@ namespace PatternObserver
 
         public void Notify(Movie movie)
         {
-            Console.WriteLine($"Le film {movie.Title} a été ajouté !!");
-
             foreach (var observer in _observers)
             {
-                observer.Update(this);
+                observer.Update(movie);
             }
         }
     }
