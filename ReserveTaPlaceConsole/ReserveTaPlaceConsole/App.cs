@@ -11,12 +11,17 @@ using System.Threading.Tasks;
 
 namespace ReserveTaPlaceConsole
 {
-    abstract class App
+    internal class App
     {
-        public async static void Menu()
+        private Manager _manager;
+        private MovieManager _movieManager;
+        public App()
         {
-            var manager = new Manager();
-            var movieManager = new MovieManager();
+            _manager = new Manager();
+            _movieManager = new MovieManager();
+        }
+        public async Task Menu()
+        {
             var question = new Question("Choisir une action a effectuer : \n" +
                 "1.Afficher la liste des films disponibles\n" +
                 "2.Choisir un film a mettre a l'affiche\n" +
@@ -25,31 +30,28 @@ namespace ReserveTaPlaceConsole
                 "5.Modifier un film",
                 5,QuestionType.ChoixMultiple);
 
-            manager.WriteQuestion(question);
-            var answer = manager.ReadUserEntry(question);
+            _manager.WriteQuestion(question);
+            var answer = _manager.ReadUserEntry(question);
 
             switch (answer.Choice)
             {
                 case 1:
-                    await movieManager.GetAllMovies();
-                    movieManager.DisplayMovies();
-                    //App.Menu();
+                    await _movieManager.GetAllMovies();
+                    _movieManager.DisplayMovies();
                     break;
                 case 2:
                     break;
                 case 3:
                     var question1 = new Question("Quel est le titre du film que vous voulez ajouter ?", 0, QuestionType.ReponseLibre);
-                    manager.WriteQuestion(question1);
-                    var answer1 = manager.ReadUserEntry(question1);
+                    _manager.WriteQuestion(question1);
+                    var answer1 = _manager.ReadUserEntry(question1);
                     var question2 = new Question($"Indiquez l'année de sortie du film : {answer1.Text}", 0, QuestionType.ReponseLibre);
-                    manager.WriteQuestion(question2);
-                    var answer2 = manager.ReadUserEntry(question2);
-                    var movie = await movieManager.GetMovie(answer1.Text, answer2.Text);
-                    movieManager.Movies.ToList().Add(movie);
-                    await movieManager.SaveMovies(movieManager.Movies);
+                    _manager.WriteQuestion(question2);
+                    var answer2 = _manager.ReadUserEntry(question2);
+                    var movie = await _movieManager.GetMovie(answer1.Text, answer2.Text);
+                    _movieManager.Add(movie);
                     Console.WriteLine($"Le film {movie.Title} est ajouté à la liste des films disponibles.");
-                    movieManager.DisplayMovies();
-                    //App.Menu();
+                    _movieManager.DisplayMovies();
                     break;
                 case 4:
                     break;
@@ -58,19 +60,29 @@ namespace ReserveTaPlaceConsole
                 default:
                     break;
             }
+            await this.Menu();
             var question3 = new Question("Selectionner le film :", 0, null, null, QuestionType.ReponseLibre, null);
+
         }
 
-        public async static void InitializedMoviesList()
+        public async Task InitializedMoviesList()
         {
             var movieManager = new MovieManager();
-
-            List<Movie> movieList = new List<Movie>();
-
-            await movieManager.SaveMovies(movieList);
+            var moviesModifyed = movieManager.Movies as List<Movie>;
+            
+            moviesModifyed=new List<Movie>()
+            {
+                new Movie("Predator"),
+                new Movie("Rambo"),
+                new Movie("Rocky"),
+                new Movie("les tuches"),
+                new Movie("le pere noel est une ordure"),
+            };
+            movieManager.Movies = moviesModifyed;
+            await movieManager.SaveMovies();
         }
 
-        public static void InitializedUserList()
+        public void InitializedUserList()
         {
             var userList = new List<User>() { 
                 new User("Gilbert", "Hugo", "hugo.g@hotmail.fr", "1234"),

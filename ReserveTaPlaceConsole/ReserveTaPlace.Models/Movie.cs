@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,8 +19,14 @@ namespace ReserveTaPlace.Models
         private string _releaseDate;
         private string _runtime;
         private bool _isMovieOnDisplay;
-
-        public Movie(string title,string imdbID)
+        [JsonConstructor]
+        public Movie(string title)
+        {
+            _id = Guid.NewGuid();
+            _title = title;
+            _isMovieOnDisplay = false;
+        }
+        public Movie(string title,string imdbID):this(title)
         {
             _id = Guid.NewGuid();
             _title = title;
@@ -31,6 +38,7 @@ namespace ReserveTaPlace.Models
             //_duration = duration;
             _isMovieOnDisplay = false;
         }
+        
         public Guid Id { get { return _id; } }
         public string ImdbID{ get { return _imdbID; } set { _imdbID = value; } }
         public string Title { get { return _title; } set { _title = value; } }

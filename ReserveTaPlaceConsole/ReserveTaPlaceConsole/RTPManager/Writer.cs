@@ -10,14 +10,9 @@ namespace ReserveTaPlaceConsole.RTPManager
 {
     internal class Writer : IWriter
     {
-        public void Display(string message)
-        {
-            Console.WriteLine(message);
-        }
-
         public void DisplayMovie(Movie movie,int id)
         {
-            Console.WriteLine($"ID : {id} Titre : {movie.Title} imdbID : {movie.ImdbID}");
+            Console.WriteLine($"ID : {id} Titre : {movie.Title}");
         }
 
         public void DisplayMovies(IEnumerable<Movie> movies)

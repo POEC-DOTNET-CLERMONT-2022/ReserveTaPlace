@@ -10,7 +10,6 @@ namespace PatternObserver
     {
         public Movie AddNewMovie(Movie movie)
         {
-            //j'aju
             return movie;
         }
     }

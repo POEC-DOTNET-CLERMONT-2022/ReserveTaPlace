@@ -5,7 +5,6 @@ using ReserveTaPlace.Models;
 using ReserveTaPlace.Persistance;
 using ReserveTaPlaceConsole;
 
-
 Console.ForegroundColor = ConsoleColor.Yellow;
 Console.WriteLine("                  ╦═╗╔═╗╔═╗╔═╗╦═╗╦  ╦╔═╗  ╔╦╗╔═╗  ╔═╗╦  ╔═╗╔═╗╔═╗\n"+
                   "                  ╠╦╝║╣ ╚═╗║╣ ╠╦╝╚╗╔╝║╣    ║ ╠═╣  ╠═╝║  ╠═╣║  ║╣ \n"+
@@ -14,8 +13,10 @@ Console.WriteLine("                  ╦═╗╔═╗╔═╗╔═╗╦═�
                   "                              ║  │ ││││└─┐│ ││  ├┤   \n"+
                   "                              ╚═╝└─┘┘└┘└─┘└─┘┴─┘└─┘────── ");
 Console.WriteLine();
-App.InitializedMoviesList();
-App.InitializedUserList();
-App.Menu();
+var app = new App();
+
+await app.InitializedMoviesList();
+app.InitializedUserList();
+await app.Menu();
 
 Console.ReadLine();
