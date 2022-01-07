@@ -37,6 +37,7 @@ namespace ConsoleManage.Manager
                     while (!result || choice == 0 || choice > 2)
                     {
                         Console.WriteLine($"Saisie incorrecte : {userEntry}");
+                        Console.WriteLine("Veuillez ressaisir :");
                         ReadUserEntry(question);
 
                     }
@@ -45,6 +46,7 @@ namespace ConsoleManage.Manager
                     while (!result || choice == 0 || choice > question.PossibleChoices)
                     {
                         Console.WriteLine($"Saisie incorrecte : {userEntry}");
+                        Console.WriteLine("Veuillez ressaisir :");
                         ReadUserEntry(question);
                     }
                     break;
