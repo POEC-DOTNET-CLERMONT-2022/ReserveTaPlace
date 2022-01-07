@@ -26,8 +26,7 @@ namespace ReserveTaPlaceConsole
                 "1.Afficher la liste des films disponibles\n" +
                 "2.Choisir un film a mettre a l'affiche\n" +
                 "3.Ajouter un film\n" +
-                "4.Supprimer un film\n" +
-                "5.Modifier un film",
+                "4.Supprimer un film\n",
                 5,QuestionType.ChoixMultiple);
 
             _manager.WriteQuestion(question);
