@@ -12,10 +12,11 @@ namespace ReserveTaPlaceConsole.RTPManager
     {
         private readonly List<User> _users;
 
-        private readonly UserLogic  _userLogic = new UserLogic();
+        private readonly UserLogic  _userLogic;
         public UserManager(List<User> users)
         {
-            _users = users;
+            _users = new List<User>();
+            _userLogic = new UserLogic();
         }
 
         internal void SaveUsers(List<User> userList)
