@@ -22,10 +22,12 @@ namespace ReserveTaPlace.Wpf
     /// </summary>
     public partial class MainWindow : Window
     {
-        UserLogic userLogic = new UserLogic();
-        MovieLogic movieLogic = new MovieLogic();
+        private UserLogic _userLogic;
+        private MovieLogic _movieLogic;
         public MainWindow()
         {
+            _userLogic=new UserLogic();
+            _movieLogic=new MovieLogic();
             InitializeComponent();
             App.InitializedUserList();
             App.InitializedMoviesList();
@@ -33,7 +35,7 @@ namespace ReserveTaPlace.Wpf
 
         private void LoginBTN_Click(object sender, RoutedEventArgs e)
         {
-            ResultTB.Text = userLogic.GetUser(LoginTB.Text, PasswordTB.Text);
+            ResultTB.Text = _userLogic.GetUser(LoginTB.Text, PasswordTB.Text);
         }
 
         private void ViewListBTN_Click(object sender, RoutedEventArgs e)
@@ -44,7 +46,7 @@ namespace ReserveTaPlace.Wpf
 
         private void listmovieBTN_Click(object sender, RoutedEventArgs e)
         {
-            var listMovie3 = movieLogic.GetAllMovies();
+            var listMovie3 = _movieLogic.GetAllMovies();
         }
 
     }

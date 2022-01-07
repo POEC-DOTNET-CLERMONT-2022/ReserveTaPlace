@@ -12,9 +12,10 @@ namespace ReserveTaPlace.Data.Functions
     {
         public IEnumerable<Movie> GetAllMovies()
         {
-            var userIds = 0;
-            var movie = new Faker<Movie>().CustomInstantiator(f=> new Movie(f.Name.ToString(), userIds.ToString()));
-            var movies = movie.GenerateLazy(5);
+            var id = 0;
+            var movie = new Faker<Movie>().CustomInstantiator(f=> new Movie(f.Random.Replace("###-##-####"))).RuleFor(u => u.Title, (f, u) => f.Name.JobTitle());
+            var movies = movie.Generate(5);
+            IEnumerable<Movie> moviesList = movies as IEnumerable<Movie>;
             return movies;
         }
     }

@@ -15,7 +15,6 @@ namespace ReserveTaPlace.RTPManager
     public class MovieManager
     {
         private PersistanceLogic _persistanceLogic;
-        private MovieLogic _movieLogic;
         private MovieProviderLogic _movieProviderLogic;
         private IWriter _writer { get; }
         private IEnumerable<Movie> _movies;
@@ -24,13 +23,11 @@ namespace ReserveTaPlace.RTPManager
             get { return _movies; }
             set { _movies = value; }
         }
-
         public MovieManager()
         {
             _writer = new Writer();
             _movies = new List<Movie>();
             _persistanceLogic = new PersistanceLogic();
-            _movieLogic = new MovieLogic();
             _movieProviderLogic = new MovieProviderLogic();
         }
         public void DisplayMovies()
@@ -49,7 +46,6 @@ namespace ReserveTaPlace.RTPManager
         {
             return await _movieProviderLogic.GetMovie(title, year);  
         }
-
         public void Add(Movie movie)
         {
             var moviesModifyed = Movies as List<Movie>;
