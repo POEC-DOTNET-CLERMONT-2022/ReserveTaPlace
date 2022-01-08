@@ -22,6 +22,7 @@ namespace ReserveTaPlaceConsole
         }
         public async Task Menu()
         {
+            await _movieManager.GetAllMovies();
             var question = new Question("Choisir une action a effectuer : \n" +
                 "1.Afficher la liste des films disponibles\n" +
                 "2.Choisir un film a mettre a l'affiche\n" +
@@ -36,7 +37,6 @@ namespace ReserveTaPlaceConsole
             switch (answer.Choice)
             {
                 case 1:
-                    await _movieManager.GetAllMovies();
                     _movieManager.DisplayMovies();
                     break;
                 case 2:
@@ -54,14 +54,19 @@ namespace ReserveTaPlaceConsole
                     _movieManager.DisplayMovies();
                     break;
                 case 4:
+                    var question3 = new Question("Entrer le nom du film à supprimer : ", 0, QuestionType.ReponseLibre);
+                    _manager.WriteQuestion(question3);
+                    var answer3 = _manager.ReadUserEntry(question3);
+                    _movieManager.DeleteMovie(answer3.Text);
                     break;
                 case 5:
+                    Environment.Exit(0);
                     break;
                 default:
                     break;
             }
             await this.Menu();
-            var question3 = new Question("Selectionner le film :", 0, null, null, QuestionType.ReponseLibre, null);
+            //var question3 = new Question("Selectionner le film :", 0, null, null, QuestionType.ReponseLibre, null);
 
         }
 
@@ -70,14 +75,13 @@ namespace ReserveTaPlaceConsole
             var movieManager = new MovieManager();
             var moviesModifyed = movieManager.Movies as List<Movie>;
             
-            moviesModifyed=new List<Movie>()
-            {
-                new Movie("Predator"),
-                new Movie("Rambo"),
-                new Movie("Rocky"),
-                new Movie("les tuches"),
-                new Movie("le pere noel est une ordure"),
-            };
+            moviesModifyed.Add(new Movie(movieManager.CalculateId(), "Predator"));
+            moviesModifyed.Add(new Movie(movieManager.CalculateId(), "Predator a delete"));
+            moviesModifyed.Add(new Movie(movieManager.CalculateId(), "Rambo"));
+            moviesModifyed.Add(new Movie(movieManager.CalculateId(), "Rocky"));
+            moviesModifyed.Add(new Movie(movieManager.CalculateId(), "les tuches"));
+            moviesModifyed.Add(new Movie(movieManager.CalculateId(), "le pere noel est une ordure"));
+
             movieManager.Movies = moviesModifyed;
             await movieManager.SaveMovies();
         }

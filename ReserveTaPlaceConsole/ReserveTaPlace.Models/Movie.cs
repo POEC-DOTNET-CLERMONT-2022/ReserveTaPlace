@@ -9,7 +9,7 @@ namespace ReserveTaPlace.Models
 {
     public class Movie
     {
-        private Guid _id;
+        private int _id;
         private string _imdbID;
         private string _title;
         private string _plot;
@@ -20,15 +20,14 @@ namespace ReserveTaPlace.Models
         private string _runtime;
         private bool _isMovieOnDisplay;
         [JsonConstructor]
-        public Movie(string title)
+        public Movie(int id, string title)
         {
-            _id = Guid.NewGuid();
+            _id = id ;
             _title = title;
             _isMovieOnDisplay = false;
         }
-        public Movie(string title,string imdbID):this(title)
+        public Movie(string title,string imdbID)
         {
-            _id = Guid.NewGuid();
             _title = title;
             _imdbID = imdbID;
             //_description = description;
@@ -39,7 +38,7 @@ namespace ReserveTaPlace.Models
             _isMovieOnDisplay = false;
         }
         
-        public Guid Id { get { return _id; } }
+        public int Id { get { return _id; } }
         public string ImdbID{ get { return _imdbID; } set { _imdbID = value; } }
         public string Title { get { return _title; } set { _title = value; } }
         public string Country{get { return _country; } set { _country = value; } }

@@ -9,6 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ReserveTaPlace.DTOS;
+using ConsoleManager.Data.Models;
+using ConsoleManage.Manager;
 
 namespace ReserveTaPlace.RTPManager
 {
@@ -16,6 +18,7 @@ namespace ReserveTaPlace.RTPManager
     {
         private PersistanceLogic _persistanceLogic;
         private MovieProviderLogic _movieProviderLogic;
+        private Manager _manager;
         private IWriter _writer { get; }
         private IEnumerable<Movie> _movies;
         public IEnumerable<Movie> Movies
@@ -29,6 +32,7 @@ namespace ReserveTaPlace.RTPManager
             _movies = new List<Movie>();
             _persistanceLogic = new PersistanceLogic();
             _movieProviderLogic = new MovieProviderLogic();
+            _manager = new Manager();
         }
         public void DisplayMovies()
         {
@@ -52,6 +56,45 @@ namespace ReserveTaPlace.RTPManager
             moviesModifyed.Add(movie);
             Movies = moviesModifyed;
             _persistanceLogic.SaveMovies(Movies);
+        }
+
+        internal void DeleteMovie(string movieTitle)
+        {
+            var moviesListResult = Movies.Where(e => e.Title.ToLower().Contains(movieTitle.ToLower())).ToList();
+            if(moviesListResult.Count == 0)
+            {
+                Console.WriteLine($"Le film {movieTitle} n'existe pas !!");
+            }
+            if(moviesListResult.Count == 1)
+            {
+                var moviesModifyed = Movies.Where(e => e.Title.ToLower() != movieTitle.ToLower());
+                Movies = moviesModifyed;
+            }
+            if(moviesListResult.Count > 1)
+            {
+                Console.WriteLine($"Votre recherche comporte plusieurs résultats :");
+                _writer.DisplayMovies(moviesListResult);
+                var question = new Question("Entrer l'id du film à ajouter :", (uint)moviesListResult.Count, QuestionType.ChoixMultiple);
+                _manager.WriteQuestion(question);
+                var answer = _manager.ReadUserEntry(question);
+                var movieToDelete = Movies.FirstOrDefault(m => m.Id == int.Parse(answer.Text));
+                var modifyedList = Movies as List<Movie>;
+                modifyedList.Remove(movieToDelete);
+                Movies = modifyedList;
+                _persistanceLogic.SaveMovies(Movies);
+            }
+        }
+
+        internal int CalculateId()
+        {
+            int id = 0;
+            if(Movies.ToList().Count == 0)
+            {
+                return id = 1;
+            }
+            var lastMovie = Movies.Last();
+            id = lastMovie.Id + 1;
+            return id;
         }
     }
 }

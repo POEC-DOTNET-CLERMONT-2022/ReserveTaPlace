@@ -9,7 +9,7 @@ namespace ReserveTaPlace.RTPManager.Interfaces
 {
     public interface IWriter
     {
-        public void DisplayMovie(Movie movie,int id);
+        public void DisplayMovie(Movie movie);
         public void DisplayMovies(IEnumerable<Movie> movies);
     }
 }
