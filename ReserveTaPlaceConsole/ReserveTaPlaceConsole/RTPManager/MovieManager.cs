@@ -58,7 +58,7 @@ namespace ReserveTaPlace.RTPManager
             _persistanceLogic.SaveMovies(Movies);
         }
 
-        internal void DeleteMovie(string movieTitle)
+        internal void Delete(string movieTitle)
         {
             var moviesListResult = Movies.Where(e => e.Title.ToLower().Contains(movieTitle.ToLower())).ToList();
             if(moviesListResult.Count == 0)

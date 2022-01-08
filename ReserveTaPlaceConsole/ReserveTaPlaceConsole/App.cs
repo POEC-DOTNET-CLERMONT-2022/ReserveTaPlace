@@ -57,7 +57,7 @@ namespace ReserveTaPlaceConsole
                     var question3 = new Question("Entrer le nom du film à supprimer : ", 0, QuestionType.ReponseLibre);
                     _manager.WriteQuestion(question3);
                     var answer3 = _manager.ReadUserEntry(question3);
-                    _movieManager.DeleteMovie(answer3.Text);
+                    _movieManager.Delete(answer3.Text);
                     break;
                 case 5:
                     Environment.Exit(0);
