@@ -26,7 +26,7 @@ namespace ReserveTaPlace.RTPManager
             get { return _movies; }
             set { _movies = value; }
         }
-        public MovieManager()
+        internal MovieManager()
         {
             _writer = new Writer();
             _movies = new List<Movie>();
@@ -34,17 +34,17 @@ namespace ReserveTaPlace.RTPManager
             _movieProviderLogic = new MovieProviderLogic();
             _manager = new Manager();
         }
-        public void DisplayMovies()
+        internal void DisplayMovies()
         {
             Console.WriteLine("╔════════════════ Liste des films disponible ═══════════╗");
             _writer.DisplayMovies(Movies);
             Console.WriteLine("╚═══════════════════════════════════════════════════════╝");
         }
-        public async Task SaveMovies()
+        internal async Task SaveMovies()
         {
             await _persistanceLogic.SaveMovies(Movies);
         }
-        public async Task GetAllMovies()
+        internal async Task GetAllMovies()
         {
             Movies = await _persistanceLogic.GetAllMovies();
         }
@@ -56,7 +56,7 @@ namespace ReserveTaPlace.RTPManager
             Console.WriteLine("╚════════════════════════════════════════════════════════╝");
         }
 
-        public async Task<Movie> GetMovie(string title,string year)
+        internal async Task<Movie> GetMovie(string title,string year)
         {
             return await _movieProviderLogic.GetMovie(title, year);  
         }
