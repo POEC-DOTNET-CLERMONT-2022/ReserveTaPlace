@@ -14,9 +14,7 @@ Console.WriteLine("                  ╦═╗╔═╗╔═╗╔═╗╦═�
                   "                              ╚═╝└─┘┘└┘└─┘└─┘┴─┘└─┘────── ");
 Console.WriteLine();
 var app = new App();
-
 await app.InitializedMoviesList();
 app.InitializedUserList();
 await app.Menu();
 
-Console.ReadLine();
