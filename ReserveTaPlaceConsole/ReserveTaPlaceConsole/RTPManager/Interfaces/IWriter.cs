@@ -11,5 +11,6 @@ namespace ReserveTaPlace.RTPManager.Interfaces
     {
         public void DisplayMovie(Movie movie);
         public void DisplayMovies(IEnumerable<Movie> movies);
+        public void DisplayOnDisplayMovies(IEnumerable<Movie> movies);
     }
 }

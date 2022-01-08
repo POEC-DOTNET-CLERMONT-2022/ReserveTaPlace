@@ -36,7 +36,9 @@ namespace ReserveTaPlace.RTPManager
         }
         public void DisplayMovies()
         {
+            Console.WriteLine("Voici la liste des films disponible.");
             _writer.DisplayMovies(Movies);
+            Console.WriteLine("     <<<---------->>>     ");
         }
         public async Task SaveMovies()
         {
@@ -46,31 +48,70 @@ namespace ReserveTaPlace.RTPManager
         {
             Movies = await _persistanceLogic.GetAllMovies();
         }
+
+        internal void DisplayOnDisplayMovies()
+        {
+            Console.WriteLine("Voici la liste des films à l'affiche.");
+            _writer.DisplayOnDisplayMovies(Movies);
+            Console.WriteLine("     <<<---------->>>     ");
+        }
+
         public async Task<Movie> GetMovie(string title,string year)
         {
             return await _movieProviderLogic.GetMovie(title, year);  
         }
-        public void Add(Movie movie)
+
+        internal async Task PutOnDisplay(string movieTitle)
+        {
+            var moviesListResult = Search(movieTitle);
+            if (moviesListResult.Count == 1)
+            {
+                var movie = moviesListResult[0];
+                movie.IsMovieOnDisplay = true;
+                Console.WriteLine($"Le film {movie.Title} est à l'affiche.");
+            }
+            else
+            {
+                Console.WriteLine($"Votre recherche comporte plusieurs résultats :");
+                _writer.DisplayMovies(moviesListResult);
+                var question = new Question("Entrer l'id du film à mettre à l'affiche :", (uint)moviesListResult.Count, QuestionType.ChoixMultiple);
+                _manager.WriteQuestion(question);
+                var answer = _manager.ReadUserEntry(question);
+                Movies.FirstOrDefault(m => m.Id == int.Parse(answer.Text)).IsMovieOnDisplay = true;
+                var movieToPutOnDisplay = Movies.FirstOrDefault(m => m.Id == int.Parse(answer.Text));
+                await _persistanceLogic.SaveMovies(Movies);
+                Console.WriteLine($"Le film {movieToPutOnDisplay.Title} a été mis à l'affiche !!");
+            }
+        }
+
+        internal List<Movie> Search(string movieTitle)
+        {
+            var moviesListResult = Movies.Where(e => e.Title.ToLower().Contains(movieTitle.ToLower())).ToList();
+            if (moviesListResult.Count == 0)
+            {
+                Console.WriteLine($"Le film {movieTitle} n'existe pas !!");
+                return moviesListResult;
+            }
+            return moviesListResult;
+        }
+
+        public async Task Add(Movie movie)
         {
             var moviesModifyed = Movies as List<Movie>;
             moviesModifyed.Add(movie);
             Movies = moviesModifyed;
-            _persistanceLogic.SaveMovies(Movies);
+            await _persistanceLogic.SaveMovies(Movies);
         }
 
-        internal void Delete(string movieTitle)
+        internal async Task Delete(string movieTitle)
         {
-            var moviesListResult = Movies.Where(e => e.Title.ToLower().Contains(movieTitle.ToLower())).ToList();
-            if(moviesListResult.Count == 0)
-            {
-                Console.WriteLine($"Le film {movieTitle} n'existe pas !!");
-            }
-            if(moviesListResult.Count == 1)
+            var moviesListResult = Search(movieTitle);
+            if (moviesListResult.Count == 1)
             {
                 var moviesModifyed = Movies.Where(e => e.Title.ToLower() != movieTitle.ToLower());
                 Movies = moviesModifyed;
             }
-            if(moviesListResult.Count > 1)
+            else
             {
                 Console.WriteLine($"Votre recherche comporte plusieurs résultats :");
                 _writer.DisplayMovies(moviesListResult);
@@ -81,7 +122,8 @@ namespace ReserveTaPlace.RTPManager
                 var modifyedList = Movies as List<Movie>;
                 modifyedList.Remove(movieToDelete);
                 Movies = modifyedList;
-                _persistanceLogic.SaveMovies(Movies);
+                await _persistanceLogic.SaveMovies(Movies);
+                Console.WriteLine($"Le film {movieToDelete.Title} a été supprimé !!");
             }
         }
 

@@ -8,6 +8,6 @@ namespace ReserveTaPlace.DTOS
     public class ImdbSearch
     {
         [JsonProperty(PropertyName = "Search")]
-        public List<ImdbMovie> ImdbMovies { get; set; }
+        public List<ImdbMovie> ImdbMovies { get; set; } = new List<ImdbMovie>();
     }
 }

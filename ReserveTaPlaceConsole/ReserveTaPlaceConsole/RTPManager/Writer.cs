@@ -19,5 +19,10 @@ namespace ReserveTaPlaceConsole.RTPManager
         {
             foreach (Movie movie in movies) { DisplayMovie(movie); }
         }
+
+        public void DisplayOnDisplayMovies(IEnumerable<Movie> movies)
+        {
+            foreach(Movie movie in movies.Where(m => m.IsMovieOnDisplay == true)) { DisplayMovie(movie); };
+        }
     }
 }

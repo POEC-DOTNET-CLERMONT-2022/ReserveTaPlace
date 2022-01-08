@@ -22,6 +22,7 @@ namespace ConsoleManage.Manager
         //Reader
         public Answer ReadUserEntry(Question question)
         {
+            var correctUserEntry = "";
             var userEntry = Console.ReadLine();
             while (String.IsNullOrEmpty(userEntry) || String.IsNullOrWhiteSpace(userEntry))
             {
@@ -39,16 +40,11 @@ namespace ConsoleManage.Manager
                         Console.WriteLine($"Saisie incorrecte : {userEntry}");
                         Console.WriteLine("Veuillez ressaisir :");
                         ReadUserEntry(question);
-
                     }
                     break;
                 case QuestionType.ChoixMultiple:
-                    while (!result || choice == 0 || choice > question.PossibleChoices)
-                    {
-                        Console.WriteLine($"Saisie incorrecte : {userEntry}");
-                        Console.WriteLine("Veuillez ressaisir :");
-                        ReadUserEntry(question);
-                    }
+                    userEntry = GetValidUserEntry(userEntry, question);
+                    choice = uint.Parse(userEntry);
                     break;
                 case QuestionType.ReponseLibre:
                     choice = 0;
@@ -60,6 +56,21 @@ namespace ConsoleManage.Manager
             question.Answers.Add(answer);
             return answer;
         }
+
+        private string GetValidUserEntry(string userEntry, Question question)
+        {
+            uint choice = 0;
+            var result = uint.TryParse(userEntry, out choice);
+            while (String.IsNullOrEmpty(userEntry) || String.IsNullOrWhiteSpace(userEntry) || !result || choice == 0 || choice > question.PossibleChoices)
+            {
+                Console.WriteLine($"Saisie incorrecte : {userEntry}");
+                Console.WriteLine("Veuillez ressaisir :");
+                userEntry = Console.ReadLine();
+                result = uint.TryParse(userEntry, out choice);
+            }
+            return userEntry;
+        }
+
         //Writer
         public virtual void ShowMenu(uint idMenu)
         {
