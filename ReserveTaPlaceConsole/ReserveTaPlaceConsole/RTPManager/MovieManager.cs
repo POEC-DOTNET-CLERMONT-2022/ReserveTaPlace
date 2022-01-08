@@ -36,9 +36,9 @@ namespace ReserveTaPlace.RTPManager
         }
         public void DisplayMovies()
         {
-            Console.WriteLine("Voici la liste des films disponible.");
+            Console.WriteLine("╔════════════════ Liste des films disponible ═══════════╗");
             _writer.DisplayMovies(Movies);
-            Console.WriteLine("     <<<---------->>>     ");
+            Console.WriteLine("╚═══════════════════════════════════════════════════════╝");
         }
         public async Task SaveMovies()
         {
@@ -51,9 +51,9 @@ namespace ReserveTaPlace.RTPManager
 
         internal void DisplayOnDisplayMovies()
         {
-            Console.WriteLine("Voici la liste des films à l'affiche.");
+            Console.WriteLine("╔════════════════ Liste des films à l'affiche ═══════════╗");
             _writer.DisplayOnDisplayMovies(Movies);
-            Console.WriteLine("     <<<---------->>>     ");
+            Console.WriteLine("╚════════════════════════════════════════════════════════╝");
         }
 
         public async Task<Movie> GetMovie(string title,string year)
@@ -67,14 +67,15 @@ namespace ReserveTaPlace.RTPManager
             if (moviesListResult.Count == 1)
             {
                 var movie = moviesListResult[0];
-                movie.IsMovieOnDisplay = true;
+                Movies.FirstOrDefault(m => m.Id == movie.Id).IsMovieOnDisplay = true;
+                await _persistanceLogic.SaveMovies(Movies);
                 Console.WriteLine($"Le film {movie.Title} est à l'affiche.");
             }
             else
             {
                 Console.WriteLine($"Votre recherche comporte plusieurs résultats :");
                 _writer.DisplayMovies(moviesListResult);
-                var question = new Question("Entrer l'id du film à mettre à l'affiche :", (uint)moviesListResult.Count, QuestionType.ChoixMultiple);
+                var question = new Question("Entrer l'id du film à mettre à l'affiche :", QuestionType.Numerique);
                 _manager.WriteQuestion(question);
                 var answer = _manager.ReadUserEntry(question);
                 Movies.FirstOrDefault(m => m.Id == int.Parse(answer.Text)).IsMovieOnDisplay = true;
@@ -95,7 +96,7 @@ namespace ReserveTaPlace.RTPManager
             return moviesListResult;
         }
 
-        public async Task Add(Movie movie)
+        internal async Task Add(Movie movie)
         {
             var moviesModifyed = Movies as List<Movie>;
             moviesModifyed.Add(movie);
