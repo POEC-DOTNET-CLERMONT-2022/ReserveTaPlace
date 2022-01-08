@@ -4,7 +4,16 @@ namespace ConsoleManager.Data.Models
 {
     public class Question
     {
-        public Question(string text, uint possibleChoices, QuestionType questionType)
+        public Question(string text, QuestionType questionType)
+        {
+            _text = text;
+            _possibleChoices = 0;
+            _possibleResponses = new List<string>();
+            _questionType = questionType;
+            _answers = new List<Answer>();
+            _questionsFilles = new List<Question>();
+        }
+        public Question(string text, uint possibleChoices, QuestionType questionType):this(text,questionType)
         {
             _text = text;
             _possibleChoices = possibleChoices;

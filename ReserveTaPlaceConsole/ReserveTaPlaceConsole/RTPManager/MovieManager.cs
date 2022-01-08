@@ -115,7 +115,7 @@ namespace ReserveTaPlace.RTPManager
             {
                 Console.WriteLine($"Votre recherche comporte plusieurs résultats :");
                 _writer.DisplayMovies(moviesListResult);
-                var question = new Question("Entrer l'id du film à ajouter :", (uint)moviesListResult.Count, QuestionType.ChoixMultiple);
+                var question = new Question("Entrer l'id du film à supprimer :", QuestionType.Numerique);
                 _manager.WriteQuestion(question);
                 var answer = _manager.ReadUserEntry(question);
                 var movieToDelete = Movies.FirstOrDefault(m => m.Id == int.Parse(answer.Text));

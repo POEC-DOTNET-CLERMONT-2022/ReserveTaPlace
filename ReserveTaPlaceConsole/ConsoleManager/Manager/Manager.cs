@@ -43,7 +43,11 @@ namespace ConsoleManage.Manager
                     }
                     break;
                 case QuestionType.ChoixMultiple:
-                    userEntry = GetValidUserEntry(userEntry, question);
+                    userEntry = GetValidUserEntryMultipleChoice(userEntry, question);
+                    choice = uint.Parse(userEntry);
+                    break;
+                case QuestionType.Numerique:
+                    userEntry = GetValidUserEntryNumeric(userEntry);
                     choice = uint.Parse(userEntry);
                     break;
                 case QuestionType.ReponseLibre:
@@ -57,7 +61,21 @@ namespace ConsoleManage.Manager
             return answer;
         }
 
-        private string GetValidUserEntry(string userEntry, Question question)
+        private string GetValidUserEntryNumeric(string userEntry)
+        {
+            uint choice = 0;
+            var result = uint.TryParse(userEntry, out choice);
+            while (String.IsNullOrEmpty(userEntry) || String.IsNullOrWhiteSpace(userEntry) || !result || choice == 0 )
+            {
+                Console.WriteLine($"Saisie incorrecte : {userEntry}");
+                Console.WriteLine("Veuillez ressaisir :");
+                userEntry = Console.ReadLine();
+                result = uint.TryParse(userEntry, out choice);
+            }
+            return userEntry;
+        }
+
+        private string GetValidUserEntryMultipleChoice(string userEntry, Question question)
         {
             uint choice = 0;
             var result = uint.TryParse(userEntry, out choice);
@@ -83,21 +101,24 @@ namespace ConsoleManage.Manager
             {
                 case QuestionType.OuiNon:
                     Console.WriteLine(question.Text);
-                    foreach (var possibleResponse in question.PossibleResponses)
-                    {
-                        i++;
-                        Console.WriteLine($"{i} : {possibleResponse}");
-                    }
+                    //foreach (var possibleResponse in question.PossibleResponses)
+                    //{
+                    //    i++;
+                    //    Console.WriteLine($"{i} : {possibleResponse}");
+                    //}
                     break;
                 case QuestionType.ChoixMultiple:
                     Console.WriteLine(question.Text);
-                    foreach (var possibleResponse in question.PossibleResponses)
-                    {
-                        i++;
-                        Console.WriteLine($"{i} : {possibleResponse}");
-                    }
+                    //foreach (var possibleResponse in question.PossibleResponses)
+                    //{
+                    //    i++;
+                    //    Console.WriteLine($"{i} : {possibleResponse}");
+                    //}
                     break;
                 case QuestionType.ReponseLibre:
+                    Console.WriteLine(question.Text);
+                    break;
+                case QuestionType.Numerique:
                     Console.WriteLine(question.Text);
                     break;
                 default:
