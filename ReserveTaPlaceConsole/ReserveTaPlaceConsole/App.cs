@@ -20,7 +20,7 @@ namespace ReserveTaPlaceConsole
             _manager = new Manager();
             _movieManager = new MovieManager();
         }
-        public async Task Menu()
+        internal async Task Menu()
         {
             await _movieManager.GetAllMovies();
             var question = new Question("Choisir une action a effectuer : \n" +
@@ -81,7 +81,7 @@ namespace ReserveTaPlaceConsole
 
         }
 
-        public async Task InitializedMoviesList()
+        internal async Task InitializedMoviesList()
         {
             var movieManager = new MovieManager();
             var moviesModifyed = movieManager.Movies as List<Movie>;
@@ -97,7 +97,7 @@ namespace ReserveTaPlaceConsole
             await movieManager.SaveMovies();
         }
 
-        public void InitializedUserList()
+        internal void InitializedUserList()
         {
             var userList = new List<User>() { 
                 new User("Gilbert", "Hugo", "hugo.g@hotmail.fr", "1234"),
