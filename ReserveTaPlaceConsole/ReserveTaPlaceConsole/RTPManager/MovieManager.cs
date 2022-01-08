@@ -58,7 +58,9 @@ namespace ReserveTaPlace.RTPManager
 
         internal async Task<Movie> GetMovie(string title,string year)
         {
-            return await _movieProviderLogic.GetMovie(title, year);  
+            var movie = await _movieProviderLogic.GetMovie(title, year);
+            movie.Id = this.CalculateId();
+            return movie;  
         }
 
         internal async Task PutOnDisplay(string movieTitle)

@@ -58,11 +58,9 @@ namespace ReserveTaPlaceConsole
                     _manager.WriteQuestion(question3_1);
                     var answer3_1 = _manager.ReadUserEntry(question3_1);
                     var movie = await _movieManager.GetMovie(answer3.Text, answer3_1.Text);
-                    movie.Id = _movieManager.CalculateId();
                     await _movieManager.Add(movie);
                     Console.WriteLine($"Le film {movie.Title} est ajouté à la liste des films disponibles.");
                     _movieManager.DisplayMovies();
-                    Console.ReadLine();
                     break;
                 case 5:
                     var question4 = new Question("Entrer le nom du film à supprimer : ", 0, QuestionType.ReponseLibre);
@@ -77,8 +75,6 @@ namespace ReserveTaPlaceConsole
                     break;
             }
             await this.Menu();
-            //var question3 = new Question("Selectionner le film :", 0, null, null, QuestionType.ReponseLibre, null);
-
         }
 
         internal async Task InitializedMoviesList()
