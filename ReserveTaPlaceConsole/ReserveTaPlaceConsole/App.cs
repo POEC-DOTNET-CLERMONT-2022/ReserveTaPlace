@@ -49,6 +49,7 @@ namespace ReserveTaPlaceConsole
                     _manager.WriteQuestion(question2);
                     var answer2 = _manager.ReadUserEntry(question2);
                     await _movieManager.PutOnDisplay(answer2.Text);
+                    _movieManager.DisplayOnDisplayMovies();
                     break;
                 case 4:
                     var question3 = new Question("Quel est le titre du film que vous voulez ajouter ?", 0, QuestionType.ReponseLibre);
