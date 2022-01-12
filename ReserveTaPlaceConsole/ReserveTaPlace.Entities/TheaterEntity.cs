@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Entities
 {
-    internal class TheaterEntity
+    public class TheaterEntity
     {
+        public int Id { get; set; }
+        public int UserId { get; set; }
+
+        public string Name { get; set; }
+        public virtual ICollection<UserEntity> Users { get; set; }
     }
 }

@@ -8,5 +8,7 @@ namespace ReserveTaPlace.Entities
 {
     public class DiscountEntity
     {
+        public int UserId { get; set; }
+
     }
 }

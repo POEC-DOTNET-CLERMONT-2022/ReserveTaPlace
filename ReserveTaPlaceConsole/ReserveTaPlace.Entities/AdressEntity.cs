@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Entities
 {
-    public class TicketEntity
+    internal class AdressEntity
     {
-        public int UserId { get; set; }
     }
 }
