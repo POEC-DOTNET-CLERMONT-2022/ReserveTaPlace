@@ -10,5 +10,6 @@ namespace ReserveTaPlace.Entities
     {
 
         public virtual ICollection<GenreEntity> Genres { get; set; }
+        public virtual ICollection<MediaEntity> Medias { get; set; }
     }
 }
