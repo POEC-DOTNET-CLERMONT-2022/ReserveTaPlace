@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Entities
 {
-    internal class UserRolesEntity
+    public class UserRolesEntity
     {
         public enum UserRoles
         {

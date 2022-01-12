@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace ReserveTaPlace.Entities
 {
     [Table("User")]
-    internal class UserEntity
+    public class UserEntity
     {
         [Key]
         public Guid Id { get; set; }
@@ -23,6 +23,12 @@ namespace ReserveTaPlace.Entities
         public string Password { get; set; }
         [Column("UserRoles")]
         public UserRolesEntity UserRoles { get; set; }
+
+        [InverseProperty(nameof(OrderEntity.UserId))]
+        public virtual IEnumerable<OrderEntity> Orders { get; set; }
+
+        public virtual IEnumerable<DiscountEntity> Discounts { get; set; }
+
 
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Entities
 {
-    internal class DiscountEntity
+    public class DiscountEntity
     {
     }
 }
