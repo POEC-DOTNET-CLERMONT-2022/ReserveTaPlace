@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Entities
 {
-    internal class MovieEntity
+    public class MovieEntity
     {
+
+        public virtual ICollection<GenreEntity> Genres { get; set; }
     }
 }
