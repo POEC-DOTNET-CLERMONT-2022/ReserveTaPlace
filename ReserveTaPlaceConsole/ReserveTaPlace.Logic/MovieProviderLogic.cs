@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Logic
 {
+
     public class MovieProviderLogic
     {
         private readonly IMovieProvider _movieProvider;
