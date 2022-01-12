@@ -10,7 +10,7 @@ namespace ReserveTaPlace.Entities
     {
         public int Id { get; set; }
         public int UserId { get; set; }
-
+        public int AddressId { get; set; }
         public string Name { get; set; }
         public virtual ICollection<UserEntity> Users { get; set; }
     }

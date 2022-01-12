@@ -23,20 +23,27 @@ namespace ReserveTaPlace.Entities
         [Column(Order = 1)]
         public Guid Id { get; set; }
 
-        [Column("FirstName",TypeName ="nvarchar(70)", Order = 2)]
+        [Column(Order = 2)]
+        public int AddressId { get; set; }
+
+        [Column("FirstName", TypeName = "nvarchar(70)", Order = 3)]
         public string FirstName { get; set; }
 
-        [Column("LastName", TypeName = "nvarchar(70)", Order = 3)]
+        [Column("LastName", TypeName = "nvarchar(70)", Order = 4)]
         public string LastName { get; set; }
 
-        [Column("Email", TypeName = "nvarchar(255)", Order = 4)]
+        [Column("Email", TypeName = "nvarchar(255)", Order = 5)]
         public string Email { get; set; }
 
-        [Column("Password", TypeName = "nvarchar(50)", Order = 5)]
+        [Column("Password", TypeName = "nvarchar(50)", Order = 6)]
         public string Password { get; set; }
 
-        [Column("UserRoles", TypeName = "nvarchar(25)", Order = 6)]
+        [Column("UserRoles", TypeName = "nvarchar(25)", Order = 7)]
         public UserRolesEntity UserRoles { get; set; }
+
+        [ForeignKey(nameof(AddressId))]
+        [InverseProperty("Users")]
+        public virtual AddressEntity Address { get; set; }
 
         [InverseProperty(nameof(OrderEntity.UserId))]
         public virtual ICollection<OrderEntity> Orders { get; set; }
