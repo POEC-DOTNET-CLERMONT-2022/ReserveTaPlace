@@ -11,6 +11,11 @@ namespace ReserveTaPlace.Entities
     [Table("Address")]
     public class AddressEntity
     {
+        public AddressEntity()
+        {
+            Users = new HashSet<UserEntity>();
+        }
+
         [Key]
         [Column(Order = 1)]
         public int ID { get; set; }
