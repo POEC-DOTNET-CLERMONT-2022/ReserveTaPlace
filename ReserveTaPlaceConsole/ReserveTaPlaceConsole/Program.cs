@@ -1,6 +1,4 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using ConsoleManage.Manager;
-using ConsoleManager.Data.Models;
 using ReserveTaPlace.Models;
 using ReserveTaPlace.Persistance;
 using ReserveTaPlaceConsole;
