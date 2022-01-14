@@ -9,8 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ReserveTaPlace.DTOS;
-using ConsoleManager.Data.Models;
-using ConsoleManage.Manager;
+using ReserveTaPlace.Models.ConsoleModels;
+using ReserveTaPlace.AppManager;
 
 namespace ReserveTaPlace.RTPManager
 {
@@ -18,7 +18,7 @@ namespace ReserveTaPlace.RTPManager
     {
         private PersistanceLogic _persistanceLogic;
         private MovieProviderLogic _movieProviderLogic;
-        private Manager _manager;
+        private IAppManager _manager;
         private IWriter _writer { get; }
         private IEnumerable<Movie> _movies;
         public IEnumerable<Movie> Movies
@@ -32,7 +32,7 @@ namespace ReserveTaPlace.RTPManager
             _movies = new List<Movie>();
             _persistanceLogic = new PersistanceLogic();
             _movieProviderLogic = new MovieProviderLogic();
-            _manager = new Manager();
+            _manager =new Manager();
         }
         internal void DisplayMovies()
         {
