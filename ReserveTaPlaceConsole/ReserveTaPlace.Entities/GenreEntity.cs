@@ -19,6 +19,8 @@ namespace ReserveTaPlace.Entities
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }
+
+        [InverseProperty(nameof(MovieGenreEntity.Genre))]
         public virtual ICollection<MovieEntity> Movies { get; set; }
 
     }

@@ -17,7 +17,7 @@ namespace ReserveTaPlace.Entities
         public short Rate { get; set; }
         public float Amount { get; set; }
 
-        [InverseProperty(nameof(DiscountEntity.DiscountTypeId))]
+        [InverseProperty(nameof(DiscountEntity.DiscountType))]
         public virtual ICollection<DiscountEntity> Discounts { get; set; }
     }
 }

@@ -41,7 +41,7 @@ namespace ReserveTaPlace.Entities
         [Column("County", TypeName = "nvarchar(255)", Order = 8)]
         public string County { get; set; }
 
-        [InverseProperty(nameof(UserEntity.AddressId))]
+        [InverseProperty(nameof(UserEntity.Address))]
         public virtual ICollection<UserEntity> Users { get; set; }
 
     }

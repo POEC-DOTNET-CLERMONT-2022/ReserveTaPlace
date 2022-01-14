@@ -20,7 +20,7 @@ namespace ReserveTaPlace.Entities
         public int Id { get; set; }
         public string Name { get; set; }
 
-        [InverseProperty(nameof(MovieRoomEntity.RoomFormatId))]
+        [InverseProperty(nameof(MovieRoomEntity.RoomFormat))]
         public virtual ICollection<MovieRoomEntity> MovieRooms { get; set; }
     }
 }

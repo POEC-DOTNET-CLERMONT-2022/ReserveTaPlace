@@ -30,5 +30,7 @@ namespace ReserveTaPlace.Entities
 
         [ForeignKey(nameof(AddressId))]
         public virtual AddressEntity Address { get; set; }
+
+
     }
 }

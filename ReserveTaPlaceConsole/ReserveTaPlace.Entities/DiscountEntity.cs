@@ -16,7 +16,7 @@ namespace ReserveTaPlace.Entities
         public int UserId { get; set; }
         public int DiscountTypeId { get; set; }
         public string Number { get; set; }
-        public DateOnly validityDate { get; set; }
+        public DateOnly EndValidityDate { get; set; }
 
         [ForeignKey(nameof(UserId))]
         [InverseProperty("Discounts")]

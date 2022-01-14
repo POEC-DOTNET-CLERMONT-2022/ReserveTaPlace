@@ -8,12 +8,21 @@ using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Entities
 {
-    [Table("Session")]
-    public class SessionHourEntity
+    [Table("Role")]
+    public class RoleEntity
     {
+        public RoleEntity()
+        {
+            Users = new HashSet<UserEntity>();
+        }
+
         [Key]
         public int Id { get; set; }
-        public DateTime Start { get; set; }
-        public DateTime End { get; set; }
+        public string Role { get; set; }
+
+        [InverseProperty(nameof(UserRoleEntity.Role))]
+        public virtual ICollection<UserEntity> Users { get; set; }
+
+
     }
 }

@@ -17,6 +17,7 @@ namespace ReserveTaPlace.Entities
             Discounts = new HashSet<DiscountEntity>();
             Theaters = new HashSet<TheaterEntity>();
             Tickets = new HashSet<TicketEntity>();
+            Roles = new HashSet<RoleEntity>();
         }
 
         [Key]
@@ -38,24 +39,25 @@ namespace ReserveTaPlace.Entities
         [Column("Password", TypeName = "nvarchar(50)", Order = 6)]
         public string Password { get; set; }
 
-        [Column("UserRoles", TypeName = "nvarchar(25)", Order = 7)]
-        public UserRolesEntity UserRoles { get; set; }
 
         [ForeignKey(nameof(AddressId))]
         [InverseProperty("Users")]
         public virtual AddressEntity Address { get; set; }
 
-        [InverseProperty(nameof(OrderEntity.UserId))]
+        [InverseProperty(nameof(OrderEntity.User))]
         public virtual ICollection<OrderEntity> Orders { get; set; }
         
-        [InverseProperty(nameof(DiscountEntity.UserId))]
+        [InverseProperty(nameof(DiscountEntity.User))]
         public virtual ICollection<DiscountEntity> Discounts { get; set; }
         
-        [InverseProperty(nameof(UserTheaterEntity.UserId))]
+        [InverseProperty(nameof(UserTheaterEntity.User))]
         public virtual ICollection<TheaterEntity> Theaters { get; set; }
         
-        [InverseProperty(nameof(TicketEntity.UserId))]
+        [InverseProperty(nameof(TicketEntity.User))]
         public virtual ICollection<TicketEntity> Tickets { get; set; }
+
+        [InverseProperty(nameof(UserRoleEntity.User))]
+        public virtual ICollection<RoleEntity> Roles { get; set; }
 
 
 
