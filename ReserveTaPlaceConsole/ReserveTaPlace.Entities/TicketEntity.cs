@@ -12,11 +12,11 @@ namespace ReserveTaPlace.Entities
     public class TicketEntity
     {
         [Key]
-        public int Id { get; set; }
-        public int UserId { get; set; }
-        public int SeatId { get; set; }
-        public int OrderId { get; set; }
-        public int SessionId { get; set; }
+        public Guid Id { get; set; }
+        public Guid UserId { get; set; }
+        public Guid SeatId { get; set; }
+        public Guid OrderId { get; set; }
+        public Guid SessionId { get; set; }
 
         [ForeignKey(nameof(UserId))]
         [InverseProperty("Tickets")]

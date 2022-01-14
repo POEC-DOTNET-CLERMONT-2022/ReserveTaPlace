@@ -15,9 +15,9 @@ namespace ReserveTaPlace.Entities
         {
             Orders = new HashSet<OrderEntity>();
             Discounts = new HashSet<DiscountEntity>();
-            Theaters = new HashSet<TheaterEntity>();
+            Theaters = new HashSet<UserTheaterEntity>();
             Tickets = new HashSet<TicketEntity>();
-            Roles = new HashSet<RoleEntity>();
+            Roles = new HashSet<UserRoleEntity>();
         }
 
         [Key]
@@ -25,7 +25,7 @@ namespace ReserveTaPlace.Entities
         public Guid Id { get; set; }
 
         [Column(Order = 2)]
-        public int AddressId { get; set; }
+        public Guid AddressId { get; set; }
 
         [Column("FirstName", TypeName = "nvarchar(70)", Order = 3)]
         public string FirstName { get; set; }
@@ -51,13 +51,13 @@ namespace ReserveTaPlace.Entities
         public virtual ICollection<DiscountEntity> Discounts { get; set; }
         
         [InverseProperty(nameof(UserTheaterEntity.User))]
-        public virtual ICollection<TheaterEntity> Theaters { get; set; }
+        public virtual ICollection<UserTheaterEntity> Theaters { get; set; }
         
         [InverseProperty(nameof(TicketEntity.User))]
         public virtual ICollection<TicketEntity> Tickets { get; set; }
 
         [InverseProperty(nameof(UserRoleEntity.User))]
-        public virtual ICollection<RoleEntity> Roles { get; set; }
+        public virtual ICollection<UserRoleEntity> Roles { get; set; }
 
 
 

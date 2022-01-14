@@ -17,13 +17,14 @@ namespace ReserveTaPlace.Entities
         }
 
         [Key]
-        public int Id { get; set; }
-        public int MovieRoomId { get; set; }
+        public Guid Id { get; set; }
+        public Guid RoomId { get; set; }
 
-        [ForeignKey(nameof(MovieRoomId))]
+        [ForeignKey(nameof(RoomId))]
         [InverseProperty("Sessions")]
-        public virtual MovieRoomEntity MovieRoom { get; set; }
+        public virtual RoomEntity Room { get; set; }
 
+        [InverseProperty(nameof(SessionHourEntity.Session))]
         public virtual ICollection<SessionHourEntity> SessionHours { get; set; }
 
     }

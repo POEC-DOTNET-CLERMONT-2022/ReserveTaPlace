@@ -13,15 +13,15 @@ namespace ReserveTaPlace.Entities
     {
         public GenreEntity()
         {
-            Movies = new HashSet<MovieEntity>();
+            Movies = new HashSet<MovieGenreEntity>();
         }
 
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string Name { get; set; }
 
         [InverseProperty(nameof(MovieGenreEntity.Genre))]
-        public virtual ICollection<MovieEntity> Movies { get; set; }
+        public virtual ICollection<MovieGenreEntity> Movies { get; set; }
 
     }
 }

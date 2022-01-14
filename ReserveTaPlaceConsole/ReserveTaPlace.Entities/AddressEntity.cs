@@ -18,7 +18,7 @@ namespace ReserveTaPlace.Entities
 
         [Key]
         [Column(Order = 1)]
-        public int ID { get; set; }
+        public Guid Id { get; set; }
 
         [Column("Address1", TypeName = "nvarchar(100)", Order = 2)]
         public string? Address1 { get; set; }

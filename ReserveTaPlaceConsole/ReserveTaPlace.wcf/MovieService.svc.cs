@@ -1,15 +1,4 @@
-﻿using ReserveTaPlace.Data.Interfaces;
-using ReserveTaPlace.Data.Functions;
-using ReserveTaPlace.DTOS;
-using ReserveTaPlace.Extensions.Factories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.ServiceModel.Web;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 
 namespace ReserveTaPlace.wcf
 {
@@ -17,16 +6,16 @@ namespace ReserveTaPlace.wcf
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class MovieService : IMovieService
     {
-        private readonly IMovie _imovie;
-        public MovieService()
-        {
-            _imovie = new MovieFunction();
-        }
-        public IEnumerable<MovieDto> GetAllMovies()
-        {
-            var movies = _imovie.GetAllMovies();
-            return _imovie.GetAllMovies().ToDto();
-        }
+        //private readonly IMovie _imovie;
+        //public MovieService()
+        //{
+        //    _imovie = new MovieFunction();
+        //}
+        //public IEnumerable<MovieDto> GetAllMovies()
+        //{
+        //    var movies = _imovie.GetAllMovies();
+        //    return _imovie.GetAllMovies().ToDto();
+        //}
 
         public string GetData(int value)
         {

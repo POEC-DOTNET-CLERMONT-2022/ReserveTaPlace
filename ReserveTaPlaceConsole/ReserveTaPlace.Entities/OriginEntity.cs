@@ -13,13 +13,13 @@ namespace ReserveTaPlace.Entities
     {
         public OriginEntity()
         {
-            Movies = new HashSet<MovieEntity>();
+            Movies = new HashSet<MovieOriginEntity>();
         }
 
         [Key]
-        public int Id { get; set;}
+        public Guid Id { get; set;}
         public string Country { get; set; }
         [InverseProperty(nameof(MovieOriginEntity.Origin))]
-        public virtual ICollection<MovieEntity> Movies { get; set; }
+        public virtual ICollection<MovieOriginEntity> Movies { get; set; }
     }
 }

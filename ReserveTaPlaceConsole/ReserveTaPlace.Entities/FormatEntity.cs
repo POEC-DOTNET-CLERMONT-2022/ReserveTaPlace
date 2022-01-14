@@ -8,19 +8,19 @@ using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Entities
 {
-    [Table("RoomFormat")]
-    public class RoomFormatEntity
+    [Table("Format")]
+    public class FormatEntity
     {
-        public RoomFormatEntity()
+        public FormatEntity()
         {
-            MovieRooms = new HashSet<MovieRoomEntity>();
+            Rooms = new HashSet<RoomEntity>();
         }
 
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string Name { get; set; }
 
-        [InverseProperty(nameof(MovieRoomEntity.RoomFormat))]
-        public virtual ICollection<MovieRoomEntity> MovieRooms { get; set; }
+        [InverseProperty(nameof(RoomEntity.Format))]
+        public virtual ICollection<RoomEntity> Rooms { get; set; }
     }
 }

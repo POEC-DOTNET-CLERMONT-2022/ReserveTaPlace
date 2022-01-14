@@ -13,14 +13,14 @@ namespace ReserveTaPlace.Entities
     {
         public MovieEntity()
         {
-            Genres = new HashSet<GenreEntity>();
+            Genres = new HashSet<MovieGenreEntity>();
             Medias = new HashSet<MediaEntity>();
-            MovieRooms = new HashSet<MovieRoomEntity>();
-            Origins = new HashSet<OriginEntity>();
+            Rooms = new HashSet<RoomEntity>();
+            Origins = new HashSet<MovieOriginEntity>();
         }
 
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string ImdbID { get; set; }
         public string Title { get; set; }
         public string Country { get; set; }
@@ -29,19 +29,21 @@ namespace ReserveTaPlace.Entities
         public string CastEndDate { get; set; }
         public string ReleaseDate { get; set; }
         public string Runtime { get; set; }
+
+        [Column(TypeName = "bit")]
         public bool IsMovieOnDisplay { get; set; }
 
         [InverseProperty(nameof(MovieGenreEntity.Movie))]
-        public virtual ICollection<GenreEntity> Genres { get; set; }
+        public virtual ICollection<MovieGenreEntity> Genres { get; set; }
 
         [InverseProperty(nameof(MediaEntity.Movie))]
         public virtual ICollection<MediaEntity> Medias { get; set; }
 
-        [InverseProperty(nameof(MovieRoomEntity.Movie))]
-        public virtual ICollection<MovieRoomEntity> MovieRooms { get; set; }
+        [InverseProperty(nameof(RoomEntity.Movie))]
+        public virtual ICollection<RoomEntity> Rooms { get; set; }
 
         [InverseProperty(nameof(MovieOriginEntity.Movie))]
-        public virtual ICollection<OriginEntity> Origins { get; set; }
+        public virtual ICollection<MovieOriginEntity> Origins { get; set; }
 
 
     }

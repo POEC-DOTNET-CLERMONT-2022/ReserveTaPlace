@@ -13,15 +13,15 @@ namespace ReserveTaPlace.Entities
     {
         public RoleEntity()
         {
-            Users = new HashSet<UserEntity>();
+            Users = new HashSet<UserRoleEntity>();
         }
 
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string Role { get; set; }
 
         [InverseProperty(nameof(UserRoleEntity.Role))]
-        public virtual ICollection<UserEntity> Users { get; set; }
+        public virtual ICollection<UserRoleEntity> Users { get; set; }
 
 
     }

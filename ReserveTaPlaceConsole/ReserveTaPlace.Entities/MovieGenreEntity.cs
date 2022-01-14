@@ -12,10 +12,10 @@ namespace ReserveTaPlace.Entities
     public class MovieGenreEntity
     {
         [Key]
-        public int MovieId { get; set; }
+        public Guid MovieId { get; set; }
 
         [Key]
-        public int GenreId { get; set; }
+        public Guid GenreId { get; set; }
 
         [ForeignKey(nameof(MovieId))]
         [InverseProperty("Movies")]

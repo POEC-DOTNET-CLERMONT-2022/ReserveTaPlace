@@ -12,13 +12,13 @@ namespace ReserveTaPlace.Entities
     public class SeatEntity
     {
         [Key]
-        public int Id { get; set; }
-        public int MovieRoomId { get; set; }
+        public Guid Id { get; set; }
+        public Guid RoomId { get; set; }
         public string Row { get; set; }
         public string Number { get; set; }
 
-        [ForeignKey(nameof(MovieRoomId))]
+        [ForeignKey(nameof(RoomId))]
         [InverseProperty("Seats")]
-        public virtual MovieRoomEntity MovieRoom { get; set; }
+        public virtual RoomEntity Room { get; set; }
     }
 }

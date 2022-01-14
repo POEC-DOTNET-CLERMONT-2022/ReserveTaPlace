@@ -12,10 +12,10 @@ namespace ReserveTaPlace.Entities
     public class UserTheaterEntity
     {
         [Key]
-        public int UserId { get; set; }
+        public Guid UserId { get; set; }
 
         [Key]
-        public int TheaterId { get; set; }
+        public Guid TheaterId { get; set; }
 
         [ForeignKey(nameof(UserId))]
         [InverseProperty("Users")]

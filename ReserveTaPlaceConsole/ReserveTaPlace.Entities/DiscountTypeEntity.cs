@@ -12,7 +12,7 @@ namespace ReserveTaPlace.Entities
         }
 
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public short Rate { get; set; }
         public float Amount { get; set; }

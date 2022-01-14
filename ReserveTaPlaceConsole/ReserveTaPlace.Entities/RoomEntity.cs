@@ -8,38 +8,38 @@ using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Entities
 {
-    [Table("MovieRoom")]
-    public class MovieRoomEntity
+    [Table("Room")]
+    public class RoomEntity
     {
-        public MovieRoomEntity()
+        public RoomEntity()
         {
             Seats = new HashSet<SeatEntity>();
             Sessions = new HashSet<SessionEntity>();
         }
 
         [Key]
-        public int Id { get; set; }
-        public int TheatreId { get; set; }
-        public int RoomFormatId { get; set; }
-        public int? MovieId { get; set; }
+        public Guid Id { get; set; }
+        public Guid TheatreId { get; set; }
+        public Guid FormatId { get; set; }
+        public Guid? MovieId { get; set; }
         public string? Name { get; set; }
         public string? Number { get; set; }
-        public string Format { get; set; }
 
         [ForeignKey(nameof(TheatreId))]
-        [InverseProperty("MovieRooms")]
+        [InverseProperty("Rooms")]
         public virtual TheaterEntity Theater { get; set; }
 
-        [InverseProperty(nameof(SeatEntity.MovieRoom))]
+        [InverseProperty(nameof(SeatEntity.Room))]
         public virtual ICollection<SeatEntity> Seats { get; set; }
 
-        [ForeignKey(nameof(RoomFormatId))]
-        [InverseProperty("MovieRooms")]
-        public virtual RoomFormatEntity RoomFormat { get; set; }
+        [ForeignKey(nameof(FormatId))]
+        [InverseProperty("Rooms")]
+        public virtual FormatEntity Format { get; set; }
+
         [ForeignKey(nameof(MovieId))]
-        [InverseProperty("MovieRooms")]
+        [InverseProperty("Rooms")]
         public virtual MovieEntity Movie { get; set; }
-        [InverseProperty(nameof(SessionEntity.MovieRoom))]
+        [InverseProperty(nameof(SessionEntity.Room))]
         public virtual ICollection<SessionEntity> Sessions { get; set;}
     }
 }

@@ -13,20 +13,20 @@ namespace ReserveTaPlace.Entities
     {
         public TheaterEntity()
         {
-            Users = new HashSet<UserEntity>();
-            MovieRooms = new HashSet<MovieRoomEntity>();
+            Users = new HashSet<UserTheaterEntity>();
+            Rooms = new HashSet<RoomEntity>();
         }
 
         [Key]
-        public int Id { get; set; }
-        public int AddressId { get; set; }
+        public Guid Id { get; set; }
+        public Guid AddressId { get; set; }
         public string Name { get; set; }
 
-        [InverseProperty(nameof(UserTheaterEntity.TheaterId))]
-        public virtual ICollection<UserEntity> Users { get; set; }
+        [InverseProperty(nameof(UserTheaterEntity.Theater))]
+        public virtual ICollection<UserTheaterEntity> Users { get; set; }
 
-        [InverseProperty(nameof(MovieRoomEntity.TheatreId))]
-        public virtual ICollection<MovieRoomEntity> MovieRooms { get; set; }
+        [InverseProperty(nameof(RoomEntity.Theater))]
+        public virtual ICollection<RoomEntity> Rooms { get; set; }
 
         [ForeignKey(nameof(AddressId))]
         public virtual AddressEntity Address { get; set; }

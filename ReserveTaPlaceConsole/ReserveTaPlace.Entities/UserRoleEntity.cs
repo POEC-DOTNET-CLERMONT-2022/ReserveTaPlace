@@ -12,9 +12,9 @@ namespace ReserveTaPlace.Entities
     public class UserRoleEntity
     {
         [Key]
-        public int RoleId { get; set; }
+        public Guid RoleId { get; set; }
         [Key]
-        public int UserId { get; set; }
+        public Guid UserId { get; set; }
         [ForeignKey(nameof(RoleId))]
         [InverseProperty("Roles")]
         public virtual UserEntity User { get; set; }
