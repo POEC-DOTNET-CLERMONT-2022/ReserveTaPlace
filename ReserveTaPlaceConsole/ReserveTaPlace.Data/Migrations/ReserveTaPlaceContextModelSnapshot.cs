@@ -735,14 +735,14 @@ namespace ReserveTaPlace.Data.Migrations
 
             modelBuilder.Entity("ReserveTaPlace.Entities.UserTheaterEntity", b =>
                 {
-                    b.HasOne("ReserveTaPlace.Entities.UserEntity", "User")
-                        .WithMany("Theaters")
+                    b.HasOne("ReserveTaPlace.Entities.TheaterEntity", "Theater")
+                        .WithMany("Users")
                         .HasForeignKey("TheaterId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ReserveTaPlace.Entities.TheaterEntity", "Theater")
-                        .WithMany("Users")
+                    b.HasOne("ReserveTaPlace.Entities.UserEntity", "User")
+                        .WithMany("Theaters")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

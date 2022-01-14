@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ReserveTaPlace.Data.Migrations
 {
-    public partial class FirstMigration : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -333,17 +333,17 @@ namespace ReserveTaPlace.Data.Migrations
                 {
                     table.PrimaryKey("PK_UserTheater", x => new { x.UserId, x.TheaterId });
                     table.ForeignKey(
-                        name: "FK_UserTheater_Theater_UserId",
-                        column: x => x.UserId,
+                        name: "FK_UserTheater_Theater_TheaterId",
+                        column: x => x.TheaterId,
                         principalTable: "Theater",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
-                        name: "FK_UserTheater_User_TheaterId",
-                        column: x => x.TheaterId,
+                        name: "FK_UserTheater_User_UserId",
+                        column: x => x.UserId,
                         principalTable: "User",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -428,19 +428,19 @@ namespace ReserveTaPlace.Data.Migrations
                         column: x => x.SeatId,
                         principalTable: "Seat",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Ticket_Session_SessionId",
                         column: x => x.SessionId,
                         principalTable: "Session",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Ticket_User_UserId",
                         column: x => x.UserId,
                         principalTable: "User",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateIndex(

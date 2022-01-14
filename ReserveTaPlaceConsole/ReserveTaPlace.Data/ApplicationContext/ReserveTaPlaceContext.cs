@@ -48,7 +48,7 @@ namespace ReserveTaPlace.Data.ApplicationContext
         {
             base.OnConfiguring(optionsBuilder);
 
-            optionsBuilder.UseSqlServer(@"Server=(LocalDb)\MSSQLLocalDB;Database=ReserveTaPlace;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=.;Database=ReserveTaPlace;Trusted_Connection=True;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -65,10 +65,22 @@ namespace ReserveTaPlace.Data.ApplicationContext
                 entity.HasKey("UserId", "RoleId");
             });
 
-            modelBuilder.Entity<UserTheaterEntity>(entity =>
-            {
-                entity.HasKey("UserId", "TheaterId");
-            });
+            //modelBuilder.Entity<UserTheaterEntity>(entity =>
+            //{
+            //    entity.HasKey("UserId", "TheaterId");
+            //});
+            modelBuilder.Entity<UserTheaterEntity>()
+                .HasKey(ut => new { ut.UserId, ut.TheaterId });
+
+            modelBuilder.Entity<UserTheaterEntity>()
+                .HasOne(ut => ut.User)
+                .WithMany(a => a.Theaters)
+                .HasForeignKey(ut => ut.UserId);
+
+            modelBuilder.Entity<UserTheaterEntity>()
+                .HasOne(ut => ut.Theater)
+                .WithMany(t => t.Users)
+                .HasForeignKey(ut => ut.TheaterId);
 
             modelBuilder.Entity<MovieOriginEntity>(entity =>
             {

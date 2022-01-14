@@ -12,8 +12,8 @@ using ReserveTaPlace.Data.ApplicationContext;
 namespace ReserveTaPlace.Data.Migrations
 {
     [DbContext(typeof(ReserveTaPlaceContext))]
-    [Migration("20220114150920_FirstMigration")]
-    partial class FirstMigration
+    [Migration("20220114195800_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -737,14 +737,14 @@ namespace ReserveTaPlace.Data.Migrations
 
             modelBuilder.Entity("ReserveTaPlace.Entities.UserTheaterEntity", b =>
                 {
-                    b.HasOne("ReserveTaPlace.Entities.UserEntity", "User")
-                        .WithMany("Theaters")
+                    b.HasOne("ReserveTaPlace.Entities.TheaterEntity", "Theater")
+                        .WithMany("Users")
                         .HasForeignKey("TheaterId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ReserveTaPlace.Entities.TheaterEntity", "Theater")
-                        .WithMany("Users")
+                    b.HasOne("ReserveTaPlace.Entities.UserEntity", "User")
+                        .WithMany("Theaters")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
