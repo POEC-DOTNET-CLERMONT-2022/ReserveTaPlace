@@ -11,6 +11,11 @@ namespace ReserveTaPlace.Entities
     [Table("MovieRoom")]
     public class MovieRoomEntity
     {
+        public MovieRoomEntity()
+        {
+            Seats = new HashSet<SeatEntity>();
+        }
+
         [Key]
         public int Id { get; set; }
         public int TheatreId { get; set; }
@@ -22,6 +27,8 @@ namespace ReserveTaPlace.Entities
         [ForeignKey(nameof(TheatreId))]
         [InverseProperty("MovieRooms")]
         public virtual TheaterEntity Theater { get; set; }
+
+        [InverseProperty(nameof(SeatEntity.MovieRoomId))]
         public virtual ICollection<SeatEntity> Seats { get; set; }
 
         [ForeignKey(nameof(RoomFormatId))]

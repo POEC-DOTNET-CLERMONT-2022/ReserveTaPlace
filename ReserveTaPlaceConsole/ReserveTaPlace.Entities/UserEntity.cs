@@ -51,7 +51,7 @@ namespace ReserveTaPlace.Entities
         [InverseProperty(nameof(DiscountEntity.UserId))]
         public virtual ICollection<DiscountEntity> Discounts { get; set; }
         
-        [InverseProperty(nameof(TheaterEntity.UserId))]
+        [InverseProperty(nameof(UserTheaterEntity.UserId))]
         public virtual ICollection<TheaterEntity> Theaters { get; set; }
         
         [InverseProperty(nameof(TicketEntity.UserId))]

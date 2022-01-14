@@ -11,6 +11,11 @@ namespace ReserveTaPlace.Entities
     [Table("RoomFormat")]
     public class RoomFormatEntity
     {
+        public RoomFormatEntity()
+        {
+            MovieRooms = new HashSet<MovieRoomEntity>();
+        }
+
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }
