@@ -16,7 +16,7 @@ namespace ReserveTaPlace.Logic
         {
             _movieProvider=new MovieProvider();
         }
-        public async Task<Movie> GetMovie(string title,string year)
+        public async Task<List<Movie>> GetMovie(string title,string year)
         {
             return await _movieProvider.GetMovie(title,year);
         }

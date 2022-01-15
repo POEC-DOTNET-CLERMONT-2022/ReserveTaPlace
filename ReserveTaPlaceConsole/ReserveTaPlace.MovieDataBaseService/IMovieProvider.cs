@@ -8,6 +8,6 @@ namespace ReserveTaPlace.MovieDataBaseService
 {
     public interface IMovieProvider
     {
-        Task<Movie> GetMovie(string movie, string year);
+        Task<List<Movie>> GetMovie(string movie, string year);
     }
 }
