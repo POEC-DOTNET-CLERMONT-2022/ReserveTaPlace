@@ -1,10 +1,17 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ReserveTaPlace.Data.Functions;
+using ReserveTaPlace.Data.Interfaces;
 
 namespace ReserveTaPlace.API.Controllers
 {
     public class MovieController : Controller
     {
+        private IMovie _movie;
+        public MovieController()
+        {
+            _movie = new MovieFunctions();
+        }
         // GET: MovieController
         public ActionResult Index()
         {
