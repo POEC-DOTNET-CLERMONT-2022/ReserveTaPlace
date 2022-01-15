@@ -129,6 +129,8 @@ namespace ReserveTaPlace.RTPManager
             moviesModifyed.Add(movie);
             Movies = moviesModifyed;
             await _persistanceLogic.SaveMovies(Movies);
+            Console.WriteLine($"Le film {movie.Title} est ajouté à la liste des films disponibles.");
+
         }
 
         internal async Task Delete()

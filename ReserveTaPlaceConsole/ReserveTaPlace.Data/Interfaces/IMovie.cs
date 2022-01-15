@@ -1,4 +1,5 @@
-﻿using ReserveTaPlace.Models;
+﻿using ReserveTaPlace.DTOS;
+using ReserveTaPlace.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,6 +9,6 @@ namespace ReserveTaPlace.Data.Interfaces
 {
     public interface IMovie
     {
-        IEnumerable<Movie> GetAllMovies();
+        Task<IEnumerable<Movie>> GetAllMovies();
     }
 }

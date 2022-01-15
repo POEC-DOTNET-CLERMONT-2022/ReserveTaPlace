@@ -209,13 +209,13 @@ namespace ReserveTaPlace.Data.Migrations
                         column: x => x.OriginId,
                         principalTable: "Movie",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_MovieOrigin_Origin_MovieId",
                         column: x => x.MovieId,
                         principalTable: "Origin",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(

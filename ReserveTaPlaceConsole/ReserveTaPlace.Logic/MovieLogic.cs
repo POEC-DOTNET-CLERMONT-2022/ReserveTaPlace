@@ -1,16 +1,21 @@
-﻿namespace ReserveTaPlace.Logic
+﻿using ReserveTaPlace.Data.Functions;
+using ReserveTaPlace.Data.Interfaces;
+using ReserveTaPlace.DTOS;
+using ReserveTaPlace.Models;
+
+namespace ReserveTaPlace.Logic
 {
 
     public class MovieLogic
     {
-        //private MovieServiceClient _movieServiceClient;
-        //public MovieLogic()
-        //{
-        //    _movieServiceClient=new MovieServiceClient();
-        //}
-        //public IEnumerable<MovieDto> GetAllMovies()
-        //{
-        //    return _movieServiceClient.GetAllMovies();
-        //}
+        private IMovie _movie;
+        public MovieLogic()
+        {
+            _movie = new MovieFunction();
+        }
+        public async Task<IEnumerable<Movie>> GetAllMovies()
+        {
+            return await _movie.GetAllMovies();
+        }
     }
 }
