@@ -44,6 +44,7 @@ namespace ReserveTaPlace.Data.Functions
             //}
             using (var context = new ReserveTaPlaceContext())
             {
+
                 var address = new Address
                 {
                     Id = Guid.NewGuid(),
@@ -55,8 +56,9 @@ namespace ReserveTaPlace.Data.Functions
                 {
                     Id = Guid.NewGuid(),
                     Name = "CinéDôme",
-                    Address = address,
+                    Address = address
                 };
+
                 //var room1 = new Room
                 //{
                 //    Id = Guid.NewGuid(),
@@ -117,11 +119,10 @@ namespace ReserveTaPlace.Data.Functions
                 //    Row = "B",
                 //    Number = "4",
                 //};
-                //context.Theaters.Add(theater);
-                //await context.SaveChangesAsync();
-                var theatertest = await context.Theaters.Include(t => t.Address).SingleOrDefaultAsync(t => t.Name == "CinéDôme");
+                context.Theaters.Add(theater);
+                await context.SaveChangesAsync();
+                var theatertest = await context.Theaters.SingleOrDefaultAsync(t => t.Name == "CinéDôme");
                 context.Theaters.Remove(theatertest);
-                context.Address.Remove(theatertest.Address);
                 await context.SaveChangesAsync();
 
             }

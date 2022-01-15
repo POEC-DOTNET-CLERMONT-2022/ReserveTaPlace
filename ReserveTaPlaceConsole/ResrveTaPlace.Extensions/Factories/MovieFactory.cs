@@ -8,6 +8,7 @@ namespace ReserveTaPlace.Extensions.Factories
 {
     public static class MovieFactory
     {
+
         public static IEnumerable<MovieDto> ToDto(this IEnumerable<Movie> movies)
         {
             foreach (var movie in movies)
@@ -15,7 +16,6 @@ namespace ReserveTaPlace.Extensions.Factories
                 yield return movie.ToDto();
             }
         }
-
 
         public static MovieDto ToDto(this Movie movie)
         {
@@ -30,8 +30,6 @@ namespace ReserveTaPlace.Extensions.Factories
                 yield return movie.ToModel();
             }
         }
-
-
         public static Movie ToModel(this MovieDto movie)
         {
             return new Movie(movie.Title, movie.ImdbID);
@@ -40,5 +38,6 @@ namespace ReserveTaPlace.Extensions.Factories
         {
             return new Movie(imdbMovie.Title,imdbMovie.ImdbID);
         }
+
     }
 }

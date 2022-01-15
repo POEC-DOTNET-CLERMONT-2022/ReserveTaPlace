@@ -11,7 +11,7 @@ namespace ReserveTaPlace.Logic
         private IMovie _movie;
         public MovieLogic()
         {
-            _movie = new MovieFunction();
+            _movie = new MovieFunctions();
         }
         public async Task<IEnumerable<Movie>> GetAllMovies()
         {

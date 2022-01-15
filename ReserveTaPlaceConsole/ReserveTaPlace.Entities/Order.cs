@@ -18,6 +18,7 @@ namespace ReserveTaPlace.Entities
 
         [Key]
         public Guid Id { get; set; }
+        public Guid UserId { get; set; }
         public DateTime Date { get; set; }
         public virtual ICollection<Ticket> Tickets { get; set; }
         public virtual User User { get; set; }

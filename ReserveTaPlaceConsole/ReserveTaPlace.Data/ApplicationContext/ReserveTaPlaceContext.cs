@@ -43,8 +43,8 @@ namespace ReserveTaPlace.Data.ApplicationContext
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-
-            optionsBuilder.UseSqlServer(@"Server=(LocalDb)\MSSQLLocalDB;Database=ReserveTaPlace;Trusted_Connection=True;");
+            //(LocalDb)\MSSQLLocalDB
+            optionsBuilder.UseSqlServer(@"Server=.;Database=ReserveTaPlace;Trusted_Connection=True;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

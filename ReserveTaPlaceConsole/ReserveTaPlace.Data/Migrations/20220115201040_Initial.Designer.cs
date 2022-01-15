@@ -12,8 +12,8 @@ using ReserveTaPlace.Data.ApplicationContext;
 namespace ReserveTaPlace.Data.Migrations
 {
     [DbContext(typeof(ReserveTaPlaceContext))]
-    [Migration("20220115172433_NewInit")]
-    partial class NewInit
+    [Migration("20220115201040_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -99,7 +99,21 @@ namespace ReserveTaPlace.Data.Migrations
                         .HasColumnName("Street")
                         .HasColumnOrder(4);
 
+                    b.Property<Guid?>("TheaterId")
+                        .IsRequired()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("UserId")
+                        .IsRequired()
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("TheaterId")
+                        .IsUnique();
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Address");
                 });
@@ -110,7 +124,8 @@ namespace ReserveTaPlace.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("DiscountTypeId")
+                    b.Property<Guid?>("DiscountTypeId")
+                        .IsRequired()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("EndValidityDate")
@@ -120,7 +135,8 @@ namespace ReserveTaPlace.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid?>("UserId")
+                        .IsRequired()
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -262,7 +278,8 @@ namespace ReserveTaPlace.Data.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid?>("UserId")
+                        .IsRequired()
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -312,6 +329,7 @@ namespace ReserveTaPlace.Data.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("MovieId")
+                        .IsRequired()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
@@ -378,7 +396,7 @@ namespace ReserveTaPlace.Data.Migrations
                     b.Property<DateTime>("End")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("SessionId")
+                    b.Property<Guid>("RoomId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("Start")
@@ -386,7 +404,7 @@ namespace ReserveTaPlace.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SessionId");
+                    b.HasIndex("RoomId");
 
                     b.ToTable("SessionHour");
                 });
@@ -397,16 +415,11 @@ namespace ReserveTaPlace.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("AddressId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AddressId");
 
                     b.ToTable("Theater");
                 });
@@ -449,9 +462,6 @@ namespace ReserveTaPlace.Data.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnOrder(1);
 
-                    b.Property<Guid>("AddressId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(255)")
@@ -477,8 +487,6 @@ namespace ReserveTaPlace.Data.Migrations
                         .HasColumnOrder(5);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AddressId");
 
                     b.ToTable("User");
                 });
@@ -558,6 +566,25 @@ namespace ReserveTaPlace.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("ReserveTaPlace.Entities.Address", b =>
+                {
+                    b.HasOne("ReserveTaPlace.Entities.Theater", "Theater")
+                        .WithOne("Address")
+                        .HasForeignKey("ReserveTaPlace.Entities.Address", "TheaterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ReserveTaPlace.Entities.User", "User")
+                        .WithOne("Address")
+                        .HasForeignKey("ReserveTaPlace.Entities.Address", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Theater");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("ReserveTaPlace.Entities.Discount", b =>
                 {
                     b.HasOne("ReserveTaPlace.Entities.DiscountType", "DiscountType")
@@ -601,21 +628,21 @@ namespace ReserveTaPlace.Data.Migrations
 
             modelBuilder.Entity("ReserveTaPlace.Entities.Room", b =>
                 {
-                    b.HasOne("ReserveTaPlace.Entities.Format", "Format")
+                    b.HasOne("ReserveTaPlace.Entities.Format", null)
                         .WithMany("Rooms")
                         .HasForeignKey("FormatId");
 
                     b.HasOne("ReserveTaPlace.Entities.Movie", "Movie")
                         .WithMany("Rooms")
-                        .HasForeignKey("MovieId");
+                        .HasForeignKey("MovieId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("ReserveTaPlace.Entities.Theater", "Theater")
                         .WithMany("Rooms")
                         .HasForeignKey("TheaterId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Format");
 
                     b.Navigation("Movie");
 
@@ -637,22 +664,11 @@ namespace ReserveTaPlace.Data.Migrations
                 {
                     b.HasOne("ReserveTaPlace.Entities.Session", "Session")
                         .WithMany("SessionHours")
-                        .HasForeignKey("SessionId")
+                        .HasForeignKey("RoomId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Session");
-                });
-
-            modelBuilder.Entity("ReserveTaPlace.Entities.Theater", b =>
-                {
-                    b.HasOne("ReserveTaPlace.Entities.Address", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Address");
                 });
 
             modelBuilder.Entity("ReserveTaPlace.Entities.Ticket", b =>
@@ -688,17 +704,6 @@ namespace ReserveTaPlace.Data.Migrations
                     b.Navigation("Session");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("ReserveTaPlace.Entities.User", b =>
-                {
-                    b.HasOne("ReserveTaPlace.Entities.Address", "Address")
-                        .WithMany("Users")
-                        .HasForeignKey("AddressId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Address");
                 });
 
             modelBuilder.Entity("RoleUser", b =>
@@ -746,11 +751,6 @@ namespace ReserveTaPlace.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ReserveTaPlace.Entities.Address", b =>
-                {
-                    b.Navigation("Users");
-                });
-
             modelBuilder.Entity("ReserveTaPlace.Entities.DiscountType", b =>
                 {
                     b.Navigation("Discounts");
@@ -785,11 +785,17 @@ namespace ReserveTaPlace.Data.Migrations
 
             modelBuilder.Entity("ReserveTaPlace.Entities.Theater", b =>
                 {
+                    b.Navigation("Address")
+                        .IsRequired();
+
                     b.Navigation("Rooms");
                 });
 
             modelBuilder.Entity("ReserveTaPlace.Entities.User", b =>
                 {
+                    b.Navigation("Address")
+                        .IsRequired();
+
                     b.Navigation("Discounts");
 
                     b.Navigation("Orders");

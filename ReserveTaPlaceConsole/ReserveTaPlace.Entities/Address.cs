@@ -8,17 +8,13 @@ using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Entities
 {
-    [Table("Address")]
     public class Address
     {
-        public Address()
-        {
-            Users = new HashSet<User>();
-        }
-
         [Key]
         [Column(Order = 1)]
         public Guid Id { get; set; }
+        public Guid? TheaterId { get; set; }
+        public Guid? UserId { get; set; }
 
         [Column("Address1", TypeName = "nvarchar(100)", Order = 2)]
         public string? Address1 { get; set; }
@@ -40,7 +36,13 @@ namespace ReserveTaPlace.Entities
 
         [Column("County", TypeName = "nvarchar(255)", Order = 8)]
         public string County { get; set; }
-        public virtual ICollection<User> Users { get; set; }
+
+        [ForeignKey(nameof(TheaterId))]
+        [InverseProperty("Address")]
+        public virtual Theater Theater { set; get; }
+        [ForeignKey(nameof(UserId))]
+        [InverseProperty("Address")]
+        public virtual User? User { set; get; }
 
     }
 }

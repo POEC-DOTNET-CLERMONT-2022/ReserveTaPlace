@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ReserveTaPlace.DTOS\ReserveTaPlace.DTOS.csproj" />
+    <ProjectReference Include="..\ReserveTaPlace.Entities\ReserveTaPlace.Entities.csproj" />
     <ProjectReference Include="..\ReserveTaPlace.Models\ReserveTaPlace.Models.csproj" />
   </ItemGroup>
 

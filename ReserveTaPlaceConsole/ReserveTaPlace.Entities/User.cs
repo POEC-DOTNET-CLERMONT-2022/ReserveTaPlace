@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Entities
 {
-    [Table("User")]
     public class User
     {
         public User()
@@ -23,6 +22,7 @@ namespace ReserveTaPlace.Entities
         [Key]
         [Column(Order = 1)]
         public Guid Id { get; set; }
+        public Guid? AddressId { get; set; }
 
         [Column("FirstName", TypeName = "nvarchar(70)", Order = 2)]
         public string FirstName { get; set; }
@@ -35,7 +35,7 @@ namespace ReserveTaPlace.Entities
 
         [Column("Password", TypeName = "nvarchar(50)", Order = 5)]
         public string Password { get; set; }
-        public virtual Address Address { get; set; }
+        public Address? Address { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
         public virtual ICollection<Discount> Discounts { get; set; }
         public virtual ICollection<Theater> Theaters { get; set; }

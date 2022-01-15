@@ -19,11 +19,13 @@ namespace ReserveTaPlace.Entities
 
         [Key]
         public Guid Id { get; set; }
+        public Guid? MovieId { get; set; }
         public string? Name { get; set; }
         public string? Number { get; set; }
         public virtual Theater Theater { get; set; }
         public virtual ICollection<Seat> Seats { get; set; }
-        public virtual Format? Format { get; set; }
+        [ForeignKey(nameof(MovieId))]
+        [InverseProperty("Rooms")]
         public virtual Movie? Movie { get; set; }
         public virtual ICollection<Session> Sessions { get; set;}
     }
