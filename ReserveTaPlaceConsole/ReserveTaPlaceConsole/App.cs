@@ -50,7 +50,6 @@ namespace ReserveTaPlaceConsole
                 case 4:
                     var movies = await _movieManager.GetMovie();
                     await _movieManager.Add(movies[0]);
-                    Console.WriteLine($"Le film {movies[0].Title} est ajouté à la liste des films disponibles.");
                     _movieManager.DisplayMovies();
                     break;
                 case 5:
