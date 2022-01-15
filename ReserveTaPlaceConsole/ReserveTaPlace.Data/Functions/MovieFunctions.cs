@@ -23,29 +23,34 @@ namespace ReserveTaPlace.Data.Functions
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Movie>> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<IEnumerable<Movie>> GetAll()
         {
-
+            IEnumerable<Movie> movies;
             using (var context = new ReserveTaPlaceContext())
             {
-
+                movies = await context.Movies.Include(m=>m.Medias).ToListAsync();
             }
             return movies;
         }
 
-        public Task<Movie> GetById(int id)
+        public async Task<Movie> GetById(Guid id)
         {
-            throw new NotImplementedException();
+            var movie = new Movie();
+            using (var context = new ReserveTaPlaceContext())
+            {
+                movie = await context.Movies.FirstOrDefaultAsync(m=>m.Id == id);
+            }
+            return movie;
         }
 
-        public Task<Movie> GetByName(string name)
+        public async Task<Movie> GetByName(string title)
         {
-            throw new NotImplementedException();
+            var movie = new Movie();
+            using (var context = new ReserveTaPlaceContext())
+            {
+                movie = await context.Movies.FirstOrDefaultAsync(m => m.Title.ToLower().StartsWith(title));
+            }
+            return movie;
         }
 
         public Task<Movie> Update(Movie movie)

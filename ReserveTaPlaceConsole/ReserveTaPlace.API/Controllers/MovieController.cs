@@ -1,90 +1,61 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using ReserveTaPlace.Data.Functions;
-using ReserveTaPlace.Data.Interfaces;
+using ReserveTaPlace.DTOS;
+using ReserveTaPlace.Logic;
+
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ReserveTaPlace.API.Controllers
 {
-    public class MovieController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class MovieController : ControllerBase
     {
-        private IMovie _movie;
-        public MovieController()
+        private IMovieLogic _movieLogic;
+        private IMapper _mapper;
+        public MovieController(IMapper mapper)
         {
-            _movie = new MovieFunctions();
+            _movieLogic = new MovieLogic();
+            _mapper = mapper;
         }
-        // GET: MovieController
-        public ActionResult Index()
+        // GET: MovieController/GetAll
+        [HttpGet("All")]
+        public async Task<List<MovieDto>> All()
         {
-            return View();
+            var movies = await _movieLogic.GetAll();
+            var moviesDto = _mapper.Map<List<MovieDto>>(movies);
+            return moviesDto;
         }
+        // GET: api/<MovieController>
+        //[HttpGet]
+        //public IEnumerable<string> Get()
+        //{
+        //    return new string[] { "value1", "value2" };
+        //}
 
-        // GET: MovieController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+        // GET api/<MovieController>/5
+        //[HttpGet("{id}")]
+        //public string Get(int id)
+        //{
+        //    return "value";
+        //}
 
-        // GET: MovieController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: MovieController/Create
+        // POST api/<MovieController>
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public void Post([FromBody] string value)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
         }
 
-        // GET: MovieController/Edit/5
-        public ActionResult Edit(int id)
+        // PUT api/<MovieController>/5
+        [HttpPut("{id}")]
+        public void Put(int id, [FromBody] string value)
         {
-            return View();
         }
 
-        // POST: MovieController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        // DELETE api/<MovieController>/5
+        [HttpDelete("{id}")]
+        public void Delete(int id)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: MovieController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: MovieController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
 }

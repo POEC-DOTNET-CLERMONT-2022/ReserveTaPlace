@@ -32,7 +32,7 @@ namespace ReserveTaPlace.Wpf
 
         private async void listmovieBTN_Click(object sender, RoutedEventArgs e)
         {
-            var listMovie3 = await _movieLogic.GetAllMovies();
+            var listMovie3 = await _movieLogic.GetAll();
         }
 
     }
