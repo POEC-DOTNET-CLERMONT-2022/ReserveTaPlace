@@ -9,16 +9,16 @@ using System.Threading.Tasks;
 namespace ReserveTaPlace.Entities
 {
     [Table("Seat")]
-    public class SeatEntity
+    public class Seat
     {
+        public Seat()
+        {
+            Rooms = new HashSet<Room>();
+        }
         [Key]
         public Guid Id { get; set; }
-        public Guid RoomId { get; set; }
         public string Row { get; set; }
         public string Number { get; set; }
-
-        [ForeignKey(nameof(RoomId))]
-        [InverseProperty("Seats")]
-        public virtual RoomEntity Room { get; set; }
+        public virtual ICollection<Room> Rooms { get; set; }
     }
 }

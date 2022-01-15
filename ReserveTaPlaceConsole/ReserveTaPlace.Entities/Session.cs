@@ -8,20 +8,18 @@ using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Entities
 {
-    [Table("Genre")]
-    public class GenreEntity
+    [Table("Session")]
+    public class Session
     {
-        public GenreEntity()
+        public Session()
         {
-            Movies = new HashSet<MovieGenreEntity>();
+            SessionHours = new HashSet<SessionHour>();
         }
 
         [Key]
         public Guid Id { get; set; }
-        public string Name { get; set; }
-
-        [InverseProperty(nameof(MovieGenreEntity.Genre))]
-        public virtual ICollection<MovieGenreEntity> Movies { get; set; }
+        public virtual Room Room { get; set; }
+        public virtual ICollection<SessionHour> SessionHours { get; set; }
 
     }
 }

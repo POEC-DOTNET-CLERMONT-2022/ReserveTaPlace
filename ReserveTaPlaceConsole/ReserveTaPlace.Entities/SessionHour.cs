@@ -9,16 +9,12 @@ using System.Threading.Tasks;
 namespace ReserveTaPlace.Entities
 {
     [Table("SessionHour")]
-    public class SessionHourEntity
+    public class SessionHour
     {
         [Key]
         public Guid Id { get; set; }
-        public Guid SessionId { get; set; }
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
-
-        [ForeignKey(nameof(SessionId))]
-        [InverseProperty("SessionHours")]
-        public virtual SessionEntity Session { get; set; }
+        public virtual Session Session { get; set; }
     }
 }

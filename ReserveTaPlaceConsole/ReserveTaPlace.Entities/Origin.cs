@@ -9,17 +9,15 @@ using System.Threading.Tasks;
 namespace ReserveTaPlace.Entities
 {
     [Table("Origin")]
-    public class OriginEntity
+    public class Origin
     {
-        public OriginEntity()
+        public Origin()
         {
-            Movies = new HashSet<MovieOriginEntity>();
+            Movies = new HashSet<Movie>();
         }
-
         [Key]
         public Guid Id { get; set;}
         public string Country { get; set; }
-        [InverseProperty(nameof(MovieOriginEntity.Origin))]
-        public virtual ICollection<MovieOriginEntity> Movies { get; set; }
+        public virtual ICollection<Movie> Movies { get; set; }
     }
 }

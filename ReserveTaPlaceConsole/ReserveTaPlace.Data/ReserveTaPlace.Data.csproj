@@ -24,8 +24,4 @@
     <ProjectReference Include="..\ReserveTaPlace.Models\ReserveTaPlace.Models.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Migrations\" />
-  </ItemGroup>
-
 </Project>

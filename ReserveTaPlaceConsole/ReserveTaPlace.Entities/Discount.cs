@@ -9,22 +9,14 @@ using System.Threading.Tasks;
 namespace ReserveTaPlace.Entities
 {
     [Table("Discount")]
-    public class DiscountEntity
+    public class Discount
     {
         [Key]
         public Guid Id { get; set; }
-        public Guid UserId { get; set; }
-        public Guid DiscountTypeId { get; set; }
         public string Number { get; set; }
         public DateTime EndValidityDate { get; set; }
-
-        [ForeignKey(nameof(UserId))]
-        [InverseProperty("Discounts")]
-        public virtual UserEntity User { get; set; }
-
-        [ForeignKey(nameof(DiscountTypeId))]
-        [InverseProperty("Discounts")]
-        public virtual DiscountTypeEntity DiscountType { get; set; }
+        public virtual User User { get; set; }
+        public virtual DiscountType DiscountType { get; set; }
 
 
     }

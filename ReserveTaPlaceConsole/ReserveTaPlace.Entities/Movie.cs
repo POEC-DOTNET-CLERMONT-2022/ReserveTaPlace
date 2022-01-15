@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 namespace ReserveTaPlace.Entities
 {
     [Table("Movie")]
-    public class MovieEntity
+    public class Movie
     {
-        public MovieEntity()
+        public Movie()
         {
-            Genres = new HashSet<MovieGenreEntity>();
-            Medias = new HashSet<MediaEntity>();
-            Rooms = new HashSet<RoomEntity>();
-            Origins = new HashSet<MovieOriginEntity>();
+            Genres = new HashSet<Genre>();
+            Medias = new HashSet<Media>();
+            Rooms = new HashSet<Room>();
+            Origins = new HashSet<Origin>();
         }
 
         [Key]
@@ -33,17 +33,10 @@ namespace ReserveTaPlace.Entities
         [Column(TypeName = "bit")]
         public bool IsMovieOnDisplay { get; set; }
 
-        [InverseProperty(nameof(MovieGenreEntity.Movie))]
-        public virtual ICollection<MovieGenreEntity> Genres { get; set; }
-
-        [InverseProperty(nameof(MediaEntity.Movie))]
-        public virtual ICollection<MediaEntity> Medias { get; set; }
-
-        [InverseProperty(nameof(RoomEntity.Movie))]
-        public virtual ICollection<RoomEntity> Rooms { get; set; }
-
-        [InverseProperty(nameof(MovieOriginEntity.Movie))]
-        public virtual ICollection<MovieOriginEntity> Origins { get; set; }
+        public virtual ICollection<Genre> Genres { get; set; }
+        public virtual ICollection<Media> Medias { get; set; }
+        public virtual ICollection<Room> Rooms { get; set; }
+        public virtual ICollection<Origin> Origins { get; set; }
 
 
     }

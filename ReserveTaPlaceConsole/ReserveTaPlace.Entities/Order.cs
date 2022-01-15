@@ -8,19 +8,19 @@ using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Entities
 {
-    [Table("Format")]
-    public class FormatEntity
+    [Table("Order")]
+    public class Order
     {
-        public FormatEntity()
+        public Order()
         {
-            Rooms = new HashSet<RoomEntity>();
+            Tickets = new HashSet<Ticket>();
         }
 
         [Key]
         public Guid Id { get; set; }
-        public string Name { get; set; }
+        public DateTime Date { get; set; }
+        public virtual ICollection<Ticket> Tickets { get; set; }
+        public virtual User User { get; set; }
 
-        [InverseProperty(nameof(RoomEntity.Format))]
-        public virtual ICollection<RoomEntity> Rooms { get; set; }
     }
 }

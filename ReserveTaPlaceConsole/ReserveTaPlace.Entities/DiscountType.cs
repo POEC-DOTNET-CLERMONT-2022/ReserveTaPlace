@@ -4,11 +4,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ReserveTaPlace.Entities
 {
     [Table("DiscountType")]
-    public class DiscountTypeEntity
+    public class DiscountType
     {
-        public DiscountTypeEntity()
+        public DiscountType()
         {
-            Discounts = new HashSet<DiscountEntity>();
+            Discounts = new HashSet<Discount>();
         }
 
         [Key]
@@ -16,8 +16,6 @@ namespace ReserveTaPlace.Entities
         public string Name { get; set; }
         public short Rate { get; set; }
         public float Amount { get; set; }
-
-        [InverseProperty(nameof(DiscountEntity.DiscountType))]
-        public virtual ICollection<DiscountEntity> Discounts { get; set; }
+        public virtual ICollection<Discount> Discounts { get; set; }
     }
 }

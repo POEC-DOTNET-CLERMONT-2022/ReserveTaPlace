@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 namespace ReserveTaPlace.Entities
 {
     [Table("Address")]
-    public class AddressEntity
+    public class Address
     {
-        public AddressEntity()
+        public Address()
         {
-            Users = new HashSet<UserEntity>();
+            Users = new HashSet<User>();
         }
 
         [Key]
@@ -40,9 +40,7 @@ namespace ReserveTaPlace.Entities
 
         [Column("County", TypeName = "nvarchar(255)", Order = 8)]
         public string County { get; set; }
-
-        [InverseProperty(nameof(UserEntity.Address))]
-        public virtual ICollection<UserEntity> Users { get; set; }
+        public virtual ICollection<User> Users { get; set; }
 
     }
 }

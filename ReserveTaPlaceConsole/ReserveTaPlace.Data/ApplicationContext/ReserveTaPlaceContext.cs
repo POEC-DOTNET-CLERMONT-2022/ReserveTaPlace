@@ -16,27 +16,23 @@ namespace ReserveTaPlace.Data.ApplicationContext
 
         }
 
-        public virtual DbSet<AddressEntity> Address { get; set; }
-        public virtual DbSet<DiscountEntity> Discounts { get; set; }
-        public virtual DbSet<DiscountTypeEntity> DiscountTypes { get; set; }
-        public virtual DbSet<GenreEntity> Genres { get; set; }
-        public virtual DbSet<MediaEntity> Medias { get; set; }
-        public virtual DbSet<MovieEntity> Movies { get; set; }
-        public virtual DbSet<MovieGenreEntity> MoviesGenres { get; set; }
-        public virtual DbSet<MovieOriginEntity> MoviesOrigins { get; set; }
-        public virtual DbSet<RoomEntity> Rooms { get; set; }
-        public virtual DbSet<OrderEntity> Orders { get; set; } 
-        public virtual DbSet<OriginEntity> Origins { get; set; }
-        public virtual DbSet<RoleEntity> Roles { get; set; }
-        public virtual DbSet<FormatEntity> Formats { get; set; }
-        public virtual DbSet<SeatEntity> Seats { get; set; }
-        public virtual DbSet<SessionEntity> Sessions { get; set; }
-        public virtual DbSet<SessionHourEntity> SessionHours { get; set; }
-        public virtual DbSet<TheaterEntity> Theaters { get; set; }
-        public virtual DbSet<TicketEntity> Tickets { get; set; }
-        public virtual DbSet<UserEntity> Users { get; set; }
-        public virtual DbSet<UserRoleEntity> UsersRoles { get; set; }
-        public virtual DbSet<UserTheaterEntity> UsersTheaters { get; set; }
+        public virtual DbSet<Address> Address { get; set; }
+        public virtual DbSet<Discount> Discounts { get; set; }
+        public virtual DbSet<DiscountType> DiscountTypes { get; set; }
+        public virtual DbSet<Genre> Genres { get; set; }
+        public virtual DbSet<Media> Medias { get; set; }
+        public virtual DbSet<Movie> Movies { get; set; }
+        public virtual DbSet<Room> Rooms { get; set; }
+        public virtual DbSet<Order> Orders { get; set; } 
+        public virtual DbSet<Origin> Origins { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<Format> Formats { get; set; }
+        public virtual DbSet<Seat> Seats { get; set; }
+        public virtual DbSet<Session> Sessions { get; set; }
+        public virtual DbSet<SessionHour> SessionHours { get; set; }
+        public virtual DbSet<Theater> Theaters { get; set; }
+        public virtual DbSet<Ticket> Tickets { get; set; }
+        public virtual DbSet<User> Users { get; set; }
         private string ConnectionString { get; }
 
         public ReserveTaPlaceContext(string connectionString)
@@ -48,46 +44,12 @@ namespace ReserveTaPlace.Data.ApplicationContext
         {
             base.OnConfiguring(optionsBuilder);
 
-            optionsBuilder.UseSqlServer(@"Server=.;Database=ReserveTaPlace;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=(LocalDb)\MSSQLLocalDB;Database=ReserveTaPlace;Trusted_Connection=True;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<MovieGenreEntity>(entity =>
-            {
-                entity.HasKey("MovieId", "GenreId");
-            });
-
-            modelBuilder.Entity<UserRoleEntity>(entity =>
-            {
-                entity.HasKey("UserId", "RoleId");
-            });
-
-            modelBuilder.Entity<UserTheaterEntity>(entity =>
-            {
-                entity.HasKey("UserId", "TheaterId");
-            });
-            //modelBuilder.Entity<UserTheaterEntity>()
-            //    .HasKey(ut => new { ut.UserId, ut.TheaterId });
-
-            //modelBuilder.Entity<UserTheaterEntity>()
-            //    .HasOne(ut => ut.User)
-            //    .WithMany(a => a.Theaters)
-            //    .HasForeignKey(ut => ut.UserId);
-
-            //modelBuilder.Entity<UserTheaterEntity>()
-            //    .HasOne(ut => ut.Theater)
-            //    .WithMany(t => t.Users)
-            //    .HasForeignKey(ut => ut.TheaterId);
-
-            modelBuilder.Entity<MovieOriginEntity>(entity =>
-            {
-                entity.HasKey("MovieId", "OriginId");
-            });
-
-
         }
 
         public override DbSet<TEntity> Set<TEntity>()
