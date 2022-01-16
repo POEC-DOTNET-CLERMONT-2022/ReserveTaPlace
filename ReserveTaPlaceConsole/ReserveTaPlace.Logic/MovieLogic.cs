@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using ReserveTaPlace.Data.Functions;
 using ReserveTaPlace.Data.Interfaces;
-using ReserveTaPlace.Entities;
+using ReserveTaPlace.DTOS;
 
 namespace ReserveTaPlace.Logic
 {
@@ -13,41 +13,23 @@ namespace ReserveTaPlace.Logic
         {
             _movie = new MovieFunctions();
         }
-        public async Task<IEnumerable<Movie>> GetAll()
+        public async Task<IEnumerable<MovieDto>> GetAll()
         {
-            var movies = new List<Movie>();
+            var movies = new List<MovieDto>();
+            var request = new HttpRequestMessage(HttpMethod.Get,"https://localhost:7091/api/movie/all");
+            request.Headers.Add("Accept", "application/json");
             var client = new HttpClient();
-            var request = new HttpRequestMessage
+            ;
+            using (var response = await client.SendAsync(request))
             {
-                Method = HttpMethod.Get,
-                RequestUri = new Uri($"https://localhost:7091/api/movie/all"),
-                Headers =
-            {
-            },
-            };
-            using (var res = await client.SendAsync(request))
-            {
-                try
+                response.EnsureSuccessStatusCode();
+                if (response.IsSuccessStatusCode)
                 {
-                    res.EnsureSuccessStatusCode();
-
+                    var jsonString = await response.Content.ReadAsStringAsync();
+                    movies = JsonConvert.DeserializeObject<List<MovieDto>>(jsonString);
                 }
-                catch (HttpRequestException e)
-                {
-
-                    Console.WriteLine($"{e.Message}");
-                }
-                var body = await res.Content.ReadAsStringAsync();
-                movies = JsonConvert.DeserializeObject<List<Movie>>(body);
-            }
-            //return movies;
-            HttpResponseMessage response = await client.GetAsync("https://localhost:7091/api/movie/all");
-            if (response.IsSuccessStatusCode)
-            {
-                var result = await response.Content.ReadAsStringAsync();
             }
             return movies;
-
         }
     }
 }

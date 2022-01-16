@@ -1,9 +1,9 @@
-﻿using ReserveTaPlace.Entities;
+﻿using ReserveTaPlace.DTOS;
 
 namespace ReserveTaPlace.Logic
 {
     public interface IMovieLogic
     {
-        Task<IEnumerable<Movie>> GetAll();
+        Task<IEnumerable<MovieDto>> GetAll();
     }
 }
