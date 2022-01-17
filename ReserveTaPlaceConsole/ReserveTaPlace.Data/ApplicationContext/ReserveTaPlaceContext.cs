@@ -39,14 +39,14 @@ namespace ReserveTaPlace.Data.ApplicationContext
         {
             base.OnConfiguring(optionsBuilder);
             //(LocalDb)\MSSQLLocalDB
-            optionsBuilder.UseSqlServer(@"Server=.;Database=ReserveTaPlace;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=(LocalDb)\MSSQLLocalDB;Database=ReserveTaPlace;Trusted_Connection=True;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            EntityTypeBuilder<UserEntity> entityTypeBuilder = modelBuilder.Entity<UserEntity>();
+            //EntityTypeBuilder<UserEntity> entityTypeBuilder = modelBuilder.Entity<UserEntity>();
 
             //[Column("Pseudo")] //Si nom de colonne différent
             //entityTypeBuilder.Property(u => u.Login).HasColumnName("Pseudo");

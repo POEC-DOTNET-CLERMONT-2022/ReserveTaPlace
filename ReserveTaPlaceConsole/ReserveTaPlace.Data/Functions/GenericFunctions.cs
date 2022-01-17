@@ -15,7 +15,6 @@ namespace ReserveTaPlace.Data.Functions
         }
         public async Task<IEnumerable<T>> GetAll()
         {
-
             using (var context = new ReserveTaPlaceContext())
             {
                 _listEntities = await context.Set<T>().ToListAsync();

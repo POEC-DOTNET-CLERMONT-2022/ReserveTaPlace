@@ -8,11 +8,6 @@ namespace ReserveTaPlace.Logic
 
     public class MovieLogic : IMovieLogic
     {
-        private IMovie _movie;
-        public MovieLogic()
-        {
-            _movie = new MovieFunctions();
-        }
         public async Task<IEnumerable<MovieDto>> GetAll()
         {
             var movies = new List<MovieDto>();

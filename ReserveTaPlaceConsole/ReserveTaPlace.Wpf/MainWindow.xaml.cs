@@ -1,4 +1,5 @@
 ﻿using ReserveTaPlace.Logic;
+using ReserveTaPlace.Models;
 using System.Windows;
 
 namespace ReserveTaPlace.Wpf
@@ -8,28 +9,29 @@ namespace ReserveTaPlace.Wpf
     /// </summary>
     public partial class MainWindow : Window
     {
-        private UserLogic _userLogic;
+        private IGenericLogic<User> _userLogic = new GenericLogic<User>();
         private MovieLogic _movieLogic;
         public MainWindow()
         {
             _userLogic = ((App)Application.Current).UserLogic;
             _movieLogic = ((App)Application.Current).MovieLogic;
             InitializeComponent();
-            App.InitializedUserList();
         }
 
         private void LoginBTN_Click(object sender, RoutedEventArgs e)
         {
-            ResultTB.Text = _userLogic.GetUser(LoginTB.Text, PasswordTB.Text);
+            //ResultTB.Text = _userLogic.GetUser(LoginTB.Text, PasswordTB.Text);
         }
 
-        private void ViewListBTN_Click(object sender, RoutedEventArgs e)
+        private void ListUserBTN_Click(object sender, RoutedEventArgs e)
         {
-            LoginGrid.Visibility = Visibility.Hidden;
+            //LoginGrid.Visibility = Visibility.Hidden;
             //UserListUC.Visibility = Visibility.Visible;
+            var userWindow = new UserWindow();
+            userWindow.Show();
         }
 
-        private async void listmovieBTN_Click(object sender, RoutedEventArgs e)
+        private void ListmovieBTN_Click(object sender, RoutedEventArgs e)
         {
             var movieWindow = new MovieWindow();
             movieWindow.Show();
