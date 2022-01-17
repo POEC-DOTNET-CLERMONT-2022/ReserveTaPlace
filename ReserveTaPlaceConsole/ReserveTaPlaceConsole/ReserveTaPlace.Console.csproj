@@ -9,7 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ConsoleManager\ConsoleManager.csproj" />
     <ProjectReference Include="..\ReserveTaPlace.Logic\ReserveTaPlace.Logic.csproj" />
     <ProjectReference Include="..\ReserveTaPlace.Models\ReserveTaPlace.Models.csproj" />
     <ProjectReference Include="..\ResrveTaPlace.Extensions\ReserveTaPlace.Extensions.csproj" />

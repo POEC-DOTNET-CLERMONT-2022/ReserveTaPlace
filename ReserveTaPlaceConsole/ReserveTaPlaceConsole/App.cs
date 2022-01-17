@@ -1,5 +1,5 @@
-﻿using ConsoleManage.Manager;
-using ConsoleManager.Data.Models;
+﻿using ReserveTaPlace.Models.ConsoleModels;
+using ReserveTaPlace.AppManager;
 using ReserveTaPlace.Models;
 using ReserveTaPlace.RTPManager;
 using ReserveTaPlaceConsole.RTPManager;
@@ -13,7 +13,7 @@ namespace ReserveTaPlaceConsole
 {
     internal class App
     {
-        private Manager _manager;
+        private IAppManager _manager;
         private MovieManager _movieManager;
         public App()
         {
