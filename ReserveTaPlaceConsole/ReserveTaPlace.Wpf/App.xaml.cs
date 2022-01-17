@@ -15,15 +15,12 @@ namespace ReserveTaPlace.Wpf
         public UserLogic UserLogic;
         public MovieLogic MovieLogic;
         public IMapper Mapper;
-        private IEnumerable<Movie> MovieList;
         public App()
         {
-            MovieList=new List<Movie>();
             var config = new MapperConfiguration(cfg => cfg.AddMaps(typeof(App)));
             Mapper = new Mapper(config);
             UserLogic = new UserLogic();
             MovieLogic = new MovieLogic();
-            LoadMovies();
         }
         public static void InitializedUserList()
         {
@@ -37,13 +34,5 @@ namespace ReserveTaPlace.Wpf
             userManager.SaveUsers(userList);
 
         }
-        public async void LoadMovies()
-        {
-            var movies = await MovieLogic.GetAll();
-            MovieList = Mapper.Map<IEnumerable<Movie>>(movies);
-
-        }
-
-
     }
 }
