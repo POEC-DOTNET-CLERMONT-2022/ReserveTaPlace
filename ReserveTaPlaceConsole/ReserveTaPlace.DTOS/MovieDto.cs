@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Text;
-
-namespace ReserveTaPlace.DTOS
+﻿namespace ReserveTaPlace.DTOS
 {
     public class MovieDto
     {

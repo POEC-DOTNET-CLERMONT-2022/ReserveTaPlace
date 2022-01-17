@@ -27,6 +27,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PatternObserver", "PatternO
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReserveTaPlace.Entities", "ReserveTaPlace.Entities\ReserveTaPlace.Entities.csproj", "{7DE26FA3-DAF5-4802-8D16-A011EB1C3FD6}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReserveTaPlace.API", "ReserveTaPlace.API\ReserveTaPlace.API.csproj", "{63227ADB-0108-443E-981E-9018615823C5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{7DE26FA3-DAF5-4802-8D16-A011EB1C3FD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DE26FA3-DAF5-4802-8D16-A011EB1C3FD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DE26FA3-DAF5-4802-8D16-A011EB1C3FD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63227ADB-0108-443E-981E-9018615823C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63227ADB-0108-443E-981E-9018615823C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63227ADB-0108-443E-981E-9018615823C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63227ADB-0108-443E-981E-9018615823C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

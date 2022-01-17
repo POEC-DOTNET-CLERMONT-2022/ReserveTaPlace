@@ -1,10 +1,5 @@
 ﻿using ReserveTaPlace.Models;
 using ReserveTaPlace.RTPManager.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReserveTaPlaceConsole.RTPManager
 {
@@ -22,7 +17,7 @@ namespace ReserveTaPlaceConsole.RTPManager
 
         public void DisplayOnDisplayMovies(IEnumerable<Movie> movies)
         {
-            foreach(Movie movie in movies.Where(m => m.IsMovieOnDisplay == true)) { DisplayMovie(movie); };
+            foreach (Movie movie in movies.Where(m => m.IsMovieOnDisplay == true)) { DisplayMovie(movie); };
         }
     }
 }

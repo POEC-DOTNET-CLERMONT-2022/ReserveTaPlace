@@ -16,7 +16,7 @@ namespace ReserveTaPlace.Logic
         public async Task<IEnumerable<MovieDto>> GetAll()
         {
             var movies = new List<MovieDto>();
-            var request = new HttpRequestMessage(HttpMethod.Get,"https://localhost:7091/api/movie/all");
+            var request = new HttpRequestMessage(HttpMethod.Get, "https://localhost:7091/api/movie/all");
             request.Headers.Add("Accept", "application/json");
             var client = new HttpClient();
             ;

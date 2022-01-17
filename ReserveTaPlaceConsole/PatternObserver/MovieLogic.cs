@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PatternObserver
+﻿namespace PatternObserver
 {
     public class MovieLogic : ISubject
     {
@@ -12,7 +6,7 @@ namespace PatternObserver
         private List<IObserver> _observers = new List<IObserver>();
         public MovieLogic()
         {
-            _movie= new MovieFunction();
+            _movie = new MovieFunction();
         }
         public Movie AddNewMovie(Movie movie)
         {

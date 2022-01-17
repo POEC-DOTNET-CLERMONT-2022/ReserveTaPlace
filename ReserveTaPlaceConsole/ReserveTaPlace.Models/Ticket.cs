@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Models
 {
@@ -26,10 +22,10 @@ namespace ReserveTaPlace.Models
         }
 
         public Guid Id { get { return _id; } }
-        public DateTime Date { get { return _date;} }
+        public DateTime Date { get { return _date; } }
         public string MovieRoomNumber { get { return _movieRoomNumber; } }
         public string TheatreName { get { return _theatreName; } }
         public string MovieName { get { return _movieName; } }
-        public decimal Price { get { return _price;} }
+        public decimal Price { get { return _price; } }
     }
 }

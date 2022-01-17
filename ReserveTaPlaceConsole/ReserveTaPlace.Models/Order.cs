@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Models
 {
@@ -21,9 +18,9 @@ namespace ReserveTaPlace.Models
             _user = user;
         }
 
-        public Guid Id { get { return _id;} }
+        public Guid Id { get { return _id; } }
         public List<Ticket> Ticket { get { return _ticket; } }
-        public DateTime Date { get { return _date;} }
-        public User User { get { return _user;} }
+        public DateTime Date { get { return _date; } }
+        public User User { get { return _user; } }
     }
 }

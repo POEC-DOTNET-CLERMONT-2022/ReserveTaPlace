@@ -41,6 +41,5 @@
                 <TextBlock x:Name="ResultTB"/>
             </WrapPanel>
         </Grid>
-        <uc:UserList x:Name="UserListUC" Visibility="Hidden"/>
     </Grid>
 </Window>

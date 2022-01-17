@@ -1,10 +1,7 @@
-﻿using ReserveTaPlace.Logic;
+﻿using AutoMapper;
+using ReserveTaPlace.Logic;
 using ReserveTaPlace.Models;
-using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -15,6 +12,19 @@ namespace ReserveTaPlace.Wpf
     /// </summary>
     public partial class App : Application
     {
+        public UserLogic UserLogic;
+        public MovieLogic MovieLogic;
+        public IMapper Mapper;
+        private IEnumerable<Movie> MovieList;
+        public App()
+        {
+            MovieList=new List<Movie>();
+            var config = new MapperConfiguration(cfg => cfg.AddMaps(typeof(App)));
+            Mapper = new Mapper(config);
+            UserLogic = new UserLogic();
+            MovieLogic = new MovieLogic();
+            LoadMovies();
+        }
         public static void InitializedUserList()
         {
             var userList = new List<User>() {
@@ -27,13 +37,13 @@ namespace ReserveTaPlace.Wpf
             userManager.SaveUsers(userList);
 
         }
-        public static void InitializedMoviesList()
+        public async void LoadMovies()
         {
-            var movieLogic = new MovieLogic();
+            var movies = await MovieLogic.GetAll();
+            MovieList = Mapper.Map<IEnumerable<Movie>>(movies);
 
-            //var movieList = movieLogic.GetAllMovies();
-
-            //movieLogic.SaveMovies(movieList);
         }
+
+
     }
 }

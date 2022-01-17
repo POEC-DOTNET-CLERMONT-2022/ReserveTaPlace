@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using ReserveTaPlace.DTOS;
-using ReserveTaPlace.Data;
-using ReserveTaPlace.Data.Interfaces;
 using ReserveTaPlace.Data.Functions;
+using ReserveTaPlace.Data.Interfaces;
+using ReserveTaPlace.DTOS;
+using ReserveTaPlace.Entities;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -13,11 +13,12 @@ namespace ReserveTaPlace.API.Controllers
     [ApiController]
     public class MovieController : ControllerBase
     {
-        private IMovie _movie;
+        private IGenericRepo<MovieEntity> _movie;
+        //private IMovie _movie;
         private IMapper _mapper;
         public MovieController(IMapper mapper)
         {
-            _movie = new MovieFunctions();
+            _movie = new GenericFunctions<MovieEntity>();
             _mapper = mapper;
         }
         // GET: MovieController/GetAll

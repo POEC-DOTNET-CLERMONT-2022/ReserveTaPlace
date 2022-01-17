@@ -8,7 +8,7 @@ namespace ReserveTaPlace.Entities
     {
         public DiscountType()
         {
-            Discounts = new HashSet<Discount>();
+            Discounts = new HashSet<DiscountEntity>();
         }
 
         [Key]
@@ -16,6 +16,6 @@ namespace ReserveTaPlace.Entities
         public string Name { get; set; }
         public short Rate { get; set; }
         public float Amount { get; set; }
-        public virtual ICollection<Discount> Discounts { get; set; }
+        public virtual ICollection<DiscountEntity> Discounts { get; set; }
     }
 }

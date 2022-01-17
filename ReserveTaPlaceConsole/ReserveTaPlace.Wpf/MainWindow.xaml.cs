@@ -12,11 +12,10 @@ namespace ReserveTaPlace.Wpf
         private MovieLogic _movieLogic;
         public MainWindow()
         {
-            _userLogic=new UserLogic();
-            _movieLogic=new MovieLogic();
+            _userLogic = ((App)Application.Current).UserLogic;
+            _movieLogic = ((App)Application.Current).MovieLogic;
             InitializeComponent();
             App.InitializedUserList();
-            App.InitializedMoviesList();
         }
 
         private void LoginBTN_Click(object sender, RoutedEventArgs e)
@@ -27,12 +26,14 @@ namespace ReserveTaPlace.Wpf
         private void ViewListBTN_Click(object sender, RoutedEventArgs e)
         {
             LoginGrid.Visibility = Visibility.Hidden;
-            UserListUC.Visibility = Visibility.Visible;
+            //UserListUC.Visibility = Visibility.Visible;
         }
 
         private async void listmovieBTN_Click(object sender, RoutedEventArgs e)
         {
-            var listMovie3 = await _movieLogic.GetAll();
+            var movieWindow = new MovieWindow();
+            movieWindow.Show();
+            //var listMovie3 = await _movieLogic.GetAll();
         }
 
     }

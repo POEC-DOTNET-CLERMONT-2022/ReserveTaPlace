@@ -1,16 +1,9 @@
-﻿using ReserveTaPlace.Logic;
+﻿using ReserveTaPlace.AppManager;
+using ReserveTaPlace.Logic;
 using ReserveTaPlace.Models;
+using ReserveTaPlace.Models.ConsoleModels;
 using ReserveTaPlace.RTPManager.Interfaces;
 using ReserveTaPlaceConsole.RTPManager;
-using ReserveTaPlace.Extensions.Factories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ReserveTaPlace.DTOS;
-using ReserveTaPlace.Models.ConsoleModels;
-using ReserveTaPlace.AppManager;
 
 namespace ReserveTaPlace.RTPManager
 {
@@ -32,7 +25,7 @@ namespace ReserveTaPlace.RTPManager
             _movies = new List<Movie>();
             _persistanceLogic = new PersistanceLogic();
             _movieProviderLogic = new MovieProviderLogic();
-            _manager =new Manager();
+            _manager = new Manager();
         }
         internal void DisplayMovies()
         {
@@ -69,12 +62,12 @@ namespace ReserveTaPlace.RTPManager
                 var answer3_1 = _manager.ReadUserEntry(question3_1);
                 movies = await _movieProviderLogic.GetMovie(answer3.Text, answer3_1.Text);
             } while (movies.Count == 0);
-            if (movies.Count==1)
+            if (movies.Count == 1)
             {
                 movies[0].Id = this.CalculateId();
             }
 
-            return movies;  
+            return movies;
         }
 
         internal async Task PutOnDisplay()
@@ -145,7 +138,7 @@ namespace ReserveTaPlace.RTPManager
                 moviesListResult = Search(answer4.Text);
                 movieTitle = answer4.Text;
                 DisplayMovies();
-            } while (moviesListResult.Count ==0);
+            } while (moviesListResult.Count == 0);
             if (moviesListResult.Count == 1)
             {
                 var moviesModifyed = Movies.Where(e => e.Title.ToLower() != movieTitle.ToLower());
@@ -170,7 +163,7 @@ namespace ReserveTaPlace.RTPManager
         internal int CalculateId()
         {
             int id = 0;
-            if(Movies.ToList().Count == 0)
+            if (Movies.ToList().Count == 0)
             {
                 return id = 1;
             }

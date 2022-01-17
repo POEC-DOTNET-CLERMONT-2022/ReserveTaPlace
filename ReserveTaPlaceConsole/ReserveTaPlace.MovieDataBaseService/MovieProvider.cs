@@ -4,7 +4,6 @@ using ReserveTaPlace.Models;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ReserveTaPlace.MovieDataBaseService
@@ -14,7 +13,7 @@ namespace ReserveTaPlace.MovieDataBaseService
         public async Task<List<Movie>> GetMovie(string title, string year)
         {
             var movies = await SearchMovie(title, year);
-            if (movies.Count==0)
+            if (movies.Count == 0)
             {
                 return movies;
             }
@@ -43,8 +42,8 @@ namespace ReserveTaPlace.MovieDataBaseService
 
                     Console.WriteLine($"{e.Message}");
                 }
-                    var body = await response.Content.ReadAsStringAsync();
-                    completeMovie = JsonConvert.DeserializeObject<Movie>(body);
+                var body = await response.Content.ReadAsStringAsync();
+                completeMovie = JsonConvert.DeserializeObject<Movie>(body);
             }
             movies.Add(completeMovie);
             return movies;
@@ -69,12 +68,12 @@ namespace ReserveTaPlace.MovieDataBaseService
                 {
                     response.EnsureSuccessStatusCode();
                 }
-                catch (HttpRequestException e )
+                catch (HttpRequestException e)
                 {
 
                     Console.WriteLine($"{e.Message}");
                 }
-                
+
                 var body = await response.Content.ReadAsStringAsync();
                 var result = JsonConvert.DeserializeObject<ImdbSearch>(body);
                 foreach (var item in result.ImdbMovies)

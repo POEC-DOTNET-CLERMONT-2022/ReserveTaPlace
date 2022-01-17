@@ -1,13 +1,8 @@
-﻿using ReserveTaPlace.Models.ConsoleModels;
-using ReserveTaPlace.AppManager;
+﻿using ReserveTaPlace.AppManager;
 using ReserveTaPlace.Models;
+using ReserveTaPlace.Models.ConsoleModels;
 using ReserveTaPlace.RTPManager;
 using ReserveTaPlaceConsole.RTPManager;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReserveTaPlaceConsole
 {
@@ -28,9 +23,9 @@ namespace ReserveTaPlaceConsole
                 "2.Afficher la liste des films à l'affiche\n" +
                 "3.Choisir un film a mettre a l'affiche\n" +
                 "4.Ajouter un film\n" +
-                "5.Supprimer un film\n"+
+                "5.Supprimer un film\n" +
                 "6.Quitter",
-                6,QuestionType.ChoixMultiple);
+                6, QuestionType.ChoixMultiple);
             Console.WriteLine();
 
             _manager.WriteQuestion(question);
@@ -69,7 +64,7 @@ namespace ReserveTaPlaceConsole
         {
             var movieManager = new MovieManager();
             var moviesModifyed = movieManager.Movies as List<Movie>;
-            
+
             moviesModifyed.Add(new Movie(movieManager.CalculateId(), "Predator"));
             moviesModifyed.Add(new Movie(movieManager.CalculateId(), "Predator a delete"));
             moviesModifyed.Add(new Movie(movieManager.CalculateId(), "Rambo"));
@@ -83,7 +78,7 @@ namespace ReserveTaPlaceConsole
 
         internal void InitializedUserList()
         {
-            var userList = new List<User>() { 
+            var userList = new List<User>() {
                 new User("Gilbert", "Hugo", "hugo.g@hotmail.fr", "1234"),
                 new User("Gerard", "Bidon", "bidon.g@hotmail.fr", "1234",UserRoles.AdminLocal),
                 new User("Bernard", "Petard", "petard.b@hotmail.fr", "1234", UserRoles.AdminGroupe),

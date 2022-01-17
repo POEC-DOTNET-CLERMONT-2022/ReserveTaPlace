@@ -7,13 +7,9 @@ namespace ReserveTaPlace.Entities
     public class MediaEntity
     {
         [Key]
-        public int Id { get; set; }
-        public int MovieId { get; set; }
+        public Guid Id { get; set; }
         public string Title { get; set; }
         public string Link { get; set; }
-
-        [ForeignKey(nameof(MovieId))]
-        [InverseProperty("Medias")]
         public virtual MovieEntity Movie { get; set; }
     }
 }

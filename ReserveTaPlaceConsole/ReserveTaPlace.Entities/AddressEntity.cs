@@ -1,24 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Entities
 {
     [Table("Address")]
     public class AddressEntity
     {
-        public AddressEntity()
-        {
-            Users = new HashSet<UserEntity>();
-        }
-
         [Key]
         [Column(Order = 1)]
-        public int ID { get; set; }
+        public Guid Id { get; set; }
+        public Guid? TheaterId { get; set; }
+        public Guid? UserId { get; set; }
 
         [Column("Address1", TypeName = "nvarchar(100)", Order = 2)]
         public string? Address1 { get; set; }
@@ -41,8 +33,12 @@ namespace ReserveTaPlace.Entities
         [Column("County", TypeName = "nvarchar(255)", Order = 8)]
         public string County { get; set; }
 
-        [InverseProperty(nameof(UserEntity.Address))]
-        public virtual ICollection<UserEntity> Users { get; set; }
+        [ForeignKey(nameof(TheaterId))]
+        [InverseProperty("Address")]
+        public virtual TheaterEntity Theater { set; get; }
+        [ForeignKey(nameof(UserId))]
+        [InverseProperty("Address")]
+        public virtual UserEntity? User { set; get; }
 
     }
 }

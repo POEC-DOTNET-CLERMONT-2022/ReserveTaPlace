@@ -3,16 +3,17 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ReserveTaPlace.Entities
 {
-    [Table("Role")]
-    public class RoleEntity
+    [Table("Format")]
+    public class FormatEntity
     {
-        public RoleEntity()
+        public FormatEntity()
         {
-            Users = new HashSet<UserEntity>();
+            Rooms = new HashSet<RoomEntity>();
         }
+
         [Key]
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public virtual ICollection<UserEntity> Users { get; set; }
+        public virtual ICollection<RoomEntity> Rooms { get; set; }
     }
 }

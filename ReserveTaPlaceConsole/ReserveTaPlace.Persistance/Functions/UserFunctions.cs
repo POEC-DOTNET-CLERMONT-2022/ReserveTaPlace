@@ -1,11 +1,6 @@
 ﻿using Newtonsoft.Json;
 using ReserveTaPlace.Models;
 using ReserveTaPlace.Persistance.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Persistance.Functions
 {
@@ -20,12 +15,12 @@ namespace ReserveTaPlace.Persistance.Functions
         {
             var jsonUsers = File.ReadAllText(@"userList.txt");
             var users = JsonConvert.DeserializeObject<List<User>>(jsonUsers);
-            var user = users.FirstOrDefault(u=>u.FirstName == login);
+            var user = users.FirstOrDefault(u => u.FirstName == login);
             if (user == null)
             {
                 return "user non trouvé";
             }
-            if(user.Password != password)
+            if (user.Password != password)
             {
                 return $"Mot de passe incorrect {password}";
             }

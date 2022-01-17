@@ -1,9 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Models
 {
@@ -22,11 +17,11 @@ namespace ReserveTaPlace.Models
         [JsonConstructor]
         public Movie(int id, string title)
         {
-            _id = id ;
+            _id = id;
             _title = title;
             _isMovieOnDisplay = false;
         }
-        public Movie(string title,string imdbID)
+        public Movie(string title, string imdbID)
         {
             _title = title;
             _imdbID = imdbID;
@@ -39,9 +34,9 @@ namespace ReserveTaPlace.Models
         }
 
         public int Id { get => _id; set => _id = value; }
-        public string ImdbID{ get { return _imdbID; } set { _imdbID = value; } }
+        public string ImdbID { get { return _imdbID; } set { _imdbID = value; } }
         public string Title { get { return _title; } set { _title = value; } }
-        public string Country{get { return _country; } set { _country = value; } }
+        public string Country { get { return _country; } set { _country = value; } }
         public string Plot { get { return _plot; } set { _plot = value; } }
         public string CastStartDate { get { return _castStartDate; } set { _castStartDate = value; } }
         public string CastEndDate { get { return _castEndDate; } set { _castEndDate = value; } }
