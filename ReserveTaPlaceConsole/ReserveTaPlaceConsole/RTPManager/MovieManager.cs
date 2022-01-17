@@ -9,8 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ReserveTaPlace.DTOS;
-using ConsoleManager.Data.Models;
-using ConsoleManage.Manager;
+using ReserveTaPlace.Models.ConsoleModels;
+using ReserveTaPlace.AppManager;
 
 namespace ReserveTaPlace.RTPManager
 {
@@ -18,7 +18,7 @@ namespace ReserveTaPlace.RTPManager
     {
         private PersistanceLogic _persistanceLogic;
         private MovieProviderLogic _movieProviderLogic;
-        private Manager _manager;
+        private IAppManager _manager;
         private IWriter _writer { get; }
         private IEnumerable<Movie> _movies;
         public IEnumerable<Movie> Movies
@@ -32,7 +32,7 @@ namespace ReserveTaPlace.RTPManager
             _movies = new List<Movie>();
             _persistanceLogic = new PersistanceLogic();
             _movieProviderLogic = new MovieProviderLogic();
-            _manager = new Manager();
+            _manager =new Manager();
         }
         internal void DisplayMovies()
         {
@@ -56,22 +56,46 @@ namespace ReserveTaPlace.RTPManager
             Console.WriteLine("╚════════════════════════════════════════════════════════╝");
         }
 
-        internal async Task<Movie> GetMovie(string title,string year)
+        internal async Task<List<Movie>> GetMovie()
         {
-            var movie = await _movieProviderLogic.GetMovie(title, year);
-            movie.Id = this.CalculateId();
-            return movie;  
+            var movies = new List<Movie>();
+            do
+            {
+                var question3 = new Question("Quel est le titre du film que vous voulez ajouter ?", 0, QuestionType.ReponseLibre);
+                _manager.WriteQuestion(question3);
+                var answer3 = _manager.ReadUserEntry(question3);
+                var question3_1 = new Question($"Indiquez l'année de sortie du film : {answer3.Text}", 0, QuestionType.ReponseLibre);
+                _manager.WriteQuestion(question3_1);
+                var answer3_1 = _manager.ReadUserEntry(question3_1);
+                movies = await _movieProviderLogic.GetMovie(answer3.Text, answer3_1.Text);
+            } while (movies.Count == 0);
+            if (movies.Count==1)
+            {
+                movies[0].Id = this.CalculateId();
+            }
+
+            return movies;  
         }
 
-        internal async Task PutOnDisplay(string movieTitle)
+        internal async Task PutOnDisplay()
         {
-            var moviesListResult = Search(movieTitle);
+            var moviesListResult = new List<Movie>();
+            do
+            {
+                var question2 = new Question("Quel est le titre du film que vous voulez mettre a l'affiche ?", 0, QuestionType.ReponseLibre);
+                _manager.WriteQuestion(question2);
+                var answer2 = _manager.ReadUserEntry(question2);
+                moviesListResult = Search(answer2.Text);
+                DisplayMovies();
+
+            } while (moviesListResult.Count == 0);
             if (moviesListResult.Count == 1)
             {
                 var movie = moviesListResult[0];
                 Movies.FirstOrDefault(m => m.Id == movie.Id).IsMovieOnDisplay = true;
                 await _persistanceLogic.SaveMovies(Movies);
                 Console.WriteLine($"Le film {movie.Title} est à l'affiche.");
+                DisplayOnDisplayMovies();
             }
             else
             {
@@ -84,12 +108,13 @@ namespace ReserveTaPlace.RTPManager
                 var movieToPutOnDisplay = Movies.FirstOrDefault(m => m.Id == int.Parse(answer.Text));
                 await _persistanceLogic.SaveMovies(Movies);
                 Console.WriteLine($"Le film {movieToPutOnDisplay.Title} a été mis à l'affiche !!");
+                DisplayOnDisplayMovies();
             }
         }
 
         internal List<Movie> Search(string movieTitle)
         {
-            var moviesListResult = Movies.Where(e => e.Title.ToLower().Contains(movieTitle.ToLower())).ToList();
+            var moviesListResult = Movies.Where(e => e.Title.ToLower().StartsWith(movieTitle.ToLower())).ToList();
             if (moviesListResult.Count == 0)
             {
                 Console.WriteLine($"Le film {movieTitle} n'existe pas !!");
@@ -104,11 +129,23 @@ namespace ReserveTaPlace.RTPManager
             moviesModifyed.Add(movie);
             Movies = moviesModifyed;
             await _persistanceLogic.SaveMovies(Movies);
+            Console.WriteLine($"Le film {movie.Title} est ajouté à la liste des films disponibles.");
+
         }
 
-        internal async Task Delete(string movieTitle)
+        internal async Task Delete()
         {
-            var moviesListResult = Search(movieTitle);
+            var moviesListResult = new List<Movie>();
+            string movieTitle = "";
+            do
+            {
+                var question4 = new Question("Entrer le nom du film à supprimer : ", 0, QuestionType.ReponseLibre);
+                _manager.WriteQuestion(question4);
+                var answer4 = _manager.ReadUserEntry(question4);
+                moviesListResult = Search(answer4.Text);
+                movieTitle = answer4.Text;
+                DisplayMovies();
+            } while (moviesListResult.Count ==0);
             if (moviesListResult.Count == 1)
             {
                 var moviesModifyed = Movies.Where(e => e.Title.ToLower() != movieTitle.ToLower());

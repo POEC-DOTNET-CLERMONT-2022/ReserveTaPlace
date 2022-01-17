@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ReserveTaPlace.Data\ReserveTaPlace.Data.csproj" />
     <ProjectReference Include="..\ReserveTaPlace.Models\ReserveTaPlace.Models.csproj" />
     <ProjectReference Include="..\ReserveTaPlace.MovieDataBaseService\ReserveTaPlace.MovieDataBaseService.csproj" />
     <ProjectReference Include="..\ReserveTaPlace.Persistance\ReserveTaPlace.Persistance.csproj" />

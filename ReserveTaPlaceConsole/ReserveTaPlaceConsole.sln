@@ -9,17 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReserveTaPlace.Models", "Re
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReserveTaPlace.Persistance", "ReserveTaPlace.Persistance\ReserveTaPlace.Persistance.csproj", "{B67A1D07-15F2-4B13-8786-CA292A016D62}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleManager.Logic", "ConsoleManage.Logic\ConsoleManager.Logic.csproj", "{B1C86675-86D4-4B23-88ED-A12063177C0C}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleManager", "ConsoleManager\ConsoleManager.csproj", "{AF995AA2-E23A-4F2F-AB4B-6F6C423963AC}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleManager.Data", "ConsoleManager.Class\ConsoleManager.Data.csproj", "{496CE91D-45E9-4C16-9BDC-E76CDDC0A4E4}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReserveTaPlace.Logic", "ReserveTaPlace.Logic\ReserveTaPlace.Logic.csproj", "{526B2E7E-5618-4AF4-99A1-DAE923FCA695}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReserveTaPlace.Wpf", "ReserveTaPlace.Wpf\ReserveTaPlace.Wpf.csproj", "{F739D4E8-6524-4974-BAA5-C1D7A4F7CDD0}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReserveTaPlace.Wcf", "ReserveTaPlace.wcf\ReserveTaPlace.Wcf.csproj", "{62F37905-7F84-4E6B-926C-1B85F87663AD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReserveTaPlace.DTOS", "ReserveTaPlace.DTOS\ReserveTaPlace.DTOS.csproj", "{68F04033-4FAC-4AC9-9B1C-E7EE45A23EB6}"
 EndProject
@@ -31,7 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReserveTaPlace.MovieDataBas
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PatternObserver", "PatternObserver\PatternObserver.csproj", "{06B2B4D9-B332-44F8-8886-567D573DF565}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReserveTaPlace.Entities", "ReserveTaPlace.Entities\ReserveTaPlace.Entities.csproj", "{7DE26FA3-DAF5-4802-8D16-A011EB1C3FD6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReserveTaPlace.Entities", "ReserveTaPlace.Entities\ReserveTaPlace.Entities.csproj", "{7DE26FA3-DAF5-4802-8D16-A011EB1C3FD6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReserveTaPlace.API", "ReserveTaPlace.API\ReserveTaPlace.API.csproj", "{CC591066-6DEA-4622-8AAF-3BCCDE70C4B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,18 +45,6 @@ Global
 		{B67A1D07-15F2-4B13-8786-CA292A016D62}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B67A1D07-15F2-4B13-8786-CA292A016D62}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B67A1D07-15F2-4B13-8786-CA292A016D62}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B1C86675-86D4-4B23-88ED-A12063177C0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B1C86675-86D4-4B23-88ED-A12063177C0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B1C86675-86D4-4B23-88ED-A12063177C0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B1C86675-86D4-4B23-88ED-A12063177C0C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AF995AA2-E23A-4F2F-AB4B-6F6C423963AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AF995AA2-E23A-4F2F-AB4B-6F6C423963AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AF995AA2-E23A-4F2F-AB4B-6F6C423963AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AF995AA2-E23A-4F2F-AB4B-6F6C423963AC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{496CE91D-45E9-4C16-9BDC-E76CDDC0A4E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{496CE91D-45E9-4C16-9BDC-E76CDDC0A4E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{496CE91D-45E9-4C16-9BDC-E76CDDC0A4E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{496CE91D-45E9-4C16-9BDC-E76CDDC0A4E4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{526B2E7E-5618-4AF4-99A1-DAE923FCA695}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{526B2E7E-5618-4AF4-99A1-DAE923FCA695}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{526B2E7E-5618-4AF4-99A1-DAE923FCA695}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -71,10 +53,6 @@ Global
 		{F739D4E8-6524-4974-BAA5-C1D7A4F7CDD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F739D4E8-6524-4974-BAA5-C1D7A4F7CDD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F739D4E8-6524-4974-BAA5-C1D7A4F7CDD0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{62F37905-7F84-4E6B-926C-1B85F87663AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{62F37905-7F84-4E6B-926C-1B85F87663AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{62F37905-7F84-4E6B-926C-1B85F87663AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{62F37905-7F84-4E6B-926C-1B85F87663AD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{68F04033-4FAC-4AC9-9B1C-E7EE45A23EB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{68F04033-4FAC-4AC9-9B1C-E7EE45A23EB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68F04033-4FAC-4AC9-9B1C-E7EE45A23EB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -99,6 +77,10 @@ Global
 		{7DE26FA3-DAF5-4802-8D16-A011EB1C3FD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DE26FA3-DAF5-4802-8D16-A011EB1C3FD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DE26FA3-DAF5-4802-8D16-A011EB1C3FD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC591066-6DEA-4622-8AAF-3BCCDE70C4B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC591066-6DEA-4622-8AAF-3BCCDE70C4B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC591066-6DEA-4622-8AAF-3BCCDE70C4B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC591066-6DEA-4622-8AAF-3BCCDE70C4B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

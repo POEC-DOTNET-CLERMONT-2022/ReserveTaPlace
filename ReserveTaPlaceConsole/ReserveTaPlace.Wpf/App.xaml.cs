@@ -31,7 +31,7 @@ namespace ReserveTaPlace.Wpf
         {
             var movieLogic = new MovieLogic();
 
-            var movieList = movieLogic.GetAllMovies();
+            //var movieList = movieLogic.GetAllMovies();
 
             //movieLogic.SaveMovies(movieList);
         }

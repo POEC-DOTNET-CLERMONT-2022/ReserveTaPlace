@@ -37,7 +37,7 @@ namespace ReserveTaPlace.Models
             //_duration = duration;
             _isMovieOnDisplay = false;
         }
-        
+
         public int Id { get => _id; set => _id = value; }
         public string ImdbID{ get { return _imdbID; } set { _imdbID = value; } }
         public string Title { get { return _title; } set { _title = value; } }

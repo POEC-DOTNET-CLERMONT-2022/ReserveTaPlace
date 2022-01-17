@@ -1,5 +1,5 @@
-﻿using ConsoleManage.Manager;
-using ConsoleManager.Data.Models;
+﻿using ReserveTaPlace.Models.ConsoleModels;
+using ReserveTaPlace.AppManager;
 using ReserveTaPlace.Models;
 using ReserveTaPlace.RTPManager;
 using ReserveTaPlaceConsole.RTPManager;
@@ -13,7 +13,7 @@ namespace ReserveTaPlaceConsole
 {
     internal class App
     {
-        private Manager _manager;
+        private IAppManager _manager;
         private MovieManager _movieManager;
         public App()
         {
@@ -45,29 +45,16 @@ namespace ReserveTaPlaceConsole
                     _movieManager.DisplayOnDisplayMovies();
                     break;
                 case 3:
-                    var question2 = new Question("Quel est le titre du film que vous voulez mettre a l'affiche ?", 0, QuestionType.ReponseLibre);
-                    _manager.WriteQuestion(question2);
-                    var answer2 = _manager.ReadUserEntry(question2);
-                    await _movieManager.PutOnDisplay(answer2.Text);
-                    _movieManager.DisplayOnDisplayMovies();
+                    await _movieManager.PutOnDisplay();
                     break;
                 case 4:
-                    var question3 = new Question("Quel est le titre du film que vous voulez ajouter ?", 0, QuestionType.ReponseLibre);
-                    _manager.WriteQuestion(question3);
-                    var answer3 = _manager.ReadUserEntry(question3);
-                    var question3_1 = new Question($"Indiquez l'année de sortie du film : {answer3.Text}", 0, QuestionType.ReponseLibre);
-                    _manager.WriteQuestion(question3_1);
-                    var answer3_1 = _manager.ReadUserEntry(question3_1);
-                    var movie = await _movieManager.GetMovie(answer3.Text, answer3_1.Text);
-                    await _movieManager.Add(movie);
-                    Console.WriteLine($"Le film {movie.Title} est ajouté à la liste des films disponibles.");
+                    var movies = await _movieManager.GetMovie();
+                    await _movieManager.Add(movies[0]);
                     _movieManager.DisplayMovies();
                     break;
                 case 5:
-                    var question4 = new Question("Entrer le nom du film à supprimer : ", 0, QuestionType.ReponseLibre);
-                    _manager.WriteQuestion(question4);
-                    var answer4 = _manager.ReadUserEntry(question4);
-                    await _movieManager.Delete(answer4.Text);
+                    await _movieManager.Delete();
+                    _movieManager.DisplayMovies();
                     break;
                 case 6:
                     Environment.Exit(0);

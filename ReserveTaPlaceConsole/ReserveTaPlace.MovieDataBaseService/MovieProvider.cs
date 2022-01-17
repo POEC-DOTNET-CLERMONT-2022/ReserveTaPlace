@@ -11,9 +11,13 @@ namespace ReserveTaPlace.MovieDataBaseService
 {
     public class MovieProvider : IMovieProvider
     {
-        public async Task<Movie> GetMovie(string title, string year)
+        public async Task<List<Movie>> GetMovie(string title, string year)
         {
             var movies = await SearchMovie(title, year);
+            if (movies.Count==0)
+            {
+                return movies;
+            }
             var partialMovie = movies[0];
             Movie completeMovie;
             var client = new HttpClient();
@@ -29,12 +33,21 @@ namespace ReserveTaPlace.MovieDataBaseService
             };
             using (var response = await client.SendAsync(request))
             {
-                response.EnsureSuccessStatusCode();
-                var body = await response.Content.ReadAsStringAsync();
-                completeMovie = JsonConvert.DeserializeObject<Movie>(body);
+                try
+                {
+                    response.EnsureSuccessStatusCode();
 
+                }
+                catch (HttpRequestException e)
+                {
+
+                    Console.WriteLine($"{e.Message}");
+                }
+                    var body = await response.Content.ReadAsStringAsync();
+                    completeMovie = JsonConvert.DeserializeObject<Movie>(body);
             }
-            return completeMovie;
+            movies.Add(completeMovie);
+            return movies;
         }
         private async Task<List<Movie>> SearchMovie(string title, string year)
         {
@@ -52,7 +65,16 @@ namespace ReserveTaPlace.MovieDataBaseService
             };
             using (var response = await client.SendAsync(request))
             {
-                response.EnsureSuccessStatusCode();
+                try
+                {
+                    response.EnsureSuccessStatusCode();
+                }
+                catch (HttpRequestException e )
+                {
+
+                    Console.WriteLine($"{e.Message}");
+                }
+                
                 var body = await response.Content.ReadAsStringAsync();
                 var result = JsonConvert.DeserializeObject<ImdbSearch>(body);
                 foreach (var item in result.ImdbMovies)

@@ -1,19 +1,5 @@
 ﻿using ReserveTaPlace.Logic;
-using ReserveTaPlace.Wpf.User_Controls;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ReserveTaPlace.Wpf
 {
@@ -44,9 +30,9 @@ namespace ReserveTaPlace.Wpf
             UserListUC.Visibility = Visibility.Visible;
         }
 
-        private void listmovieBTN_Click(object sender, RoutedEventArgs e)
+        private async void listmovieBTN_Click(object sender, RoutedEventArgs e)
         {
-            var listMovie3 = _movieLogic.GetAllMovies();
+            var listMovie3 = await _movieLogic.GetAll();
         }
 
     }
