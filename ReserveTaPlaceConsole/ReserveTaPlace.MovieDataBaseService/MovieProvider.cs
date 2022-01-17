@@ -23,7 +23,7 @@ namespace ReserveTaPlace.MovieDataBaseService
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Get,
-                RequestUri = new Uri($"https://movie-database-imdb-alternative.p.rapidapi.com/?&r=json&i={partialMovie.ImdbID}"),
+                RequestUri = new Uri($"https://movie-database-imdb-alternative.p.rapidapi.com/?&r=json&i={partialMovie.ImdbId}"),
                 Headers =
                 {
                     { "x-rapidapi-host", "movie-database-imdb-alternative.p.rapidapi.com" },

@@ -5,7 +5,7 @@ namespace ReserveTaPlace.Models
     public class Movie
     {
         private int _id;
-        private string _imdbID;
+        private string _imdbId;
         private string _title;
         private string _plot;
         private string _country;
@@ -21,11 +21,10 @@ namespace ReserveTaPlace.Models
             _title = title;
             _isMovieOnDisplay = false;
         }
-        public Movie(string title, string imdbID)
+        public Movie(string title, string imdbId)
         {
             _title = title;
-            _imdbID = imdbID;
-            //_description = description;
+            _imdbId = imdbId;
             //_castStartDate = castStartDate;
             //_castEndDate = castEndDate;
             //_releaseDate = releaseDate;
@@ -34,7 +33,7 @@ namespace ReserveTaPlace.Models
         }
 
         public int Id { get => _id; set => _id = value; }
-        public string ImdbID { get { return _imdbID; } set { _imdbID = value; } }
+        public string ImdbId { get { return _imdbId; } set { _imdbId = value; } }
         public string Title { get { return _title; } set { _title = value; } }
         public string Country { get { return _country; } set { _country = value; } }
         public string Plot { get { return _plot; } set { _plot = value; } }

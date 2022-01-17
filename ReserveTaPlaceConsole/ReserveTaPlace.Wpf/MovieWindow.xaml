@@ -11,7 +11,7 @@
             <ColumnDefinition Width="1*"></ColumnDefinition>
             <ColumnDefinition Width="2*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <ListBox Grid.Column="0" ItemsSource="{Binding MovieList}" x:Name="LBMovies">
+        <ListBox Grid.Column="0" SelectedItem="{Binding CurrentMovie}" ItemsSource="{Binding Movies}" x:Name="LBMovies">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
@@ -22,7 +22,10 @@
             </ListBox.ItemTemplate>
             </ListBox>
         <StackPanel Grid.Column="1">
-            <TextBlock/>
+            <TextBlock Text="{Binding CurrentMovie.Title}" />
+            <TextBlock Text="{Binding CurrentMovie.Plot}" />
+            <TextBlock Text="{Binding CurrentMovie.ImdbId}" />
+
         </StackPanel>
     </Grid>
 </Window>
