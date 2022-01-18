@@ -20,8 +20,8 @@ namespace ReserveTaPlace.API.Controllers
             _mapper = mapper;
         }
         // GET: api/<UserController>
-        [HttpGet("All")]
-        public async Task<ActionResult> All()
+        [HttpGet]
+        public async Task<ActionResult> GetAll()
         {
             var users = await _users.GetAll();
             var usersDto = _mapper.Map<List<UserEntity>>(users);

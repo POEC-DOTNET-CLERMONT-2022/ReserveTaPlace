@@ -22,8 +22,8 @@ namespace ReserveTaPlace.API.Controllers
             _mapper = mapper;
         }
         // GET: MovieController/GetAll
-        [HttpGet("All")]
-        public async Task<ActionResult> All()
+        [HttpGet]
+        public async Task<ActionResult> GetAll()
         {
             var movies = await _movie.GetAll();
             var moviesDto = _mapper.Map<List<MovieDto>>(movies);

@@ -16,7 +16,6 @@ namespace ReserveTaPlace.Wpf
         private IGenericLogic<User> _userLogic = new GenericLogic<User>();
         private readonly IMapper _mapper;
         private ListUsers _listUser;
-        private User _user;
         public UserWindow()
         {
             _listUser = new ListUsers();

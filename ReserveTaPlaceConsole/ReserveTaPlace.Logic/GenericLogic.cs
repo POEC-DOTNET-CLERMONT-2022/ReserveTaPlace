@@ -12,9 +12,8 @@ namespace ReserveTaPlace.Logic
     {
         public async Task<IEnumerable<T>> GetAll()
         {
-            //var model = ;
             var models = new List<T>();
-            var request = new HttpRequestMessage(HttpMethod.Get, "https://localhost:7091/api/{model}/all");
+            var request = new HttpRequestMessage(HttpMethod.Get, $"https://localhost:7091/api/");
             request.Headers.Add("Accept", "application/json");
             var client = new HttpClient();
             ;
@@ -28,11 +27,6 @@ namespace ReserveTaPlace.Logic
                 }
             }
             return models;
-        }
-
-        public Task<IEnumerable<T>> GetAll<P>()
-        {
-            throw new NotImplementedException();
         }
     }
 }
