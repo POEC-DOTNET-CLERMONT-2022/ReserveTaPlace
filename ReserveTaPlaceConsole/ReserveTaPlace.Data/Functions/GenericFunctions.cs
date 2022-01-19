@@ -9,13 +9,15 @@ namespace ReserveTaPlace.Data.Functions
     public class GenericFunctions<T> : IGenericRepo<T> where T : class
     {
         private IEnumerable<T> _listEntities;
-        public GenericFunctions()
+        private string _connectionString;
+        public GenericFunctions(string connectionString)
         {
+            _connectionString = connectionString;
             _listEntities = new List<T>();
         }
         public async Task<IEnumerable<T>> GetAll()
         {
-            using (var context = new ReserveTaPlaceContext())
+            using (var context = new ReserveTaPlaceContext(_connectionString))
             {
                 _listEntities = await context.Set<T>().ToListAsync();
             }

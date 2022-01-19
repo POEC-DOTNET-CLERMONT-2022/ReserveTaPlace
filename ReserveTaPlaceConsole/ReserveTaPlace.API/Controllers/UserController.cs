@@ -14,9 +14,12 @@ namespace ReserveTaPlace.API.Controllers
     {
         private IGenericRepo<UserEntity> _users;
         private IMapper _mapper;
-        public UserController(IMapper mapper)
+        private AppConfig _appConfig;
+
+        public UserController(IMapper mapper, IConfiguration config)
         {
-            _users = new GenericFunctions<UserEntity>();
+            _appConfig = new AppConfig(config);
+            _users = new GenericFunctions<UserEntity>(_appConfig.ConnectionString);
             _mapper = mapper;
         }
         // GET: api/<UserController>

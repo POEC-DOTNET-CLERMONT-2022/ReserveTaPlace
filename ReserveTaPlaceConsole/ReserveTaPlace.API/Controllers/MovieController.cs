@@ -14,11 +14,12 @@ namespace ReserveTaPlace.API.Controllers
     public class MovieController : ControllerBase
     {
         private IGenericRepo<MovieEntity> _movie;
-        //private IMovie _movie;
         private IMapper _mapper;
-        public MovieController(IMapper mapper)
+        private AppConfig _appConfig;
+        public MovieController(IMapper mapper, IConfiguration config)
         {
-            _movie = new GenericFunctions<MovieEntity>();
+            _appConfig = new AppConfig(config);
+            _movie = new GenericFunctions<MovieEntity>(_appConfig.ConnectionString);
             _mapper = mapper;
         }
         // GET: MovieController/GetAll
@@ -29,36 +30,5 @@ namespace ReserveTaPlace.API.Controllers
             var moviesDto = _mapper.Map<List<MovieDto>>(movies);
             return Ok(moviesDto);
         }
-        // GET: api/<MovieController>
-        //[HttpGet]
-        //public IEnumerable<string> Get()
-        //{
-        //    return new string[] { "value1", "value2" };
-        //}
-
-        // GET api/<MovieController>/5
-        //[HttpGet("{id}")]
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
-
-        // POST api/<MovieController>
-        //[HttpPost]
-        //public void Post([FromBody] string value)
-        //{
-        //}
-
-        // PUT api/<MovieController>/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
-
-        // DELETE api/<MovieController>/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
     }
 }

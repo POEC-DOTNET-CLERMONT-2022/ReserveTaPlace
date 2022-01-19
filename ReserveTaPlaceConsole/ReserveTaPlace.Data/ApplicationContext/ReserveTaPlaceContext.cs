@@ -6,6 +6,11 @@ namespace ReserveTaPlace.Data.ApplicationContext
 {
     public class ReserveTaPlaceContext : DbContext
     {
+        private string ConnectionString { get; }
+        public ReserveTaPlaceContext(string connectionString)
+        {
+            ConnectionString = connectionString;
+        }
         public ReserveTaPlaceContext()
         {
 
@@ -28,18 +33,12 @@ namespace ReserveTaPlace.Data.ApplicationContext
         public virtual DbSet<TheaterEntity> Theaters { get; set; }
         public virtual DbSet<TicketEntity> Tickets { get; set; }
         public virtual DbSet<UserEntity> Users { get; set; }
-        private string ConnectionString { get; }
-
-        public ReserveTaPlaceContext(string connectionString)
-        {
-            ConnectionString = connectionString;
-        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
             //(LocalDb)\MSSQLLocalDB
-            optionsBuilder.UseSqlServer(@"Server=(LocalDb)\MSSQLLocalDB;Database=ReserveTaPlace;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(ConnectionString);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
