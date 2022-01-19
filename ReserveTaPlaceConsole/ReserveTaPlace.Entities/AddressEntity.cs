@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ReserveTaPlace.Entities
 {
     [Table("Address")]
-    public class AddressEntity
+    public class AddressEntity : GenericEntity
     {
         [Key]
         [Column(Order = 1)]

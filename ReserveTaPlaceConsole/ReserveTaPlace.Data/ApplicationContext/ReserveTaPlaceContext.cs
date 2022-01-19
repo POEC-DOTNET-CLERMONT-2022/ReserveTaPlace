@@ -32,7 +32,7 @@ namespace ReserveTaPlace.Data.ApplicationContext
         public virtual DbSet<SessionHourEntity> SessionHours { get; set; }
         public virtual DbSet<TheaterEntity> Theaters { get; set; }
         public virtual DbSet<TicketEntity> Tickets { get; set; }
-        public virtual DbSet<UserEntity> Users { get; set; }
+        public virtual DbSet<UserEntity> User { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -45,6 +45,7 @@ namespace ReserveTaPlace.Data.ApplicationContext
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<UserEntity>();
             //EntityTypeBuilder<UserEntity> entityTypeBuilder = modelBuilder.Entity<UserEntity>();
 
             //[Column("Pseudo")] //Si nom de colonne différent

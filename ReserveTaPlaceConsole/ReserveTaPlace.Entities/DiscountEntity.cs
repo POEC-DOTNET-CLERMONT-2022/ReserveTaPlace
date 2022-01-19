@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ReserveTaPlace.Entities
 {
     [Table("Discount")]
-    public class DiscountEntity
+    public class DiscountEntity : GenericEntity
     {
         [Key]
         public Guid Id { get; set; }

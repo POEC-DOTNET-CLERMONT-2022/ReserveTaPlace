@@ -13,7 +13,9 @@ namespace ReserveTaPlace.Logic
         public async Task<IEnumerable<T>> GetAll()
         {
             var models = new List<T>();
-            var request = new HttpRequestMessage(HttpMethod.Get, $"https://localhost:7091/api/");
+            var modelName = typeof(T).Name;
+
+            var request = new HttpRequestMessage(HttpMethod.Get, $"https://localhost:7091/api/{modelName}");
             request.Headers.Add("Accept", "application/json");
             var client = new HttpClient();
             ;

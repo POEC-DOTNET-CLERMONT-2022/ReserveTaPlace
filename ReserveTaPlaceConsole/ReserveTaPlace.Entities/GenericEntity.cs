@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace ReserveTaPlace.Entities
 {
     [NotMapped]
-    public class GenericEntity
+    public abstract class GenericEntity
     {
         public Guid Id { get; set; }
 

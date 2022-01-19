@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ReserveTaPlace.Entities
 {
     [Table("Origin")]
-    public class OriginEntity
+    public class OriginEntity : GenericEntity
     {
         public OriginEntity()
         {

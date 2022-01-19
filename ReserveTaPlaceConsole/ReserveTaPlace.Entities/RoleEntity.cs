@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ReserveTaPlace.Entities
 {
     [Table("Role")]
-    public class RoleEntity
+    public class RoleEntity : GenericEntity
     {
         public RoleEntity()
         {
