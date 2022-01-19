@@ -46,7 +46,7 @@ namespace ReserveTaPlace.API.Controllers
         public async Task<ActionResult> Add([FromBody] MovieDto movieDto)
         {
             var movieEntity = _mapper.Map<MovieEntity>(movieDto);
-            var movieDtoResult = _movie.Add(movieEntity);
+            var movieDtoResult = await _movie.Add(movieEntity);
             return Ok(movieDtoResult);
         }
     }

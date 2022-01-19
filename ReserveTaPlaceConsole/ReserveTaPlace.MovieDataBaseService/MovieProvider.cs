@@ -78,7 +78,7 @@ namespace ReserveTaPlace.MovieDataBaseService
                 var result = JsonConvert.DeserializeObject<ImdbSearch>(body);
                 foreach (var item in result.ImdbMovies)
                 {
-                    var movie = new Movie(item.Title,item.Poster, item.Plot, item.ImdbID);
+                    var movie = new Movie(item.Title,item.Poster, item.Plot, item.ImdbID,item.ReleaseDate,item.Runtime);
                     movies.Add(movie);
                 }
             }

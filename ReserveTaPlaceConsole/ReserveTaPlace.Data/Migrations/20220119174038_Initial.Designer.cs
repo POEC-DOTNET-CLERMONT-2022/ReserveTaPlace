@@ -12,7 +12,7 @@ using ReserveTaPlace.Data.ApplicationContext;
 namespace ReserveTaPlace.Data.Migrations
 {
     [DbContext(typeof(ReserveTaPlaceContext))]
-    [Migration("20220119152531_Initial")]
+    [Migration("20220119174038_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -228,15 +228,9 @@ namespace ReserveTaPlace.Data.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CastEndDate")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CastStartDate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Country")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImdbID")
@@ -322,7 +316,7 @@ namespace ReserveTaPlace.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("FormatEntityId")
+                    b.Property<Guid?>("FormatId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("MovieId")
@@ -339,7 +333,7 @@ namespace ReserveTaPlace.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FormatEntityId");
+                    b.HasIndex("FormatId");
 
                     b.HasIndex("MovieId");
 
@@ -623,9 +617,9 @@ namespace ReserveTaPlace.Data.Migrations
 
             modelBuilder.Entity("ReserveTaPlace.Entities.RoomEntity", b =>
                 {
-                    b.HasOne("ReserveTaPlace.Entities.FormatEntity", null)
+                    b.HasOne("ReserveTaPlace.Entities.FormatEntity", "Format")
                         .WithMany("Rooms")
-                        .HasForeignKey("FormatEntityId");
+                        .HasForeignKey("FormatId");
 
                     b.HasOne("ReserveTaPlace.Entities.MovieEntity", "Movie")
                         .WithMany("Rooms")
@@ -636,6 +630,8 @@ namespace ReserveTaPlace.Data.Migrations
                         .HasForeignKey("TheaterId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Format");
 
                     b.Navigation("Movie");
 

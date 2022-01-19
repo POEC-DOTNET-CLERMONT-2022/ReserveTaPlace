@@ -15,14 +15,12 @@ namespace ReserveTaPlace.Entities
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
         public string ImdbID { get; set; }
         public string Title { get; set; }
-        public string Country { get; set; }
         public string Plot { get; set; }
-        public string CastStartDate { get; set; }
-        public string CastEndDate { get; set; }
+        public string? CastStartDate { get; set; }
+        public string? CastEndDate { get; set; }
         public string ReleaseDate { get; set; }
         public string Runtime { get; set; }
 

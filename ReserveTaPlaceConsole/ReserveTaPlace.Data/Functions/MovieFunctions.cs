@@ -20,7 +20,7 @@ namespace ReserveTaPlace.Data.Functions
 
         public async Task<MovieEntity> Add(MovieEntity movieEntity)
         {
-            using (var context = new ReserveTaPlaceContext())
+            using (var context = new ReserveTaPlaceContext(_connectionString))
             {
                 await context.Movies.AddAsync(movieEntity);
                 await context.SaveChangesAsync();

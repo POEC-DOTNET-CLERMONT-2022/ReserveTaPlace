@@ -32,13 +32,15 @@ namespace ReserveTaPlace.Models
             _title = title;
         }
         [JsonConstructor]
-        public Movie(string title,string plot,string poster,string imdbId)
+        public Movie(string title,string plot,string poster,string imdbId,string releaseDate,string runtime)
         {
             _id = Guid.NewGuid();
             _title = title;
             _plot = plot;
             _poster = poster;
             _imdbId = imdbId;
+            _releaseDate = releaseDate;
+            _runtime = runtime;
             _isMovieOnDisplay = false;
         }
         //public Movie(string title, string imdbId)

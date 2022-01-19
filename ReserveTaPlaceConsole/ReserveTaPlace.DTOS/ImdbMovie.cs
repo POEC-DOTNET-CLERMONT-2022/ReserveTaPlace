@@ -20,5 +20,7 @@ namespace ReserveTaPlace.DTOS
         public string Plot { get; set; }
         [JsonProperty(PropertyName = "Runtime")]
         public string Runtime { get; set; }
+        [JsonProperty(PropertyName = "ReleaseDate")]
+        public string ReleaseDate { get; set; }
     }
 }
