@@ -8,8 +8,8 @@ namespace ReserveTaPlace.DTOS
         public string Title { get; set; }
         [JsonProperty(PropertyName = "Year")]
         public string Year { get; set; }
-        [JsonProperty(PropertyName = "ImdbID")]
-        public string ImdbID { get; set; }
+        [JsonProperty(PropertyName = "ImdbId")]
+        public string ImdbId { get; set; }
         [JsonProperty(PropertyName = "Poster")]
         public string Poster { get; set; }
         [JsonProperty(PropertyName = "Country")]

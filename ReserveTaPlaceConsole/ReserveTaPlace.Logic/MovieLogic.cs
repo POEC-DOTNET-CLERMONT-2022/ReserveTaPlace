@@ -32,6 +32,7 @@ namespace ReserveTaPlace.Logic
             var movie = new MovieDto();
             var request = new HttpRequestMessage(HttpMethod.Post, "https://localhost:7091/api/movie");
             request.Headers.Add("Accept", "application/json");
+            var test = JsonConvert.SerializeObject(movieDto);
             request.Content = new StringContent(JsonConvert.SerializeObject(movieDto));
             var client = new HttpClient();
             ;

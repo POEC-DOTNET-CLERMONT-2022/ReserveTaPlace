@@ -42,9 +42,13 @@ namespace ReserveTaPlace.Wpf
             var movieName = TBMovieToAddName.Text;
             var movieYear = TBMovieToAddYear.Text;
             var movies = await _movieProvider.GetMovie(movieName, movieYear);
-            _listMovie.Movies.Add(movies[0]);
-            var moviesDto = _mapper.Map<List<MovieDto>>(movies);
-            await MovieLogic.Add(moviesDto[0]);
+            if (movies.Count>0)
+            {
+                var moviesModel = _mapper.Map<List<Movie>>(movies);
+                _listMovie.Movies.Add(moviesModel[0]);
+                var moviesDto = _mapper.Map<List<MovieDto>>(movies);
+                await MovieLogic.Add(moviesDto[0]);
+            }
         }
 
     }

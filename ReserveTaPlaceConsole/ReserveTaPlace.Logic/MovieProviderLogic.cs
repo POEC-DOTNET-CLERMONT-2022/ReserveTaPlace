@@ -1,4 +1,4 @@
-﻿using ReserveTaPlace.Models;
+﻿using ReserveTaPlace.DTOS;
 using ReserveTaPlace.MovieDataBaseService;
 
 namespace ReserveTaPlace.Logic
@@ -11,7 +11,7 @@ namespace ReserveTaPlace.Logic
         {
             _movieProvider = new MovieProvider();
         }
-        public async Task<List<Movie>> GetMovie(string title, string year)
+        public async Task<List<MovieDto>> GetMovie(string title, string year)
         {
             return await _movieProvider.GetMovie(title, year);
         }
