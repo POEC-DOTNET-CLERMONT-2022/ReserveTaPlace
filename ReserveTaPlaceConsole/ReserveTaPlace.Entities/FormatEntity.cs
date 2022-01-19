@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ReserveTaPlace.Entities
 {
     [Table("Format")]
-    public class FormatEntity : GenericEntity
+    public class FormatEntity
     {
         public FormatEntity()
         {

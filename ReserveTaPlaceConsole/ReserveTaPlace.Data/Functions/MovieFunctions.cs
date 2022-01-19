@@ -10,24 +10,32 @@ namespace ReserveTaPlace.Data.Functions
 {
     public class MovieFunctions : IMovie
     {
-        public Task<MovieEntity> Add(MovieEntity movie)
+        private IEnumerable<MovieEntity> _movies;
+        private string _connectionString;
+        public MovieFunctions(string connectionString)
         {
-            throw new NotImplementedException();
+            _connectionString = connectionString;
+            _movies= new List<MovieEntity>();
         }
-
-        public Task<MovieEntity> Delete(MovieEntity movie)
+        public async Task<bool> DeleteById(Guid id)
         {
-            throw new NotImplementedException();
+            int result = 0;
+            using (var context = new ReserveTaPlaceContext(_connectionString))
+            {
+                var entity = await context.Movies.FirstOrDefaultAsync(u => u.Id == id);
+                context.Movies.Remove(entity);
+                result = await context.SaveChangesAsync();
+            };
+            return result == 1;
         }
 
         public async Task<IEnumerable<MovieEntity>> GetAll()
         {
-            IEnumerable<MovieEntity> movies;
             using (var context = new ReserveTaPlaceContext())
             {
-                movies = await context.Movies.Include(m => m.Medias).ToListAsync();
+                _movies = await context.Movies.Include(m => m.Medias).ToListAsync();
             }
-            return movies;
+            return _movies;
         }
 
         public async Task<MovieEntity> GetById(Guid id)
@@ -48,11 +56,6 @@ namespace ReserveTaPlace.Data.Functions
                 movie = await context.Movies.FirstOrDefaultAsync(m => m.Title.ToLower().StartsWith(title));
             }
             return movie;
-        }
-
-        public Task<MovieEntity> Update(MovieEntity movie)
-        {
-            throw new NotImplementedException();
         }
     }
 }

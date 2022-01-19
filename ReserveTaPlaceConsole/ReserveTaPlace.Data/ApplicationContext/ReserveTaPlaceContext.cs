@@ -7,15 +7,15 @@ namespace ReserveTaPlace.Data.ApplicationContext
     public class ReserveTaPlaceContext : DbContext
     {
         private string ConnectionString { get; }
-        public ReserveTaPlaceContext(string connectionString)
-        {
-            ConnectionString = connectionString;
-        }
         public ReserveTaPlaceContext()
         {
 
         }
-
+        public ReserveTaPlaceContext(string connectionString)
+        {
+            ConnectionString = connectionString;
+        }
+        public virtual DbSet<GenericEntity> Generics { get; set; }
         public virtual DbSet<AddressEntity> Address { get; set; }
         public virtual DbSet<DiscountEntity> Discounts { get; set; }
         public virtual DbSet<DiscountType> DiscountTypes { get; set; }
@@ -32,20 +32,20 @@ namespace ReserveTaPlace.Data.ApplicationContext
         public virtual DbSet<SessionHourEntity> SessionHours { get; set; }
         public virtual DbSet<TheaterEntity> Theaters { get; set; }
         public virtual DbSet<TicketEntity> Tickets { get; set; }
-        public virtual DbSet<UserEntity> User { get; set; }
+        public virtual DbSet<UserEntity> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
             //(LocalDb)\MSSQLLocalDB
-            optionsBuilder.UseSqlServer(ConnectionString);
+            optionsBuilder.UseSqlServer("Server=.;Database=ReserveTaPlace;Trusted_Connection=True;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<UserEntity>();
+            //modelBuilder.Entity<UserEntity>();
             //EntityTypeBuilder<UserEntity> entityTypeBuilder = modelBuilder.Entity<UserEntity>();
 
             //[Column("Pseudo")] //Si nom de colonne différent

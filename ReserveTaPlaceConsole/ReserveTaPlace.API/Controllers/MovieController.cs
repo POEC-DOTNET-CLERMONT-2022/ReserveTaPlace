@@ -13,13 +13,14 @@ namespace ReserveTaPlace.API.Controllers
     [ApiController]
     public class MovieController : ControllerBase
     {
-        private IGenericRepo<MovieEntity> _movie;
+        //private IGenericRepo<MovieEntity> _movie;
+        private IMovie _movie;
         private IMapper _mapper;
         private AppConfig _appConfig;
         public MovieController(IMapper mapper, IConfiguration config)
         {
             _appConfig = new AppConfig(config);
-            _movie = new GenericFunctions<MovieEntity>(_appConfig.ConnectionString);
+            _movie = new MovieFunctions(_appConfig.ConnectionString);
             _mapper = mapper;
         }
         // GET: MovieController/GetAll

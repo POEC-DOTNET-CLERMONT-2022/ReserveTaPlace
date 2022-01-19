@@ -4,28 +4,29 @@ using ReserveTaPlace.Data.Interfaces;
 using ReserveTaPlace.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Data.Functions
 {
-    public class GenericFunctions<T> : IGenericRepo<T> where T : class 
+    public class UserFunctions : IUser
     {
-        private IEnumerable<T> _listEntities;
+        private IEnumerable<UserEntity> _users;
         private string _connectionString;
-        public GenericFunctions(string connectionString)
+        public UserFunctions(string connectionString)
         {
             _connectionString = connectionString;
-            _listEntities = new List<T>();
+            _users = new List<UserEntity>();
         }
 
-        public async Task<IEnumerable<T>> GetAll()
+        public async Task<IEnumerable<UserEntity>> GetAll()
         {
             using (var context = new ReserveTaPlaceContext(_connectionString))
             {
-                var test = context.Set<T>();
-                _listEntities = await context.Set<T>().ToListAsync();
+                _users = await context.Users.ToListAsync();
             }
-            return _listEntities;
+            return _users;
         }
     }
 }

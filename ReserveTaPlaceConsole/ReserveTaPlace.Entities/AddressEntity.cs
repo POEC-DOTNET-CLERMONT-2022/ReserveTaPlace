@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ReserveTaPlace.Entities
 {
     [Table("Address")]
-    public class AddressEntity : GenericEntity
+    public class AddressEntity
     {
         [Key]
         [Column(Order = 1)]
@@ -35,7 +35,7 @@ namespace ReserveTaPlace.Entities
 
         [ForeignKey(nameof(TheaterId))]
         [InverseProperty("Address")]
-        public virtual TheaterEntity Theater { set; get; }
+        public virtual TheaterEntity? Theater { set; get; }
         [ForeignKey(nameof(UserId))]
         [InverseProperty("Address")]
         public virtual UserEntity? User { set; get; }
