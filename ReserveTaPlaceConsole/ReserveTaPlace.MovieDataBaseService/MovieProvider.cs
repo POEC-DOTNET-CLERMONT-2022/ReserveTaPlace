@@ -18,7 +18,7 @@ namespace ReserveTaPlace.MovieDataBaseService
                 return movies;
             }
             var partialMovie = movies[0];
-            Movie completeMovie;
+            Movie completeMovie = new Movie();
             var client = new HttpClient();
             var request = new HttpRequestMessage
             {
@@ -78,7 +78,7 @@ namespace ReserveTaPlace.MovieDataBaseService
                 var result = JsonConvert.DeserializeObject<ImdbSearch>(body);
                 foreach (var item in result.ImdbMovies)
                 {
-                    var movie = new Movie(item.Title, item.ImdbID);
+                    var movie = new Movie(item.Title,item.Poster, item.Plot, item.ImdbID);
                     movies.Add(movie);
                 }
             }

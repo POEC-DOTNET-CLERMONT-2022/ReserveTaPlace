@@ -17,6 +17,7 @@ namespace ReserveTaPlace.Entities
 
         [Key]
         [Column(Order = 1)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
         public Guid? AddressId { get; set; }
 

@@ -7,6 +7,7 @@ namespace ReserveTaPlace.Entities
     public class DiscountEntity
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
         public string Number { get; set; }
         public DateTime EndValidityDate { get; set; }

@@ -12,6 +12,7 @@ namespace ReserveTaPlace.Entities
         }
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
         public virtual RoomEntity Room { get; set; }
         public virtual ICollection<SessionHourEntity> SessionHours { get; set; }

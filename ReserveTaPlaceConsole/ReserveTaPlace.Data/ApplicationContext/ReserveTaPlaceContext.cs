@@ -37,14 +37,14 @@ namespace ReserveTaPlace.Data.ApplicationContext
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            //(LocalDb)\MSSQLLocalDB
-            optionsBuilder.UseSqlServer("Server = (LocalDb)\\MSSQLLocalDB; Database = ReserveTaPlace; Trusted_Connection = True");
+            //"Server = (LocalDb)\\MSSQLLocalDB; Database = ReserveTaPlace; Trusted_Connection = True"
+            optionsBuilder.UseSqlServer("Server = .; Database = ReserveTaPlace; Trusted_Connection = True");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
+            //modelBuilder.Entity<UserEntity>().Property(x => x.Id).HasDefaultValueSql("NEWID()");
             //modelBuilder.Entity<UserEntity>();
             //EntityTypeBuilder<UserEntity> entityTypeBuilder = modelBuilder.Entity<UserEntity>();
 

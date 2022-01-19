@@ -64,7 +64,7 @@ namespace ReserveTaPlace.RTPManager
             } while (movies.Count == 0);
             if (movies.Count == 1)
             {
-                movies[0].Id = this.CalculateId();
+                movies[0].IdC = this.CalculateId();
             }
 
             return movies;
@@ -97,8 +97,8 @@ namespace ReserveTaPlace.RTPManager
                 var question = new Question("Entrer l'id du film à mettre à l'affiche :", QuestionType.Numerique);
                 _manager.WriteQuestion(question);
                 var answer = _manager.ReadUserEntry(question);
-                Movies.FirstOrDefault(m => m.Id == int.Parse(answer.Text)).IsMovieOnDisplay = true;
-                var movieToPutOnDisplay = Movies.FirstOrDefault(m => m.Id == int.Parse(answer.Text));
+                Movies.FirstOrDefault(m => m.IdC == int.Parse(answer.Text)).IsMovieOnDisplay = true;
+                var movieToPutOnDisplay = Movies.FirstOrDefault(m => m.IdC == int.Parse(answer.Text));
                 await _persistanceLogic.SaveMovies(Movies);
                 Console.WriteLine($"Le film {movieToPutOnDisplay.Title} a été mis à l'affiche !!");
                 DisplayOnDisplayMovies();
@@ -151,7 +151,7 @@ namespace ReserveTaPlace.RTPManager
                 var question = new Question("Entrer l'id du film à supprimer :", QuestionType.Numerique);
                 _manager.WriteQuestion(question);
                 var answer = _manager.ReadUserEntry(question);
-                var movieToDelete = Movies.FirstOrDefault(m => m.Id == int.Parse(answer.Text));
+                var movieToDelete = Movies.FirstOrDefault(m => m.IdC == int.Parse(answer.Text));
                 var modifyedList = Movies as List<Movie>;
                 modifyedList.Remove(movieToDelete);
                 Movies = modifyedList;
@@ -168,7 +168,7 @@ namespace ReserveTaPlace.RTPManager
                 return id = 1;
             }
             var lastMovie = Movies.Last();
-            id = lastMovie.Id + 1;
+            id = lastMovie.IdC + 1;
             return id;
         }
     }

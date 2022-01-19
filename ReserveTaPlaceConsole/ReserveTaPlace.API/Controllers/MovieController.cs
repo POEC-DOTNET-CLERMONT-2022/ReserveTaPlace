@@ -38,14 +38,16 @@ namespace ReserveTaPlace.API.Controllers
         {
             var movie = await _movie.GetById(id);
             var movieDto = _mapper.Map<MovieDto>(movie);
-            return Ok(movie);
+            return Ok(movieDto);
         }
 
         // POST MovieController/Post
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] string value)
+        public async Task<ActionResult> Add([FromBody] MovieDto movieDto)
         {
-
+            var movieEntity = _mapper.Map<MovieEntity>(movieDto);
+            var movieDtoResult = _movie.Add(movieEntity);
+            return Ok(movieDtoResult);
         }
     }
 }

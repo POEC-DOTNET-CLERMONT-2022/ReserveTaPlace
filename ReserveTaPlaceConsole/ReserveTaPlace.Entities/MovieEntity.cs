@@ -15,6 +15,7 @@ namespace ReserveTaPlace.Entities
         }
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
         public string ImdbID { get; set; }
         public string Title { get; set; }

@@ -8,6 +8,7 @@ namespace ReserveTaPlace.Entities
     {
         [Key]
         [Column(Order = 1)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
         public Guid? TheaterId { get; set; }
         public Guid? UserId { get; set; }

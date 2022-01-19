@@ -12,7 +12,7 @@ using ReserveTaPlace.Data.ApplicationContext;
 namespace ReserveTaPlace.Data.Migrations
 {
     [DbContext(typeof(ReserveTaPlaceContext))]
-    [Migration("20220119125332_Initial")]
+    [Migration("20220119152531_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

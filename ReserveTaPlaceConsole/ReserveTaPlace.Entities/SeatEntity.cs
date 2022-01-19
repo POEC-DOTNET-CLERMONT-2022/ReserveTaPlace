@@ -11,6 +11,7 @@ namespace ReserveTaPlace.Entities
             Rooms = new HashSet<RoomEntity>();
         }
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
         public string Row { get; set; }
         public string Number { get; set; }

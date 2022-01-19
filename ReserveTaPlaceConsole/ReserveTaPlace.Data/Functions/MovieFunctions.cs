@@ -17,6 +17,17 @@ namespace ReserveTaPlace.Data.Functions
             _connectionString = connectionString;
             _movies= new List<MovieEntity>();
         }
+
+        public async Task<MovieEntity> Add(MovieEntity movieEntity)
+        {
+            using (var context = new ReserveTaPlaceContext())
+            {
+                await context.Movies.AddAsync(movieEntity);
+                await context.SaveChangesAsync();
+            }
+            return movieEntity;
+        }
+
         public async Task<bool> DeleteById(Guid id)
         {
             int result = 0;
