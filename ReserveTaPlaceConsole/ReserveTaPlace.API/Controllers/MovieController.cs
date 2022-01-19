@@ -31,5 +31,21 @@ namespace ReserveTaPlace.API.Controllers
             var moviesDto = _mapper.Map<List<MovieDto>>(movies);
             return Ok(moviesDto);
         }
+
+        // GET: MovieController/GetById
+        [HttpGet("{id}")]
+        public async Task<ActionResult> Get(Guid id)
+        {
+            var movie = await _movie.GetById(id);
+            var movieDto = _mapper.Map<MovieDto>(movie);
+            return Ok(movie);
+        }
+
+        // POST MovieController/Post
+        [HttpPost]
+        public async Task<ActionResult> Post([FromBody] string value)
+        {
+
+        }
     }
 }

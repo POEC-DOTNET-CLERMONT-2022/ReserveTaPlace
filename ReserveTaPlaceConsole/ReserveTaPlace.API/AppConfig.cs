@@ -6,7 +6,7 @@
         public AppConfig(IConfiguration config)
         {
             Configuration = config;
-            ConnectionString = config.GetConnectionString("RTPSQLServer");
+            ConnectionString = config.GetConnectionString("RTPLocalDb");
             //RTPSQLServer
             //RTPLocalDb
         }
