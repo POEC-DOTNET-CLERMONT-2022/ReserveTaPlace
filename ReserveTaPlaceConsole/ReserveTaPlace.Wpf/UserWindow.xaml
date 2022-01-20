@@ -11,7 +11,17 @@
             <ColumnDefinition Width="1*"></ColumnDefinition>
             <ColumnDefinition Width="2*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <ListBox Grid.Column="0" SelectedItem="{Binding CurrentUser}" ItemsSource="{Binding Users}" x:Name="LBUsers">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="10*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <ListBox Grid.Row="8" Grid.Column="0" SelectedItem="{Binding CurrentUser}" ItemsSource="{Binding Users}" x:Name="LBUsers">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
@@ -21,9 +31,35 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <StackPanel Grid.Column="1">
+        <StackPanel Grid.Row="8" Grid.Column="1">
             <TextBlock Text="{Binding CurrentUser.LastName}" />
             <TextBlock Text="{Binding CurrentUser.Email}" />
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+            <TextBlock>Ajouter un nouvel utilisateur</TextBlock>
+        </StackPanel>
+        <StackPanel  Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal">
+            <TextBlock Width="150" VerticalAlignment = "Center">Prénom</TextBlock>
+            <TextBox x:Name="TBfirstName" Width="200" VerticalAlignment = "Center"></TextBox>
+        </StackPanel>
+        <StackPanel  Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal">
+            <TextBlock Width="150" VerticalAlignment = "Center">Nom</TextBlock>
+            <TextBox x:Name="TBlastName" Width="200" VerticalAlignment = "Center"></TextBox>
+        </StackPanel>
+        <StackPanel  Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal">
+            <TextBlock Width="150" VerticalAlignment = "Center">Mail</TextBlock>
+            <TextBox x:Name="TBmail" Width="200" VerticalAlignment = "Center"></TextBox>
+        </StackPanel>
+        <StackPanel  Grid.Row="4" Grid.ColumnSpan="2" Orientation="Horizontal">
+            <TextBlock Width="150" VerticalAlignment = "Center">Mot de passe</TextBlock>
+            <TextBox x:Name="TBpassword" Width="200" VerticalAlignment = "Center"></TextBox>
+        </StackPanel>
+        <StackPanel  Grid.Row="5" Grid.ColumnSpan="2" Orientation="Horizontal">
+            <TextBlock Width="150" VerticalAlignment = "Center">Confirmer le Mot de passe</TextBlock>
+            <TextBox x:Name="TBpasswordConfirmation" Width="200" VerticalAlignment = "Center"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="6" Grid.Column="0" HorizontalAlignment="Left">
+            <Button Width="80" Click="AddUser_Click">Valider</Button>
         </StackPanel>
     </Grid>
 </Window>

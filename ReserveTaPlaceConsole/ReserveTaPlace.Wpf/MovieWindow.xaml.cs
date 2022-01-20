@@ -25,7 +25,6 @@ namespace ReserveTaPlace.Wpf
             _mapper = ((App)Application.Current).Mapper;
             _movieLogic = ((App)Application.Current).MovieLogic;
             InitializeComponent();
-            LoadMovies();
             DataContext = _listMovie;
             _movieProvider = ((App)Application.Current).MoviProvider;
 
@@ -47,10 +46,13 @@ namespace ReserveTaPlace.Wpf
             {
                 var moviesModel = _mapper.Map<List<Movie>>(moviesDto);
                 _listMovie.Movies.Add(moviesModel[0]);
-                //var moviesDto = _mapper.Map<List<MovieDto>>(movies);
                 await _movieLogic.Add(moviesDto[0]);
             }
         }
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadMovies();
+        }
     }
 }

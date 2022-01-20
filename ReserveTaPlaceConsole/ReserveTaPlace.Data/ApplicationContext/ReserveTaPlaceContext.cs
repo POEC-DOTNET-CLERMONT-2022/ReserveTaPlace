@@ -38,27 +38,14 @@ namespace ReserveTaPlace.Data.ApplicationContext
         {
             base.OnConfiguring(optionsBuilder);
             //"Server = (LocalDb)\\MSSQLLocalDB; Database = ReserveTaPlace; Trusted_Connection = True"
-            optionsBuilder.UseSqlServer("Server = .; Database = ReserveTaPlace; Trusted_Connection = True");
-            //optionsBuilder.UseSqlServer(_connectionString);
+            //optionsBuilder.UseSqlServer("Server = .; Database = ReserveTaPlace; Trusted_Connection = True");
+            optionsBuilder.UseSqlServer(_connectionString);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            //modelBuilder.Entity<UserEntity>().Property(x => x.Id).HasDefaultValueSql("NEWID()");
-            //modelBuilder.Entity<UserEntity>();
-            //EntityTypeBuilder<UserEntity> entityTypeBuilder = modelBuilder.Entity<UserEntity>();
 
-            //[Column("Pseudo")] //Si nom de colonne différent
-            //entityTypeBuilder.Property(u => u.Login).HasColumnName("Pseudo");
-
-            //si pas de clé
-            //entityTypeBuilder.HasNoKey();
-
-            //équivalent à [Table("User")] dans le SqlDto
-            //entityTypeBuilder.ToTable("User");
-            //équivalent à [Key] dans le SqlDto
-            //userCatalog.HasKey(u => u.UserId);
         }
 
         public override DbSet<TEntity> Set<TEntity>()

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ReserveTaPlace.Wpf"
         mc:Ignorable="d"
-        Title="MovieWindow" Height="450" Width="800">
+        Title="MovieWindow" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -36,6 +36,7 @@
             <TextBlock Text="{Binding CurrentMovie.Title}" />
             <TextBlock Text="{Binding CurrentMovie.Plot}" />
             <TextBlock Text="{Binding CurrentMovie.ImdbId}" />
+            <Image Width="180" Source="{Binding CurrentMovie.Poster}"></Image>
         </StackPanel>
     </Grid>
 </Window>

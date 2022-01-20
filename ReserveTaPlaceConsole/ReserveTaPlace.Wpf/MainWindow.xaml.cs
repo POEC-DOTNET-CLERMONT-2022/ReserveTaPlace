@@ -25,8 +25,6 @@ namespace ReserveTaPlace.Wpf
 
         private void ListUserBTN_Click(object sender, RoutedEventArgs e)
         {
-            //LoginGrid.Visibility = Visibility.Hidden;
-            //UserListUC.Visibility = Visibility.Visible;
             var userWindow = new UserWindow();
             userWindow.Show();
         }

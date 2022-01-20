@@ -31,5 +31,17 @@ namespace ReserveTaPlace.Wpf
             var userModels = _mapper.Map<IEnumerable<User>>(users);
             _listUser.Users = new ObservableCollection<User>(userModels);
         }
+
+        private void AddUser_Click(object sender, RoutedEventArgs e)
+        {
+            string password = "";
+            if (TBpassword.Text==TBpasswordConfirmation.Text)
+            {
+                password = TBpassword.Text;
+            }
+            var newUser = new User(TBfirstName.Text,TBlastName.Text,TBmail.Text, password);
+            _listUser.Users.Add(newUser);
+
+        }
     }
 }
