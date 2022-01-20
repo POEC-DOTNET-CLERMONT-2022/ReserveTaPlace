@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ReserveTaPlace.Models.ConsoleModels
+namespace ReserveTaPlace.Models.CModels
 {
     public class Question
     {

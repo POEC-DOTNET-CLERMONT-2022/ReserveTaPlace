@@ -2,6 +2,8 @@
 using ReserveTaPlace.Data.Functions;
 using ReserveTaPlace.Data.Interfaces;
 using ReserveTaPlace.DTOS;
+using System.Net.Http.Headers;
+using System.Text;
 
 namespace ReserveTaPlace.Logic
 {
@@ -27,25 +29,20 @@ namespace ReserveTaPlace.Logic
             return movies;
         }
 
-        public async Task<MovieDto> Add(MovieDto movieDto)
+        public async Task Add(MovieDto movieDto)
         {
-            var movie = new MovieDto();
             var request = new HttpRequestMessage(HttpMethod.Post, "https://localhost:7091/api/movie");
-            request.Headers.Add("Accept", "application/json");
-            var test = JsonConvert.SerializeObject(movieDto);
-            request.Content = new StringContent(JsonConvert.SerializeObject(movieDto));
+            //request.Headers.Add("Accept", "application/json");
+            var jsonMovieDto = JsonConvert.SerializeObject(movieDto);
+            request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            request.Content = new StringContent(jsonMovieDto, Encoding.UTF8, "application/json");
+            request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             var client = new HttpClient();
-            ;
             using (var response = await client.SendAsync(request))
             {
                 response.EnsureSuccessStatusCode();
-                if (response.IsSuccessStatusCode)
-                {
-                    var jsonString = await response.Content.ReadAsStringAsync();
-                    movie = JsonConvert.DeserializeObject<MovieDto>(jsonString);
-                }
+
             }
-            return movie;
         }
     }
 }

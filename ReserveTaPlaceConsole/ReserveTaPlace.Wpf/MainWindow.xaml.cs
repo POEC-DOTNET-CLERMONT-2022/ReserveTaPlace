@@ -10,7 +10,7 @@ namespace ReserveTaPlace.Wpf
     public partial class MainWindow : Window
     {
         private IGenericLogic<User> _userLogic = new GenericLogic<User>();
-        private MovieLogic _movieLogic;
+        private IMovieLogic _movieLogic;
         public MainWindow()
         {
             _userLogic = ((App)Application.Current).UserLogic;
@@ -35,7 +35,6 @@ namespace ReserveTaPlace.Wpf
         {
             var movieWindow = new MovieWindow();
             movieWindow.Show();
-            //var listMovie3 = await _movieLogic.GetAll();
         }
 
     }

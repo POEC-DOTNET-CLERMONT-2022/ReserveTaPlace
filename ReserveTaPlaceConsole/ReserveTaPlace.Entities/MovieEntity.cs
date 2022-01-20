@@ -16,14 +16,18 @@ namespace ReserveTaPlace.Entities
 
         [Key]
         public Guid Id { get; set; }
-        public string ImdbID { get; set; }
         public string Title { get; set; }
+        public string Released { get; set; }
+        public string Runtime { get; set; }
+        public string Genre { get; set; }
+        public string Director { get; set; }
+        public string Actors { get; set; }
         public string Plot { get; set; }
+        public string ImdbId { get; set; }
+        public string Poster { get; set; }
+        public string Country { get; set; }
         public string? CastStartDate { get; set; }
         public string? CastEndDate { get; set; }
-        public string ReleaseDate { get; set; }
-        public string Runtime { get; set; }
-
         [Column(TypeName = "bit")]
         public bool IsMovieOnDisplay { get; set; }
 

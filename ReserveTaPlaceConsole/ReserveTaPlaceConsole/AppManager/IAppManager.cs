@@ -1,4 +1,4 @@
-﻿using ReserveTaPlace.Models.ConsoleModels;
+﻿using ReserveTaPlace.Models.CModels;
 
 namespace ReserveTaPlace.AppManager
 {

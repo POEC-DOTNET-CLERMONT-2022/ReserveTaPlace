@@ -29,6 +29,7 @@ namespace ReserveTaPlace.Models
         }
         public Movie(int idc,string title)
         {
+            _idC = idc;
             _title = title;
         }
         [JsonConstructor]

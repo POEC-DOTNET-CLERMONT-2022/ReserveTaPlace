@@ -14,7 +14,7 @@ namespace ReserveTaPlace.Wpf
     public partial class App : Application
     {
         public IGenericLogic<User> UserLogic;
-        public MovieLogic MovieLogic;
+        public IMovieLogic MovieLogic;
         public IMapper Mapper;
         public IMovieProvider MoviProvider;
         public App()

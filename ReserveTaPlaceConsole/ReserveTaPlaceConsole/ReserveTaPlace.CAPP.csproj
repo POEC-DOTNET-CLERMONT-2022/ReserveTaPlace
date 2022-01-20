@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ReserveTaPlace.Logic\ReserveTaPlace.Logic.csproj" />
     <ProjectReference Include="..\ReserveTaPlace.Models\ReserveTaPlace.Models.csproj" />
     <ProjectReference Include="..\ResrveTaPlace.Extensions\ReserveTaPlace.Extensions.csproj" />

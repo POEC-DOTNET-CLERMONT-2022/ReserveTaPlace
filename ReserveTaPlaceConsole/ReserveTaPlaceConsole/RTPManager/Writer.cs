@@ -7,7 +7,7 @@ namespace ReserveTaPlaceConsole.RTPManager
     {
         public void DisplayMovie(Movie movie)
         {
-            Console.WriteLine($"ID : {movie.Id} Titre : {movie.Title}");
+            Console.WriteLine($"ID : {movie.IdC} Titre : {movie.Title}");
         }
 
         public void DisplayMovies(IEnumerable<Movie> movies)

@@ -15,7 +15,7 @@ namespace ReserveTaPlace.Wpf
     /// </summary>
     public partial class MovieWindow : Window
     {
-        private MovieLogic MovieLogic;
+        private IMovieLogic _movieLogic;
         private readonly IMapper _mapper;
         private ListMovies _listMovie;
         private IMovieProvider _movieProvider;
@@ -23,7 +23,7 @@ namespace ReserveTaPlace.Wpf
         {
             _listMovie = new ListMovies();
             _mapper = ((App)Application.Current).Mapper;
-            MovieLogic = ((App)Application.Current).MovieLogic;
+            _movieLogic = ((App)Application.Current).MovieLogic;
             InitializeComponent();
             LoadMovies();
             DataContext = _listMovie;
@@ -32,7 +32,7 @@ namespace ReserveTaPlace.Wpf
         }
         public async void LoadMovies()
         {
-            var movies = await MovieLogic.GetAll();
+            var movies = await _movieLogic.GetAll();
             var moviesModel = _mapper.Map<IEnumerable<Movie>>(movies);
             _listMovie.Movies = new ObservableCollection<Movie>(moviesModel);
         }
@@ -41,13 +41,14 @@ namespace ReserveTaPlace.Wpf
         {
             var movieName = TBMovieToAddName.Text;
             var movieYear = TBMovieToAddYear.Text;
-            var movies = await _movieProvider.GetMovie(movieName, movieYear);
-            if (movies.Count>0)
+            var moviesDto = await _movieProvider.GetMovie(movieName, movieYear);
+            List<MovieDto> movies = await _movieProvider.GetMovie(movieName, movieYear);
+            if (moviesDto.Count>0)
             {
-                var moviesModel = _mapper.Map<List<Movie>>(movies);
+                var moviesModel = _mapper.Map<List<Movie>>(moviesDto);
                 _listMovie.Movies.Add(moviesModel[0]);
-                var moviesDto = _mapper.Map<List<MovieDto>>(movies);
-                await MovieLogic.Add(moviesDto[0]);
+                //var moviesDto = _mapper.Map<List<MovieDto>>(movies);
+                await _movieLogic.Add(moviesDto[0]);
             }
         }
 

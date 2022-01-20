@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using ReserveTaPlace.Data.Functions;
 using ReserveTaPlace.Data.Interfaces;
 using ReserveTaPlace.DTOS;
@@ -45,7 +46,23 @@ namespace ReserveTaPlace.API.Controllers
         [HttpPost]
         public async Task<ActionResult> Add([FromBody] MovieDto movieDto)
         {
+            //var movieDto= JsonConvert.DeserializeObject(jsonMovieDto);
             var movieEntity = _mapper.Map<MovieEntity>(movieDto);
+            //var movieEntity = new MovieEntity()
+            //{
+            //    Actors = movieDto.Actors,
+            //    Country = movieDto.Country,
+            //    Director=movieDto.Director,
+            //    Id=Guid.NewGuid(),
+            //    IsMovieOnDisplay=false,
+            //    Plot=movieDto.Plot,
+            //    Poster = movieDto.Poster,
+            //    Released=movieDto.Released,
+            //    Title=movieDto.Title,
+            //    Runtime=movieDto.Runtime,
+            //    Genre=movieDto.Genre,
+            //    ImdbId=movieDto.ImdbId
+            //};
             var movieDtoResult = await _movie.Add(movieEntity);
             return Ok(movieDtoResult);
         }

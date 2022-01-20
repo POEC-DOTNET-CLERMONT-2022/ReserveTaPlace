@@ -1,4 +1,4 @@
-﻿namespace ReserveTaPlace.Models.ConsoleModels
+﻿namespace ReserveTaPlace.Models.CModels
 {
     public enum QuestionType
     {

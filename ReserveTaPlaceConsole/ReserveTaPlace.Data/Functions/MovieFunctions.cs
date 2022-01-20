@@ -23,7 +23,7 @@ namespace ReserveTaPlace.Data.Functions
             using (var context = new ReserveTaPlaceContext(_connectionString))
             {
                 await context.Movies.AddAsync(movieEntity);
-                await context.SaveChangesAsync();
+                var result= await context.SaveChangesAsync();
             }
             return movieEntity;
         }
@@ -42,7 +42,7 @@ namespace ReserveTaPlace.Data.Functions
 
         public async Task<IEnumerable<MovieEntity>> GetAll()
         {
-            using (var context = new ReserveTaPlaceContext())
+            using (var context = new ReserveTaPlaceContext(_connectionString))
             {
                 _movies = await context.Movies.Include(m => m.Medias).ToListAsync();
             }
@@ -52,7 +52,7 @@ namespace ReserveTaPlace.Data.Functions
         public async Task<MovieEntity> GetById(Guid id)
         {
             var movie = new MovieEntity();
-            using (var context = new ReserveTaPlaceContext())
+            using (var context = new ReserveTaPlaceContext(_connectionString))
             {
                 movie = await context.Movies.FirstOrDefaultAsync(m => m.Id == id);
             }
@@ -62,7 +62,7 @@ namespace ReserveTaPlace.Data.Functions
         public async Task<MovieEntity> GetByName(string title)
         {
             var movie = new MovieEntity();
-            using (var context = new ReserveTaPlaceContext())
+            using (var context = new ReserveTaPlaceContext(_connectionString))
             {
                 movie = await context.Movies.FirstOrDefaultAsync(m => m.Title.ToLower().StartsWith(title));
             }

@@ -1,6 +1,6 @@
 ﻿using ReserveTaPlace.AppManager;
 using ReserveTaPlace.Models;
-using ReserveTaPlace.Models.ConsoleModels;
+using ReserveTaPlace.Models.CModels;
 using ReserveTaPlace.RTPManager;
 using ReserveTaPlaceConsole.RTPManager;
 
@@ -10,6 +10,7 @@ namespace ReserveTaPlaceConsole
     {
         private IAppManager _manager;
         private MovieManager _movieManager;
+
         public App()
         {
             _manager = new Manager();

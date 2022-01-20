@@ -45,7 +45,9 @@ namespace ReserveTaPlace.MovieDataBaseService
                 completeMovie = JsonConvert.DeserializeObject<MovieDto>(body);
             }
             movies.Add(completeMovie);
-            return movies;
+            List<MovieDto> moviesDto = new List<MovieDto>();
+            moviesDto.Add(completeMovie);
+            return moviesDto;
         }
         private async Task<List<MovieDto>> SearchMovie(string title, string year)
         {
@@ -82,8 +84,8 @@ namespace ReserveTaPlace.MovieDataBaseService
                         Plot=item.Plot,
                         Title=item.Title,
                         Poster=item.Poster,
-                        ReleaseDate=item.ReleaseDate,
-                        RunTime=item.Runtime
+                        Released=item.Released,
+                        Runtime=item.Runtime
                     };
                     movies.Add(movie);
                 }

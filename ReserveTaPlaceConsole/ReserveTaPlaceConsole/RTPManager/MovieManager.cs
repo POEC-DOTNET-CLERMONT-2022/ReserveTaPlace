@@ -1,9 +1,11 @@
-﻿using ReserveTaPlace.AppManager;
+﻿using AutoMapper;
+using ReserveTaPlace.AppManager;
 using ReserveTaPlace.Logic;
 using ReserveTaPlace.Models;
-using ReserveTaPlace.Models.ConsoleModels;
+using ReserveTaPlace.Models.CModels;
 using ReserveTaPlace.RTPManager.Interfaces;
 using ReserveTaPlaceConsole.RTPManager;
+
 
 namespace ReserveTaPlace.RTPManager
 {
@@ -19,13 +21,16 @@ namespace ReserveTaPlace.RTPManager
             get { return _movies; }
             set { _movies = value; }
         }
+        private IMapper Mapper;
         internal MovieManager()
         {
+            var config = new MapperConfiguration(cfg => cfg.AddMaps(typeof(ReserveTaPlaceConsole.App)));
             _writer = new Writer();
             _movies = new List<Movie>();
             _persistanceLogic = new PersistanceLogic();
             _movieProviderLogic = new MovieProviderLogic();
             _manager = new Manager();
+            Mapper = new Mapper(config);
         }
         internal void DisplayMovies()
         {
@@ -60,7 +65,7 @@ namespace ReserveTaPlace.RTPManager
                 var question3_1 = new Question($"Indiquez l'année de sortie du film : {answer3.Text}", 0, QuestionType.ReponseLibre);
                 _manager.WriteQuestion(question3_1);
                 var answer3_1 = _manager.ReadUserEntry(question3_1);
-                movies = await _movieProviderLogic.GetMovie(answer3.Text, answer3_1.Text);
+                movies = Mapper.Map<List<Movie>>(await _movieProviderLogic.GetMovie(answer3.Text, answer3_1.Text));
             } while (movies.Count == 0);
             if (movies.Count == 1)
             {
@@ -85,7 +90,7 @@ namespace ReserveTaPlace.RTPManager
             if (moviesListResult.Count == 1)
             {
                 var movie = moviesListResult[0];
-                Movies.FirstOrDefault(m => m.Id == movie.Id).IsMovieOnDisplay = true;
+                Movies.FirstOrDefault(m => m.IdC == movie.IdC).IsMovieOnDisplay = true;
                 await _persistanceLogic.SaveMovies(Movies);
                 Console.WriteLine($"Le film {movie.Title} est à l'affiche.");
                 DisplayOnDisplayMovies();

@@ -6,6 +6,6 @@ namespace ReserveTaPlace.Logic
     {
         Task<IEnumerable<MovieDto>> GetAll();
 
-        Task<MovieDto> Add(MovieDto movieDto);
+        Task Add(MovieDto movieDto);
     }
 }
