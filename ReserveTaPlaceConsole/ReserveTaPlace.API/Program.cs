@@ -9,6 +9,10 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
+using (var scope = app.Services.CreateScope())
+{
+   //TODO Or Not
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
