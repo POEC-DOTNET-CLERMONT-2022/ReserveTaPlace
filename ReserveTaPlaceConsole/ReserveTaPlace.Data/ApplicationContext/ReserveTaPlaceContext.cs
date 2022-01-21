@@ -6,14 +6,9 @@ namespace ReserveTaPlace.Data.ApplicationContext
 {
     public class ReserveTaPlaceContext : DbContext
     {
-        private string _connectionString { get; }
-        public ReserveTaPlaceContext()
+        public ReserveTaPlaceContext(DbContextOptions options) : base(options)
         {
 
-        }
-        public ReserveTaPlaceContext(string connectionString)
-        {
-            _connectionString = connectionString;
         }
         public virtual DbSet<GenericEntity> Generics { get; set; }
         public virtual DbSet<AddressEntity> Address { get; set; }
@@ -37,15 +32,11 @@ namespace ReserveTaPlace.Data.ApplicationContext
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            //"Server = (LocalDb)\\MSSQLLocalDB; Database = ReserveTaPlace; Trusted_Connection = True"
-            //optionsBuilder.UseSqlServer("Server = .; Database = ReserveTaPlace; Trusted_Connection = True");
-            optionsBuilder.UseSqlServer(_connectionString);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
         }
 
         public override DbSet<TEntity> Set<TEntity>()
@@ -53,7 +44,6 @@ namespace ReserveTaPlace.Data.ApplicationContext
             ChangeTracker.LazyLoadingEnabled = false;
             ChangeTracker.AutoDetectChangesEnabled = false;
             ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
-
             return base.Set<TEntity>();
         }
     }

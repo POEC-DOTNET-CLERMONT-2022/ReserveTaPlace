@@ -14,14 +14,11 @@ namespace ReserveTaPlace.API.Controllers
     [ApiController]
     public class MovieController : ControllerBase
     {
-        //private IGenericRepo<MovieEntity> _movie;
-        private IMovie _movie;
+        private IGenericRepo<MovieEntity> _movie;
         private IMapper _mapper;
-        private AppConfig _appConfig;
-        public MovieController(IMapper mapper, IConfiguration config)
+        public MovieController(IMapper mapper, IGenericRepo<MovieEntity> movie)
         {
-            _appConfig = new AppConfig(config);
-            _movie = new MovieFunctions(_appConfig.ConnectionString);
+            _movie = movie;
             _mapper = mapper;
         }
         // GET: MovieController/GetAll
@@ -29,7 +26,7 @@ namespace ReserveTaPlace.API.Controllers
         public async Task<ActionResult> GetAll()
         {
             var movies = await _movie.GetAll();
-            var moviesDto = _mapper.Map<List<MovieDto>>(movies);
+            var moviesDto = _mapper.Map<IEnumerable<MovieDto>>(movies);
             return Ok(moviesDto);
         }
 

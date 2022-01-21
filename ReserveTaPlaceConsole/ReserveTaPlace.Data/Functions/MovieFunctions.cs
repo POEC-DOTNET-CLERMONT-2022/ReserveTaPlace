@@ -11,19 +11,19 @@ namespace ReserveTaPlace.Data.Functions
     public class MovieFunctions : IMovie
     {
         private IEnumerable<MovieEntity> _movies;
-        private string _connectionString;
-        public MovieFunctions(string connectionString)
+        private DbContext _dbContext;
+        public MovieFunctions(DbContext context)
         {
-            _connectionString = connectionString;
+            _dbContext = context;
             _movies= new List<MovieEntity>();
         }
 
         public async Task<MovieEntity> Add(MovieEntity movieEntity)
         {
-            using (var context = new ReserveTaPlaceContext(_connectionString))
+            using (_dbContext)
             {
-                await context.Movies.AddAsync(movieEntity);
-                var result= await context.SaveChangesAsync();
+                await _dbContext.Set<MovieEntity>().AddAsync(movieEntity);
+                var result= await _dbContext.SaveChangesAsync();
             }
             return movieEntity;
         }
@@ -31,41 +31,32 @@ namespace ReserveTaPlace.Data.Functions
         public async Task<bool> DeleteById(Guid id)
         {
             int result = 0;
-            using (var context = new ReserveTaPlaceContext(_connectionString))
+            using (_dbContext)
             {
-                var entity = await context.Movies.FirstOrDefaultAsync(u => u.Id == id);
-                context.Movies.Remove(entity);
-                result = await context.SaveChangesAsync();
+                var entity = await _dbContext.Set<MovieEntity>().FirstOrDefaultAsync(u => u.Id == id);
+                _dbContext.Set<MovieEntity>().Remove(entity);
+                result = await _dbContext.SaveChangesAsync();
             };
             return result == 1;
         }
 
         public async Task<IEnumerable<MovieEntity>> GetAll()
         {
-            using (var context = new ReserveTaPlaceContext(_connectionString))
-            {
-                _movies = await context.Movies.Include(m => m.Medias).ToListAsync();
-            }
+            _movies = await _dbContext.Set<MovieEntity>().Include(m => m.Medias).ToListAsync();
             return _movies;
         }
 
         public async Task<MovieEntity> GetById(Guid id)
         {
             var movie = new MovieEntity();
-            using (var context = new ReserveTaPlaceContext(_connectionString))
-            {
-                movie = await context.Movies.FirstOrDefaultAsync(m => m.Id == id);
-            }
+            movie = await _dbContext.Set<MovieEntity>().FirstOrDefaultAsync(m => m.Id == id);
             return movie;
         }
 
         public async Task<MovieEntity> GetByName(string title)
         {
             var movie = new MovieEntity();
-            using (var context = new ReserveTaPlaceContext(_connectionString))
-            {
-                movie = await context.Movies.FirstOrDefaultAsync(m => m.Title.ToLower().StartsWith(title));
-            }
+            movie = await _dbContext.Set<MovieEntity>().FirstOrDefaultAsync(m => m.Title.ToLower().StartsWith(title));
             return movie;
         }
     }

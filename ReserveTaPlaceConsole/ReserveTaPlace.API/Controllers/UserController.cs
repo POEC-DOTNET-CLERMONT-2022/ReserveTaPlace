@@ -12,15 +12,13 @@ namespace ReserveTaPlace.API.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private IUser _users;
+        private IGenericRepo<UserEntity> _users;
 
         private IMapper _mapper;
-        private AppConfig _appConfig;
 
-        public UserController(IMapper mapper, IConfiguration config)
+        public UserController(IMapper mapper, IGenericRepo<UserEntity> user)
         {
-            _appConfig = new AppConfig(config);
-            _users = new UserFunctions(_appConfig.ConnectionString);
+            _users = user;
             _mapper = mapper;
         }
         // GET: api/<UserController>
@@ -28,7 +26,7 @@ namespace ReserveTaPlace.API.Controllers
         public async Task<ActionResult> GetAll()
         {
             var users = await _users.GetAll();
-            var usersDto = _mapper.Map<List<UserEntity>>(users);
+            var usersDto = _mapper.Map<IEnumerable<UserEntity>>(users);
             return Ok(usersDto);
         }
        

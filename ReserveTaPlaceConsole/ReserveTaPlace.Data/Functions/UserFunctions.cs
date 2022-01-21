@@ -12,20 +12,19 @@ namespace ReserveTaPlace.Data.Functions
 {
     public class UserFunctions : IUser
     {
+        private DbContext _dbContext;
         private IEnumerable<UserEntity> _users;
-        private string _connectionString;
-        public UserFunctions(string connectionString)
+        public UserFunctions(DbContext context)
         {
-            _connectionString = connectionString;
+            _dbContext = context;
             _users = new List<UserEntity>();
         }
 
         public async Task<IEnumerable<UserEntity>> GetAll()
         {
-            using (var context = new ReserveTaPlaceContext(_connectionString))
-            {
-                _users = await context.Users.ToListAsync();
-            }
+
+                _users = await _dbContext.Set<UserEntity>().ToListAsync();
+
             return _users;
         }
     }

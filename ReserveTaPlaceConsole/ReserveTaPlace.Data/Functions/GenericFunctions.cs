@@ -8,24 +8,29 @@ using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Data.Functions
 {
-    public class GenericFunctions<T> : IGenericRepo<T> where T : class 
+    public class GenericFunctions<T> : IGenericRepo<T> where T : class, new()
     {
-        private IEnumerable<T> _listEntities;
-        private string _connectionString;
-        public GenericFunctions(string connectionString)
+        private DbContext _context;
+        public GenericFunctions(DbContext context)
         {
-            _connectionString = connectionString;
-            _listEntities = new List<T>();
+            _context = context;
+        }
+
+        public async Task<bool> Add(T entity)
+        {
+            await _context.Set<T>().AddAsync(entity);
+            var result = await _context.SaveChangesAsync();
+            return result == 1;
         }
 
         public async Task<IEnumerable<T>> GetAll()
         {
-            using (var context = new ReserveTaPlaceContext(_connectionString))
-            {
-                var test = context.Set<T>();
-                _listEntities = await context.Set<T>().ToListAsync();
-            }
-            return _listEntities;
+            return  await _context.Set<T>().ToListAsync();
+        }
+
+        public async Task<T> GetById(Guid id)
+        {
+            return await _context.Set<T>().FindAsync(id);
         }
     }
 }
