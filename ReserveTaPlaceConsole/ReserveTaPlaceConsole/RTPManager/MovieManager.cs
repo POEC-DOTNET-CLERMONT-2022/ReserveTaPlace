@@ -12,7 +12,7 @@ namespace ReserveTaPlace.RTPManager
     public class MovieManager
     {
         private PersistanceLogic _persistanceLogic;
-        private MovieProviderLogic _movieProviderLogic;
+        private IMovieProviderLogic _movieProviderLogic;
         private IAppManager _manager;
         private IWriter _writer { get; }
         private IEnumerable<Movie> _movies;
@@ -142,12 +142,12 @@ namespace ReserveTaPlace.RTPManager
                 var answer4 = _manager.ReadUserEntry(question4);
                 moviesListResult = Search(answer4.Text);
                 movieTitle = answer4.Text;
-                DisplayMovies();
             } while (moviesListResult.Count == 0);
             if (moviesListResult.Count == 1)
             {
-                var moviesModifyed = Movies.Where(e => e.Title.ToLower() != movieTitle.ToLower());
+                var moviesModifyed = Movies.Where(e => e.Title.ToLower() != moviesListResult[0].Title.ToLower());
                 Movies = moviesModifyed;
+                Console.WriteLine($"Le film {moviesListResult[0].Title} a été supprimé !!");
             }
             else
             {

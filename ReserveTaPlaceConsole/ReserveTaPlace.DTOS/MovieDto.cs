@@ -6,8 +6,6 @@ namespace ReserveTaPlace.DTOS
     {
         [JsonProperty(PropertyName = "Title")]
         public string Title { get; set; }
-        [JsonProperty(PropertyName = "Year")]
-        public string Year { get; set; }
         [JsonProperty(PropertyName = "Released")]
         public string Released { get; set; }
         [JsonProperty(PropertyName = "Runtime")]
@@ -18,7 +16,6 @@ namespace ReserveTaPlace.DTOS
         public string Director { get; set; }
         [JsonProperty(PropertyName = "Actors")]
         public string Actors { get; set; }
-
         [JsonProperty(PropertyName = "Plot")]
         public string Plot { get; set; }
         [JsonProperty(PropertyName = "ImdbId")]

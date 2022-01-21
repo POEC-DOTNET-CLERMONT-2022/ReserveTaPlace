@@ -4,7 +4,7 @@ using ReserveTaPlace.MovieDataBaseService;
 namespace ReserveTaPlace.Logic
 {
 
-    public class MovieProviderLogic
+    public class MovieProviderLogic : IMovieProviderLogic
     {
         private readonly IMovieProvider _movieProvider;
         public MovieProviderLogic()
