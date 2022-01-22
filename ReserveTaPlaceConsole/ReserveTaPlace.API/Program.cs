@@ -14,7 +14,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped(typeof(IGenericRepo<>), typeof(GenericFunctions<>));
 builder.Services.AddScoped<DbContext, ReserveTaPlaceContext>();
-builder.Services.AddDbContext<ReserveTaPlaceContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("RTPSQLServer")));//RTPLocalDb
+builder.Services.AddDbContext<ReserveTaPlaceContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("RTPLocalDb")));
 
 var app = builder.Build();
 using (var scope = app.Services.CreateScope())

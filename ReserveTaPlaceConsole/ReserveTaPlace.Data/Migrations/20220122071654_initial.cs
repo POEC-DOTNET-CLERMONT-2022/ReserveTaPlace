@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ReserveTaPlace.Data.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -52,13 +52,18 @@ namespace ReserveTaPlace.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ImdbID = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Released = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Runtime = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Genre = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Director = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Actors = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Plot = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImdbId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Poster = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Country = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CastStartDate = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CastEndDate = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ReleaseDate = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Runtime = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsMovieOnDisplay = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -316,7 +321,7 @@ namespace ReserveTaPlace.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RoleUser", x => new { x.RolesId, x.UsersId });
+                    table.PrimaryKey("PK_RoleEntityUserEntity", x => new { x.RolesId, x.UsersId });
                     table.ForeignKey(
                         name: "FK_RoleUser_Role_RolesId",
                         column: x => x.RolesId,

@@ -12,8 +12,8 @@ using ReserveTaPlace.Data.ApplicationContext;
 namespace ReserveTaPlace.Data.Migrations
 {
     [DbContext(typeof(ReserveTaPlaceContext))]
-    [Migration("20220120105729_UpdateUserPasswordType")]
-    partial class UpdateUserPasswordType
+    [Migration("20220122071654_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -8,7 +8,8 @@ namespace ReserveTaPlace.Data.ApplicationContext
     {
         public ReserveTaPlaceContext(DbContextOptions options) : base(options)
         {
-
+            //Database.EnsureDeleted();
+            //Database.EnsureCreated();
         }
         public virtual DbSet<GenericEntity> Generics { get; set; }
         public virtual DbSet<AddressEntity> Address { get; set; }
