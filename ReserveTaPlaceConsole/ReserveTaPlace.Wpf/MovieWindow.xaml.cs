@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ReserveTaPlace.DTOS;
 using ReserveTaPlace.Logic;
+using ReserveTaPlace.Logic.DataManager;
 using ReserveTaPlace.Models;
 using ReserveTaPlace.Models.WPFModels;
 using ReserveTaPlace.MovieDataBaseService;
@@ -19,6 +20,8 @@ namespace ReserveTaPlace.Wpf
         private readonly IMapper _mapper;
         private ListMovies _listMovie;
         private IMovieProvider _movieProvider;
+        private readonly IDataManager<Movie, MovieDto> _movieDataManager;
+    
         public MovieWindow()
         {
             _listMovie = new ListMovies();
@@ -27,11 +30,12 @@ namespace ReserveTaPlace.Wpf
             InitializeComponent();
             DataContext = _listMovie;
             _movieProvider = ((App)Application.Current).MoviProvider;
+            _movieDataManager = ((App)Application.Current).MovieDataManager;
 
         }
         public async void LoadMovies()
         {
-            var movies = await _movieLogic.GetAll();
+            var movies = await _movieDataManager.GetAll();
             var moviesModel = _mapper.Map<IEnumerable<Movie>>(movies);
             _listMovie.Movies = new ObservableCollection<Movie>(moviesModel);
         }
@@ -46,7 +50,7 @@ namespace ReserveTaPlace.Wpf
             {
                 var moviesModel = _mapper.Map<List<Movie>>(moviesDto);
                 _listMovie.Movies.Add(moviesModel[0]);
-                await _movieLogic.Add(moviesDto[0]);
+                await _movieDataManager.Add(moviesModel[0]);
             }
         }
 
