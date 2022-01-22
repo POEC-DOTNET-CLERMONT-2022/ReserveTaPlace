@@ -8,13 +8,11 @@ namespace ReserveTaPlace.Entities
     {
         public FormatEntity()
         {
-            Rooms = new HashSet<RoomEntity>();
         }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public virtual ICollection<RoomEntity> Rooms { get; set; }
     }
 }

@@ -9,10 +9,16 @@ namespace ReserveTaPlace.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
-        public virtual UserEntity User { get; set; }
-        public virtual SeatEntity Seat { get; set; }
-        public virtual OrderEntity Order { get; set; }
-        public virtual SessionEntity Session { get; set; }
+        public Guid? SeatId { get; set; }
+        public Guid? RoomId { get; set; }
+
+        //public Guid SessionId { get; set; }
+
+        [ForeignKey(nameof(SeatId))]
+        public virtual SeatEntity? Seat { get; set; }
+        [ForeignKey(nameof(RoomId))]
+        public virtual RoomEntity? Room { get; set; }
+
 
     }
 }

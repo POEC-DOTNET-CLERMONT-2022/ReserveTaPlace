@@ -10,7 +10,6 @@ namespace ReserveTaPlace.Entities
         {
             Genres = new HashSet<GenreEntity>();
             Medias = new HashSet<MediaEntity>();
-            Rooms = new HashSet<RoomEntity>();
             Origins = new HashSet<OriginEntity>();
         }
 
@@ -31,11 +30,8 @@ namespace ReserveTaPlace.Entities
         [Column(TypeName = "bit")]
         public bool IsMovieOnDisplay { get; set; }
 
-        public virtual ICollection<GenreEntity> Genres { get; set; }
-        public virtual ICollection<MediaEntity> Medias { get; set; }
-        public virtual ICollection<RoomEntity> Rooms { get; set; }
-        public virtual ICollection<OriginEntity> Origins { get; set; }
-
-
+        public virtual ICollection<GenreEntity>? Genres { get; set; }
+        public virtual ICollection<MediaEntity>? Medias { get; set; }
+        public virtual ICollection<OriginEntity>? Origins { get; set; }
     }
 }

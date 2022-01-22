@@ -8,14 +8,14 @@ namespace ReserveTaPlace.Entities
     {
         public SessionEntity()
         {
-            SessionHours = new HashSet<SessionHourEntity>();
         }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
-        public virtual RoomEntity Room { get; set; }
-        public virtual ICollection<SessionHourEntity> SessionHours { get; set; }
+        public Guid? SessionHourId { get; set; }
+        [ForeignKey(nameof(SessionHourId))]
+        public virtual SessionHourEntity? SessionHour { get; set; }
 
     }
 }

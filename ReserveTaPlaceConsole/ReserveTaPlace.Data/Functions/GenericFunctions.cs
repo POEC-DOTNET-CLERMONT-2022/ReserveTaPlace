@@ -20,7 +20,7 @@ namespace ReserveTaPlace.Data.Functions
         {
             await _context.Set<T>().AddAsync(entity);
             var result = await _context.SaveChangesAsync();
-            return result == 1;
+            return result !=0;
         }
 
         public async Task<IEnumerable<T>> GetAll()

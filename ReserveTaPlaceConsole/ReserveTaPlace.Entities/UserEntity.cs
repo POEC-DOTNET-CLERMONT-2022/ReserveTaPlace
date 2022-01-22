@@ -1,5 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Entities
 {
@@ -19,7 +24,6 @@ namespace ReserveTaPlace.Entities
         [Column(Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
-        public Guid? AddressId { get; set; }
 
         [Column("FirstName", TypeName = "nvarchar(70)", Order = 2)]
         public string FirstName { get; set; }
@@ -33,12 +37,13 @@ namespace ReserveTaPlace.Entities
         [DataType(DataType.Password)]
         [Column("Password", TypeName = "nvarchar(50)", Order = 5)]
         public string Password { get; set; }
+        [InverseProperty("User")]
         public AddressEntity? Address { get; set; }
-        public virtual ICollection<OrderEntity> Orders { get; set; }
-        public virtual ICollection<DiscountEntity> Discounts { get; set; }
-        public virtual ICollection<TheaterEntity> Theaters { get; set; }
-        public virtual ICollection<TicketEntity> Tickets { get; set; }
-        public virtual ICollection<RoleEntity> Roles { get; set; }
+        public virtual ICollection<OrderEntity>? Orders { get; set; }
+        public virtual ICollection<DiscountEntity>? Discounts { get; set; }
+        public virtual ICollection<TheaterEntity>? Theaters { get; set; }
+        public virtual ICollection<TicketEntity>? Tickets { get; set; }
+        public virtual ICollection<RoleEntity>? Roles { get; set; }
 
 
 

@@ -109,10 +109,24 @@ namespace ReserveTaPlace.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "SessionHour",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Start = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    End = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SessionHour", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Theater",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    AddressId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -128,8 +142,7 @@ namespace ReserveTaPlace.Data.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(70)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(70)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(255)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(50)", nullable: false),
-                    AddressId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    Password = table.Column<string>(type: "nvarchar(50)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -145,19 +158,19 @@ namespace ReserveTaPlace.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_GenreMovie", x => new { x.GenresId, x.MoviesId });
+                    table.PrimaryKey("PK_GenreMoviey", x => new { x.GenresId, x.MoviesId });
                     table.ForeignKey(
                         name: "FK_GenreMovie_Genre_GenresId",
                         column: x => x.GenresId,
                         principalTable: "Genre",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_GenreMovie_Movie_MoviesId",
                         column: x => x.MoviesId,
                         principalTable: "Movie",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -165,9 +178,9 @@ namespace ReserveTaPlace.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    MovieId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Link = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MovieId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    Link = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -176,8 +189,7 @@ namespace ReserveTaPlace.Data.Migrations
                         name: "FK_Media_Movie_MovieId",
                         column: x => x.MovieId,
                         principalTable: "Movie",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -195,13 +207,13 @@ namespace ReserveTaPlace.Data.Migrations
                         column: x => x.MoviesId,
                         principalTable: "Movie",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_MovieOrigin_Origin_OriginsId",
                         column: x => x.OriginsId,
                         principalTable: "Origin",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -211,9 +223,9 @@ namespace ReserveTaPlace.Data.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     MovieId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     FormatId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    TheaterId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Number = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TheaterId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    Number = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -232,8 +244,7 @@ namespace ReserveTaPlace.Data.Migrations
                         name: "FK_Room_Theater_TheaterId",
                         column: x => x.TheaterId,
                         principalTable: "Theater",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -271,26 +282,24 @@ namespace ReserveTaPlace.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DicountTypeId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Number = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EndValidityDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    DiscountTypeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    EndValidityDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Discount", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Discount_DiscountType_DiscountTypeId",
-                        column: x => x.DiscountTypeId,
+                        name: "FK_Discount_DiscountType_DicountTypeId",
+                        column: x => x.DicountTypeId,
                         principalTable: "DiscountType",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Discount_User_UserId",
                         column: x => x.UserId,
                         principalTable: "User",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -298,7 +307,7 @@ namespace ReserveTaPlace.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -308,8 +317,7 @@ namespace ReserveTaPlace.Data.Migrations
                         name: "FK_Order_User_UserId",
                         column: x => x.UserId,
                         principalTable: "User",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -321,19 +329,19 @@ namespace ReserveTaPlace.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RoleEntityUserEntity", x => new { x.RolesId, x.UsersId });
+                    table.PrimaryKey("PK_RoleUser", x => new { x.RolesId, x.UsersId });
                     table.ForeignKey(
                         name: "FK_RoleUser_Role_RolesId",
                         column: x => x.RolesId,
                         principalTable: "Role",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_RoleUser_User_UsersId",
                         column: x => x.UsersId,
                         principalTable: "User",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -351,13 +359,13 @@ namespace ReserveTaPlace.Data.Migrations
                         column: x => x.TheatersId,
                         principalTable: "Theater",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_TheaterUser_User_UsersId",
                         column: x => x.UsersId,
                         principalTable: "User",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -369,19 +377,19 @@ namespace ReserveTaPlace.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RoomSeat", x => new { x.RoomsId, x.SeatsId });
+                    table.PrimaryKey("PK_RoomEntitySeatEntity", x => new { x.RoomsId, x.SeatsId });
                     table.ForeignKey(
                         name: "FK_RoomSeat_Room_RoomsId",
                         column: x => x.RoomsId,
                         principalTable: "Room",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_RoomSeat_Seat_SeatsId",
                         column: x => x.SeatsId,
                         principalTable: "Seat",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -389,37 +397,22 @@ namespace ReserveTaPlace.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    RoomId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    SessionHourId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    RoomEntityId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Session", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Session_Room_RoomId",
-                        column: x => x.RoomId,
+                        name: "FK_Session_Room_RoomEntityId",
+                        column: x => x.RoomEntityId,
                         principalTable: "Room",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "SessionHour",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Start = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    End = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    SessionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SessionHour", x => x.Id);
+                        principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_SessionHour_Session_SessionId",
-                        column: x => x.SessionId,
-                        principalTable: "Session",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        name: "FK_Session_SessionHour_SessionHourId",
+                        column: x => x.SessionHourId,
+                        principalTable: "SessionHour",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -427,38 +420,34 @@ namespace ReserveTaPlace.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    SeatId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    OrderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    SessionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    SeatId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    RoomId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    OrderEntityId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    UserEntityId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Ticket", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Ticket_Order_OrderId",
-                        column: x => x.OrderId,
+                        name: "FK_Ticket_Order_OrderEntityId",
+                        column: x => x.OrderEntityId,
                         principalTable: "Order",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Ticket_Room_RoomId",
+                        column: x => x.RoomId,
+                        principalTable: "Room",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Ticket_Seat_SeatId",
                         column: x => x.SeatId,
                         principalTable: "Seat",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Ticket_Session_SessionId",
-                        column: x => x.SessionId,
-                        principalTable: "Session",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                    table.ForeignKey(
-                        name: "FK_Ticket_User_UserId",
-                        column: x => x.UserId,
+                        name: "FK_Ticket_User_UserEntityId",
+                        column: x => x.UserEntityId,
                         principalTable: "User",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
@@ -476,9 +465,9 @@ namespace ReserveTaPlace.Data.Migrations
                 filter: "[UserId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Discount_DiscountTypeId",
+                name: "IX_Discount_DicountTypeId",
                 table: "Discount",
-                column: "DiscountTypeId");
+                column: "DicountTypeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Discount_UserId",
@@ -531,14 +520,14 @@ namespace ReserveTaPlace.Data.Migrations
                 column: "SeatsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Session_RoomId",
+                name: "IX_Session_RoomEntityId",
                 table: "Session",
-                column: "RoomId");
+                column: "RoomEntityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SessionHour_SessionId",
-                table: "SessionHour",
-                column: "SessionId");
+                name: "IX_Session_SessionHourId",
+                table: "Session",
+                column: "SessionHourId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TheaterUser_UsersId",
@@ -546,9 +535,14 @@ namespace ReserveTaPlace.Data.Migrations
                 column: "UsersId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Ticket_OrderId",
+                name: "IX_Ticket_OrderEntityId",
                 table: "Ticket",
-                column: "OrderId");
+                column: "OrderEntityId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Ticket_RoomId",
+                table: "Ticket",
+                column: "RoomId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Ticket_SeatId",
@@ -556,14 +550,9 @@ namespace ReserveTaPlace.Data.Migrations
                 column: "SeatId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Ticket_SessionId",
+                name: "IX_Ticket_UserEntityId",
                 table: "Ticket",
-                column: "SessionId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Ticket_UserId",
-                table: "Ticket",
-                column: "UserId");
+                column: "UserEntityId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -590,7 +579,7 @@ namespace ReserveTaPlace.Data.Migrations
                 name: "RoomEntitySeatEntity");
 
             migrationBuilder.DropTable(
-                name: "SessionHour");
+                name: "Session");
 
             migrationBuilder.DropTable(
                 name: "TheaterEntityUserEntity");
@@ -611,19 +600,19 @@ namespace ReserveTaPlace.Data.Migrations
                 name: "Role");
 
             migrationBuilder.DropTable(
+                name: "SessionHour");
+
+            migrationBuilder.DropTable(
                 name: "Order");
+
+            migrationBuilder.DropTable(
+                name: "Room");
 
             migrationBuilder.DropTable(
                 name: "Seat");
 
             migrationBuilder.DropTable(
-                name: "Session");
-
-            migrationBuilder.DropTable(
                 name: "User");
-
-            migrationBuilder.DropTable(
-                name: "Room");
 
             migrationBuilder.DropTable(
                 name: "Format");

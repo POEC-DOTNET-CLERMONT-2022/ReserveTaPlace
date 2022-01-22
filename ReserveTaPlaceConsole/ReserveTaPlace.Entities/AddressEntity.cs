@@ -10,6 +10,9 @@ namespace ReserveTaPlace.Entities
         [Column(Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
+        //[Required]
+        //[ForeignKey(nameof(OwnerId))]
+        //public Guid OwnerId { get; set; }
         public Guid? TheaterId { get; set; }
         public Guid? UserId { get; set; }
 
@@ -33,12 +36,9 @@ namespace ReserveTaPlace.Entities
 
         [Column("County", TypeName = "nvarchar(255)", Order = 8)]
         public string County { get; set; }
-
         [ForeignKey(nameof(TheaterId))]
-        [InverseProperty("Address")]
         public virtual TheaterEntity? Theater { set; get; }
         [ForeignKey(nameof(UserId))]
-        [InverseProperty("Address")]
         public virtual UserEntity? User { set; get; }
 
     }

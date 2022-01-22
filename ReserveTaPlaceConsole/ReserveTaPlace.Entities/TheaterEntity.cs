@@ -15,8 +15,10 @@ namespace ReserveTaPlace.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
+        public Guid? AddressId { get; set; }
         public string Name { get; set; }
-        public AddressEntity Address { get; set; }
+        [InverseProperty("Theater")]
+        public AddressEntity? Address { get; set; }
         public virtual ICollection<RoomEntity> Rooms { get; set; }
         public virtual ICollection<UserEntity> Users { get; set; }
 
