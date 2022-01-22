@@ -12,6 +12,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddHttpClient("Imdb", httpClient =>
+{
+    httpClient.BaseAddress = new Uri("https://movie-database-imdb-alternative.p.rapidapi.com/");
+    httpClient.DefaultRequestHeaders.Add(
+         "x-rapidapi-host", "movie-database-imdb-alternative.p.rapidapi.com");
+    httpClient.DefaultRequestHeaders.Add(
+        "x-rapidapi-key", builder.Configuration.GetConnectionString("IMDB"));
+});
 builder.Services.AddScoped(typeof(IGenericRepo<>), typeof(GenericFunctions<>));
 builder.Services.AddScoped<DbContext, ReserveTaPlaceContext>();
 builder.Services.AddDbContext<ReserveTaPlaceContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("RTPLocalDb")));

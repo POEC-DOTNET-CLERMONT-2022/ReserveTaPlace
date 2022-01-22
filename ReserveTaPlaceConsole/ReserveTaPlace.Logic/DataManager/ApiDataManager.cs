@@ -16,7 +16,6 @@ namespace ReserveTaPlace.Logic.DataManager
         private string ResourceUrl { get; }
 
         private Uri Uri { get; }
-
         public ApiDataManager(HttpClient client, IMapper mapper, string serverUrl, string resourceUrl)
         {
             HttpClient = client;
@@ -37,6 +36,13 @@ namespace ReserveTaPlace.Logic.DataManager
         {
             var dto = Mapper.Map<TDto>(model);
             await HttpClient.PostAsJsonAsync(Uri, dto);
+        }
+
+        public async Task<List<TModel>> GetMovie()
+        {
+             
+            var result = await HttpClient.GetFromJsonAsync<List<TDto>>(Uri);
+            return Mapper.Map<List<TModel>>(result);
         }
     }
 }

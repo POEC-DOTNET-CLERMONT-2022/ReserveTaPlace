@@ -14,6 +14,8 @@ namespace ReserveTaPlace.API.Controllers
     [ApiController]
     public class MovieController : ControllerBase
     {
+
+        private readonly IHttpClientFactory _httpClientFactory;
         private IGenericRepo<MovieEntity> _movie;
         private IMapper _mapper;
         public MovieController(IMapper mapper, IGenericRepo<MovieEntity> movie)
@@ -43,25 +45,23 @@ namespace ReserveTaPlace.API.Controllers
         [HttpPost]
         public async Task<ActionResult> Add([FromBody] MovieDto movieDto)
         {
-            //var movieDto= JsonConvert.DeserializeObject(jsonMovieDto);
             var movieEntity = _mapper.Map<MovieEntity>(movieDto);
-            //var movieEntity = new MovieEntity()
-            //{
-            //    Actors = movieDto.Actors,
-            //    Country = movieDto.Country,
-            //    Director=movieDto.Director,
-            //    Id=Guid.NewGuid(),
-            //    IsMovieOnDisplay=false,
-            //    Plot=movieDto.Plot,
-            //    Poster = movieDto.Poster,
-            //    Released=movieDto.Released,
-            //    Title=movieDto.Title,
-            //    Runtime=movieDto.Runtime,
-            //    Genre=movieDto.Genre,
-            //    ImdbId=movieDto.ImdbId
-            //};
             var movieDtoResult = await _movie.Add(movieEntity);
             return Ok(movieDtoResult);
+        }
+        //POST MovieController/Get
+       [HttpGet("GetMovie")]
+        public async Task<ActionResult> GetMovie([FromQuery] string requestParams)
+        {
+            var httpClient = _httpClientFactory.CreateClient("Imdb");
+            var moviesDto = new List<MovieDto>();
+            var moviesDtoResult = await httpClient.GetFromJsonAsync<List<MovieDto>>(requestParams);
+            if (moviesDtoResult.Count > 0)
+            {
+                moviesDto = await httpClient.GetFromJsonAsync<List<MovieDto>>($"?&r=json&i={moviesDtoResult[0].ImdbId}");
+                return Ok(moviesDto);
+            }
+            return Ok(moviesDto);
         }
     }
 }
