@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Net.Http.Headers;
 using ReserveTaPlace.Data.ApplicationContext;
 using ReserveTaPlace.Data.Functions;
 using ReserveTaPlace.Data.Interfaces;
@@ -15,10 +16,8 @@ builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddHttpClient("Imdb", httpClient =>
 {
     httpClient.BaseAddress = new Uri("https://movie-database-imdb-alternative.p.rapidapi.com/");
-    httpClient.DefaultRequestHeaders.Add(
-         "x-rapidapi-host", "movie-database-imdb-alternative.p.rapidapi.com");
-    httpClient.DefaultRequestHeaders.Add(
-        "x-rapidapi-key", builder.Configuration.GetConnectionString("IMDB"));
+    httpClient.DefaultRequestHeaders.Add("x-rapidapi-host", "movie-database-imdb-alternative.p.rapidapi.com");
+    httpClient.DefaultRequestHeaders.Add("x-rapidapi-key", builder.Configuration.GetConnectionString("IMDB").ToString());
 });
 builder.Services.AddScoped(typeof(IGenericRepo<>), typeof(GenericFunctions<>));
 builder.Services.AddScoped<DbContext, ReserveTaPlaceContext>();

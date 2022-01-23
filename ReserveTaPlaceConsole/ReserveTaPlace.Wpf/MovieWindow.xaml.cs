@@ -21,7 +21,7 @@ namespace ReserveTaPlace.Wpf
         private ListMovies _listMovie;
         private IMovieProvider _movieProvider;
         private readonly IDataManager<Movie, MovieDto> _movieDataManager;
-        private readonly IDataManager<Movie, MovieDto> _imdbDataManager;
+        private IDataManager<Movie, MovieDto> _imdbDataManager;
 
 
         public MovieWindow()
@@ -33,7 +33,6 @@ namespace ReserveTaPlace.Wpf
             DataContext = _listMovie;
             _movieProvider = ((App)Application.Current).MoviProvider;
             _movieDataManager = ((App)Application.Current).MovieDataManager;
-            _imdbDataManager = ((App)Application.Current).MovieProviderDataManager;
 
         }
         public async void LoadMovies()
@@ -47,10 +46,11 @@ namespace ReserveTaPlace.Wpf
         {
             var movieName = TBMovieToAddName.Text;
             var movieYear = TBMovieToAddYear.Text;
-            //string uriParams = $"?s={movieName}&r=json&type=movie&y={movieYear}&page=1";
-            App.Title = movieName;
-            App.Year = movieYear;
-            var test = await _imdbDataManager.GetMovie();
+            var imdbMngr = new ImdbManager(movieName, movieYear);
+            _imdbDataManager = imdbMngr.MovieProviderDataManager;
+            //TODO
+            //var test =await _imdbDataManager.GetMovie();
+            
             var moviesDto = await _movieProvider.GetMovie(movieName, movieYear);
             List<MovieDto> movies = await _movieProvider.GetMovie(movieName, movieYear);
             if (moviesDto.Count>0)

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,11 +39,13 @@ namespace ReserveTaPlace.Logic.DataManager
             await HttpClient.PostAsJsonAsync(Uri, dto);
         }
 
-        public async Task<List<TModel>> GetMovie()
+        public async Task<TDto> GetMovie()
         {
-             
-            var result = await HttpClient.GetFromJsonAsync<List<TDto>>(Uri);
-            return Mapper.Map<List<TModel>>(result);
+            var test = await HttpClient.GetAsync(Uri);
+            var dtoStrg = await HttpClient.GetStringAsync(Uri);
+            var ImdbDto = System.Text.Json.JsonSerializer.Deserialize<TDto>(dtoStrg);
+            //var result = await HttpClient.GetFromJsonAsync<TDto>(Uri);
+            return ImdbDto;
         }
     }
 }

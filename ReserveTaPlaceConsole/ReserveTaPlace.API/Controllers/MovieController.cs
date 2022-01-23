@@ -15,13 +15,14 @@ namespace ReserveTaPlace.API.Controllers
     public class MovieController : ControllerBase
     {
 
-        private readonly IHttpClientFactory _httpClientFactory;
+        private IHttpClientFactory _httpClientFactory;
         private IGenericRepo<MovieEntity> _movie;
         private IMapper _mapper;
-        public MovieController(IMapper mapper, IGenericRepo<MovieEntity> movie)
+        public MovieController(IMapper mapper, IGenericRepo<MovieEntity> movie, IHttpClientFactory HttpClientFactory)
         {
             _movie = movie;
             _mapper = mapper;
+            _httpClientFactory = HttpClientFactory;
         }
         // GET: MovieController/GetAll
         [HttpGet]
@@ -49,19 +50,31 @@ namespace ReserveTaPlace.API.Controllers
             var movieDtoResult = await _movie.Add(movieEntity);
             return Ok(movieDtoResult);
         }
-        //POST MovieController/Get
-       [HttpGet("GetMovie")]
-        public async Task<ActionResult> GetMovie([FromQuery] string requestParams)
+        [Route("ImdbMovie/{ressource}")]
+        [HttpGet]
+        public async Task<ActionResult> GetMovie(string ressource)
         {
+            //TODO refactor
             var httpClient = _httpClientFactory.CreateClient("Imdb");
             var moviesDto = new List<MovieDto>();
-            var moviesDtoResult = await httpClient.GetFromJsonAsync<List<MovieDto>>(requestParams);
-            if (moviesDtoResult.Count > 0)
+            var movieDto = new MovieDto();
+            var imdbSearch = await httpClient.GetFromJsonAsync<ImdbSearch>(ressource);
+            
+            using (var imdbSearchStrg = httpClient.GetStringAsync(ressource))
             {
-                moviesDto = await httpClient.GetFromJsonAsync<List<MovieDto>>($"?&r=json&i={moviesDtoResult[0].ImdbId}");
-                return Ok(moviesDto);
+                ImdbSearch result = JsonConvert.DeserializeObject<ImdbSearch>(imdbSearchStrg.Result);
+                moviesDto = result.ImdbMovies;
             }
-            return Ok(moviesDto);
+            if (moviesDto.Count > 0)
+            {
+                imdbSearch = await httpClient.GetFromJsonAsync<ImdbSearch>($"?&r=json&i={moviesDto[0].ImdbId}");
+                using (var imdbSearchStrg = httpClient.GetStringAsync($"?&r=json&i={moviesDto[0].ImdbId}"))
+                {
+                    movieDto = JsonConvert.DeserializeObject<MovieDto>(imdbSearchStrg.Result);
+                }
+                return Ok(movieDto);
+            }
+            return Ok(movieDto);
         }
     }
 }
