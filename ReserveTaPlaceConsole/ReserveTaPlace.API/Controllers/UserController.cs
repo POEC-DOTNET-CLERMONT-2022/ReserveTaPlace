@@ -12,12 +12,14 @@ namespace ReserveTaPlace.API.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
+        private ILogger<UserController> _logger;
         private IGenericRepo<UserEntity> _users;
 
         private IMapper _mapper;
 
-        public UserController(IMapper mapper, IGenericRepo<UserEntity> user)
+        public UserController(IMapper mapper, IGenericRepo<UserEntity> user, ILogger<UserController> logger)
         {
+            _logger = logger;
             _users = user;
             _mapper = mapper;
         }
@@ -25,9 +27,18 @@ namespace ReserveTaPlace.API.Controllers
         [HttpGet]
         public async Task<ActionResult> GetAll()
         {
-            var users = await _users.GetAll();
-            var usersDto = _mapper.Map<IEnumerable<UserEntity>>(users);
-            return Ok(usersDto);
+            try
+            {
+                var users = await _users.GetAll();
+                var usersDto = _mapper.Map<IEnumerable<UserEntity>>(users);
+                return Ok(usersDto);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e,"une erreur et survenue",e.StackTrace);
+                return StatusCode(500);
+            }
+
         }
        
     }

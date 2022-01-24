@@ -3,13 +3,14 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Logic.DataManager
 {
-    public abstract class ApiDataManager<TModel, TDto> : IDataManager<TModel, TDto> where TModel : class where TDto : class
+    public abstract class ApiDataManager<TModel, TDto> : IDataManager<TModel, TDto> where TModel : class where TDto : class , new()
     {
         private HttpClient HttpClient { get; }
         private IMapper Mapper { get; }
@@ -39,13 +40,25 @@ namespace ReserveTaPlace.Logic.DataManager
             await HttpClient.PostAsJsonAsync(Uri, dto);
         }
 
-        public async Task<TDto> GetMovie()
+        public async Task<TModel> GetMovie()
         {
+            var result = new TDto();
             var test = await HttpClient.GetAsync(Uri);
-            var dtoStrg = await HttpClient.GetStringAsync(Uri);
-            var ImdbDto = System.Text.Json.JsonSerializer.Deserialize<TDto>(dtoStrg);
             //var result = await HttpClient.GetFromJsonAsync<TDto>(Uri);
-            return ImdbDto;
+            HttpClient.DefaultRequestHeaders.Add("Accept", "*/*");
+            var request = new HttpRequestMessage() { 
+                Method= HttpMethod.Post,
+                RequestUri = Uri
+            };
+            request.Headers.Add("Accept", "*/*");
+            using (var response = await HttpClient.SendAsync(request))
+            {
+                var body = await response.Content.ReadAsStringAsync();
+                result = JsonConvert.DeserializeObject<TDto>(body);
+            }
+            //var ImdbDto = System.Text.Json.JsonSerializer.Deserialize<TDto>(dtoStrg);
+            //var ImdbDto = await HttpClient.GetFromJsonAsync<TDto>(Uri);
+            return Mapper.Map<TModel>(result);
         }
     }
 }

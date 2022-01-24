@@ -50,15 +50,15 @@ namespace ReserveTaPlace.API.Controllers
             var movieDtoResult = await _movie.Add(movieEntity);
             return Ok(movieDtoResult);
         }
-        [Route("ImdbMovie/{ressource}")]
-        [HttpGet]
-        public async Task<ActionResult> GetMovie(string ressource)
+        //[Route("ImdbMovie/{ressource}")]
+        [HttpPost("{ressource}")]
+        public async Task<ActionResult> ImdbMovie(string ressource)
         {
             //TODO refactor
             var httpClient = _httpClientFactory.CreateClient("Imdb");
             var moviesDto = new List<MovieDto>();
             var movieDto = new MovieDto();
-            var imdbSearch = await httpClient.GetFromJsonAsync<ImdbSearch>(ressource);
+            //var imdbSearch = await httpClient.GetFromJsonAsync<ImdbSearch>(ressource);
             
             using (var imdbSearchStrg = httpClient.GetStringAsync(ressource))
             {
@@ -67,10 +67,10 @@ namespace ReserveTaPlace.API.Controllers
             }
             if (moviesDto.Count > 0)
             {
-                imdbSearch = await httpClient.GetFromJsonAsync<ImdbSearch>($"?&r=json&i={moviesDto[0].ImdbId}");
+                //var imdbSearch = await httpClient.GetFromJsonAsync<ImdbSearch>($"?&r=json&i={moviesDto[0].ImdbId}");
                 using (var imdbSearchStrg = httpClient.GetStringAsync($"?&r=json&i={moviesDto[0].ImdbId}"))
                 {
-                    movieDto = JsonConvert.DeserializeObject<MovieDto>(imdbSearchStrg.Result);
+                    movieDto = System.Text.Json.JsonSerializer.Deserialize<MovieDto>(imdbSearchStrg.Result);
                 }
                 return Ok(movieDto);
             }
