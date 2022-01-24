@@ -15,6 +15,7 @@ using ReserveTaPlace.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace ReserveTaPlace.API.Tests
 {
@@ -24,7 +25,7 @@ namespace ReserveTaPlace.API.Tests
         private Mock<IGenericRepo<UserEntity>> _mockGenericRepo;
         private UserController _userController;
         private IGenericRepo<UserEntity> _userGenericRepo;
-        public IEnumerable<UserEntity> CleanUsersDb;
+        public  IEnumerable<UserEntity> Users;
         private ILogger<UserController> _logger { get; set; } = new NullLogger<UserController>();
         public IMapper Mapper;
         public Fixture Fixture { get; set; }
@@ -35,29 +36,34 @@ namespace ReserveTaPlace.API.Tests
             _mockGenericRepo = new Mock<IGenericRepo<UserEntity>>();
             config = new MapperConfiguration(cfg => cfg.AddMaps(typeof(UserController)));
             Mapper = new Mapper(config);
-            Fixture = new Fixture();
+            //var options = new DbContextOptionsBuilder().UseSqlite("Datasource=:InMemory").Options;
+            //dbContext = new InMemoryDbContext(options);
         }
-        [ClassInitialize]
+        [TestInitialize]
         public void Init()
         {
-            var options = new DbContextOptionsBuilder().UseSqlite("Datasource=:InMemory").Options;
-            dbContext = new InMemoryDbContext(options);
-            dbContext.Database.Migrate();
-            CleanUsersDb = Fixture.CreateMany<UserEntity>(50);
-            dbContext.AddRange(CleanUsersDb);
-            dbContext.SaveChanges();
-            _userGenericRepo = new GenericFunctions<UserEntity>(dbContext);
-            _userController = new UserController(Mapper, _userGenericRepo, _logger);
+
+            //dbContext.Database.EnsureCreated();
+            Fixture = new Fixture();
+            Fixture.Behaviors.Remove(new ThrowingRecursionBehavior());
+            Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
+            Users = Fixture.CreateMany<UserEntity>(50);
+            //dbContext.AddRange(Users);
+            //dbContext.SaveChanges();
+            //_userGenericRepo = new GenericFunctions<UserEntity>(dbContext);
+
+            _userController = new UserController(Mapper, _mockGenericRepo.Object, _logger);
 
         }
 
         //Test de Composant
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public async void testGetAllUsers()
+        //[ExpectedException(typeof(NullReferenceException))]
+        public async Task testGetAllUsers()
         {
             //Arrange
             #region Arrange
+            _mockGenericRepo.Setup(repo => repo.GetAll()).Returns(Task.FromResult(Users));
             var result = await _userController.GetAll();
 
 
@@ -74,6 +80,7 @@ namespace ReserveTaPlace.API.Tests
             entities.Should().NotBeNull();
             entities.Count().Should().Be(50);
             #endregion
+            _mockGenericRepo.Verify(repo => repo.GetAll(), Times.Exactly(1));
 
         }
 

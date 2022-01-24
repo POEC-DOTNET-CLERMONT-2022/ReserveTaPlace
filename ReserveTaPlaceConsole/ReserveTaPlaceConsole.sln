@@ -27,7 +27,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReserveTaPlace.Entities", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReserveTaPlace.API", "ReserveTaPlace.API\ReserveTaPlace.API.csproj", "{63227ADB-0108-443E-981E-9018615823C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReserveTaPlace.API.Tests", "ReserveTaPlace.Tests\ReserveTaPlace.API.Tests.csproj", "{FE536C4A-4D1D-487C-84F6-7F9BBD138A68}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReserveTaPlace.API.Test", "ReserveTaPlace.Tests\ReserveTaPlace.API.Test.csproj", "{FE536C4A-4D1D-487C-84F6-7F9BBD138A68}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
