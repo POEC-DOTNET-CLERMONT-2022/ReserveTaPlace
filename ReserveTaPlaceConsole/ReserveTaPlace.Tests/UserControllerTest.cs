@@ -24,8 +24,10 @@ namespace ReserveTaPlace.API.Tests
     {
         private Mock<IGenericRepo<UserEntity>> _mockGenericRepo;
         private UserController _userController;
+        
         private IGenericRepo<UserEntity> _userGenericRepo;
         public  IEnumerable<UserEntity> Users;
+        public UserDto User { get; set; }
         private ILogger<UserController> _logger { get; set; } = new NullLogger<UserController>();
         public IMapper Mapper;
         public Fixture Fixture { get; set; }
@@ -48,6 +50,7 @@ namespace ReserveTaPlace.API.Tests
             Fixture.Behaviors.Remove(new ThrowingRecursionBehavior());
             Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
             Users = Fixture.CreateMany<UserEntity>(50);
+            User = Fixture.Create<UserDto>();
             //dbContext.AddRange(Users);
             //dbContext.SaveChanges();
             //_userGenericRepo = new GenericFunctions<UserEntity>(dbContext);
@@ -58,7 +61,6 @@ namespace ReserveTaPlace.API.Tests
 
         //Test de Composant
         [TestMethod]
-        //[ExpectedException(typeof(NullReferenceException))]
         public async Task testGetAllUsers()
         {
             //Arrange
@@ -83,7 +85,21 @@ namespace ReserveTaPlace.API.Tests
             _mockGenericRepo.Verify(repo => repo.GetAll(), Times.Exactly(1));
 
         }
+        [TestMethod]
+        public async Task AddUser()
+        {
+            //Arrange
+            var userEntity = Mapper.Map<UserEntity>(User);
+            _mockGenericRepo.Setup(repo => repo.Add(userEntity)).Returns(Task.FromResult(true));
+            var result = await _userController.Add(User);
+            //Act
+            var okResult = result as OkObjectResult;
+            okResult.Should().NotBeNull();
+            //Assert
+            okResult.Should().Be(true);
+            _mockGenericRepo.Verify(repo => repo.Add(userEntity), Times.Exactly(1));
 
+        }
 
     }
 }

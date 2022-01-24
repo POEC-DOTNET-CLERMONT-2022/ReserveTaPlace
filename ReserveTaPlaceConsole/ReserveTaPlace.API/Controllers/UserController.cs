@@ -41,6 +41,13 @@ namespace ReserveTaPlace.API.Controllers
             }
 
         }
+        [HttpPost]
+        public async Task<ActionResult> Add([FromBody]UserDto userDto)
+        {
+            var userEntity = _mapper.Map<UserEntity>(userDto);
+            var result = await _users.Add(userEntity);
+            return Ok(result);
+        }
        
     }
 }
