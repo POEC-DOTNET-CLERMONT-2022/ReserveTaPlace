@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ReserveTaPlace.Data.Functions;
 using ReserveTaPlace.Data.Interfaces;
+using ReserveTaPlace.DTOS;
 using ReserveTaPlace.Entities;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -30,7 +31,7 @@ namespace ReserveTaPlace.API.Controllers
             try
             {
                 var users = await _users.GetAll();
-                var usersDto = _mapper.Map<IEnumerable<UserEntity>>(users);
+                var usersDto = _mapper.Map<IEnumerable<UserDto>>(users);
                 return Ok(usersDto);
             }
             catch (Exception e)
