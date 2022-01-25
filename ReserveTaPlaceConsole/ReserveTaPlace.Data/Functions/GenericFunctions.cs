@@ -24,6 +24,14 @@ namespace ReserveTaPlace.Data.Functions
             return result >0;
         }
 
+        public async Task<bool> Delete(Guid id)
+        {
+            var entity = await _context.Set<T>().FindAsync(id);
+            _context.Remove(entity);
+            var result = await _context.SaveChangesAsync();
+            return result==0;
+        }
+
         public async Task<IEnumerable<T>> GetAll()
         {
             return  await _context.Set<T>().ToListAsync();
@@ -32,6 +40,13 @@ namespace ReserveTaPlace.Data.Functions
         public async Task<T> GetById(Guid id)
         {
             return await _context.Set<T>().FindAsync(id);
+        }
+
+        public async Task<bool> Update(T entity)
+        {
+            _context.Set<T>().Update(entity);
+            var result = await _context.SaveChangesAsync();
+            return result >0;
         }
     }
 }
