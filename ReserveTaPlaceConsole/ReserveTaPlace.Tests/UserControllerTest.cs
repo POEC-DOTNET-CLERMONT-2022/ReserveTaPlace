@@ -86,13 +86,13 @@ namespace ReserveTaPlace.API.Tests
 
         }
         [TestMethod]
-        public async Task AddUser()
+        public async Task Add()
         {
             //Arrange
             var userEntity = Mapper.Map<UserEntity>(User);
             _mockGenericRepo.Setup(repo => repo.Add(userEntity)).Returns(Task.FromResult(true));
-            var result = await _userController.Add(User);
             //Act
+            var result = await _userController.Add(User);
             var okResult = result as OkObjectResult;
             okResult.Should().NotBeNull();
             //Assert

@@ -27,30 +27,29 @@ namespace ReserveTaPlace.API.Test
         public IEnumerable<MovieEntity> movies;
         public MovieDto movieDto;
         public IMapper Mapper;
-        private IHttpClientFactory _httpClientFactory;
-        private ILogger<MovieController> _logger { get; set; } = new NullLogger<MovieController>();
+        //private ILogger<MovieController> _logger { get; set; } = new NullLogger<MovieController>();
 
         public Fixture Fixture { get; set; }
         MapperConfiguration config;
 
 
 
-        public MovieControllerTest(IHttpClientFactory HttpClientFactory)
+        public MovieControllerTest()
         {
             _mockGenericRepo = new Mock<IGenericRepo<MovieEntity>>();
             config = new MapperConfiguration(cfg => cfg.AddMaps(typeof(MovieController)));
             Mapper = new Mapper(config);
-            _httpClientFactory = HttpClientFactory;
         }
         [TestInitialize]
         public void Init()
         {
+            var httpClientFactory = new Mock<IHttpClientFactory>(MockBehavior.Strict);
             Fixture = new Fixture();
             Fixture.Behaviors.Remove(new ThrowingRecursionBehavior());
             Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
             movies = Fixture.CreateMany<MovieEntity>(50);
             movieDto = Fixture.Create<MovieDto>();
-            _movieController = new MovieController(Mapper, _mockGenericRepo.Object, _httpClientFactory);
+            _movieController = new MovieController(Mapper, _mockGenericRepo.Object, httpClientFactory.Object);
 
         }
         //Test de Composant
@@ -60,16 +59,14 @@ namespace ReserveTaPlace.API.Test
             //Arrange
             #region Arrange
             _mockGenericRepo.Setup(repo => repo.GetAll()).Returns(Task.FromResult(movies));
-            var result = await _movieController.GetAll();
-
 
             #endregion
             //Act
             #region Act
+            var result = await _movieController.GetAll();
             var okResult = result as OkObjectResult;
             okResult.Should().NotBeNull();
             var entities = okResult?.Value as IEnumerable<MovieDto>;
-
             #endregion
             //Assert
             #region Assert
