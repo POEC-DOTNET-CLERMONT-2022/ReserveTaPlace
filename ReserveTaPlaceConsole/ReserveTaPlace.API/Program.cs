@@ -1,14 +1,36 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Net.Http.Headers;
+using ReserveTaPlace.Data.ApplicationContext;
+using ReserveTaPlace.Data.Functions;
+using ReserveTaPlace.Data.Interfaces;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.PropertyNamingPolicy = null;
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddHttpClient("Imdb", httpClient =>
+{
+    httpClient.BaseAddress = new Uri("https://movie-database-imdb-alternative.p.rapidapi.com/");
+    httpClient.DefaultRequestHeaders.Add("x-rapidapi-host", "movie-database-imdb-alternative.p.rapidapi.com");
+    httpClient.DefaultRequestHeaders.Add("x-rapidapi-key", builder.Configuration.GetConnectionString("IMDB").ToString());
+});
+builder.Services.AddScoped(typeof(IGenericRepo<>), typeof(GenericFunctions<>));
+builder.Services.AddScoped<DbContext, ReserveTaPlaceContext>();
+builder.Services.AddDbContext<ReserveTaPlaceContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("RTPLocalDb")));
 
 var app = builder.Build();
+using (var scope = app.Services.CreateScope())
+{
+   //TODO Or Not
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

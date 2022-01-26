@@ -8,14 +8,13 @@ namespace ReserveTaPlace.Entities
     {
         public DiscountType()
         {
-            Discounts = new HashSet<Discount>();
         }
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
         public string Name { get; set; }
         public short Rate { get; set; }
         public float Amount { get; set; }
-        public virtual ICollection<Discount> Discounts { get; set; }
     }
 }

@@ -1,61 +1,63 @@
-﻿using Bogus;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using ReserveTaPlace.Data.ApplicationContext;
 using ReserveTaPlace.Data.Interfaces;
-using ReserveTaPlace.DTOS;
 using ReserveTaPlace.Entities;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Data.Functions
 {
     public class MovieFunctions : IMovie
     {
-        public Task<Movie> Add(Movie movie)
+        private IEnumerable<MovieEntity> _movies;
+        private DbContext _dbContext;
+        public MovieFunctions(DbContext context)
         {
-            throw new NotImplementedException();
+            _dbContext = context;
+            _movies= new List<MovieEntity>();
         }
 
-        public Task<Movie> Delete(Movie movie)
+        public async Task<bool> Add(MovieEntity movieEntity)
         {
-            throw new NotImplementedException();
-        }
-
-        public async Task<IEnumerable<Movie>> GetAll()
-        {
-            IEnumerable<Movie> movies;
-            using (var context = new ReserveTaPlaceContext())
+            using (_dbContext)
             {
-                movies = await context.Movies.Include(m=>m.Medias).ToListAsync();
+                await _dbContext.Set<MovieEntity>().AddAsync(movieEntity);
+                var result= await _dbContext.SaveChangesAsync();
+                return result > 0;
             }
-            return movies;
         }
 
-        public async Task<Movie> GetById(Guid id)
+        public async Task<bool> DeleteById(Guid id)
         {
-            var movie = new Movie();
-            using (var context = new ReserveTaPlaceContext())
+            int result = 0;
+            using (_dbContext)
             {
-                movie = await context.Movies.FirstOrDefaultAsync(m=>m.Id == id);
-            }
+                var entity = await _dbContext.Set<MovieEntity>().FirstOrDefaultAsync(u => u.Id == id);
+                _dbContext.Set<MovieEntity>().Remove(entity);
+                result = await _dbContext.SaveChangesAsync();
+            };
+            return result == 1;
+        }
+
+        public async Task<IEnumerable<MovieEntity>> GetAll()
+        {
+            _movies = await _dbContext.Set<MovieEntity>().Include(m => m.Medias).ToListAsync();
+            return _movies;
+        }
+
+        public async Task<MovieEntity> GetById(Guid id)
+        {
+            var movie = new MovieEntity();
+            movie = await _dbContext.Set<MovieEntity>().FirstOrDefaultAsync(m => m.Id == id);
             return movie;
         }
 
-        public async Task<Movie> GetByName(string title)
+        public async Task<MovieEntity> GetByName(string title)
         {
-            var movie = new Movie();
-            using (var context = new ReserveTaPlaceContext())
-            {
-                movie = await context.Movies.FirstOrDefaultAsync(m => m.Title.ToLower().StartsWith(title));
-            }
+            var movie = new MovieEntity();
+            movie = await _dbContext.Set<MovieEntity>().FirstOrDefaultAsync(m => m.Title.ToLower().StartsWith(title));
             return movie;
-        }
-
-        public Task<Movie> Update(Movie movie)
-        {
-            throw new NotImplementedException();
         }
     }
 }

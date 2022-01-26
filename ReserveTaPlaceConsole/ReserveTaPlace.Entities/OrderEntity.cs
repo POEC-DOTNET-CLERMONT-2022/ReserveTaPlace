@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Entities
 {
@@ -17,16 +12,12 @@ namespace ReserveTaPlace.Entities
         }
 
         [Key]
-        public int Id { get; set; }
-        public int UserId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Guid Id { get; set; }
+        public Guid? UserId { get; set; }
         public DateTime Date { get; set; }
-
-        [InverseProperty(nameof(TicketEntity.Order))]
         public virtual ICollection<TicketEntity> Tickets { get; set; }
-
         [ForeignKey(nameof(UserId))]
-        [InverseProperty("Orders")]
-        public virtual UserEntity User { get; set; }
-
+        public virtual UserEntity? User { get; set; }
     }
 }

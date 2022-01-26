@@ -1,8 +1,6 @@
 ﻿using ReserveTaPlace.DTOS;
 using ReserveTaPlace.Models;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace ReserveTaPlace.Extensions.Factories
 {
@@ -32,12 +30,12 @@ namespace ReserveTaPlace.Extensions.Factories
         }
         public static Movie ToModel(this MovieDto movie)
         {
-            return new Movie(movie.Title, movie.ImdbID);
+            return new Movie(movie.Title, movie.Plot, movie.Poster, movie.ImdbId,movie.Released,movie.Runtime);
         }
-        public static Movie ToMovie(this ImdbMovie imdbMovie)
-        {
-            return new Movie(imdbMovie.Title,imdbMovie.ImdbID);
-        }
+        //public static Movie ToMovie(this ImdbMovie imdbMovie)
+        //{
+        //    return new Movie(imdbMovie.Title, imdbMovie.Plot, imdbMovie.Poster, imdbMovie.ImdbId, imdbMovie.ReleaseDate, imdbMovie.Runtime);
+        //}
 
     }
 }

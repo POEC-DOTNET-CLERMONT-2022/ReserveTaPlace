@@ -1,10 +1,11 @@
-﻿using ReserveTaPlace.Logic;
+﻿using AutoMapper;
+using ReserveTaPlace.DTOS;
+using ReserveTaPlace.Logic;
+using ReserveTaPlace.Logic.DataManager;
 using ReserveTaPlace.Models;
-using System;
+using ReserveTaPlace.MovieDataBaseService;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -15,25 +16,32 @@ namespace ReserveTaPlace.Wpf
     /// </summary>
     public partial class App : Application
     {
-        public static void InitializedUserList()
+        public IGenericLogic<User> UserLogic;
+        public IMovieLogic MovieLogic;
+
+        public IMapper Mapper;
+        public IMovieProvider MovieProvider;
+        private const string SERVER_URL = "https://localhost:7091";
+
+        public HttpClient HttpClient { get; }
+        public IDataManager<User, UserDto> UserDataManager { get; }
+        public IDataManager<Movie, MovieDto> MovieDataManager { get; }
+        public IDataManager<Movie, MovieDto> MovieProviderDataManager { get; }
+
+        public App()
         {
-            var userList = new List<User>() {
-                new User("Gilbert", "Hugo", "hugo.g@hotmail.fr", "1234"),
-                new User("Gerard", "Bidon", "bidon.g@hotmail.fr", "1234", UserRoles.AdminLocal),
-                new User("Bernard", "Petard", "petard.b@hotmail.fr", "1234", UserRoles.AdminGroupe),
-                new User("Jean", "Casser", "casser.j@hotmail.fr", "1234", UserRoles.AdminGlobal)};
+            var config = new MapperConfiguration(cfg => cfg.AddMaps(typeof(App)));
+            Mapper = new Mapper(config);
 
-            var userManager = new UserLogic();
-            userManager.SaveUsers(userList);
+            UserLogic = new GenericLogic<User>();
+            MovieLogic = new MovieLogic();
 
-        }
-        public static void InitializedMoviesList()
-        {
-            var movieLogic = new MovieLogic();
+            MovieProvider = new MovieProvider();
+            HttpClient = new HttpClient();
+            UserDataManager = new UserDataManager(HttpClient, Mapper, SERVER_URL);
+            MovieDataManager= new MovieDataManager(HttpClient, Mapper,SERVER_URL);
+            MovieProviderDataManager = new IMDBDataManager(HttpClient, Mapper, SERVER_URL);
 
-            //var movieList = movieLogic.GetAllMovies();
-
-            //movieLogic.SaveMovies(movieList);
         }
     }
 }

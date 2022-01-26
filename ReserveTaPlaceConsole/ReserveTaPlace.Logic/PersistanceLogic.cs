@@ -1,19 +1,13 @@
 ﻿using ReserveTaPlace.Models;
 using ReserveTaPlace.Persistance;
 using ReserveTaPlace.Persistance.Functions;
-using ReserveTaPlace.Persistance.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Logic
 {
     public class PersistanceLogic
     {
         private readonly IPersistance _persistance;
-        
+
         public PersistanceLogic()
         {
             _persistance = new MovieFunctions();

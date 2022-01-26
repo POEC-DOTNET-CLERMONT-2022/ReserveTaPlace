@@ -22,42 +22,28 @@ namespace ReserveTaPlace.Entities
 
         [Key]
         [Column(Order = 1)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
-        [Column(Order = 2)]
-        public int AddressId { get; set; }
-
-        [Column("FirstName", TypeName = "nvarchar(70)", Order = 3)]
+        [Column("FirstName", TypeName = "nvarchar(70)", Order = 2)]
         public string FirstName { get; set; }
 
-        [Column("LastName", TypeName = "nvarchar(70)", Order = 4)]
+        [Column("LastName", TypeName = "nvarchar(70)", Order = 3)]
         public string LastName { get; set; }
 
-        [Column("Email", TypeName = "nvarchar(255)", Order = 5)]
+        [DataType(DataType.EmailAddress)]
+        [Column("Email", TypeName = "nvarchar(255)", Order = 4)]
         public string Email { get; set; }
-
-        [Column("Password", TypeName = "nvarchar(50)", Order = 6)]
+        [DataType(DataType.Password)]
+        [Column("Password", TypeName = "nvarchar(50)", Order = 5)]
         public string Password { get; set; }
-
-
-        [ForeignKey(nameof(AddressId))]
-        [InverseProperty("Users")]
-        public virtual AddressEntity Address { get; set; }
-
-        [InverseProperty(nameof(OrderEntity.User))]
-        public virtual ICollection<OrderEntity> Orders { get; set; }
-        
-        [InverseProperty(nameof(DiscountEntity.User))]
-        public virtual ICollection<DiscountEntity> Discounts { get; set; }
-        
-        [InverseProperty(nameof(UserTheaterEntity.User))]
-        public virtual ICollection<TheaterEntity> Theaters { get; set; }
-        
-        [InverseProperty(nameof(TicketEntity.User))]
-        public virtual ICollection<TicketEntity> Tickets { get; set; }
-
-        [InverseProperty(nameof(UserRoleEntity.User))]
-        public virtual ICollection<RoleEntity> Roles { get; set; }
+        [InverseProperty("User")]
+        public AddressEntity? Address { get; set; }
+        public virtual ICollection<OrderEntity>? Orders { get; set; }
+        public virtual ICollection<DiscountEntity>? Discounts { get; set; }
+        public virtual ICollection<TheaterEntity>? Theaters { get; set; }
+        public virtual ICollection<TicketEntity>? Tickets { get; set; }
+        public virtual ICollection<RoleEntity>? Roles { get; set; }
 
 
 

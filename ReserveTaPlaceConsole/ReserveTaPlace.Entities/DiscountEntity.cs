@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Entities
 {
@@ -12,19 +7,17 @@ namespace ReserveTaPlace.Entities
     public class DiscountEntity
     {
         [Key]
-        public int Id { get; set; }
-        public int UserId { get; set; }
-        public int DiscountTypeId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Guid Id { get; set; }
+        public Guid? UserId { get; set; }
+        public Guid? DicountTypeId { get; set; }
+
         public string Number { get; set; }
-        public DateOnly EndValidityDate { get; set; }
-
+        public DateTime EndValidityDate { get; set; }
         [ForeignKey(nameof(UserId))]
-        [InverseProperty("Discounts")]
-        public virtual UserEntity User { get; set; }
-
-        [ForeignKey(nameof(DiscountTypeId))]
-        [InverseProperty("Discounts")]
-        public virtual DiscountTypeEntity DiscountType { get; set; }
+        public virtual UserEntity? User { get; set; }
+        [ForeignKey(nameof(DicountTypeId))]
+        public virtual DiscountType? DiscountType { get; set; }
 
 
     }

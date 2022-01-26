@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReserveTaPlace.Console", "ReserveTaPlaceConsole\ReserveTaPlace.Console.csproj", "{84938EBB-61E4-483A-8C04-DC32879F46D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReserveTaPlace.CAPP", "ReserveTaPlaceConsole\ReserveTaPlace.CAPP.csproj", "{84938EBB-61E4-483A-8C04-DC32879F46D0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReserveTaPlace.Models", "ReserveTaPlace.Models\ReserveTaPlace.Models.csproj", "{6F23AB86-D3AC-4611-9352-54872E628AED}"
 EndProject
@@ -12,8 +12,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReserveTaPlace.Logic", "ReserveTaPlace.Logic\ReserveTaPlace.Logic.csproj", "{526B2E7E-5618-4AF4-99A1-DAE923FCA695}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReserveTaPlace.Wpf", "ReserveTaPlace.Wpf\ReserveTaPlace.Wpf.csproj", "{F739D4E8-6524-4974-BAA5-C1D7A4F7CDD0}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReserveTaPlace.Wcf", "ReserveTaPlace.wcf\ReserveTaPlace.Wcf.csproj", "{62F37905-7F84-4E6B-926C-1B85F87663AD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReserveTaPlace.DTOS", "ReserveTaPlace.DTOS\ReserveTaPlace.DTOS.csproj", "{68F04033-4FAC-4AC9-9B1C-E7EE45A23EB6}"
 EndProject
@@ -26,6 +24,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PatternObserver", "PatternObserver\PatternObserver.csproj", "{06B2B4D9-B332-44F8-8886-567D573DF565}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReserveTaPlace.Entities", "ReserveTaPlace.Entities\ReserveTaPlace.Entities.csproj", "{7DE26FA3-DAF5-4802-8D16-A011EB1C3FD6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReserveTaPlace.API", "ReserveTaPlace.API\ReserveTaPlace.API.csproj", "{63227ADB-0108-443E-981E-9018615823C5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReserveTaPlace.API.Test", "ReserveTaPlace.Tests\ReserveTaPlace.API.Test.csproj", "{FE536C4A-4D1D-487C-84F6-7F9BBD138A68}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,10 +55,6 @@ Global
 		{F739D4E8-6524-4974-BAA5-C1D7A4F7CDD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F739D4E8-6524-4974-BAA5-C1D7A4F7CDD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F739D4E8-6524-4974-BAA5-C1D7A4F7CDD0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{62F37905-7F84-4E6B-926C-1B85F87663AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{62F37905-7F84-4E6B-926C-1B85F87663AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{62F37905-7F84-4E6B-926C-1B85F87663AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{62F37905-7F84-4E6B-926C-1B85F87663AD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{68F04033-4FAC-4AC9-9B1C-E7EE45A23EB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{68F04033-4FAC-4AC9-9B1C-E7EE45A23EB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68F04033-4FAC-4AC9-9B1C-E7EE45A23EB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -81,6 +79,14 @@ Global
 		{7DE26FA3-DAF5-4802-8D16-A011EB1C3FD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DE26FA3-DAF5-4802-8D16-A011EB1C3FD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DE26FA3-DAF5-4802-8D16-A011EB1C3FD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63227ADB-0108-443E-981E-9018615823C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63227ADB-0108-443E-981E-9018615823C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63227ADB-0108-443E-981E-9018615823C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63227ADB-0108-443E-981E-9018615823C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE536C4A-4D1D-487C-84F6-7F9BBD138A68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE536C4A-4D1D-487C-84F6-7F9BBD138A68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE536C4A-4D1D-487C-84F6-7F9BBD138A68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE536C4A-4D1D-487C-84F6-7F9BBD138A68}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

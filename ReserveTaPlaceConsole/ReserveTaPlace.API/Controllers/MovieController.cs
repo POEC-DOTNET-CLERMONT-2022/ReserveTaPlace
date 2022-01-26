@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using ReserveTaPlace.DTOS;
-using ReserveTaPlace.Data;
-using ReserveTaPlace.Data.Interfaces;
+using Newtonsoft.Json;
 using ReserveTaPlace.Data.Functions;
+using ReserveTaPlace.Data.Interfaces;
+using ReserveTaPlace.DTOS;
+using ReserveTaPlace.Entities;
+using ReserveTaPlace.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -13,51 +15,63 @@ namespace ReserveTaPlace.API.Controllers
     [ApiController]
     public class MovieController : ControllerBase
     {
-        private IMovie _movie;
+
+        private IHttpClientFactory _httpClientFactory;
+        private IGenericRepo<MovieEntity> _movie;
         private IMapper _mapper;
-        public MovieController(IMapper mapper)
+        public MovieController(IMapper mapper, IGenericRepo<MovieEntity> movie, IHttpClientFactory HttpClientFactory)
         {
-            _movie = new MovieFunctions();
+            _movie = movie;
             _mapper = mapper;
+            _httpClientFactory = HttpClientFactory;
         }
         // GET: MovieController/GetAll
-        [HttpGet("All")]
-        public async Task<ActionResult> All()
+        [HttpGet]
+        public async Task<ActionResult> GetAll()
         {
             var movies = await _movie.GetAll();
-            var moviesDto = _mapper.Map<List<MovieDto>>(movies);
+            var moviesDto = _mapper.Map<IEnumerable<MovieDto>>(movies);
             return Ok(moviesDto);
         }
-        // GET: api/<MovieController>
-        //[HttpGet]
-        //public IEnumerable<string> Get()
-        //{
-        //    return new string[] { "value1", "value2" };
-        //}
 
-        // GET api/<MovieController>/5
-        //[HttpGet("{id}")]
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
+        // GET: MovieController/GetById
+        [HttpGet("{id}")]
+        public async Task<ActionResult> Get(Guid id)
+        {
+            var movie = await _movie.GetById(id);
+            var movieDto = _mapper.Map<MovieDto>(movie);
+            return Ok(movieDto);
+        }
 
-        // POST api/<MovieController>
+        // POST MovieController/Post
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<ActionResult> Add([FromBody] Movie movie)
         {
+            var movieEntity = _mapper.Map<MovieEntity>(movie);
+            var movieDtoResult = await _movie.Add(movieEntity);
+            return Ok(movieDtoResult);
         }
-
-        // PUT api/<MovieController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPost("ImdbMovie")]
+        public async Task<ActionResult> ImdbMovie([FromBody]string ressource)
         {
-        }
-
-        // DELETE api/<MovieController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            var httpClient = _httpClientFactory.CreateClient("Imdb");
+            var moviesDto = new List<MovieDto>();
+            var movieDto = new MovieDto();
+           
+            using (var imdbSearchStrg = httpClient.GetStringAsync(ressource))
+            {
+                ImdbSearch result = JsonConvert.DeserializeObject<ImdbSearch>(imdbSearchStrg.Result);
+                moviesDto = result.ImdbMovies;
+            }
+            if (moviesDto.Count > 0)
+            {
+                using (var imdbSearchStrg = httpClient.GetStringAsync($"?&r=json&i={moviesDto[0].ImdbId}"))
+                {
+                    movieDto = JsonConvert.DeserializeObject<MovieDto>(imdbSearchStrg.Result);
+                }
+                return Ok(movieDto);
+            }
+            return Ok(movieDto);
         }
     }
 }

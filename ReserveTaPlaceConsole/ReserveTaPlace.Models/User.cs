@@ -1,12 +1,8 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Models
-{ 
+{
     public class User
     {
         private readonly Guid _id;
@@ -42,15 +38,15 @@ namespace ReserveTaPlace.Models
         }
 
         [JsonProperty(PropertyName = "Id")]
-        public Guid Id { get { return _id;} }
+        public Guid Id { get { return _id; } }
         [JsonProperty(PropertyName = "FirstName")]
-        public string FirstName { get { return _firstName;} }
+        public string FirstName { get { return _firstName; } }
         [JsonProperty(PropertyName = "LastName")]
-        public string LastName { get { return _lastName;} }
+        public string LastName { get { return _lastName; } }
         [JsonProperty(PropertyName = "Email")]
-        public string Email { get { return _email;}}
+        public string Email { get { return _email; } }
         [JsonProperty(PropertyName = "Password")]
-        public string Password { get { return _password;} }
+        public string Password { get { return _password; } }
         [JsonProperty(PropertyName = "UserRoles")]
 
         public UserRoles UserRoles

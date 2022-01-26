@@ -1,12 +1,6 @@
 ﻿using ReserveTaPlace.Models;
-using ReserveTaPlace.Persistance.Interfaces;
 using ReserveTaPlace.Persistance.Functions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Collections;
+using ReserveTaPlace.Persistance.Interfaces;
 
 namespace ReserveTaPlace.Logic
 {
@@ -37,7 +31,7 @@ namespace ReserveTaPlace.Logic
 
         public void UpdatePassword(string password, string confirmedPassword)
         {
-             _user.UpdatePassword(password, confirmedPassword);
+            _user.UpdatePassword(password, confirmedPassword);
         }
         public void UpdateUser(string login)
         {

@@ -1,24 +1,19 @@
-﻿using ReserveTaPlace.Models;
+﻿using ReserveTaPlace.DTOS;
 using ReserveTaPlace.MovieDataBaseService;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Logic
 {
 
-    public class MovieProviderLogic
+    public class MovieProviderLogic : IMovieProviderLogic
     {
         private readonly IMovieProvider _movieProvider;
         public MovieProviderLogic()
         {
-            _movieProvider=new MovieProvider();
+            _movieProvider = new MovieProvider();
         }
-        public async Task<List<Movie>> GetMovie(string title,string year)
+        public async Task<List<MovieDto>> GetMovie(string title, string year)
         {
-            return await _movieProvider.GetMovie(title,year);
+            return await _movieProvider.GetMovie(title, year);
         }
     }
 }
