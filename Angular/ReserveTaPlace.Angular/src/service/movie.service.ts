@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { IMovie } from 'src/models/i-movie';
 import { IMovieList } from 'src/models/movie/i-movie-list';
 
 @Injectable({
@@ -8,11 +9,11 @@ import { IMovieList } from 'src/models/movie/i-movie-list';
 })
 export class MovieService {
 
-baseUrl: string = 'https://localhost:7091/api/Movie'
+  baseUrl: string = 'https://localhost:7091/api/Movie'
 
   constructor(private httpClient: HttpClient) { }
 
-  getMovies(url: string): Observable<IMovieList> {
-    return this.httpClient.get<IMovieList>(url);
+  getMovies(): Observable<IMovie> {
+    return this.httpClient.get<IMovie>(this.baseUrl);
   }
 }

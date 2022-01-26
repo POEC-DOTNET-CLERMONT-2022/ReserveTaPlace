@@ -1,1 +1,30 @@
-<p>movie-list works!</p>
+<div class="container" *ngIf="movieList;else noDatas">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Runtime</th>
+                <th>Released </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <tr *ngFor="let movie of movieList">
+                <td>{{movie.Title }} {{ actor }}</td>
+                <td>{{movie.Runtime }}</td>
+                <td>{{movie.Released }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="container">
+    <p *ngFor="let movie of movieList">
+        {{movie.Title}}
+        {{movie.Runtime}}
+        {{movie.Released}}
+    </p>
+</div>
+
+<ng-template #noDatas>
+  Un problème est survenu pendant la récupération des données...
+</ng-template>

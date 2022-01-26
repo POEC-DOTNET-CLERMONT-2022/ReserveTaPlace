@@ -1,12 +1,6 @@
+import { IMovie } from "../i-movie";
+
+
 export interface IMovieList {
-    Title: string;
-    Released: string;
-    Runtime: string;
-    Genre: string;
-    Director: string;
-    Actors: string;
-    Plot: string;
-    ImbdId: string;
-    Poster: string;
-    Country: string;
+    result: IMovie[];
 }
