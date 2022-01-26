@@ -9,7 +9,7 @@
     -  [Et le client léger alors, ses technologies ?](#Et-le-client-léger-alors,-ses-technologies-?)
 2. [Travail réalisé](#Travail-réalisé)
     -  [Git et GitHub](#Git-et-GitHub)
-    -  [Diagramme de classe](#Diagramme-de-classe)
+    -  [Diagramme de cas d'utilisation](#Diagramme-de-cas-d'utilisation)
 
 # Présentation <a name="presentation"></a>
 
@@ -40,9 +40,9 @@ Le client leger sera réaliser avec Angular, il aura pour but de permettre la ge
 
 Afin de réaliser ce projet, nous devions utiliser Git pour gérer les versions de notre application et GitHub pour son service d'hébergement. Il nous a permis de mettre en place des issues, afin  de partager le travail à réaliser, effectuer des pull request pour demander des contôles du code réaliser.
 
-## Diagramme de classe <a name="Diagramme-de-classe"></a>
+## Diagramme de cas d'utilisation <a name="Diagramme-de-cas-d'utilisation"></a>
 
-
+![alt text](https://github.com/POEC-DOTNET-CLERMONT-2022/ReserveTaPlace/blob/2a564b79d3022adb4edb252483646e9151c721ed/Documentation/Images/UseCaseDiagramReserveTaPlace.svg)
 
 Projet ReserveTaPlace.com 
 
