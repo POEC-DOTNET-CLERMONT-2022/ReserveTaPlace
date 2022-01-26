@@ -7,13 +7,9 @@
     -  [Les technoligie utilisés côté client lourd](#Les-technoligie-utilisés-côté-client-lourd)
     -  [La base de données](#La-base-de-données)
     -  [Et le client léger alors, ses technologies ?](#Et-le-client-léger-alors,-ses-technologies-?)
-2. [Travail réalisé](#Travail réalisé)
-    -  [Git et GitHub](#Git et GitHub)
-    -  [Diagramme de classe](#Diagramme de classe)
-4. [Schema](#Schema)
-    -  [UML](#Details)
-    -  [Storyboard](#Storyboard)
-5. [Installation](#Installation )
+2. [Travail réalisé](#Travail-réalisé)
+    -  [Git et GitHub](#Git-et-GitHub)
+    -  [Diagramme de classe](#Diagramme-de-classe)
 
 # Présentation <a name="presentation"></a>
 
@@ -38,13 +34,13 @@ La base de données sera commune à tous les cinémas, elle contiendra toutes le
 
 Le client leger sera réaliser avec Angular, il aura pour but de permettre la gestion des utilisateurs, avec toutes les possibilitées du CRUD.
 
-# Travail réalisé <a name="ReserveTaPlace,-c'est-quoi-?"></a>
+# Travail réalisé <a name="Travail-réalisé"></a>
 
-## Git et GitHub <a name="ReserveTaPlace,-c'est-quoi-?"></a>
+## Git et GitHub <a name="Git-et-GitHub"></a>
 
 Afin de réaliser ce projet, nous devions utiliser Git pour gérer les versions de notre application et GitHub pour son service d'hébergement. Il nous a permis de mettre en place des issues, afin  de partager le travail à réaliser, effectuer des pull request pour demander des contôles du code réaliser.
 
-## Diagramme de classe <a name="ReserveTaPlace,-c'est-quoi-?"></a>
+## Diagramme de classe <a name="Diagramme-de-classe"></a>
 
 
 
