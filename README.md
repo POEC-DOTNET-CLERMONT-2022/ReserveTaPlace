@@ -9,40 +9,43 @@
     -  [Et le client léger alors, ses technologies ?](#Et-le-client-léger-alors,-ses-technologies-?)
 2. [Travail réalisé](#Travail-réalisé)
     -  [Git et GitHub](#Git-et-GitHub)
-    -  [Diagramme de classe](#Diagramme-de-classe)
+    -  [Diagramme de cas d'utilisation](#Diagramme-de-cas-d'utilisation)
+    -  [Diagramme de claase](#Diagramme-de-classe)
 
 # Présentation <a name="presentation"></a>
 
-## ReserveTaPlace, c'est quoi ? <a name="ReserveTaPlace,-c'est-quoi-?"></a>
+### ReserveTaPlace, c'est quoi ? <a name="ReserveTaPlace,-c'est-quoi-?"></a>
 
 Notre projet ReserveTaPlace consiste à mettre en place un client lourd, permettant aux cinémas (zone de Clermont-Ferrand pour commencer) de pouvoir proposer leur scéances sur une plateforme commune. Le client léger permettre la gestion des utilisateurs et leur droit.
 
-## Le client lourd, il sert à quoi ? <a name="Le-client-lourd,-il-sert-à-quoi-?"></a>
+### Le client lourd, il sert à quoi ? <a name="Le-client-lourd,-il-sert-à-quoi-?"></a>
 
 Chaque gérant devra pouvoir choisir le film qu'il désire proposer, soit en le recherchant sur l'API IMBD en ligne, et dans ce cas le film pourra être ajouté sur le serveur en base de données afin que les autres gérant puisse aussi le récupèrer, soit le récupèrer directement sur la base de données.
 Chaque gérant pourra ensuite créer ses scéances de film avec ses horaires, dates, etc ...Une fois ajouteé, une séance sera visible sur une autre plateforme qui donnera la possibilité de reserver une place (cette partie ne sera pas développer lors de ce projet). 
 
-## Les technoligie utilisés côté client lourd <a name="Les-technoligie-utilisés-côté-client-lourd"></a>
+### Les technoligie utilisés côté client lourd <a name="Les-technoligie-utilisés-côté-client-lourd"></a>
 
 Afin de mener à bien ce projet, la partie client lourd sera réaliser en dotnet core 6, la base de donnée sera mise en place grâce a Entity Framwork Core et sera installé sur Microsoft SQL Server, et on mettra en place une API web ASP.NET Core. La vue du client lourd s'affichera grâce à un client WPF.
 
-## La base de données <a name="La-base-de-données"></a>
+### La base de données <a name="La-base-de-données"></a>
 
 La base de données sera commune à tous les cinémas, elle contiendra toutes les informations relatives aux utilisateurs, les cinémas, les séances, les commandes réalisées, etc ...
 
-## Et le client léger alors, ses technologies ? <a name="Et-le-client-léger-alors,-ses-technologies-?"></a>
+### Et le client léger alors, ses technologies ? <a name="Et-le-client-léger-alors,-ses-technologies-?"></a>
 
 Le client leger sera réaliser avec Angular, il aura pour but de permettre la gestion des utilisateurs, avec toutes les possibilitées du CRUD.
 
 # Travail réalisé <a name="Travail-réalisé"></a>
 
-## Git et GitHub <a name="Git-et-GitHub"></a>
+### Git et GitHub <a name="Git-et-GitHub"></a>
 
 Afin de réaliser ce projet, nous devions utiliser Git pour gérer les versions de notre application et GitHub pour son service d'hébergement. Il nous a permis de mettre en place des issues, afin  de partager le travail à réaliser, effectuer des pull request pour demander des contôles du code réaliser.
 
-## Diagramme de classe <a name="Diagramme-de-classe"></a>
+### Diagramme de cas d'utilisation <a name="Diagramme-de-cas-d'utilisation"></a>
 
+![alt text](https://github.com/POEC-DOTNET-CLERMONT-2022/ReserveTaPlace/blob/2a564b79d3022adb4edb252483646e9151c721ed/Documentation/Images/UseCaseDiagramReserveTaPlace.svg)
 
+### Diagramme de classe <a name="Diagramme-de-classe"></a>
 
 Projet ReserveTaPlace.com 
 
