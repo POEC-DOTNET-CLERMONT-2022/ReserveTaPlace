@@ -16,23 +16,24 @@ namespace ReserveTaPlace.Wpf
     /// </summary>
     public partial class MovieWindow : Window
     {
-        private IMovieLogic _movieLogic;
+        //private IMovieLogic _movieLogic;
+        //private IMovieProvider _movieProvider;
         private readonly IMapper _mapper;
         private ListMovies _listMovie;
-        private IMovieProvider _movieProvider;
         private readonly IDataManager<Movie, MovieDto> _movieDataManager;
-        private IDataManager<Movie, MovieDto> _imdbDataManager;
-
+        private IDataManager<Movie, MovieDto> _movieProviderDataManager;
 
         public MovieWindow()
         {
+            //_movieProvider = ((App)Application.Current).MovieProvider;
+            //_movieLogic = ((App)Application.Current).MovieLogic;
             _listMovie = new ListMovies();
             _mapper = ((App)Application.Current).Mapper;
-            _movieLogic = ((App)Application.Current).MovieLogic;
             InitializeComponent();
             DataContext = _listMovie;
-            _movieProvider = ((App)Application.Current).MoviProvider;
             _movieDataManager = ((App)Application.Current).MovieDataManager;
+            _movieProviderDataManager = ((App)Application.Current).MovieProviderDataManager;
+
 
         }
         public async void LoadMovies()
@@ -46,19 +47,9 @@ namespace ReserveTaPlace.Wpf
         {
             var movieName = TBMovieToAddName.Text;
             var movieYear = TBMovieToAddYear.Text;
-            var imdbMngr = new ImdbManager(movieName, movieYear);
-            _imdbDataManager = imdbMngr.MovieProviderDataManager;
-            //TODO
-            //var test =await _imdbDataManager.GetMovie();
-            
-            var moviesDto = await _movieProvider.GetMovie(movieName, movieYear);
-            List<MovieDto> movies = await _movieProvider.GetMovie(movieName, movieYear);
-            if (moviesDto.Count>0)
-            {
-                var moviesModel = _mapper.Map<List<Movie>>(moviesDto);
-                _listMovie.Movies.Add(moviesModel[0]);
-                await _movieDataManager.Add(moviesModel[0]);
-            }
+            var movie = await _movieProviderDataManager.GetMovie(movieName, movieYear);
+            _listMovie.Movies.Add(movie);
+            var result = await _movieDataManager.Add(movie);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

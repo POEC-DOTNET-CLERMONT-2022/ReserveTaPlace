@@ -34,31 +34,19 @@ namespace ReserveTaPlace.Logic.DataManager
             return Mapper.Map<IEnumerable<TModel>>(result);
         }
 
-        public async Task Add(TModel model)
+        public async Task<bool> Add(TModel model)
         {
-            var dto = Mapper.Map<TDto>(model);
-            await HttpClient.PostAsJsonAsync(Uri, dto);
+            var result = await HttpClient.PostAsJsonAsync(Uri, model);
+            return result.IsSuccessStatusCode;
         }
 
-        public async Task<TModel> GetMovie()
+        public async Task<TModel> GetMovie(string title, string year)
         {
-            var result = new TDto();
-            var test = await HttpClient.GetAsync(Uri);
-            //var result = await HttpClient.GetFromJsonAsync<TDto>(Uri);
-            HttpClient.DefaultRequestHeaders.Add("Accept", "*/*");
-            var request = new HttpRequestMessage() { 
-                Method= HttpMethod.Post,
-                RequestUri = Uri
-            };
-            request.Headers.Add("Accept", "*/*");
-            using (var response = await HttpClient.SendAsync(request))
-            {
-                var body = await response.Content.ReadAsStringAsync();
-                result = JsonConvert.DeserializeObject<TDto>(body);
-            }
-            //var ImdbDto = System.Text.Json.JsonSerializer.Deserialize<TDto>(dtoStrg);
-            //var ImdbDto = await HttpClient.GetFromJsonAsync<TDto>(Uri);
-            return Mapper.Map<TModel>(result);
+            string ressource = $"?s={title}&r=json&type=movie&y={year}&page=1";
+            var result = await HttpClient.PostAsJsonAsync(Uri, ressource);
+            var movieStrg = await result.Content.ReadAsStringAsync();
+            var movie = JsonConvert.DeserializeObject<TDto>(movieStrg);
+            return Mapper.Map<TModel>(movie);
         }
     }
 }

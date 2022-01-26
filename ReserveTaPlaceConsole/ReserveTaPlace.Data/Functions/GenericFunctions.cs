@@ -16,10 +16,10 @@ namespace ReserveTaPlace.Data.Functions
             _context = context;
         }
 
-        public async Task<bool> Add(T dto)
+        public async Task<bool> Add(T entity)
         {
-
-            await _context.Set<T>().AddAsync(dto);
+            var test = _context.Set<T>();
+            await _context.Set<T>().AddAsync(entity);
             var result = await _context.SaveChangesAsync();
             return result >0;
         }

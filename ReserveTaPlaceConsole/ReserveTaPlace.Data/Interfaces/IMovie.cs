@@ -11,7 +11,7 @@ namespace ReserveTaPlace.Data.Interfaces
         Task<IEnumerable<MovieEntity>> GetAll();
         Task<MovieEntity> GetById(Guid id);
         Task<bool> DeleteById(Guid id);
-        Task<MovieEntity> Add(MovieEntity entity);
+        Task<bool> Add(MovieEntity entity);
 
     }
 }

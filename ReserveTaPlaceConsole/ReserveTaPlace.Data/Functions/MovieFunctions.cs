@@ -18,14 +18,14 @@ namespace ReserveTaPlace.Data.Functions
             _movies= new List<MovieEntity>();
         }
 
-        public async Task<MovieEntity> Add(MovieEntity movieEntity)
+        public async Task<bool> Add(MovieEntity movieEntity)
         {
             using (_dbContext)
             {
                 await _dbContext.Set<MovieEntity>().AddAsync(movieEntity);
                 var result= await _dbContext.SaveChangesAsync();
+                return result > 0;
             }
-            return movieEntity;
         }
 
         public async Task<bool> DeleteById(Guid id)

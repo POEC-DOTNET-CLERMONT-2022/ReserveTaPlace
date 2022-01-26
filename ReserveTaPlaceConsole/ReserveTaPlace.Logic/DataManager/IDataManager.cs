@@ -11,7 +11,7 @@ namespace ReserveTaPlace.Logic.DataManager
     {
         Task<IEnumerable<TModel>> GetAll();
 
-        Task Add(TModel model);
-        Task<TModel> GetMovie();
+        Task<bool> Add(TModel model);
+        Task<TModel> GetMovie(string title, string year);
     }
 }

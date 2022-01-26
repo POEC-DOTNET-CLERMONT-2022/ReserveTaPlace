@@ -5,6 +5,7 @@ using ReserveTaPlace.Data.Functions;
 using ReserveTaPlace.Data.Interfaces;
 using ReserveTaPlace.DTOS;
 using ReserveTaPlace.Entities;
+using ReserveTaPlace.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -44,22 +45,19 @@ namespace ReserveTaPlace.API.Controllers
 
         // POST MovieController/Post
         [HttpPost]
-        public async Task<ActionResult> Add([FromBody] MovieDto movieDto)
+        public async Task<ActionResult> Add([FromBody] Movie movie)
         {
-            var movieEntity = _mapper.Map<MovieEntity>(movieDto);
+            var movieEntity = _mapper.Map<MovieEntity>(movie);
             var movieDtoResult = await _movie.Add(movieEntity);
             return Ok(movieDtoResult);
         }
-        //[Route("ImdbMovie/{ressource}")]
-        [HttpPost("{ressource}")]
-        public async Task<ActionResult> ImdbMovie(string ressource)
+        [HttpPost("ImdbMovie")]
+        public async Task<ActionResult> ImdbMovie([FromBody]string ressource)
         {
-            //TODO refactor
             var httpClient = _httpClientFactory.CreateClient("Imdb");
             var moviesDto = new List<MovieDto>();
             var movieDto = new MovieDto();
-            //var imdbSearch = await httpClient.GetFromJsonAsync<ImdbSearch>(ressource);
-            
+           
             using (var imdbSearchStrg = httpClient.GetStringAsync(ressource))
             {
                 ImdbSearch result = JsonConvert.DeserializeObject<ImdbSearch>(imdbSearchStrg.Result);
@@ -67,10 +65,9 @@ namespace ReserveTaPlace.API.Controllers
             }
             if (moviesDto.Count > 0)
             {
-                //var imdbSearch = await httpClient.GetFromJsonAsync<ImdbSearch>($"?&r=json&i={moviesDto[0].ImdbId}");
                 using (var imdbSearchStrg = httpClient.GetStringAsync($"?&r=json&i={moviesDto[0].ImdbId}"))
                 {
-                    movieDto = System.Text.Json.JsonSerializer.Deserialize<MovieDto>(imdbSearchStrg.Result);
+                    movieDto = JsonConvert.DeserializeObject<MovieDto>(imdbSearchStrg.Result);
                 }
                 return Ok(movieDto);
             }

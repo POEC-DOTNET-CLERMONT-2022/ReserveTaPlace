@@ -20,12 +20,13 @@ namespace ReserveTaPlace.Wpf
         public IMovieLogic MovieLogic;
 
         public IMapper Mapper;
-        public IMovieProvider MoviProvider;
+        public IMovieProvider MovieProvider;
         private const string SERVER_URL = "https://localhost:7091";
 
         public HttpClient HttpClient { get; }
         public IDataManager<User, UserDto> UserDataManager { get; }
         public IDataManager<Movie, MovieDto> MovieDataManager { get; }
+        public IDataManager<Movie, MovieDto> MovieProviderDataManager { get; }
 
         public App()
         {
@@ -35,10 +36,12 @@ namespace ReserveTaPlace.Wpf
             UserLogic = new GenericLogic<User>();
             MovieLogic = new MovieLogic();
 
-            MoviProvider = new MovieProvider();
+            MovieProvider = new MovieProvider();
             HttpClient = new HttpClient();
             UserDataManager = new UserDataManager(HttpClient, Mapper, SERVER_URL);
             MovieDataManager= new MovieDataManager(HttpClient, Mapper,SERVER_URL);
+            MovieProviderDataManager = new IMDBDataManager(HttpClient, Mapper, SERVER_URL);
+
         }
     }
 }

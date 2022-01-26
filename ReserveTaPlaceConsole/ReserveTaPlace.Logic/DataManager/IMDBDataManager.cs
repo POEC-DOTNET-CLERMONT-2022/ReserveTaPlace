@@ -6,8 +6,8 @@ namespace ReserveTaPlace.Logic.DataManager
 {
     public class IMDBDataManager : ApiDataManager<Movie, MovieDto>
     {
-        public IMDBDataManager(HttpClient client, IMapper mapper, string serverUrl, string resourceUrl)
-            : base(client, mapper, serverUrl, resourceUrl)
+        public IMDBDataManager(HttpClient client, IMapper mapper, string serverUrl)
+            : base(client, mapper, serverUrl, "/api/movie/ImdbMovie")
         {
         }
 
