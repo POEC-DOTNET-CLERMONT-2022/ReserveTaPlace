@@ -21,12 +21,10 @@ namespace ReserveTaPlace.Wpf.User_Controls
     /// </summary>
     public partial class HomePage : UserControl
     {
-        public INavigator Navigator { get; set; }
 
         public HomePage()
         {
             InitializeComponent();
-            Navigator = ((App)Application.Current).Navigator;
 
 
         }

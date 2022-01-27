@@ -52,7 +52,6 @@ namespace ReserveTaPlace.Wpf
         {
             Navigator.RegisterView(new HomePage());
             Navigator.RegisterView(new LoginPageUC());
-            Navigator.RegisterView(new MainMenuUC());
             Navigator.RegisterView(new MoviePageUC());
             Navigator.RegisterView(new UserPageUC());
 
