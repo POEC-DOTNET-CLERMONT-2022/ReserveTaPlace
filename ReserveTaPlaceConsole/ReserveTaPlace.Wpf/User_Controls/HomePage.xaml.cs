@@ -17,22 +17,19 @@ using System.Windows.Shapes;
 namespace ReserveTaPlace.Wpf.User_Controls
 {
     /// <summary>
-    /// Interaction logic for LoginPageUC.xaml
+    /// Interaction logic for HomePage.xaml
     /// </summary>
-    public partial class LoginPageUC : UserControl
+    public partial class HomePage : UserControl
     {
         public INavigator Navigator { get; set; }
 
-        public LoginPageUC()
+        public HomePage()
         {
             InitializeComponent();
             Navigator = ((App)Application.Current).Navigator;
 
+
         }
 
-        private void LoginBTN_Click(object sender, RoutedEventArgs e)
-        {
-            Navigator.NavigateTo(typeof(HomePage));
-        }
     }
 }

@@ -9,6 +9,7 @@
         Title="MainWindow" Height="450" Width="800"
         >
     <Grid>
+        
         <ContentControl x:Name="ContentControl" Content="{Binding Navigator.CurrentContentControl}"/>
     </Grid>
 </Window>

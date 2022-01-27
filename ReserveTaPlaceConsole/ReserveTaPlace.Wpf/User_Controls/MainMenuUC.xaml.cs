@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ReserveTaPlace.Wpf.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,20 +21,18 @@ namespace ReserveTaPlace.Wpf.User_Controls
     /// </summary>
     public partial class MainMenuUC : UserControl
     {
+        public INavigator Navigator { get; set; }
+
         public MainMenuUC()
         {
             InitializeComponent();
-        }
-        private void ListUserBTN_Click(object sender, RoutedEventArgs e)
-        {
-            var userWindow = new UserWindow();
-            userWindow.Show();
+            Navigator = ((App)Application.Current).Navigator;
+
         }
 
         private void ListmovieBTN_Click(object sender, RoutedEventArgs e)
         {
-            var movieWindow = new MovieWindow();
-            movieWindow.Show();
+            Navigator.NavigateTo(typeof(MoviePageUC));
         }
     }
 }

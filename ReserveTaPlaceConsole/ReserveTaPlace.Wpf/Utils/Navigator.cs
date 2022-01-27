@@ -20,7 +20,11 @@ namespace ReserveTaPlace.Wpf.Utils
             _currentContentControl = new ContentControl();
         }
         public List<Control> Views { get { return _views; } set { _views = value; } }
-        public ContentControl CurrentContentControl { get { return _currentContentControl; } set { _currentContentControl = value; OnNotifyPropertyChanged(); } }
+        public ContentControl CurrentContentControl 
+        { 
+            get { return _currentContentControl; } 
+            set { _currentContentControl = value; OnNotifyPropertyChanged(); }
+        }
         
         public void NavigateTo(Type type)
         {

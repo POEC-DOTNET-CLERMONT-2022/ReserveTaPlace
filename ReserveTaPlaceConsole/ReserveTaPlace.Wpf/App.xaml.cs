@@ -50,6 +50,7 @@ namespace ReserveTaPlace.Wpf
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            Navigator.RegisterView(new HomePage());
             Navigator.RegisterView(new LoginPageUC());
             Navigator.RegisterView(new MainMenuUC());
             Navigator.RegisterView(new MoviePageUC());

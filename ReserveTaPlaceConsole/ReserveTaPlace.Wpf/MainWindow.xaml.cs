@@ -13,14 +13,15 @@ namespace ReserveTaPlace.Wpf
     {
         private IGenericLogic<User> _userLogic = new GenericLogic<User>();
         private IMovieLogic _movieLogic;
-        private INavigator _navigator;
+        public INavigator Navigator { get; set; }
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = this;
             _userLogic = ((App)Application.Current).UserLogic;
             _movieLogic = ((App)Application.Current).MovieLogic;
-            _navigator = ((App)Application.Current).Navigator;
-            _navigator.NavigateTo(typeof(LoginPageUC));
+            Navigator = ((App)Application.Current).Navigator;
+            Navigator.NavigateTo(typeof(LoginPageUC));
         }
 
     }

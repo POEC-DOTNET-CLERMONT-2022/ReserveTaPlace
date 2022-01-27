@@ -6,7 +6,13 @@
              xmlns:local="clr-namespace:ReserveTaPlace.Wpf.User_Controls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    
     <Grid>
-            
+
+        <StackPanel>
+            <TextBlock>HELOOOOOOOOO</TextBlock>
+            <Button Width="90">TEST</Button>
+        </StackPanel>
+
     </Grid>
 </UserControl>
