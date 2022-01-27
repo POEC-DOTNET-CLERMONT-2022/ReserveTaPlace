@@ -6,40 +6,9 @@
         xmlns:uc="clr-namespace:ReserveTaPlace.Wpf.User_Controls"
         xmlns:local="clr-namespace:ReserveTaPlace.Wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        >
     <Grid>
-        <Grid x:Name="LoginGrid">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"></ColumnDefinition>
-                <ColumnDefinition Width="3*"></ColumnDefinition>
-                <ColumnDefinition Width="1*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1*"></RowDefinition>
-                <RowDefinition Height="1*"></RowDefinition>
-                <RowDefinition Height="1*"></RowDefinition>
-            </Grid.RowDefinitions>
-            <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
-                <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Bienvenu" FontSize="20" FontWeight="Bold"/>
-                <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Veuillez vous connecter"/>
-            </StackPanel>
-            <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-                    <TextBlock TextWrapping="Wrap" Text="Login :"/>
-                    <TextBox x:Name ="LoginTB" TextWrapping="Wrap" Text="Login"/>
-                </WrapPanel>
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-                    <TextBlock TextWrapping="Wrap" Text="Password :"/>
-                    <TextBox x:Name="PasswordTB" TextWrapping="Wrap" Text="Password"/>
-                </WrapPanel>
-            </StackPanel>
-            <WrapPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Button x:Name="ForgetPasswordBTN" Margin="10">Mot de passe perdu ?</Button>
-                <Button x:Name="LoginBTN" Margin="10" Click="LoginBTN_Click">Se connecter</Button>
-                <Button x:Name="ListUserBTNBTN" Margin="10" Click="ListUserBTN_Click">Voir liste utilisateurs</Button>
-                <Button x:Name="ListmovieBTN" Margin="10" Click="ListmovieBTN_Click">Voir liste film</Button>
-                <TextBlock x:Name="ResultTB"/>
-            </WrapPanel>
-        </Grid>
+        <ContentControl x:Name="ContentControl" Content="{Binding Navigator.CurrentContentControl}"/>
     </Grid>
 </Window>

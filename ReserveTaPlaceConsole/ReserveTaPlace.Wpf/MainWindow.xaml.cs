@@ -1,5 +1,7 @@
 ﻿using ReserveTaPlace.Logic;
 using ReserveTaPlace.Models;
+using ReserveTaPlace.Wpf.User_Controls;
+using ReserveTaPlace.Wpf.Utils;
 using System.Windows;
 
 namespace ReserveTaPlace.Wpf
@@ -11,28 +13,14 @@ namespace ReserveTaPlace.Wpf
     {
         private IGenericLogic<User> _userLogic = new GenericLogic<User>();
         private IMovieLogic _movieLogic;
+        private INavigator _navigator;
         public MainWindow()
         {
+            InitializeComponent();
             _userLogic = ((App)Application.Current).UserLogic;
             _movieLogic = ((App)Application.Current).MovieLogic;
-            InitializeComponent();
-        }
-
-        private void LoginBTN_Click(object sender, RoutedEventArgs e)
-        {
-            //ResultTB.Text = _userLogic.GetUser(LoginTB.Text, PasswordTB.Text);
-        }
-
-        private void ListUserBTN_Click(object sender, RoutedEventArgs e)
-        {
-            var userWindow = new UserWindow();
-            userWindow.Show();
-        }
-
-        private void ListmovieBTN_Click(object sender, RoutedEventArgs e)
-        {
-            var movieWindow = new MovieWindow();
-            movieWindow.Show();
+            _navigator = ((App)Application.Current).Navigator;
+            _navigator.NavigateTo(typeof(LoginPageUC));
         }
 
     }
