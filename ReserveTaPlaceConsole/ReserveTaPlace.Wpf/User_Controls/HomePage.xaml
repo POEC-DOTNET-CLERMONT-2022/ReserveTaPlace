@@ -16,6 +16,6 @@
         <Button Grid.Column="1" Width="150">TEST</Button>
         <Button Grid.Column="1" Width="150" HorizontalAlignment="Left">TEST</Button>
 
-        <ContentControl Grid.Column="1" x:Name="ContentControl" Content=""/>
+        <ContentControl Grid.Column="1" x:Name="ContentControl" Content="{Binding Navigator.CurrentContentControl}"/>
     </Grid>
 </UserControl>
