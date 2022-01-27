@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IMovie } from 'src/models/i-movie';
-import { IMovieList } from 'src/models/movie/i-movie-list';
+import { IMovie } from 'src/models/movie/i-movie';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +12,7 @@ export class MovieService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getMovies(): Observable<IMovie> {
-    return this.httpClient.get<IMovie>(this.baseUrl);
+  getMovies(): Observable<IMovie[]> {
+    return this.httpClient.get<IMovie[]>(this.baseUrl);
   }
 }

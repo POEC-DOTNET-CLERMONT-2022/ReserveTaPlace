@@ -1,4 +1,4 @@
-<div class="container" *ngIf="movieList;else noDatas">
+<div class="container" *ngIf="movieArray;else noDatas">
     <table class="table">
         <thead>
             <tr>
@@ -8,21 +8,13 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-            <tr *ngFor="let movie of movieList">
-                <td>{{movie.Title }} {{ actor }}</td>
+            <tr *ngFor="let movie of movieArray">
+                <td>{{movie.Title }}</td>
                 <td>{{movie.Runtime }}</td>
                 <td>{{movie.Released }}</td>
             </tr>
         </tbody>
     </table>
-</div>
-<div class="container">
-    <p *ngFor="let movie of movieList">
-        {{movie.Title}}
-        {{movie.Runtime}}
-        {{movie.Released}}
-    </p>
 </div>
 
 <ng-template #noDatas>
