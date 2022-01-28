@@ -13,20 +13,17 @@ namespace ReserveTaPlace.Entities
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
-        public Guid? MovieId { get; set; }
         public Guid? FormatId { get; set; }
         public Guid? TheaterId { get; set; }
-
+        [Column("Name", TypeName = "nvarchar(70)")]
         public string? Name { get; set; }
+        [Column("Number", TypeName = "nvarchar(5)")]
         public string? Number { get; set; }
 
         [ForeignKey(nameof(TheaterId))]
         [InverseProperty("Rooms")]
         public virtual TheaterEntity? Theater { get; set; }
-        [ForeignKey(nameof(MovieId))]
-        public virtual MovieEntity? Movie { get; set; }
 
         [ForeignKey(nameof(FormatId))]
         public virtual FormatEntity? Format { get; set; }

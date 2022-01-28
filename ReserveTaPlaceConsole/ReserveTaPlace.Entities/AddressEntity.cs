@@ -8,13 +8,8 @@ namespace ReserveTaPlace.Entities
     {
         [Key]
         [Column(Order = 1)]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
-        //[Required]
-        //[ForeignKey(nameof(OwnerId))]
-        //public Guid OwnerId { get; set; }
         public Guid? TheaterId { get; set; }
-        public Guid? UserId { get; set; }
 
         [Column("Address1", TypeName = "nvarchar(100)", Order = 2)]
         public string? Address1 { get; set; }
@@ -38,8 +33,7 @@ namespace ReserveTaPlace.Entities
         public string County { get; set; }
         [ForeignKey(nameof(TheaterId))]
         public virtual TheaterEntity? Theater { set; get; }
-        [ForeignKey(nameof(UserId))]
-        public virtual UserEntity? User { set; get; }
+
 
     }
 }

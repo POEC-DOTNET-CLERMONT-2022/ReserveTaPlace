@@ -26,7 +26,6 @@ namespace ReserveTaPlace.Wpf.User_Controls
         {
             InitializeComponent();
 
-
         }
 
     }

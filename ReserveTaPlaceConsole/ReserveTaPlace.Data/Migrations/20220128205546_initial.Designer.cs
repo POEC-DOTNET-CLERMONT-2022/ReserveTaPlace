@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ReserveTaPlace.Data.ApplicationContext;
 
@@ -11,9 +12,10 @@ using ReserveTaPlace.Data.ApplicationContext;
 namespace ReserveTaPlace.Data.Migrations
 {
     [DbContext(typeof(ReserveTaPlaceContext))]
-    partial class ReserveTaPlaceContextModelSnapshot : ModelSnapshot
+    [Migration("20220128205546_initial")]
+    partial class initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -115,9 +117,6 @@ namespace ReserveTaPlace.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<float?>("Amount")
-                        .HasColumnType("real");
-
                     b.Property<Guid?>("DicountTypeId")
                         .HasColumnType("uniqueidentifier");
 
@@ -128,9 +127,6 @@ namespace ReserveTaPlace.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(35)")
                         .HasColumnName("Number");
-
-                    b.Property<short?>("Rate")
-                        .HasColumnType("smallint");
 
                     b.Property<Guid?>("UserId")
                         .HasColumnType("uniqueidentifier");
@@ -150,10 +146,16 @@ namespace ReserveTaPlace.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<float>("Amount")
+                        .HasColumnType("real");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Name");
+
+                    b.Property<short>("Rate")
+                        .HasColumnType("smallint");
 
                     b.HasKey("Id");
 
@@ -375,7 +377,7 @@ namespace ReserveTaPlace.Data.Migrations
 
                     b.HasIndex("SessionEntityId");
 
-                    b.ToTable("Schedule");
+                    b.ToTable("SessionHour");
                 });
 
             modelBuilder.Entity("ReserveTaPlace.Entities.SeatEntity", b =>
