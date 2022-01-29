@@ -13,6 +13,5 @@
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
         <User_Controls:MainMenuUC Grid.Column="0" x:Name="MainMenuUC"></User_Controls:MainMenuUC>
-        <ContentControl Grid.Column="1" x:Name="ContentControl" Content="{Binding Navigator.CurrentContentControl}"/>
     </Grid>
 </UserControl>
