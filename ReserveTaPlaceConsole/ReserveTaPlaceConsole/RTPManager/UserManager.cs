@@ -1,5 +1,5 @@
 ﻿using ReserveTaPlace.Logic;
-using ReserveTaPlace.Models;
+using ReserveTaPlace.Models.CModels;
 
 namespace ReserveTaPlaceConsole.RTPManager
 {

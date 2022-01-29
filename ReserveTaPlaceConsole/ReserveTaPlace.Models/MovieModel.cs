@@ -1,10 +1,15 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.Json.Serialization;
+using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Models
 {
-    public class Movie
+    public class MovieModel
     {
+
         private Guid _id;
         private string _imdbId;
         private string _title;
@@ -19,24 +24,9 @@ namespace ReserveTaPlace.Models
         private string _released;
         private string _runtime;
         private bool _isMovieOnDisplay;
-        private int _idC;
 
-        public int IdC
-        {
-            get { return _idC; }
-            set { _idC = value; }
-        }
-        public Movie()
-        {
-            _id= Guid.NewGuid();
-        }
-        public Movie(int idc,string title)
-        {
-            _idC = idc;
-            _title = title;
-        }
         [JsonConstructor]
-        public Movie(string title,string plot, string genre, string director, string poster,string imdbId,string released,string runtime)
+        public MovieModel(string title, string plot, string genre, string director, string poster, string imdbId, string released, string runtime)
         {
             _id = Guid.NewGuid();
             _title = title;
@@ -68,7 +58,5 @@ namespace ReserveTaPlace.Models
             get { return _isMovieOnDisplay; }
             set { _isMovieOnDisplay = value; }
         }
-
-
     }
 }

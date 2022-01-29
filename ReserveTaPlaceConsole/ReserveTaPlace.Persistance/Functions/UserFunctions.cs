@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using ReserveTaPlace.Models;
+using ReserveTaPlace.Models.CModels;
 using ReserveTaPlace.Persistance.Interfaces;
 
 namespace ReserveTaPlace.Persistance.Functions

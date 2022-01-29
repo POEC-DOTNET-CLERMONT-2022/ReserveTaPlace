@@ -6,15 +6,10 @@ namespace ReserveTaPlace.Entities
     [Table("DiscountType")]
     public class DiscountType
     {
-        public DiscountType()
-        {
-        }
-
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
+        [Column("Name", TypeName = "nvarchar(50)")]
         public string Name { get; set; }
-        public short Rate { get; set; }
-        public float Amount { get; set; }
+
     }
 }

@@ -1,4 +1,4 @@
-﻿using ReserveTaPlace.Models;
+﻿using ReserveTaPlace.Models.CModels;
 using ReserveTaPlace.RTPManager.Interfaces;
 
 namespace ReserveTaPlaceConsole.RTPManager

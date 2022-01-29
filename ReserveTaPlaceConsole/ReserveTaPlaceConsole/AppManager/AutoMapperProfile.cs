@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using ReserveTaPlace.DTOS;
-using ReserveTaPlace.Models;
+using ReserveTaPlace.Models.CModels;
 
 namespace ReserveTaPlace.CAPP.AppManager
 {

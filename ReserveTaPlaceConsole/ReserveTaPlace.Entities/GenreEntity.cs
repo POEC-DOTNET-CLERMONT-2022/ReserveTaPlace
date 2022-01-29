@@ -12,8 +12,8 @@ namespace ReserveTaPlace.Entities
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
+        [Column("Name", TypeName = "nvarchar(50)")]
         public string Name { get; set; }
         public virtual ICollection<MovieEntity>? Movies { get; set; }
     }

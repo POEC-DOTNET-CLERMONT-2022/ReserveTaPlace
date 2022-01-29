@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using ReserveTaPlace.AppManager;
 using ReserveTaPlace.Logic;
-using ReserveTaPlace.Models;
 using ReserveTaPlace.Models.CModels;
 using ReserveTaPlace.RTPManager.Interfaces;
 using ReserveTaPlaceConsole.RTPManager;

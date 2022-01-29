@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Logic.DataManager
 {
-    public class MovieDataManager : ApiDataManager<Movie, MovieDto>
+    public class MovieDataManager : ApiDataManager<MovieModel, MovieDto>
     {
         public MovieDataManager(HttpClient client, IMapper mapper, string serverUrl)
             : base(client, mapper, serverUrl, "/api/movie")

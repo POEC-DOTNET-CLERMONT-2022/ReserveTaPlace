@@ -7,18 +7,16 @@ namespace ReserveTaPlace.Entities
     public class TicketEntity
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
         public Guid? SeatId { get; set; }
-        public Guid? RoomId { get; set; }
-
-        //public Guid SessionId { get; set; }
+        public Guid? sessionId { get; set; }
+        public Guid? OrderId { get; set; }
 
         [ForeignKey(nameof(SeatId))]
         public virtual SeatEntity? Seat { get; set; }
-        [ForeignKey(nameof(RoomId))]
-        public virtual RoomEntity? Room { get; set; }
-
-
+        [ForeignKey(nameof(sessionId))]
+        public virtual SessionEntity? Session { get; set; }
+        [ForeignKey(nameof(OrderId))]
+        public virtual OrderEntity? Order { get; set; }
     }
 }

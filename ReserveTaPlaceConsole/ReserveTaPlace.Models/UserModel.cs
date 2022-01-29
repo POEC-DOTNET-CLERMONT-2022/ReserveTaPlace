@@ -1,39 +1,39 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Models
 {
-    public class User
+    public class UserModel
     {
         private readonly Guid _id;
         private string _firstName;
         private string _lastName;
         private string _email;
         private string _password;
-        private UserRoles _userRoles;
+        private IList<RoleModel> _Roles;
 
-        public User(string firstName, string lastName, string email, string password)
+        public UserModel(string firstName, string lastName, string email, string password)
         {
             _id = Guid.NewGuid();
             _firstName = firstName;
             _lastName = lastName;
             _email = email;
             _password = password;
-            _userRoles = UserRoles.Client;
-        }
-        public User(string firstName, string lastName, string email, string password, UserRoles userRoles) : this(firstName, lastName, email, password)
-        {
-            _userRoles = userRoles;
+            _Roles = new List<RoleModel>();
         }
         [JsonConstructor]
-        public User(Guid id, string firstName, string lastName, string email, string password, UserRoles userRoles)
+        public UserModel(Guid id, string firstName, string lastName, string email, string password, List<RoleModel> roles)
         {
             _id = id;
             _firstName = firstName;
             _lastName = lastName;
             _email = email;
             _password = password;
-            _userRoles = UserRoles.Client;
+            _Roles = roles;
 
         }
 
@@ -49,11 +49,10 @@ namespace ReserveTaPlace.Models
         public string Password { get { return _password; } }
         [JsonProperty(PropertyName = "UserRoles")]
 
-        public UserRoles UserRoles
+        public IList<RoleModel> Roles
         {
-            get { return _userRoles; }
-            set { _userRoles = value; }
+            get { return _Roles; }
+            set { _Roles = value; }
         }
     }
-
 }

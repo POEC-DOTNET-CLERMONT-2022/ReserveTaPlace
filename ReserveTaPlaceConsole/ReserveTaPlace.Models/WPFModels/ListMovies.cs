@@ -9,11 +9,11 @@ namespace ReserveTaPlace.Models.WPFModels
 {
     public class ListMovies : ObservableObject
     {
-        private ObservableCollection<Movie> _movies;
+        private ObservableCollection<MovieModel> _movies;
 
-        private Movie _currentMovie;
+        private MovieModel _currentMovie;
 
-        public Movie CurrentMovie
+        public MovieModel CurrentMovie
         {
             get { return _currentMovie; }
             set
@@ -25,7 +25,7 @@ namespace ReserveTaPlace.Models.WPFModels
                 }
             }
         }
-        public ObservableCollection<Movie> Movies
+        public ObservableCollection<MovieModel> Movies
         {
             get { return _movies; }
             set

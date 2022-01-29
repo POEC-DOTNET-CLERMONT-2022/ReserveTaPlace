@@ -7,15 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace ReserveTaPlace.Wpf
 {
     public class MapperProfile : Profile
     {
         public MapperProfile()
         {
-            CreateMap<MovieDto, Movie>().ReverseMap();
+            CreateMap<MovieDto, MovieModel>().ReverseMap();
 
-            CreateMap<UserDto, User>().ReverseMap();
+            CreateMap<UserDto, UserModel>().ReverseMap();
         }
     }
 }

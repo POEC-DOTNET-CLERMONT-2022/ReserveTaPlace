@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using ReserveTaPlace.Models;
+using ReserveTaPlace.Models.CModels;
 
 namespace ReserveTaPlace.Persistance.Functions
 {
@@ -14,14 +14,8 @@ namespace ReserveTaPlace.Persistance.Functions
 
         public async Task SaveMovies(IEnumerable<Movie> movieList)
         {
-            //using(FileStream fs = File.Create(@"movieList.txt"))
-            //{
-
-            //    fs.Close();
-            //}
             var jsonString = JsonConvert.SerializeObject(movieList);
             await File.WriteAllTextAsync(@"movieList.txt", jsonString);
-
         }
 
     }
