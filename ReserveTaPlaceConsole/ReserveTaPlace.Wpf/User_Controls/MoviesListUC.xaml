@@ -15,10 +15,12 @@
         <ListBox Grid.Row="0" SelectedItem="{Binding CurrentMovie}" ItemsSource="{Binding Movies}" x:Name="LBMovies">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel>
+                    <WrapPanel>
                         <TextBlock Text ="Titre : " />
                         <TextBlock Text ="{Binding Title}" />
-                    </StackPanel>
+                        <TextBlock Text ="Sortie : " />
+                        <TextBlock Text ="{Binding Released}" />
+                    </WrapPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
