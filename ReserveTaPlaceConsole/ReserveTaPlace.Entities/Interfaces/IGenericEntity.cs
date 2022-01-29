@@ -8,5 +8,6 @@ namespace ReserveTaPlace.Entities.Interfaces
 {
     internal interface IGenericEntity
     {
+
     }
 }
