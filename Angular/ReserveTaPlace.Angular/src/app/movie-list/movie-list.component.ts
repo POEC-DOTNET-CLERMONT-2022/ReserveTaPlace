@@ -18,7 +18,6 @@ export class MovieListComponent implements OnInit {
   }
 
   getMovies(): void{
-    let iterations= 0;
     this.movieService.getMovies()
       .subscribe((movieArray: IMovie[]) =>{
         this.movieArray = movieArray;

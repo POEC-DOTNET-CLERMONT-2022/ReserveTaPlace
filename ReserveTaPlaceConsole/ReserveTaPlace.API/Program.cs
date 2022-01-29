@@ -5,6 +5,15 @@ using ReserveTaPlace.Data.Functions;
 using ReserveTaPlace.Data.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
+var devCorsPolicy = "devCorsPolicy";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(devCorsPolicy,
+                      builder =>
+                      {
+                          builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+                      });
+});
 
 // Add services to the container.
 
@@ -40,6 +49,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(devCorsPolicy);
 
 app.UseAuthorization();
 
