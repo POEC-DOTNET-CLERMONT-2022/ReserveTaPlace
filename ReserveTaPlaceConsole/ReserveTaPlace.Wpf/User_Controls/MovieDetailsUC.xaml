@@ -32,11 +32,5 @@
                 </StackPanel>
             </Grid>
         </materialDesign:Card>
-        <!--<StackPanel DataContext="{Binding .,ElementName=root}">
-            <TextBlock Text="{Binding CurrentMovie.Title}" />
-            <TextBlock Text="{Binding CurrentMovie.Plot}" />
-            <TextBlock Text="{Binding CurrentMovie.ImdbId}" />
-            <Image Width="180" Source="{Binding CurrentMovie.Poster}"></Image>
-        </StackPanel>-->
     </Grid>
 </UserControl>
