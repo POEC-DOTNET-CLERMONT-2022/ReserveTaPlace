@@ -24,6 +24,7 @@
                 <Button Click="ShowAddMovie_Click">Ajouter un film</Button>
             </WrapPanel>
             <User_Controls:AddMovieUC Visibility="Collapsed" Grid.Column="1" Grid.Row="1" x:Name="AddMovieUC"></User_Controls:AddMovieUC>
+            <User_Controls:MoviesListUC Visibility="Collapsed" Grid.Column="1" Grid.Row="1" x:Name="MoviesListUC"></User_Controls:MoviesListUC>
         </Grid>
         <User_Controls:MainMenuUC Grid.Column="0" x:Name="MainMenuUC"></User_Controls:MainMenuUC>
     </Grid>

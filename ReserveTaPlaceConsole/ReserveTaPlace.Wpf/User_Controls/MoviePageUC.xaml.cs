@@ -28,11 +28,13 @@ namespace ReserveTaPlace.Wpf.User_Controls
         private void ShowAddMovie_Click(object sender, RoutedEventArgs e)
         {
             AddMovieUC.Visibility = Visibility.Visible;
+            MoviesListUC.Visibility = Visibility.Collapsed;
         }
 
         private void ShowListMovies(object sender, RoutedEventArgs e)
         {
-
+            MoviesListUC.Visibility = Visibility.Visible;
+            AddMovieUC.Visibility = Visibility.Collapsed;
         }
     }
 }
