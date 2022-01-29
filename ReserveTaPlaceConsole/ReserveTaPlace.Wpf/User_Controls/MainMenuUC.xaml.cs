@@ -34,5 +34,10 @@ namespace ReserveTaPlace.Wpf.User_Controls
         {
             Navigator.NavigateTo(typeof(MoviePageUC));
         }
+
+        private void ListUserBTNBTN_Click(object sender, RoutedEventArgs e)
+        {
+            Navigator.NavigateTo(typeof(UserPageUC));
+        }
     }
 }

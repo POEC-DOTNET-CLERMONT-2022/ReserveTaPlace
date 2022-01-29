@@ -8,7 +8,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <StackPanel HorizontalAlignment="Left">
-            <Button x:Name="ListUserBTNBTN" Margin="10" >Voir liste utilisateurs</Button>
+            <Button x:Name="ListUserBTNBTN" Margin="10" Click="ListUserBTNBTN_Click" >Voir liste utilisateurs</Button>
             <Button x:Name="ListmovieBTN" Margin="10" Click="ListmovieBTN_Click">Voir liste film</Button>
         </StackPanel>
     </Grid>
