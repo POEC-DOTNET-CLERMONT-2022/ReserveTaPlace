@@ -10,8 +10,6 @@ namespace ReserveTaPlace.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
         public Guid? MovieId { get; set; }
-
-        public string Title { get; set; }
         public string Link { get; set; }
         [ForeignKey(nameof(MovieId))]
         [InverseProperty("Medias")]

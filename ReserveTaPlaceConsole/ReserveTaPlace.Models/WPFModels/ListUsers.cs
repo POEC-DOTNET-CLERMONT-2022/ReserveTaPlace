@@ -9,9 +9,9 @@ namespace ReserveTaPlace.Models.WPFModels
 {
     public class ListUsers : ObservableObject
     {
-        private ObservableCollection<User> _users;
-        private User _currentUser;
-        public User CurrentUser
+        private ObservableCollection<UserModel> _users;
+        private UserModel _currentUser;
+        public UserModel CurrentUser
         {
             get { return _currentUser; }
             set
@@ -23,7 +23,7 @@ namespace ReserveTaPlace.Models.WPFModels
                 }
             }
         }
-        public ObservableCollection<User> Users
+        public ObservableCollection<UserModel> Users
         {
             get { return _users; }
             set

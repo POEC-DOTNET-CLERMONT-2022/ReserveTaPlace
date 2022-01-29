@@ -3,14 +3,14 @@ using System.Collections.Generic;
 
 namespace ReserveTaPlace.Models
 {
-    internal class Order
+    internal class OrderModel
     {
         private Guid _id;
         private List<Ticket> _ticket;
         private DateTime _date;
-        private User _user;
+        private UserModel _user;
 
-        public Order(List<Ticket> tickets, User user)
+        public OrderModel(List<Ticket> tickets, UserModel user)
         {
             _id = Guid.NewGuid();
             _ticket = tickets;
@@ -21,6 +21,6 @@ namespace ReserveTaPlace.Models
         public Guid Id { get { return _id; } }
         public List<Ticket> Ticket { get { return _ticket; } }
         public DateTime Date { get { return _date; } }
-        public User User { get { return _user; } }
+        public UserModel User { get { return _user; } }
     }
 }

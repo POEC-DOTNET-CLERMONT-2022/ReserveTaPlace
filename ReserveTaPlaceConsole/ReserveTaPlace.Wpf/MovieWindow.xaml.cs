@@ -20,8 +20,8 @@ namespace ReserveTaPlace.Wpf
         //private IMovieProvider _movieProvider;
         private readonly IMapper _mapper;
         private ListMovies _listMovie;
-        private readonly IDataManager<Movie, MovieDto> _movieDataManager;
-        private IDataManager<Movie, MovieDto> _movieProviderDataManager;
+        private readonly IDataManager<MovieModel, MovieDto> _movieDataManager;
+        private IDataManager<MovieModel, MovieDto> _movieProviderDataManager;
 
         public MovieWindow()
         {
@@ -39,8 +39,8 @@ namespace ReserveTaPlace.Wpf
         public async void LoadMovies()
         {
             var movies = await _movieDataManager.GetAll();
-            var moviesModel = _mapper.Map<IEnumerable<Movie>>(movies);
-            _listMovie.Movies = new ObservableCollection<Movie>(moviesModel);
+            var moviesModel = _mapper.Map<IEnumerable<MovieModel>>(movies);
+            _listMovie.Movies = new ObservableCollection<MovieModel>(moviesModel);
         }
 
         private async void Button_AddMovie(object sender, RoutedEventArgs e)

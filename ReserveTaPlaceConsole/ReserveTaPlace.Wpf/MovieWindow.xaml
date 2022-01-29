@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ReserveTaPlace.Wpf"
+        xmlns:local="clr-namespace:ReserveTaPlace.Wpf" 
+        xmlns:User_Controls="clr-namespace:ReserveTaPlace.Wpf.User_Controls"
         mc:Ignorable="d"
         Title="MovieWindow" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
@@ -32,11 +33,6 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
             </ListBox>
-        <StackPanel Grid.Row="1" Grid.Column="1">
-            <TextBlock Text="{Binding CurrentMovie.Title}" />
-            <TextBlock Text="{Binding CurrentMovie.Plot}" />
-            <TextBlock Text="{Binding CurrentMovie.ImdbId}" />
-            <Image Width="180" Source="{Binding CurrentMovie.Poster}"></Image>
-        </StackPanel>
+        <User_Controls:MovieDetailsUC Grid.Row="1" Grid.Column="1" x:Name="MovieDetailsUC" CurrentMovie="{Binding SelectedItem, ElementName=LBMovies}"></User_Controls:MovieDetailsUC>
     </Grid>
 </Window>

@@ -7,12 +7,13 @@ namespace ReserveTaPlace.Entities
     public class DiscountEntity
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
         public Guid? UserId { get; set; }
         public Guid? DicountTypeId { get; set; }
-
+        [Column("Number", TypeName = "nvarchar(35)")]
         public string Number { get; set; }
+        public short? Rate { get; set; }
+        public float? Amount { get; set; }
         public DateTime EndValidityDate { get; set; }
         [ForeignKey(nameof(UserId))]
         public virtual UserEntity? User { get; set; }

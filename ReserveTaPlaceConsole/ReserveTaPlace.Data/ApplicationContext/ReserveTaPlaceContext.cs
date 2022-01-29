@@ -10,7 +10,6 @@ namespace ReserveTaPlace.Data.ApplicationContext
         {
 
         }
-        public virtual DbSet<GenericEntity> Generics { get; set; }
         public virtual DbSet<AddressEntity> Address { get; set; }
         public virtual DbSet<DiscountEntity> Discounts { get; set; }
         public virtual DbSet<DiscountType> DiscountTypes { get; set; }
@@ -24,7 +23,7 @@ namespace ReserveTaPlace.Data.ApplicationContext
         public virtual DbSet<FormatEntity> Formats { get; set; }
         public virtual DbSet<SeatEntity> Seats { get; set; }
         public virtual DbSet<SessionEntity> Sessions { get; set; }
-        public virtual DbSet<SessionHourEntity> SessionHours { get; set; }
+        public virtual DbSet<ScheduleEntity> SessionHours { get; set; }
         public virtual DbSet<TheaterEntity> Theaters { get; set; }
         public virtual DbSet<TicketEntity> Tickets { get; set; }
         public virtual DbSet<UserEntity> Users { get; set; }

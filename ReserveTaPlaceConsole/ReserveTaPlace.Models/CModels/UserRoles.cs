@@ -1,4 +1,4 @@
-﻿namespace ReserveTaPlace.Models
+﻿namespace ReserveTaPlace.Models.CModels
 {
     public enum UserRoles
     {

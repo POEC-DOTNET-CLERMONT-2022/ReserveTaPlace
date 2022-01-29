@@ -13,14 +13,12 @@ namespace ReserveTaPlace.Entities
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
-        public Guid? AddressId { get; set; }
+        [Column("Name", TypeName = "nvarchar(70)")]
         public string Name { get; set; }
-        [InverseProperty("Theater")]
         public AddressEntity? Address { get; set; }
-        public virtual ICollection<RoomEntity> Rooms { get; set; }
-        public virtual ICollection<UserEntity> Users { get; set; }
+        public virtual ICollection<RoomEntity>? Rooms { get; set; }
+        public virtual ICollection<UserEntity>? Users { get; set; }
 
 
     }
