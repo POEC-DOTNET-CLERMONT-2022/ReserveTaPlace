@@ -1,4 +1,4 @@
-﻿using ReserveTaPlace.Models;
+﻿using ReserveTaPlace.Models.CModels;
 
 namespace ReserveTaPlace.Persistance.Interfaces
 {

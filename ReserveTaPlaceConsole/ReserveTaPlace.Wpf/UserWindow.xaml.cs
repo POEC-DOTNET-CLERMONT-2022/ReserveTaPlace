@@ -13,7 +13,7 @@ namespace ReserveTaPlace.Wpf
     /// </summary>
     public partial class UserWindow : Window
     {
-        private IGenericLogic<User> _userLogic = new GenericLogic<User>();
+        private IGenericLogic<UserModel> _userLogic = new GenericLogic<UserModel>();
         private readonly IMapper _mapper;
         private ListUsers _listUser;
         public UserWindow()
@@ -28,8 +28,8 @@ namespace ReserveTaPlace.Wpf
         public async void LoadUsers()
         {
             var users = await _userLogic.GetAll();
-            var userModels = _mapper.Map<IEnumerable<User>>(users);
-            _listUser.Users = new ObservableCollection<User>(userModels);
+            var userModels = _mapper.Map<IEnumerable<UserModel>>(users);
+            _listUser.Users = new ObservableCollection<UserModel>(userModels);
         }
 
         private void AddUser_Click(object sender, RoutedEventArgs e)
@@ -39,7 +39,7 @@ namespace ReserveTaPlace.Wpf
             {
                 password = TBpassword.Text;
             }
-            var newUser = new User(TBfirstName.Text,TBlastName.Text,TBmail.Text, password);
+            var newUser = new UserModel(TBfirstName.Text,TBlastName.Text,TBmail.Text, password);
             _listUser.Users.Add(newUser);
 
         }

@@ -14,9 +14,9 @@ namespace ReserveTaPlace.Wpf
     {
         public MapperProfile()
         {
-            CreateMap<MovieDto, Movie>().ReverseMap();
+            CreateMap<MovieDto, MovieModel>().ReverseMap();
 
-            CreateMap<UserDto, User>().ReverseMap();
+            CreateMap<UserDto, UserModel>().ReverseMap();
         }
     }
 }

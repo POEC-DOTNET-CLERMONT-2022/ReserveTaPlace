@@ -4,19 +4,19 @@ using ReserveTaPlace.Models;
 
 namespace ReserveTaPlace.Logic.DataManager
 {
-    public class IMDBDataManager : ApiDataManager<Movie, MovieDto>
+    public class IMDBDataManager : ApiDataManager<MovieModel, MovieDto>
     {
         public IMDBDataManager(HttpClient client, IMapper mapper, string serverUrl)
             : base(client, mapper, serverUrl, "/api/movie/ImdbMovie")
         {
         }
 
-        public new async Task<IEnumerable<Movie>> GetAll()
+        public new async Task<IEnumerable<MovieModel>> GetAll()
         {
             return await base.GetAll();
         }
 
-        public new async Task Add(Movie model)
+        public new async Task Add(MovieModel model)
         {
 
         }

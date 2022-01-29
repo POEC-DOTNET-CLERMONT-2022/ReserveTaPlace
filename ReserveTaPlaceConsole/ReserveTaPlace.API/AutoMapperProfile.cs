@@ -11,7 +11,7 @@ namespace ReserveTaPlace.API
         {
             //Todo Implémenter flattened DTOS https://enroute.osgi.org/FAQ/420-dtos.html
             CreateMap<MovieEntity, MovieDto>().ReverseMap();
-            CreateMap<MovieEntity, Movie>().ReverseMap();
+            CreateMap<MovieEntity, MovieModel>().ReverseMap();
             //CreateMap<MovieEntity, MovieDto>().ForMember(dest => dest.Name, src => src.MapFrom(src => src.FirstName));
             CreateMap<UserEntity, UserDto>().ReverseMap();
             CreateMap<UserEntity, UserDto>()

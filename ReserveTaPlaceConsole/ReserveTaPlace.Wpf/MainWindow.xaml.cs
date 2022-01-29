@@ -11,7 +11,7 @@ namespace ReserveTaPlace.Wpf
     /// </summary>
     public partial class MainWindow : Window
     {
-        private IGenericLogic<User> _userLogic = new GenericLogic<User>();
+        private IGenericLogic<UserModel> _userLogic = new GenericLogic<UserModel>();
         private IMovieLogic _movieLogic;
         public INavigator Navigator { get; set; }
         public MainWindow()

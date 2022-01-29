@@ -18,7 +18,7 @@ namespace ReserveTaPlace.Wpf
     /// </summary>
     public partial class App : Application
     {
-        public IGenericLogic<User> UserLogic;
+        public IGenericLogic<UserModel> UserLogic;
         public IMovieLogic MovieLogic;
 
         public IMapper Mapper;
@@ -26,9 +26,9 @@ namespace ReserveTaPlace.Wpf
         private const string SERVER_URL = "https://localhost:7091";
 
         public HttpClient HttpClient { get; }
-        public IDataManager<User, UserDto> UserDataManager { get; }
-        public IDataManager<Movie, MovieDto> MovieDataManager { get; }
-        public IDataManager<Movie, MovieDto> MovieProviderDataManager { get; }
+        public IDataManager<UserModel, UserDto> UserDataManager { get; }
+        public IDataManager<MovieModel, MovieDto> MovieDataManager { get; }
+        public IDataManager<MovieModel, MovieDto> MovieProviderDataManager { get; }
         public INavigator Navigator { get; }
 
         public App()
@@ -36,7 +36,7 @@ namespace ReserveTaPlace.Wpf
             var config = new MapperConfiguration(cfg => cfg.AddMaps(typeof(App)));
             Mapper = new Mapper(config);
 
-            UserLogic = new GenericLogic<User>();
+            UserLogic = new GenericLogic<UserModel>();
             MovieLogic = new MovieLogic();
 
             MovieProvider = new MovieProvider();

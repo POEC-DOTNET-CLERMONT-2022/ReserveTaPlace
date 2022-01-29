@@ -23,15 +23,15 @@ namespace ReserveTaPlace.Wpf.User_Controls
     /// </summary>
     public partial class MovieDetailsUC : UserControl, INotifyPropertyChanged
     {
-        private static readonly DependencyProperty _currentMovieProperty = DependencyProperty.Register("CurrentMovie", typeof(Movie), typeof(MovieDetailsUC)); 
-        private Movie _currentMovie;
+        private static readonly DependencyProperty _currentMovieProperty = DependencyProperty.Register("CurrentMovie", typeof(MovieModel), typeof(MovieDetailsUC)); 
+        private MovieModel _currentMovie;
         public MovieDetailsUC()
         {
             InitializeComponent();
         }
-        public Movie CurrentMovie
+        public MovieModel CurrentMovie
         {
-            get { return GetValue(_currentMovieProperty) as Movie; }
+            get { return GetValue(_currentMovieProperty) as MovieModel; }
             set
             {
                 if (_currentMovie != value)
