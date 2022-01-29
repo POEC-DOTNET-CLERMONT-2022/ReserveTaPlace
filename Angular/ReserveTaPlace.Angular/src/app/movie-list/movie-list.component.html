@@ -1,0 +1,22 @@
+<div class="container" *ngIf="movieArray;else noDatas">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Runtime</th>
+                <th>Released </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let movie of movieArray">
+                <td>{{movie.Title}}</td>
+                <td>{{movie.Runtime}}</td>
+                <td>{{movie.Released}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<ng-template #noDatas>
+  Un problème est survenu pendant la récupération des données...
+</ng-template>
