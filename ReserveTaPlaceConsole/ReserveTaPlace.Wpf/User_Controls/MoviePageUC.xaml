@@ -13,9 +13,18 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="5*"/>
+            </Grid.RowDefinitions>
+            <WrapPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center">
+                <TextBlock>MOVIE PAGE</TextBlock>
+                <Button Click="ShowListMovies">Liste des Films</Button>
+                <Button Click="ShowAddMovie_Click">Ajouter un film</Button>
+            </WrapPanel>
+            <User_Controls:AddMovieUC Visibility="Collapsed" Grid.Column="1" Grid.Row="1" x:Name="AddMovieUC"></User_Controls:AddMovieUC>
+        </Grid>
         <User_Controls:MainMenuUC Grid.Column="0" x:Name="MainMenuUC"></User_Controls:MainMenuUC>
-        <StackPanel Grid.Column="1" HorizontalAlignment="Center">
-            <TextBlock>MOVIE PAGE</TextBlock>
-        </StackPanel>
     </Grid>
 </UserControl>

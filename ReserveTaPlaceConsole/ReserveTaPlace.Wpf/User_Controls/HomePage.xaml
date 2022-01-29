@@ -13,5 +13,8 @@
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
         <User_Controls:MainMenuUC Grid.Column="0" x:Name="MainMenuUC"></User_Controls:MainMenuUC>
+        <StackPanel Grid.Column="1" HorizontalAlignment="Center">
+            <TextBlock>HOME PAGE</TextBlock>
+        </StackPanel>
     </Grid>
 </UserControl>

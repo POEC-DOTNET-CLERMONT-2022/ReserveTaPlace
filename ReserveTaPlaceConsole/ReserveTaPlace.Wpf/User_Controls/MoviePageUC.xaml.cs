@@ -24,5 +24,15 @@ namespace ReserveTaPlace.Wpf.User_Controls
         {
             InitializeComponent();
         }
+
+        private void ShowAddMovie_Click(object sender, RoutedEventArgs e)
+        {
+            AddMovieUC.Visibility = Visibility.Visible;
+        }
+
+        private void ShowListMovies(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
