@@ -9,23 +9,21 @@
              d:DesignHeight="450" d:DesignWidth="800"
              x:Name="root">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="4*"/>
-            <RowDefinition Height="1*"/>
-        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top">
             <TextBlock>Entrer le nom du film à ajouter :</TextBlock>
             <TextBox x:Name="TBMovieToAddName"></TextBox>
             <TextBlock>Entrer l'année du film :</TextBlock>
             <TextBox x:Name="TBMovieToAddYear"></TextBox>
             <Button Width="150" Click="Button_SearchMovie">Rechercher</Button>
         </StackPanel>
-        <StackPanel Margin="0 20 0 0" Grid.Row="1">
+        <StackPanel Grid.Column="1">
             <User_Controls:MovieDetailsUC DataContext="{Binding CurrentMovie}" x:Name="MovieDetailsUC" Visibility="Collapsed"></User_Controls:MovieDetailsUC>
+            <Button VerticalAlignment="Bottom" Width="150" Margin="0 20 0 0" Click="Button_AddMovie">Valider</Button>
         </StackPanel>
-        <Button Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="150" Click="Button_AddMovie">Valider</Button>
-
     </Grid>
 </UserControl>
