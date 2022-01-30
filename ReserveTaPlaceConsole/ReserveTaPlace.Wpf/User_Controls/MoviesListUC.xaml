@@ -15,9 +15,22 @@
              d:DesignHeight="450" d:DesignWidth="800" 
              x:Name="root">
     <Grid>
-        <ListBox x:Name="LVMovies" Height="400" DataContext="{Binding .,ElementName=root}" ItemsSource="{Binding Movies}" >
-        <ListBox.ItemsPanel>
-            <ItemsPanelTemplate>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <ListBox Grid.Column="0" x:Name="LBMovies" SelectedItem="{Binding CurrentMovie}" DataContext="{Binding .,ElementName=root}" ItemsSource="{Binding Movies}" >
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="IsSelected" Value="True"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
                     <WrapPanel DataContext="{Binding CurrentMovie}" HorizontalAlignment="Left">
 
                     </WrapPanel>
@@ -25,21 +38,21 @@
         </ListBox.ItemsPanel>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <materialDesign:Card Width="150">
+                    <materialDesign:Card Width="150" >
                         <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="150" />
-                                <RowDefinition Height="*" />
+                                <RowDefinition Height="160" />
+                                <RowDefinition Height="35" />
                             </Grid.RowDefinitions>
-                            <Image Source="{Binding Poster}"  Stretch="Uniform" />
-                            <StackPanel Grid.Row="1" Margin="8 24 8 0">
-                                <TextBlock HorizontalAlignment="Left" Text="{Binding Title}" />
+                            <Image Source="{Binding Poster}"  Stretch="Uniform" Margin="0 20 0 0"/>
+                            <StackPanel Grid.Row="1" Margin="8 0 8 0">
+                                <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center" Text="{Binding Title}" />
                             </StackPanel>
                         </Grid>
                     </materialDesign:Card>
                 </DataTemplate>
             </ListBox.ItemTemplate>
-
         </ListBox>
+        <User_Controls:MovieDetailsUC Grid.Column="1" VerticalAlignment="Top" CurrentMovie="{Binding SelectedItem, ElementName=LBMovies}" x:Name="MovieDetailsUC"></User_Controls:MovieDetailsUC>
     </Grid>
 </UserControl>

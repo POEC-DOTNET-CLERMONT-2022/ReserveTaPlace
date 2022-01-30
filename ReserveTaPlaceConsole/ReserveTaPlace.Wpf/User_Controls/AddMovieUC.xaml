@@ -10,8 +10,8 @@
              x:Name="root">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="4*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
@@ -22,7 +22,7 @@
             <TextBox x:Name="TBMovieToAddYear"></TextBox>
             <Button Width="150" Click="Button_SearchMovie">Rechercher</Button>
         </StackPanel>
-        <StackPanel Grid.Row="1">
+        <StackPanel Margin="0 20 0 0" Grid.Row="1">
             <User_Controls:MovieDetailsUC DataContext="{Binding CurrentMovie}" x:Name="MovieDetailsUC" Visibility="Collapsed"></User_Controls:MovieDetailsUC>
         </StackPanel>
         <Button Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="150" Click="Button_AddMovie">Valider</Button>
