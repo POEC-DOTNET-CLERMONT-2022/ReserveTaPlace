@@ -23,7 +23,7 @@
             <Button Width="150" Click="Button_SearchMovie">Rechercher</Button>
         </StackPanel>
         <StackPanel Grid.Row="1">
-            <User_Controls:MovieDetailsUC DataContext="{Binding CurrentMovie}" x:Name="MovieDetailsUC"></User_Controls:MovieDetailsUC>
+            <User_Controls:MovieDetailsUC DataContext="{Binding CurrentMovie}" x:Name="MovieDetailsUC" Visibility="Collapsed"></User_Controls:MovieDetailsUC>
         </StackPanel>
         <Button Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="150" Click="Button_AddMovie">Valider</Button>
 

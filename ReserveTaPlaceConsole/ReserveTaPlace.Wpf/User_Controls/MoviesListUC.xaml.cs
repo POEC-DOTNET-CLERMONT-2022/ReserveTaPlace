@@ -6,7 +6,9 @@ using ReserveTaPlace.Models.WPFModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -24,32 +26,35 @@ namespace ReserveTaPlace.Wpf.User_Controls
     /// <summary>
     /// Interaction logic for MoviesListUC.xaml
     /// </summary>
-    public partial class MoviesListUC : UserControl
+    public partial class MoviesListUC : UserControl, INotifyPropertyChanged
     {
-        private readonly IMapper _mapper;
-        private ListMovies _listMovie;
-        private readonly IDataManager<MovieModel, MovieDto> _movieDataManager;
-        private IDataManager<MovieModel, MovieDto> _movieProviderDataManager;
+        private static readonly DependencyProperty _moviesProperty = DependencyProperty.Register("Movies", typeof(ObservableCollection<MovieModel>), typeof(MoviesListUC));
+        private ObservableCollection<MovieModel> _movies;
 
         public MoviesListUC()
         {
             InitializeComponent();
-            _listMovie = new ListMovies();
-            _mapper = ((App)Application.Current).Mapper;
-            DataContext = _listMovie;
-            _movieDataManager = ((App)Application.Current).MovieDataManager;
-            _movieProviderDataManager = ((App)Application.Current).MovieProviderDataManager;
         }
-        public async void LoadMovies()
+        public ObservableCollection<MovieModel> Movies
         {
-            var movies = await _movieDataManager.GetAll();
-            var moviesModel = _mapper.Map<IEnumerable<MovieModel>>(movies);
-            _listMovie.Movies = new ObservableCollection<MovieModel>(moviesModel);
-        }
+            get { return GetValue(_moviesProperty) as ObservableCollection<MovieModel>; }
+            set
+            {
+                if (_movies != value)
+                {
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+                    SetValue(_moviesProperty, value);
+                }
+            }
+        }
+        public event PropertyChangedEventHandler? PropertyChanged;
+        protected virtual void OnNotifyPropertyChanged([CallerMemberName] string propertyname = null)
         {
-            LoadMovies();
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyname));
+            //if (PropertyChanged != null)
+            //{
+            //    PropertyChanged(this, new PropertyChangedEventArgs(propertyname));
+            //}
         }
     }
 }

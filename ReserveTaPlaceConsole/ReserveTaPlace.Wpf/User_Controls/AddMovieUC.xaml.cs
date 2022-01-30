@@ -51,6 +51,7 @@ namespace ReserveTaPlace.Wpf.User_Controls
             var movie = await _movieProviderDataManager.GetMovie(movieName, movieYear);
             MovieDetailsUC.CurrentMovie = movie;
             _listMovie.CurrentMovie = movie;
+            MovieDetailsUC.Visibility = Visibility.Visible;
         }
     }
 }

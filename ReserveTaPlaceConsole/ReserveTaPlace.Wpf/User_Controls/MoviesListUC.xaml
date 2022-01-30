@@ -12,30 +12,10 @@
              xmlns:local="clr-namespace:ReserveTaPlace.Wpf" 
              xmlns:User_Controls="clr-namespace:ReserveTaPlace.Wpf.User_Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
-    <!--<Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-        </Grid.RowDefinitions>
-        <ListBox Grid.Row="0" SelectedItem="{Binding CurrentMovie}" ItemsSource="{Binding Movies}" x:Name="LBMovies">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <WrapPanel>
-                        <User_Controls:MovieDetailsUC x:Name="MovieDetailsUC" CurrentMovie="{Binding ., ElementName=LBMovies}"></User_Controls:MovieDetailsUC>
-                        <TextBlock Text ="Titre : " />
-                        <TextBlock Text ="{Binding Title}" />
-                        <TextBlock Text ="Sortie : " />
-                        <TextBlock Text ="{Binding Released}" />
-                    </WrapPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        
-        <User_Controls:MovieDetailsUC Grid.Row="1" Grid.Column="1" x:Name="MovieDetailsUC" CurrentMovie="{Binding SelectedItem, ElementName=LBMovies}"></User_Controls:MovieDetailsUC>
-    </Grid>-->
+             d:DesignHeight="450" d:DesignWidth="800" 
+             x:Name="root">
     <Grid>
-    <ListBox x:Name="LVMovies" Height="400" ItemsSource="{Binding Movies}" >
+        <ListBox x:Name="LVMovies" Height="400" DataContext="{Binding .,ElementName=root}" ItemsSource="{Binding Movies}" >
         <ListBox.ItemsPanel>
             <ItemsPanelTemplate>
                     <WrapPanel DataContext="{Binding CurrentMovie}" HorizontalAlignment="Left">
@@ -45,19 +25,15 @@
         </ListBox.ItemsPanel>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <materialDesign:Card Width="200">
+                    <materialDesign:Card Width="150">
                         <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="200" />
+                                <RowDefinition Height="150" />
                                 <RowDefinition Height="*" />
-                                <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
-                            <Image Source="{Binding Poster}" Height="140" Width="196" Stretch="UniformToFill" />
-                            <materialDesign:PackIcon  Kind="Theater" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 16 120" x:Name="IconOnTheater"/>
+                            <Image Source="{Binding Poster}"  Stretch="Uniform" />
                             <StackPanel Grid.Row="1" Margin="8 24 8 0">
-                                <TextBlock HorizontalAlignment="Center" Text="{Binding Title}" />
-                                <TextBlock FontWeight="Bold">Plot :</TextBlock>
-                                <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Plot}" />
+                                <TextBlock HorizontalAlignment="Left" Text="{Binding Title}" />
                             </StackPanel>
                         </Grid>
                     </materialDesign:Card>
