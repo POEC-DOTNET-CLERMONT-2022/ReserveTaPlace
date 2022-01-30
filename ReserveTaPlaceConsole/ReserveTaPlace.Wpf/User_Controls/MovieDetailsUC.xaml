@@ -18,13 +18,12 @@
         <materialDesign:Card DataContext="{Binding .,ElementName=root}" Width="200">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="140" />
+                    <RowDefinition Height="200" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Image Source="{Binding CurrentMovie.Poster}" Height="140" Width="196" Stretch="UniformToFill" />
-                <Button Grid.Row="0" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 16 -20">
-                    <materialDesign:PackIcon Kind="Bike" /></Button>
+                    <materialDesign:PackIcon  Kind="Theater" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 16 120" x:Name="IconOnTheater"/>
                 <StackPanel Grid.Row="1" Margin="8 24 8 0">
                     <TextBlock HorizontalAlignment="Center" Text="{Binding CurrentMovie.Title}" />
                     <TextBlock FontWeight="Bold">Plot : </TextBlock>

@@ -2,12 +2,18 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             Background="{DynamicResource MaterialDesignPaper}"
+             TextElement.FontWeight="Medium"
+             TextElement.FontSize="14"
+             FontFamily="{materialDesign:MaterialDesignFont}"
              xmlns:local="clr-namespace:ReserveTaPlace.Wpf" 
              xmlns:User_Controls="clr-namespace:ReserveTaPlace.Wpf.User_Controls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
-    <Grid>
+    <!--<Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
@@ -16,6 +22,7 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <WrapPanel>
+                        <User_Controls:MovieDetailsUC x:Name="MovieDetailsUC" CurrentMovie="{Binding ., ElementName=LBMovies}"></User_Controls:MovieDetailsUC>
                         <TextBlock Text ="Titre : " />
                         <TextBlock Text ="{Binding Title}" />
                         <TextBlock Text ="Sortie : " />
@@ -24,6 +31,39 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        
         <User_Controls:MovieDetailsUC Grid.Row="1" Grid.Column="1" x:Name="MovieDetailsUC" CurrentMovie="{Binding SelectedItem, ElementName=LBMovies}"></User_Controls:MovieDetailsUC>
+    </Grid>-->
+    <Grid>
+    <ListBox x:Name="LVMovies" Height="400" ItemsSource="{Binding Movies}" >
+        <ListBox.ItemsPanel>
+            <ItemsPanelTemplate>
+                    <WrapPanel DataContext="{Binding CurrentMovie}" HorizontalAlignment="Left">
+
+                    </WrapPanel>
+                </ItemsPanelTemplate>
+        </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <materialDesign:Card Width="200">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="200" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Image Source="{Binding Poster}" Height="140" Width="196" Stretch="UniformToFill" />
+                            <materialDesign:PackIcon  Kind="Theater" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 16 120" x:Name="IconOnTheater"/>
+                            <StackPanel Grid.Row="1" Margin="8 24 8 0">
+                                <TextBlock HorizontalAlignment="Center" Text="{Binding Title}" />
+                                <TextBlock FontWeight="Bold">Plot :</TextBlock>
+                                <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Plot}" />
+                            </StackPanel>
+                        </Grid>
+                    </materialDesign:Card>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+
+        </ListBox>
     </Grid>
 </UserControl>
