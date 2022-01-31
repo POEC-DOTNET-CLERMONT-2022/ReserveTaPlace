@@ -1,20 +1,19 @@
-<div class="container" *ngIf="movieArray;else noDatas">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Runtime</th>
-                <th>Released </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let movie of movieArray">
-                <td>{{movie.Title}}</td>
-                <td>{{movie.Runtime}}</td>
-                <td>{{movie.Released}}</td>
-            </tr>
-        </tbody>
-    </table>
+<div class="container mt-5">
+    <div class="d-flex flex-row flex-wrap justify-content-around">
+        <div class="card my-4" style="max-width: 540px;" *ngFor="let movie of movieArray">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img [src]="movie.Poster" class="card-img" alt="movie-poster">
+                </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{movie.Title}}</h5>
+                    <p class="card-text">{{movie.Plot}}</p>
+                    <p class="card-text"><small>{{movie.Released}}</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <ng-template #noDatas>
