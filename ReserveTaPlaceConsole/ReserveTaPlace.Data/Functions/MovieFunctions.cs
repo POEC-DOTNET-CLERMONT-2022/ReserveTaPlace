@@ -20,23 +20,17 @@ namespace ReserveTaPlace.Data.Functions
 
         public async Task<bool> Add(MovieEntity movieEntity)
         {
-            using (_dbContext)
-            {
+
                 await _dbContext.Set<MovieEntity>().AddAsync(movieEntity);
                 var result= await _dbContext.SaveChangesAsync();
                 return result > 0;
-            }
         }
 
         public async Task<bool> DeleteById(Guid id)
         {
-            int result = 0;
-            using (_dbContext)
-            {
                 var entity = await _dbContext.Set<MovieEntity>().FirstOrDefaultAsync(u => u.Id == id);
                 _dbContext.Set<MovieEntity>().Remove(entity);
-                result = await _dbContext.SaveChangesAsync();
-            };
+                var result = await _dbContext.SaveChangesAsync();
             return result == 1;
         }
 
@@ -58,6 +52,11 @@ namespace ReserveTaPlace.Data.Functions
             var movie = new MovieEntity();
             movie = await _dbContext.Set<MovieEntity>().FirstOrDefaultAsync(m => m.Title.ToLower().StartsWith(title));
             return movie;
+        }
+
+        public async Task<MovieEntity> GetMovieByNameAndYear(string title,string year)
+        {
+            return await _dbContext.Set<MovieEntity>().FirstOrDefaultAsync(m => m.Title.ToLower().StartsWith(title.ToLower()) & m.Released.Substring(m.Released.Length - 4)==year.ToString());
         }
     }
 }

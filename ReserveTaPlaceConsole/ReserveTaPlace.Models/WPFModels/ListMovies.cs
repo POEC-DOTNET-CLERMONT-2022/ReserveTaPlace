@@ -12,7 +12,7 @@ namespace ReserveTaPlace.Models.WPFModels
         private ObservableCollection<MovieModel> _movies;
 
         private MovieModel _currentMovie;
-
+        public MovieModel FoundMovie { get; set; }
         public MovieModel CurrentMovie
         {
             get { return _currentMovie; }

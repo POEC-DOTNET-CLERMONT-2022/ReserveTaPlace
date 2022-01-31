@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using ReserveTaPlace.Data.ApplicationContext;
 using ReserveTaPlace.Data.Functions;
 using ReserveTaPlace.Data.Interfaces;
 using ReserveTaPlace.DTOS;
@@ -18,12 +20,14 @@ namespace ReserveTaPlace.API.Controllers
 
         private IHttpClientFactory _httpClientFactory;
         private IGenericRepo<MovieEntity> _movie;
+        private IMovie _movieSpec;
         private IMapper _mapper;
-        public MovieController(IMapper mapper, IGenericRepo<MovieEntity> movie, IHttpClientFactory HttpClientFactory)
+        public MovieController(IMapper mapper, IGenericRepo<MovieEntity> movie, IHttpClientFactory HttpClientFactory, DbContext context)
         {
             _movie = movie;
             _mapper = mapper;
             _httpClientFactory = HttpClientFactory;
+            _movieSpec = new MovieFunctions(context);
         }
         // GET: MovieController/GetAll
         [HttpGet]
@@ -52,12 +56,12 @@ namespace ReserveTaPlace.API.Controllers
             return Ok(movieDtoResult);
         }
         [HttpPost("ImdbMovie")]
-        public async Task<ActionResult> ImdbMovie([FromBody]string ressource)
+        public async Task<ActionResult> ImdbMovie([FromBody] string ressource)
         {
             var httpClient = _httpClientFactory.CreateClient("Imdb");
             var moviesDto = new List<MovieDto>();
             var movieDto = new MovieDto();
-           
+
             using (var imdbSearchStrg = httpClient.GetStringAsync(ressource))
             {
                 ImdbSearch result = JsonConvert.DeserializeObject<ImdbSearch>(imdbSearchStrg.Result);
@@ -71,6 +75,13 @@ namespace ReserveTaPlace.API.Controllers
                 }
                 return Ok(movieDto);
             }
+            return Ok(movieDto);
+        }
+        [HttpPost("GetMovieByNameAndYear")]
+        public async Task<ActionResult> GetMovieByNameAndYear([FromBody] List<string> ressourceList)
+        {
+            var movie = await _movieSpec.GetMovieByNameAndYear(ressourceList[0].ToString(), ressourceList[1].ToString());
+            var movieDto = _mapper.Map<MovieDto>(movie);
             return Ok(movieDto);
         }
     }

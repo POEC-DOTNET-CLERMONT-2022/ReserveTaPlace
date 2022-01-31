@@ -11,7 +11,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top">
@@ -21,9 +21,19 @@
             <TextBox x:Name="TBMovieToAddYear"></TextBox>
             <Button Width="150" Click="Button_SearchMovie">Rechercher</Button>
         </StackPanel>
-        <StackPanel Grid.Column="1">
-            <User_Controls:MovieDetailsUC DataContext="{Binding CurrentMovie}" x:Name="MovieDetailsUC" Visibility="Collapsed"></User_Controls:MovieDetailsUC>
+        <StackPanel Grid.Column="1" x:Name="SPImbdResult" Visibility="Collapsed">
+            <User_Controls:MovieDetailsUC DataContext="{Binding CurrentMovie}" x:Name="MovieDetailsUC" ></User_Controls:MovieDetailsUC>
             <Button VerticalAlignment="Bottom" Width="150" Margin="0 20 0 0" Click="Button_AddMovie">Valider</Button>
         </StackPanel>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="1" Visibility="Collapsed" x:Name="SPMovieFound">
+                <TextBlock TextWrapping="Wrap" >Un film correspondant à vos critères de recherche est présent dans la base de données :</TextBlock>
+                <Image Source="{Binding CurrentMovie.Poster}" Height="300" Stretch="Uniform"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>

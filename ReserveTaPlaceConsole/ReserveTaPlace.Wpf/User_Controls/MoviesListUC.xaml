@@ -31,7 +31,7 @@
             </ListBox.ItemContainerStyle>
             <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
-                    <WrapPanel DataContext="{Binding CurrentMovie}" HorizontalAlignment="Left">
+                    <WrapPanel  HorizontalAlignment="Left">
 
                     </WrapPanel>
                 </ItemsPanelTemplate>

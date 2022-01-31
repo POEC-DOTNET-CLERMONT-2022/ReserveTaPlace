@@ -48,5 +48,15 @@ namespace ReserveTaPlace.Logic.DataManager
             var movie = JsonConvert.DeserializeObject<TDto>(movieStrg);
             return Mapper.Map<TModel>(movie);
         }
+
+        public async Task<TModel> GetMovieByNameAndYear(string title, string year)
+        {
+            var ressourceList = new List<string>() { title,year};
+            var _uri = new Uri(Uri + "/GetMovieByNameAndYear");
+            var result = await HttpClient.PostAsJsonAsync<List<string>>(_uri, ressourceList);
+            var movieStrg = await result.Content.ReadAsStringAsync();
+            var movie = JsonConvert.DeserializeObject<TDto>(movieStrg);
+            return Mapper.Map<TModel>(movie);
+        }
     }
 }
