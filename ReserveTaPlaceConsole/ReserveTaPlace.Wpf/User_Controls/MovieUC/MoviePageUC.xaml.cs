@@ -49,10 +49,24 @@ namespace ReserveTaPlace.Wpf.User_Controls
 
         private async void ShowListMovies(object sender, RoutedEventArgs e)
         {
-            await LoadMovies();
-            MoviesListUC.Visibility = Visibility.Visible;
-            MoviesListUC.Movies = _listMovie.Movies;
-            AddMovieUC.Visibility = Visibility.Collapsed;
+            try
+            {
+                Gprogress.Visibility = Visibility.Visible;
+                await Task.Delay(5000);
+                await LoadMovies();
+
+
+            }
+            finally
+            {
+                Gprogress.Visibility = Visibility.Collapsed;
+                MoviesListUC.Visibility = Visibility.Visible;
+                MoviesListUC.Movies = _listMovie.Movies;
+                AddMovieUC.Visibility = Visibility.Collapsed;
+
+
+            }
+
         }
         public async Task LoadMovies()
         {

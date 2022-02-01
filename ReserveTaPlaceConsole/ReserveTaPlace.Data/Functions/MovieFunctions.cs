@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ReserveTaPlace.Data.ApplicationContext;
 using ReserveTaPlace.Data.Interfaces;
+using ReserveTaPlace.Data.Utils;
 using ReserveTaPlace.Entities;
 using System;
 using System.Collections.Generic;
@@ -38,6 +39,11 @@ namespace ReserveTaPlace.Data.Functions
         {
             _movies = await _dbContext.Set<MovieEntity>().Include(m => m.Medias).ToListAsync();
             return _movies;
+        }
+
+        public async Task<IEnumerable<MovieEntity>> GetAllPaginated(int pageIndex, int pageSize)
+        {
+            return await PaginatedList<MovieEntity>.CreateAsync(_dbContext.Set<MovieEntity>(), pageIndex, pageSize);
         }
 
         public async Task<MovieEntity> GetById(Guid id)

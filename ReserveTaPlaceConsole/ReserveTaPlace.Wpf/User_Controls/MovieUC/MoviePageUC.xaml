@@ -34,5 +34,8 @@
             <User_Controls:MoviesListUC  DataContext="{Binding Movies}" Visibility="Collapsed" Grid.Column="1" Grid.Row="1" x:Name="MoviesListUC"></User_Controls:MoviesListUC>
         </Grid>
         <User_Controls:MainMenuUC Grid.Column="0" x:Name="MainMenuUC"></User_Controls:MainMenuUC>
+        <Grid  Grid.Column="1" Grid.Row="1" Visibility="Collapsed" x:Name="Gprogress" Background="Black" Opacity="0.2">
+            <ProgressBar Width="100" Value="0" IsIndeterminate="True" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource MaterialDesignCircularProgressBar}"/>
+        </Grid>
     </Grid>
 </UserControl>

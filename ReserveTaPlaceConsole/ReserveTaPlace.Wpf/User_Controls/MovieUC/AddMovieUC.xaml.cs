@@ -52,6 +52,7 @@ namespace ReserveTaPlace.Wpf.User_Controls
             if (await _movieDataManager.GetMovieByNameAndYear(movieName, movieYear)!=null)
             {
                 _listMovie.FoundMovie = await _movieDataManager.GetMovieByNameAndYear(movieName, movieYear);
+                IMGmovieFound.DataContext = _listMovie;
                 SPMovieFound.Visibility = Visibility.Visible;
 
             }

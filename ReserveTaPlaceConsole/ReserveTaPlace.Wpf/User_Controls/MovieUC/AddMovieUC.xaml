@@ -32,7 +32,7 @@
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="1" Visibility="Collapsed" x:Name="SPMovieFound">
                 <TextBlock TextWrapping="Wrap" >Un film correspondant à vos critères de recherche est présent dans la base de données :</TextBlock>
-                <Image Source="{Binding CurrentMovie.Poster}" Height="300" Stretch="Uniform"/>
+                <Image DataContext="{Binding FoundMovie}" Source="{Binding FoundMovie.Poster}" Height="300" Stretch="Uniform" x:Name="IMGmovieFound"/>
             </StackPanel>
         </Grid>
     </Grid>
