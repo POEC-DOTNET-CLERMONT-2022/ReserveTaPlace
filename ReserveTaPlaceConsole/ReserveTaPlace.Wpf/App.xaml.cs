@@ -5,6 +5,7 @@ using ReserveTaPlace.Logic.DataManager;
 using ReserveTaPlace.Models;
 using ReserveTaPlace.MovieDataBaseService;
 using ReserveTaPlace.Wpf.User_Controls;
+using ReserveTaPlace.Wpf.User_Controls.MovieUC;
 using ReserveTaPlace.Wpf.Utils;
 using System.Collections.Generic;
 using System.Net.Http;

@@ -19,7 +19,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ReserveTaPlace.Wpf.User_Controls
+namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
 {
     /// <summary>
     /// Interaction logic for MoviePageUC.xaml
@@ -60,7 +60,7 @@ namespace ReserveTaPlace.Wpf.User_Controls
             {
                 AddMovieUC.Visibility = Visibility.Collapsed;
                 Gprogress.Visibility = Visibility.Visible;
-                await Task.Delay(1000);
+                await Task.Delay(500);
                 await LoadMovies();
 
 

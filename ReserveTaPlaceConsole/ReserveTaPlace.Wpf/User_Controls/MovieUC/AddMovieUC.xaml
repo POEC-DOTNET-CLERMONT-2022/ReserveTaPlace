@@ -1,10 +1,11 @@
-﻿<UserControl x:Class="ReserveTaPlace.Wpf.User_Controls.AddMovieUC"
+﻿<UserControl x:Class="ReserveTaPlace.Wpf.User_Controls.MovieUC.AddMovieUC"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ReserveTaPlace.Wpf" 
              xmlns:User_Controls="clr-namespace:ReserveTaPlace.Wpf.User_Controls"
+             xmlns:User_ControlsMovieUC="clr-namespace:ReserveTaPlace.Wpf.User_Controls.MovieUC"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              x:Name="root">
@@ -22,7 +23,7 @@
             <Button Width="150" Click="Button_SearchMovie">Rechercher</Button>
         </StackPanel>
         <StackPanel Grid.Column="1" x:Name="SPImbdResult" Visibility="Collapsed">
-            <User_Controls:MovieDetailsUC DataContext="{Binding CurrentMovie}" x:Name="MovieDetailsUC" ></User_Controls:MovieDetailsUC>
+            <User_ControlsMovieUC:MovieDetailsUC DataContext="{Binding CurrentMovie}" x:Name="MovieDetailsUC" ></User_ControlsMovieUC:MovieDetailsUC>
             <Button VerticalAlignment="Bottom" Width="150" Margin="0 20 0 0" Click="Button_AddMovie">Valider</Button>
         </StackPanel>
         <Grid Grid.Column="0">
