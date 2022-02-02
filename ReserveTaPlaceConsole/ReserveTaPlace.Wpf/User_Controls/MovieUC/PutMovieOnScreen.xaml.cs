@@ -13,26 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ReserveTaPlace.Wpf.User_Controls
+namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
 {
     /// <summary>
-    /// Interaction logic for MoviePageUC.xaml
+    /// Interaction logic for PutMovieOnScreen.xaml
     /// </summary>
-    public partial class MoviePageUC : UserControl
+    public partial class PutMovieOnScreen : UserControl
     {
-        public MoviePageUC()
+        public PutMovieOnScreen()
         {
             InitializeComponent();
-        }
-
-        private void ShowAddMovie_Click(object sender, RoutedEventArgs e)
-        {
-            AddMovieUC.Visibility = Visibility.Visible;
-        }
-
-        private void ShowListMovies(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

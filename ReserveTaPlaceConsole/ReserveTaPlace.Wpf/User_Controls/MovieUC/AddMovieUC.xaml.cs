@@ -46,11 +46,21 @@ namespace ReserveTaPlace.Wpf.User_Controls
 
         private async void Button_SearchMovie(object sender, RoutedEventArgs e)
         {
+            SPMovieFound.Visibility = Visibility.Collapsed;
             var movieName = TBMovieToAddName.Text;
             var movieYear = TBMovieToAddYear.Text;
-            var movie = await _movieProviderDataManager.GetMovie(movieName, movieYear);
-            MovieDetailsUC.CurrentMovie = movie;
-            _listMovie.CurrentMovie = movie;
+            if (await _movieDataManager.GetMovieByNameAndYear(movieName, movieYear)!=null)
+            {
+                _listMovie.FoundMovie = await _movieDataManager.GetMovieByNameAndYear(movieName, movieYear);
+                IMGmovieFound.DataContext = _listMovie;
+                SPMovieFound.Visibility = Visibility.Visible;
+
+            }
+
+                var movie = await _movieProviderDataManager.GetMovie(movieName, movieYear);
+                MovieDetailsUC.CurrentMovie = movie;
+                _listMovie.CurrentMovie = movie;
+                SPImbdResult.Visibility = Visibility.Visible;
         }
     }
 }
