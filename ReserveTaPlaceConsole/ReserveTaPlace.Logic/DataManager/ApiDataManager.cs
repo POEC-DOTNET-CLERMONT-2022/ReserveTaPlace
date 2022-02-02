@@ -37,7 +37,8 @@ namespace ReserveTaPlace.Logic.DataManager
 
         public async Task<bool> Add(TModel model)
         {
-            var result = await HttpClient.PostAsJsonAsync(Uri, model);
+            var dto = Mapper.Map<TDto>(model);
+            var result = await HttpClient.PostAsJsonAsync(Uri, dto);
             return result.IsSuccessStatusCode;
         }
 

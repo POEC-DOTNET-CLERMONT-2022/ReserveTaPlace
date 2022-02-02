@@ -50,7 +50,7 @@ namespace ReserveTaPlace.API.Controllers
 
         // POST MovieController/Post
         [HttpPost]
-        public async Task<ActionResult> Add([FromBody] MovieModel movie)
+        public async Task<ActionResult> Add([FromBody] MovieDto movie)
         {
             var movieEntity = _mapper.Map<MovieEntity>(movie);
             var movieDtoResult = await _movie.Add(movieEntity);

@@ -14,6 +14,8 @@ namespace ReserveTaPlace.Entities
         public Guid Id { get; set; }
         public virtual MovieEntity? Movie { get; set; }
         public virtual ICollection<ScheduleEntity>? Schedules { get; set; }
+        public virtual PlanningEntity? Planning { get; set; }
+
 
 
     }

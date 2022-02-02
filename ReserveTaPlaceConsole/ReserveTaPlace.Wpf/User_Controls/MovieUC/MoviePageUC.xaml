@@ -23,6 +23,7 @@
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
+                <RowDefinition Height="2*"/>
                 <RowDefinition Height="5*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
@@ -31,13 +32,23 @@
                 <Button Click="ShowListMovies">Liste des Films</Button>
                 <Button Click="ShowAddMovie_Click">Ajouter un film</Button>
             </WrapPanel>
-            <User_Controls:AddMovieUC DataContext="{Binding Movies}" Visibility="Collapsed" Grid.Column="1" Grid.Row="1" x:Name="AddMovieUC"></User_Controls:AddMovieUC>
-            <User_Controls:MoviesListUC  DataContext="{Binding Movies}" Visibility="Collapsed" Grid.Column="1" Grid.Row="1" x:Name="MoviesListUC"></User_Controls:MoviesListUC>
+            <StackPanel Grid.Column="1" Grid.Row="1" x:Name="SPSearchMovie">
+                <WrapPanel x:Name="WPSearchMovie" Visibility="Collapsed">
+                    <Label>Titre du film : </Label>
+                    <TextBox x:Name="TBMovieName" Margin="0,0,10,0" Width="150"></TextBox>
+                    <Label>Année de sortie : </Label>
+                    <TextBox x:Name="TBMovieYear" Margin="0,0,10,0" Width="150"></TextBox>
+                    <Button x:Name="BTNFindMovie" Click="BTNFindMovie_Click">Rechercher</Button>
+                </WrapPanel>
+                <TextBlock x:Name="TBUnfound" Visibility="Collapsed">Aucun film trouvé</TextBlock>
+            </StackPanel>
+            <User_Controls:AddMovieUC DataContext="{Binding Movies}" Visibility="Collapsed" Grid.Column="1" Grid.Row="2" x:Name="AddMovieUC"></User_Controls:AddMovieUC>
+            <User_Controls:MoviesListUC  DataContext="{Binding Movies}" Visibility="Collapsed" Grid.Column="1" Grid.Row="2" x:Name="MoviesListUC"></User_Controls:MoviesListUC>
             <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center">
 
                 
             </StackPanel>
-            <WrapPanel Grid.Row="2" Grid.Column="1" x:Name="SPpager" HorizontalAlignment="Center">
+            <WrapPanel Grid.Row="3" Grid.Column="1" x:Name="SPpager" HorizontalAlignment="Center">
                 <Button Click="ShowListMovies" IsEnabled="False" Style="{StaticResource MaterialDesignIconButton}" ToolTip="MaterialDesignIconButton" x:Name="BTNPrev">
                     <materialDesign:PackIcon Kind="SkipPrevious" Width="38" Height="38"/>
                 </Button>

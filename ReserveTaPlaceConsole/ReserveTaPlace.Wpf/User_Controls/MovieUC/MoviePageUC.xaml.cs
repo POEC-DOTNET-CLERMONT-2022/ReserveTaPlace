@@ -49,6 +49,7 @@ namespace ReserveTaPlace.Wpf.User_Controls
 
         private void ShowAddMovie_Click(object sender, RoutedEventArgs e)
         {
+            SPSearchMovie.Visibility = Visibility.Collapsed;
             AddMovieUC.Visibility = Visibility.Visible;
             MoviesListUC.Visibility = Visibility.Collapsed;
         }
@@ -66,8 +67,10 @@ namespace ReserveTaPlace.Wpf.User_Controls
             }
             finally
             {
+                SPSearchMovie.Visibility = Visibility.Visible;
                 Gprogress.Visibility = Visibility.Collapsed;
                 MoviesListUC.Visibility = Visibility.Visible;
+                WPSearchMovie.Visibility = Visibility.Visible;
                 MoviesListUC.Movies = _listMovie.Movies;
 
 
@@ -98,5 +101,24 @@ namespace ReserveTaPlace.Wpf.User_Controls
                 BTNPrev.IsEnabled = false;
             }
         }
+
+        private async void BTNFindMovie_Click(object sender, RoutedEventArgs e)
+        {
+            TBUnfound.Visibility = Visibility.Collapsed;
+            var movieFound = await _movieDataManager.GetMovieByNameAndYear(TBMovieName.Text, TBMovieYear.Text);
+            var ListMovie = new List<MovieModel>();
+            if (movieFound==null)
+            {
+                TBUnfound.Visibility = Visibility.Visible;
+            }
+            if (movieFound!=null)
+            {
+                ListMovie.Add(movieFound);
+                _listMovie.Movies = new ObservableCollection<MovieModel>(ListMovie);
+                MoviesListUC.Movies = _listMovie.Movies;
+            }
+
+        }
+
     }
 }

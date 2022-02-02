@@ -14,8 +14,8 @@
              d:DesignHeight="450" d:DesignWidth="800"
              x:Name="root">
 
-    <Grid>
-        <materialDesign:Card DataContext="{Binding .,ElementName=root}" Margin="0 0 10 0">
+    <Grid  MaxHeight="400" MaxWidth="300">
+            <materialDesign:Card DataContext="{Binding .,ElementName=root}">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="2*" />

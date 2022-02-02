@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ReserveTaPlace.Data.ApplicationContext;
 
@@ -11,9 +12,10 @@ using ReserveTaPlace.Data.ApplicationContext;
 namespace ReserveTaPlace.Data.Migrations
 {
     [DbContext(typeof(ReserveTaPlaceContext))]
-    partial class ReserveTaPlaceContextModelSnapshot : ModelSnapshot
+    [Migration("20220202100014_AddPlannigEntity")]
+    partial class AddPlannigEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -325,7 +327,7 @@ namespace ReserveTaPlace.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Planning");
+                    b.ToTable("PlanningEntity");
                 });
 
             modelBuilder.Entity("ReserveTaPlace.Entities.RoleEntity", b =>
@@ -379,14 +381,14 @@ namespace ReserveTaPlace.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("HourEnd")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("HourStart")
+                    b.Property<DateTime>("End")
                         .HasColumnType("datetime2");
 
                     b.Property<Guid?>("SessionEntityId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("Start")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
