@@ -1,0 +1,20 @@
+.container{
+    border: 0px black solid;
+	border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+
+.card {
+    color: white;
+    background-color: rgb(68, 67, 67);
+    border: 0px black solid;
+	border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    overflow: hidden;
+}
+
+.card:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
