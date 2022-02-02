@@ -82,5 +82,10 @@ namespace ReserveTaPlace.Wpf.User_Controls
         {
             MovieDetailsUC.Visibility = Visibility.Collapsed;
         }
+
+        private void BTNPutOnScreen_Click(object sender, RoutedEventArgs e)
+        {
+            LBMovies.Visibility = Visibility.Collapsed;
+        }
     }
 }

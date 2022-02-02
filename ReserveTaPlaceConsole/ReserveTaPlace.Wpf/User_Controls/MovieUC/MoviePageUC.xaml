@@ -38,11 +38,15 @@
                 
             </StackPanel>
             <WrapPanel Grid.Row="2" Grid.Column="1" x:Name="SPpager" HorizontalAlignment="Center">
-                <materialDesign:PackIcon Kind="SkipPrevious" Width="38" Height="38"/>
+                <Button Click="ShowListMovies" IsEnabled="False" Style="{StaticResource MaterialDesignIconButton}" ToolTip="MaterialDesignIconButton" x:Name="BTNPrev">
+                    <materialDesign:PackIcon Kind="SkipPrevious" Width="38" Height="38"/>
+                </Button>
                 <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center">
                     
                 </StackPanel>
-                <materialDesign:PackIcon Kind="SkipNext" Width="38" Height="38"/>
+                <Button Click="ShowListMovies" IsEnabled="False" Style="{StaticResource MaterialDesignIconButton}" ToolTip="MaterialDesignIconButton" x:Name="BTNNext">
+                    <materialDesign:PackIcon Kind="SkipNext" Width="38" Height="38"/>
+                </Button>
             </WrapPanel>
 
         </Grid>

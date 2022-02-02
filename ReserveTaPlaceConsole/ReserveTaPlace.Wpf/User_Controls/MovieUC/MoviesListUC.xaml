@@ -55,5 +55,6 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <User_Controls:MovieDetailsUC  Grid.Column="1" VerticalAlignment="Top" CurrentMovie="{Binding SelectedItem, ElementName=LBMovies}"  x:Name="MovieDetailsUC"></User_Controls:MovieDetailsUC>
+        <Button VerticalAlignment="Bottom" Grid.Column="1" x:Name="BTNPutOnScreen" Click="BTNPutOnScreen_Click" >Mettre le film à l'affiche</Button>
     </Grid>
 </UserControl>

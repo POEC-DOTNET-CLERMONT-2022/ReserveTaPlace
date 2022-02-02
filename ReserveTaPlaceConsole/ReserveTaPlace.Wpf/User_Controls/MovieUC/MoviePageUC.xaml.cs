@@ -30,6 +30,9 @@ namespace ReserveTaPlace.Wpf.User_Controls
         private ListMovies _listMovie;
         private readonly IDataManager<MovieModel, MovieDto> _movieDataManager;
         private IDataManager<MovieModel, MovieDto> _movieProviderDataManager;
+        private int _pageIndex;
+        private int _itemsPerPage;
+        private int _totalPages;
 
         public MoviePageUC()
         {
@@ -39,6 +42,9 @@ namespace ReserveTaPlace.Wpf.User_Controls
             DataContext = _listMovie;
             _movieDataManager = ((App)Application.Current).MovieDataManager;
             _movieProviderDataManager = ((App)Application.Current).MovieProviderDataManager;
+            _pageIndex = 0;
+            _itemsPerPage = 5;
+            _totalPages = 0;
         }
 
         private void ShowAddMovie_Click(object sender, RoutedEventArgs e)
@@ -53,7 +59,7 @@ namespace ReserveTaPlace.Wpf.User_Controls
             {
                 AddMovieUC.Visibility = Visibility.Collapsed;
                 Gprogress.Visibility = Visibility.Visible;
-                await Task.Delay(5000);
+                await Task.Delay(1000);
                 await LoadMovies();
 
 
@@ -70,8 +76,27 @@ namespace ReserveTaPlace.Wpf.User_Controls
         }
         public async Task LoadMovies()
         {
-            var movies = await _movieDataManager.GetAllPaginated(1,5);
+            _pageIndex++;
+
+            var movies = await _movieDataManager.GetAllPaginated(_pageIndex, _itemsPerPage);
+            _totalPages = movies.TotalPages;
             _listMovie.Movies = new ObservableCollection<MovieModel>(movies.Data);
+            if (movies.HasNextPage)
+            {
+                BTNNext.IsEnabled = true;
+            }
+            if (!movies.HasNextPage)
+            {
+                BTNNext.IsEnabled = false;
+            }
+            if (movies.HasPreviousPage)
+            {
+                BTNPrev.IsEnabled = true;
+            }
+            if (!movies.HasPreviousPage)
+            {
+                BTNPrev.IsEnabled = false;
+            }
         }
     }
 }
