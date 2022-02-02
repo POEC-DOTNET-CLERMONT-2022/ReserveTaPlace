@@ -1,9 +1,12 @@
 ﻿using Newtonsoft.Json;
+using System;
 
 namespace ReserveTaPlace.DTOS
 {
     public class MovieDto
     {
+        [JsonProperty(PropertyName = "Id")]
+        public Guid Id { get; set; }
         [JsonProperty(PropertyName = "Title")]
         public string Title { get; set; }
         [JsonProperty(PropertyName = "Released")]
