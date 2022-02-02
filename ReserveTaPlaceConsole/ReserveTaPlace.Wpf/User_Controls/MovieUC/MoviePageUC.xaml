@@ -13,7 +13,7 @@
              xmlns:User_Controls="clr-namespace:ReserveTaPlace.Wpf.User_Controls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             Loaded="UserControl_Loaded">
+             >
     
     <Grid>
         <Grid.ColumnDefinitions>
@@ -24,14 +24,27 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="5*"/>
+                <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
             <WrapPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center">
                 <TextBlock>MOVIE PAGE</TextBlock>
                 <Button Click="ShowListMovies">Liste des Films</Button>
                 <Button Click="ShowAddMovie_Click">Ajouter un film</Button>
             </WrapPanel>
-            <User_Controls:AddMovieUC Visibility="Collapsed" Grid.Column="1" Grid.Row="1" x:Name="AddMovieUC"></User_Controls:AddMovieUC>
+            <User_Controls:AddMovieUC DataContext="{Binding Movies}" Visibility="Collapsed" Grid.Column="1" Grid.Row="1" x:Name="AddMovieUC"></User_Controls:AddMovieUC>
             <User_Controls:MoviesListUC  DataContext="{Binding Movies}" Visibility="Collapsed" Grid.Column="1" Grid.Row="1" x:Name="MoviesListUC"></User_Controls:MoviesListUC>
+            <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center">
+
+                
+            </StackPanel>
+            <WrapPanel Grid.Row="2" Grid.Column="1" x:Name="SPpager" HorizontalAlignment="Center">
+                <materialDesign:PackIcon Kind="SkipPrevious" Width="38" Height="38"/>
+                <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center">
+                    
+                </StackPanel>
+                <materialDesign:PackIcon Kind="SkipNext" Width="38" Height="38"/>
+            </WrapPanel>
+
         </Grid>
         <User_Controls:MainMenuUC Grid.Column="0" x:Name="MainMenuUC"></User_Controls:MainMenuUC>
         <Grid  Grid.Column="1" Grid.Row="1" Visibility="Collapsed" x:Name="Gprogress" Background="Black" Opacity="0.2">

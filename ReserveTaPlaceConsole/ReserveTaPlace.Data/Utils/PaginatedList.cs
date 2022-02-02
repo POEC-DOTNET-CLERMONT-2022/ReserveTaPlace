@@ -7,17 +7,20 @@ using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Data.Utils
 {
-    public class PaginatedList<T> : List<T>
+    public class PaginatedList<T>
     {
         public int PageIndex { get; private set; }
         public int TotalPages { get; private set; }
+        public List<T> Data { get; set; }
+        public PaginatedList()
+        {
 
+        }
         public PaginatedList(List<T> items, int count, int pageIndex, int pageSize)
         {
             PageIndex = pageIndex;
             TotalPages = (int)Math.Ceiling(count / (double)pageSize);
-
-            this.AddRange(items);
+            Data = new List<T>(items);
         }
 
         public bool HasPreviousPage

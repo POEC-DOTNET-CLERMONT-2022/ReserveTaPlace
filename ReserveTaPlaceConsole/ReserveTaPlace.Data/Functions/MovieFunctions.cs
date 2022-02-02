@@ -41,7 +41,7 @@ namespace ReserveTaPlace.Data.Functions
             return _movies;
         }
 
-        public async Task<IEnumerable<MovieEntity>> GetAllPaginated(int pageIndex, int pageSize)
+        public async Task<PaginatedList<MovieEntity>> GetAllPaginated(int pageIndex, int pageSize)
         {
             return await PaginatedList<MovieEntity>.CreateAsync(_dbContext.Set<MovieEntity>(), pageIndex, pageSize);
         }

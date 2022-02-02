@@ -15,15 +15,15 @@
              x:Name="root">
 
     <Grid>
-        <materialDesign:Card DataContext="{Binding .,ElementName=root}" Width="300" Height="500">
+        <materialDesign:Card DataContext="{Binding .,ElementName=root}" Margin="0 0 10 0">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="300" />
-                    <RowDefinition Height="200" />
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
-                <Image Grid.Row="0" Source="{Binding CurrentMovie.Poster}" Height="300" Stretch="Uniform" />
-                <StackPanel Grid.Row="1" Margin="8 24 8 0">
-                    <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center" Text="{Binding CurrentMovie.Title}" />
+                <Image Grid.Row="0" Source="{Binding CurrentMovie.Poster}" Stretch="Uniform" Margin="0 5 0 0"/>
+                <StackPanel Grid.Row="1" Margin="8 5 8 5">
+                    <TextBlock FontSize="18" TextWrapping="Wrap" HorizontalAlignment="Center" Text="{Binding CurrentMovie.Title}" />
                     <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding CurrentMovie.Plot}" />
                 </StackPanel>
             </Grid>

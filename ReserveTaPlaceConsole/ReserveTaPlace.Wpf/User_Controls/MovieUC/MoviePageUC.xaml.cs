@@ -51,6 +51,7 @@ namespace ReserveTaPlace.Wpf.User_Controls
         {
             try
             {
+                AddMovieUC.Visibility = Visibility.Collapsed;
                 Gprogress.Visibility = Visibility.Visible;
                 await Task.Delay(5000);
                 await LoadMovies();
@@ -62,7 +63,6 @@ namespace ReserveTaPlace.Wpf.User_Controls
                 Gprogress.Visibility = Visibility.Collapsed;
                 MoviesListUC.Visibility = Visibility.Visible;
                 MoviesListUC.Movies = _listMovie.Movies;
-                AddMovieUC.Visibility = Visibility.Collapsed;
 
 
             }
@@ -70,13 +70,8 @@ namespace ReserveTaPlace.Wpf.User_Controls
         }
         public async Task LoadMovies()
         {
-            var movies = await _movieDataManager.GetAll();
-            var moviesModel = _mapper.Map<IEnumerable<MovieModel>>(movies);
-            _listMovie.Movies = new ObservableCollection<MovieModel>(moviesModel);
-        }
-        private async void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            await LoadMovies();
+            var movies = await _movieDataManager.GetAllPaginated(1,5);
+            _listMovie.Movies = new ObservableCollection<MovieModel>(movies.Data);
         }
     }
 }

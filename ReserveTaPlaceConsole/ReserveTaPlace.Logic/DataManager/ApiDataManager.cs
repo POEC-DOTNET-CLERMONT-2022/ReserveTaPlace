@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Newtonsoft.Json;
+using ReserveTaPlace.Models.WPFModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,6 +58,16 @@ namespace ReserveTaPlace.Logic.DataManager
             var movieStrg = await result.Content.ReadAsStringAsync();
             var movie = JsonConvert.DeserializeObject<TDto>(movieStrg);
             return Mapper.Map<TModel>(movie);
+        }
+
+        public async Task<PaginatedList<TModel>> GetAllPaginated(int page, int pageSize)
+        {
+            var ressourceList = new List<int>() { page, pageSize };
+            var _uri = new Uri(Uri + "/GetAllPaginated");
+            var result = await HttpClient.PostAsJsonAsync<List<int>>(_uri, ressourceList);
+            var moviesStrg = await result.Content.ReadAsStringAsync();
+            var movies = JsonConvert.DeserializeObject<PaginatedList<TDto>>(moviesStrg);
+            return Mapper.Map<PaginatedList<TModel>>(movies);
         }
     }
 }

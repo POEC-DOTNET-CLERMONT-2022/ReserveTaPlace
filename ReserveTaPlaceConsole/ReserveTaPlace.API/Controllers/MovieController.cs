@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using ReserveTaPlace.Data.ApplicationContext;
 using ReserveTaPlace.Data.Functions;
 using ReserveTaPlace.Data.Interfaces;
+using ReserveTaPlace.Data.Utils;
 using ReserveTaPlace.DTOS;
 using ReserveTaPlace.Entities;
 using ReserveTaPlace.Models;
@@ -84,5 +85,14 @@ namespace ReserveTaPlace.API.Controllers
             var movieDto = _mapper.Map<MovieDto>(movie);
             return Ok(movieDto);
         }
+        [HttpPost("GetAllPaginated")]
+        public async Task<ActionResult> GetAllPaginated([FromBody] List<int> ressourceList)
+        {
+            var movies = await _movieSpec.GetAllPaginated(ressourceList[0], ressourceList[1]);
+            var moviesDto = _mapper.Map<PaginatedList<MovieDto>>(movies);
+
+            return Ok(moviesDto);
+        }
+
     }
 }

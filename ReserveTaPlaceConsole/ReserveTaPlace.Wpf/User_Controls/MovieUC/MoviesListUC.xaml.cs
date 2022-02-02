@@ -56,5 +56,31 @@ namespace ReserveTaPlace.Wpf.User_Controls
             //    PropertyChanged(this, new PropertyChangedEventArgs(propertyname));
             //}
         }
+
+        private void LBMovies_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            MovieDetailsUC.Visibility=Visibility.Visible;
+        }
+
+        private void LBMovies_Unselected(object sender, RoutedEventArgs e)
+        {
+            MovieDetailsUC.Visibility = Visibility.Collapsed;
+        }
+
+        private void root_Loaded(object sender, RoutedEventArgs e)
+        {
+            MovieDetailsUC.Visibility= Visibility.Collapsed;
+        }
+
+        private void LBMovies_MouseEnter(object sender, MouseEventArgs e)
+        {
+            MovieDetailsUC.Visibility = Visibility.Visible;
+
+        }
+
+        private void LBMovies_MouseLeave(object sender, MouseEventArgs e)
+        {
+            MovieDetailsUC.Visibility = Visibility.Collapsed;
+        }
     }
 }
