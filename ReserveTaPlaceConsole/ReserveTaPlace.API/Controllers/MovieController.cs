@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using ReserveTaPlace.Data.ApplicationContext;
 using ReserveTaPlace.Data.Functions;
 using ReserveTaPlace.Data.Interfaces;
+using ReserveTaPlace.Data.Utils;
 using ReserveTaPlace.DTOS;
 using ReserveTaPlace.Entities;
 using ReserveTaPlace.Models;
@@ -18,12 +21,14 @@ namespace ReserveTaPlace.API.Controllers
 
         private IHttpClientFactory _httpClientFactory;
         private IGenericRepo<MovieEntity> _movie;
+        private IMovie _movieSpec;
         private IMapper _mapper;
-        public MovieController(IMapper mapper, IGenericRepo<MovieEntity> movie, IHttpClientFactory HttpClientFactory)
+        public MovieController(IMapper mapper, IGenericRepo<MovieEntity> movie, IHttpClientFactory HttpClientFactory, DbContext context)
         {
             _movie = movie;
             _mapper = mapper;
             _httpClientFactory = HttpClientFactory;
+            _movieSpec = new MovieFunctions(context);
         }
         // GET: MovieController/GetAll
         [HttpGet]
@@ -52,12 +57,12 @@ namespace ReserveTaPlace.API.Controllers
             return Ok(movieDtoResult);
         }
         [HttpPost("ImdbMovie")]
-        public async Task<ActionResult> ImdbMovie([FromBody]string ressource)
+        public async Task<ActionResult> ImdbMovie([FromBody] string ressource)
         {
             var httpClient = _httpClientFactory.CreateClient("Imdb");
             var moviesDto = new List<MovieDto>();
             var movieDto = new MovieDto();
-           
+
             using (var imdbSearchStrg = httpClient.GetStringAsync(ressource))
             {
                 ImdbSearch result = JsonConvert.DeserializeObject<ImdbSearch>(imdbSearchStrg.Result);
@@ -73,5 +78,21 @@ namespace ReserveTaPlace.API.Controllers
             }
             return Ok(movieDto);
         }
+        [HttpPost("GetMovieByNameAndYear")]
+        public async Task<ActionResult> GetMovieByNameAndYear([FromBody] List<string> ressourceList)
+        {
+            var movie = await _movieSpec.GetMovieByNameAndYear(ressourceList[0].ToString(), ressourceList[1].ToString());
+            var movieDto = _mapper.Map<MovieDto>(movie);
+            return Ok(movieDto);
+        }
+        [HttpPost("GetAllPaginated")]
+        public async Task<ActionResult> GetAllPaginated([FromBody] List<int> ressourceList)
+        {
+            var movies = await _movieSpec.GetAllPaginated(ressourceList[0], ressourceList[1]);
+            var moviesDto = _mapper.Map<PaginatedList<MovieDto>>(movies);
+
+            return Ok(moviesDto);
+        }
+
     }
 }

@@ -36,9 +36,11 @@ builder.Services.AddScoped<DbContext, ReserveTaPlaceContext>();
 builder.Services.AddDbContext<ReserveTaPlaceContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("RTPLocalDb")));
 
 var app = builder.Build();
+
 using (var scope = app.Services.CreateScope())
 {
-   //TODO Or Not
+    var db = scope.ServiceProvider.GetRequiredService<ReserveTaPlaceContext>();
+    db.Database.Migrate();
 }
 
 // Configure the HTTP request pipeline.
