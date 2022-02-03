@@ -53,19 +53,15 @@ namespace ReserveTaPlace.Data.Functions
             return await _dbContext.Set<TheaterEntity>().FirstOrDefaultAsync(m => m.Name.ToLower().StartsWith(name));
         }
 
-        public async Task<TheaterEntity> Update(TheaterEntity theater)
+        public async Task<TheaterEntity> Update(TheaterEntity theaterEntity)
         {
-            TheaterEntity result = await GetById(theater.Id);
-            if(result != null)
+            if(theaterEntity != null)
             {
-                result.Name = theater.Name;
-                result.Address = theater.Address;
-                result.Rooms = theater.Rooms;
-                result.Users = theater.Users;
+                _dbContext.Update(theaterEntity);
 
                 await _dbContext.SaveChangesAsync();
 
-                return result;
+                return theaterEntity;
             }
             return null;
         }
