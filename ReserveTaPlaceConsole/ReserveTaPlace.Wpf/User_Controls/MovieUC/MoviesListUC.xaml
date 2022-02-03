@@ -21,6 +21,10 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
         <ListBox Grid.Column="0" x:Name="LBMovies" SelectionChanged="LBMovies_SelectionChanged" SelectedItem="{Binding CurrentMovie}" DataContext="{Binding .,ElementName=root}" ItemsSource="{Binding Movies}">
             <!--<ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
