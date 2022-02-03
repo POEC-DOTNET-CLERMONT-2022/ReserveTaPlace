@@ -26,7 +26,7 @@ namespace ReserveTaPlace.Data.Functions
 
         public async Task<bool> DeleteById(Guid id)
         {
-            var entity = await _dbContext.Set<TheaterEntity>().FirstOrDefaultAsync(u => u.Id == id);
+            var entity = await _dbContext.Set<TheaterEntity>().FirstOrDefaultAsync(t => t.Id == id);
             _dbContext.Set<TheaterEntity>().Remove(entity);
             var result = await _dbContext.SaveChangesAsync();
             return result == 1;
@@ -34,7 +34,7 @@ namespace ReserveTaPlace.Data.Functions
 
         public async Task<IEnumerable<TheaterEntity>> GetAll()
         {
-            _theaters = await _dbContext.Set<TheaterEntity>().Include(m => m.Address).ToListAsync();
+            _theaters = await _dbContext.Set<TheaterEntity>().Include(t => t.Address).ToListAsync();
             return _theaters;
         }
 
@@ -45,12 +45,12 @@ namespace ReserveTaPlace.Data.Functions
 
         public async Task<TheaterEntity> GetById(Guid id)
         {
-            return await _dbContext.Set<TheaterEntity>().FirstOrDefaultAsync(m => m.Id == id);
+            return await _dbContext.Set<TheaterEntity>().FirstOrDefaultAsync(t => t.Id == id);
         }
 
         public async Task<TheaterEntity> GetByName(string name)
         {
-            return await _dbContext.Set<TheaterEntity>().FirstOrDefaultAsync(m => m.Name.ToLower().StartsWith(name));
+            return await _dbContext.Set<TheaterEntity>().FirstOrDefaultAsync(t => t.Name.ToLower().StartsWith(name));
         }
 
         public async Task<TheaterEntity> Update(TheaterEntity theaterEntity)
