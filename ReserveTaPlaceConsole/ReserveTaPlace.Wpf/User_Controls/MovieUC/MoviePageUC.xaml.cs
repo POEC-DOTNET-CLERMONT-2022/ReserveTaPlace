@@ -19,7 +19,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ReserveTaPlace.Wpf.User_Controls
+namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
 {
     /// <summary>
     /// Interaction logic for MoviePageUC.xaml
@@ -33,6 +33,9 @@ namespace ReserveTaPlace.Wpf.User_Controls
         private int _pageIndex;
         private int _itemsPerPage;
         private int _totalPages;
+        private bool _hasNextPage;
+        private bool _hasPreviousPage;
+
 
         public MoviePageUC()
         {
@@ -45,10 +48,13 @@ namespace ReserveTaPlace.Wpf.User_Controls
             _pageIndex = 0;
             _itemsPerPage = 5;
             _totalPages = 0;
+            _hasNextPage = false;
+            _hasPreviousPage = false;
         }
 
         private void ShowAddMovie_Click(object sender, RoutedEventArgs e)
         {
+            SPSearchMovie.Visibility = Visibility.Collapsed;
             AddMovieUC.Visibility = Visibility.Visible;
             MoviesListUC.Visibility = Visibility.Collapsed;
         }
@@ -59,15 +65,17 @@ namespace ReserveTaPlace.Wpf.User_Controls
             {
                 AddMovieUC.Visibility = Visibility.Collapsed;
                 Gprogress.Visibility = Visibility.Visible;
-                await Task.Delay(1000);
+                await Task.Delay(500);
                 await LoadMovies();
 
 
             }
             finally
             {
+                SPSearchMovie.Visibility = Visibility.Visible;
                 Gprogress.Visibility = Visibility.Collapsed;
                 MoviesListUC.Visibility = Visibility.Visible;
+                WPSearchMovie.Visibility = Visibility.Visible;
                 MoviesListUC.Movies = _listMovie.Movies;
 
 
@@ -98,5 +106,24 @@ namespace ReserveTaPlace.Wpf.User_Controls
                 BTNPrev.IsEnabled = false;
             }
         }
+
+        private async void BTNFindMovie_Click(object sender, RoutedEventArgs e)
+        {
+            TBUnfound.Visibility = Visibility.Collapsed;
+            var movieFound = await _movieDataManager.GetMovieByNameAndYear(TBMovieName.Text, TBMovieYear.Text);
+            var ListMovie = new List<MovieModel>();
+            if (movieFound==null)
+            {
+                TBUnfound.Visibility = Visibility.Visible;
+            }
+            if (movieFound!=null)
+            {
+                ListMovie.Add(movieFound);
+                _listMovie.Movies = new ObservableCollection<MovieModel>(ListMovie);
+                MoviesListUC.Movies = _listMovie.Movies;
+            }
+
+        }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using ReserveTaPlace.Wpf.Utils;
+﻿using ReserveTaPlace.Wpf.User_Controls.MovieUC;
+using ReserveTaPlace.Wpf.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;

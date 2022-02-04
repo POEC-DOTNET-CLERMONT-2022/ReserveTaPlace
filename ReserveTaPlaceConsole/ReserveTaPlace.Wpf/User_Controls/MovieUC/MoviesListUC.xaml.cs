@@ -21,7 +21,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ReserveTaPlace.Wpf.User_Controls
+namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
 {
     /// <summary>
     /// Interaction logic for MoviesListUC.xaml
@@ -51,41 +51,23 @@ namespace ReserveTaPlace.Wpf.User_Controls
         protected virtual void OnNotifyPropertyChanged([CallerMemberName] string propertyname = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyname));
-            //if (PropertyChanged != null)
-            //{
-            //    PropertyChanged(this, new PropertyChangedEventArgs(propertyname));
-            //}
-        }
-
-        private void LBMovies_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            MovieDetailsUC.Visibility=Visibility.Visible;
-        }
-
-        private void LBMovies_Unselected(object sender, RoutedEventArgs e)
-        {
-            MovieDetailsUC.Visibility = Visibility.Collapsed;
         }
 
         private void root_Loaded(object sender, RoutedEventArgs e)
         {
-            MovieDetailsUC.Visibility= Visibility.Collapsed;
-        }
-
-        private void LBMovies_MouseEnter(object sender, MouseEventArgs e)
-        {
-            MovieDetailsUC.Visibility = Visibility.Visible;
-
-        }
-
-        private void LBMovies_MouseLeave(object sender, MouseEventArgs e)
-        {
-            MovieDetailsUC.Visibility = Visibility.Collapsed;
+            SPMovieDetails.Visibility= Visibility.Collapsed;
         }
 
         private void BTNPutOnScreen_Click(object sender, RoutedEventArgs e)
         {
             LBMovies.Visibility = Visibility.Collapsed;
+            UCPutOnScreen.Visibility = Visibility.Visible;
+            BTNPutOnScreen.IsEnabled = false;
+        }
+
+        private void LBMovies_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SPMovieDetails.Visibility = Visibility.Visible;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ReserveTaPlace.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,11 +17,12 @@ using System.Windows.Shapes;
 namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
 {
     /// <summary>
-    /// Interaction logic for PutMovieOnScreen.xaml
+    /// Interaction logic for PutMovieOnScreenUC.xaml
     /// </summary>
-    public partial class PutMovieOnScreen : UserControl
+    public partial class PutMovieOnScreenUC : UserControl
     {
-        public PutMovieOnScreen()
+
+        public PutMovieOnScreenUC()
         {
             InitializeComponent();
         }

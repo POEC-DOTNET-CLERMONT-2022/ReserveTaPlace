@@ -16,7 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ReserveTaPlace.Wpf.User_Controls
+namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
 {
     /// <summary>
     /// Interaction logic for MovieDetailsUC.xaml
