@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ReserveTaPlace.Data.ApplicationContext;
 
@@ -11,9 +12,10 @@ using ReserveTaPlace.Data.ApplicationContext;
 namespace ReserveTaPlace.Data.Migrations
 {
     [DbContext(typeof(ReserveTaPlaceContext))]
-    partial class ReserveTaPlaceContextModelSnapshot : ModelSnapshot
+    [Migration("20220202101210_UpdatePlannigEntitySheduleEntity")]
+    partial class UpdatePlannigEntitySheduleEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -656,7 +658,7 @@ namespace ReserveTaPlace.Data.Migrations
                 {
                     b.HasOne("ReserveTaPlace.Entities.SessionEntity", null)
                         .WithMany("Schedules")
-                        .HasForeignKey("SessionId");
+                        .HasForeignKey("SessionEntityId");
                 });
 
             modelBuilder.Entity("ReserveTaPlace.Entities.SessionEntity", b =>
@@ -671,7 +673,7 @@ namespace ReserveTaPlace.Data.Migrations
 
                     b.HasOne("ReserveTaPlace.Entities.RoomEntity", null)
                         .WithMany("Sessions")
-                        .HasForeignKey("RoomId");
+                        .HasForeignKey("RoomEntityId");
 
                     b.Navigation("Movie");
 

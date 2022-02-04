@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ReserveTaPlace.Wpf" 
         xmlns:User_Controls="clr-namespace:ReserveTaPlace.Wpf.User_Controls"
+        xmlns:User_ControlsMovieUC="clr-namespace:ReserveTaPlace.Wpf.User_Controls.MovieUC"
         mc:Ignorable="d"
         Title="MovieWindow" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
@@ -33,6 +34,6 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
             </ListBox>
-        <User_Controls:MovieDetailsUC Grid.Row="1" Grid.Column="1" x:Name="MovieDetailsUC" CurrentMovie="{Binding SelectedItem, ElementName=LBMovies}"></User_Controls:MovieDetailsUC>
+        <User_ControlsMovieUC:MovieDetailsUC Grid.Row="1" Grid.Column="1" x:Name="MovieDetailsUC" CurrentMovie="{Binding SelectedItem, ElementName=LBMovies}"></User_ControlsMovieUC:MovieDetailsUC>
     </Grid>
 </Window>

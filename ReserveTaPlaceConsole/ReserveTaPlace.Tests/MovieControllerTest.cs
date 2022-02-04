@@ -49,7 +49,7 @@ namespace ReserveTaPlace.API.Test
             Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
             movies = Fixture.CreateMany<MovieEntity>(50);
             movieDto = Fixture.Create<MovieDto>();
-            _movieController = new MovieController(Mapper, _mockGenericRepo.Object, httpClientFactory.Object);
+            //_movieController = new MovieController(Mapper, _mockGenericRepo.Object, httpClientFactory.Object);
 
         }
         //Test de Composant

@@ -8,8 +8,8 @@ namespace ReserveTaPlace.Entities
     {
         [Key]
         public Guid Id { get; set; }
-        public DateTime Start { get; set; }
-        public DateTime End { get; set; }
+        public DateTime HourStart { get; set; }
+        public DateTime HourEnd { get; set; }
         public Guid? SessionId { get; set; }
 
         [ForeignKey(nameof(SessionId))]
