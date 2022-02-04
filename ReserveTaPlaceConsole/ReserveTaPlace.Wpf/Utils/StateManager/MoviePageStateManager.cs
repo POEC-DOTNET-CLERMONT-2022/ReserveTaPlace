@@ -6,15 +6,17 @@ using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Wpf.Utils.StateManager
 {
-    internal class MoviePageStateManager
+    public class MoviePageStateManager
     {
-        private MoviePageStateManager()
+        public MoviePageStateManager(MoviePageState state)
         {
-
+            Set(state);
         }
-        internal bool IsAddMovieVisible { get; set; }
-        internal bool IsMoviesListVisible { get; set; }
-        internal bool IsPutOnScreenVisible { get; set; }
+        public bool IsAddMovieVisible { get; set; }
+        public bool IsMoviesListVisible { get; set; }
+        public bool IsPutOnScreenVisible { get; set; }
+        public bool IsMoviesPagerVisible { get; set; }
+
         void Set(MoviePageState state)
         {
             switch (state)
@@ -23,21 +25,25 @@ namespace ReserveTaPlace.Wpf.Utils.StateManager
                     IsPutOnScreenVisible = false;
                     IsMoviesListVisible = false;
                     IsAddMovieVisible = false;
+                    IsMoviesPagerVisible = false;
                     break;
                 case MoviePageState.AddMovieView:
                     IsPutOnScreenVisible = false;
                     IsMoviesListVisible = false;
+                    IsMoviesPagerVisible = false;
                     IsAddMovieVisible = true;
                     break;
                 case MoviePageState.MovieListView:
                     IsPutOnScreenVisible = false;
                     IsMoviesListVisible = true;
+                    IsMoviesPagerVisible = true;
                     IsAddMovieVisible = false;
                     break;
                 case MoviePageState.PutOnScreenView:
                     IsPutOnScreenVisible = true;
                     IsMoviesListVisible = false;
                     IsAddMovieVisible = false;
+                    IsMoviesPagerVisible =false;
                     break;
                 default:
                     break;
