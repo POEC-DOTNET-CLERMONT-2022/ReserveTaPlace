@@ -33,6 +33,9 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
         private int _pageIndex;
         private int _itemsPerPage;
         private int _totalPages;
+        private bool _hasNextPage;
+        private bool _hasPreviousPage;
+
 
         public MoviePageUC()
         {
@@ -45,6 +48,8 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
             _pageIndex = 0;
             _itemsPerPage = 5;
             _totalPages = 0;
+            _hasNextPage = false;
+            _hasPreviousPage = false;
         }
 
         private void ShowAddMovie_Click(object sender, RoutedEventArgs e)
