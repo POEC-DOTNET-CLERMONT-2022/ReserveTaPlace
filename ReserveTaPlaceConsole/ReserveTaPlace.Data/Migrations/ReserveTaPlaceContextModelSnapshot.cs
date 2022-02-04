@@ -385,12 +385,12 @@ namespace ReserveTaPlace.Data.Migrations
                     b.Property<DateTime>("HourStart")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("SessionEntityId")
+                    b.Property<Guid?>("SessionId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SessionEntityId");
+                    b.HasIndex("SessionId");
 
                     b.ToTable("Schedule");
                 });
@@ -428,7 +428,7 @@ namespace ReserveTaPlace.Data.Migrations
                     b.Property<Guid?>("PlanningId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("RoomEntityId")
+                    b.Property<Guid?>("RoomId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -437,7 +437,7 @@ namespace ReserveTaPlace.Data.Migrations
 
                     b.HasIndex("PlanningId");
 
-                    b.HasIndex("RoomEntityId");
+                    b.HasIndex("RoomId");
 
                     b.ToTable("Session");
                 });
@@ -654,9 +654,11 @@ namespace ReserveTaPlace.Data.Migrations
 
             modelBuilder.Entity("ReserveTaPlace.Entities.ScheduleEntity", b =>
                 {
-                    b.HasOne("ReserveTaPlace.Entities.SessionEntity", null)
+                    b.HasOne("ReserveTaPlace.Entities.SessionEntity", "Session")
                         .WithMany("Schedules")
                         .HasForeignKey("SessionId");
+
+                    b.Navigation("Session");
                 });
 
             modelBuilder.Entity("ReserveTaPlace.Entities.SessionEntity", b =>
@@ -669,13 +671,15 @@ namespace ReserveTaPlace.Data.Migrations
                         .WithMany()
                         .HasForeignKey("PlanningId");
 
-                    b.HasOne("ReserveTaPlace.Entities.RoomEntity", null)
+                    b.HasOne("ReserveTaPlace.Entities.RoomEntity", "Room")
                         .WithMany("Sessions")
                         .HasForeignKey("RoomId");
 
                     b.Navigation("Movie");
 
                     b.Navigation("Planning");
+
+                    b.Navigation("Room");
                 });
 
             modelBuilder.Entity("ReserveTaPlace.Entities.TicketEntity", b =>

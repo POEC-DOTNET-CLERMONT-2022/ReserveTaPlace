@@ -22,6 +22,10 @@ namespace ReserveTaPlace.Wpf
                 .ForMember(dest => dest.HasPreviousPage, opt => opt.MapFrom(src => src.HasPreviousPage))
                 .ForMember(dest => dest.PageIndex, opt => opt.MapFrom(src => src.PageIndex))
                 .ForMember(dest => dest.TotalPages, opt => opt.MapFrom(src => src.TotalPages));
+            CreateMap<TheaterDto, TheaterModel>().ReverseMap();
+            CreateMap<RoomDto, RoomModel>().ReverseMap();
+            CreateMap<SeatDto, SeatModel>().ReverseMap();
+            CreateMap<FormatDto, FormatModel>().ReverseMap();
         }
     }
 }

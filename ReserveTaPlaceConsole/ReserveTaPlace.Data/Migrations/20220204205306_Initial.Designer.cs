@@ -12,8 +12,8 @@ using ReserveTaPlace.Data.ApplicationContext;
 namespace ReserveTaPlace.Data.Migrations
 {
     [DbContext(typeof(ReserveTaPlaceContext))]
-    [Migration("20220128213105_UpdateTableNameSchedule")]
-    partial class UpdateTableNameSchedule
+    [Migration("20220204205306_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -117,6 +117,9 @@ namespace ReserveTaPlace.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<float?>("Amount")
+                        .HasColumnType("real");
+
                     b.Property<Guid?>("DicountTypeId")
                         .HasColumnType("uniqueidentifier");
 
@@ -127,6 +130,9 @@ namespace ReserveTaPlace.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(35)")
                         .HasColumnName("Number");
+
+                    b.Property<short?>("Rate")
+                        .HasColumnType("smallint");
 
                     b.Property<Guid?>("UserId")
                         .HasColumnType("uniqueidentifier");
@@ -146,16 +152,10 @@ namespace ReserveTaPlace.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<float>("Amount")
-                        .HasColumnType("real");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Name");
-
-                    b.Property<short>("Rate")
-                        .HasColumnType("smallint");
 
                     b.HasKey("Id");
 
@@ -313,6 +313,23 @@ namespace ReserveTaPlace.Data.Migrations
                     b.ToTable("Origin");
                 });
 
+            modelBuilder.Entity("ReserveTaPlace.Entities.PlanningEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Planning");
+                });
+
             modelBuilder.Entity("ReserveTaPlace.Entities.RoleEntity", b =>
                 {
                     b.Property<Guid>("Id")
@@ -364,18 +381,18 @@ namespace ReserveTaPlace.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("End")
+                    b.Property<DateTime>("HourEnd")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("SessionEntityId")
+                    b.Property<DateTime>("HourStart")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("SessionId")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("Start")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SessionEntityId");
+                    b.HasIndex("SessionId");
 
                     b.ToTable("Schedule");
                 });
@@ -410,14 +427,19 @@ namespace ReserveTaPlace.Data.Migrations
                     b.Property<Guid?>("MovieId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("RoomEntityId")
+                    b.Property<Guid?>("PlanningId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("RoomId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
                     b.HasIndex("MovieId");
 
-                    b.HasIndex("RoomEntityId");
+                    b.HasIndex("PlanningId");
+
+                    b.HasIndex("RoomId");
 
                     b.ToTable("Session");
                 });
@@ -634,9 +656,11 @@ namespace ReserveTaPlace.Data.Migrations
 
             modelBuilder.Entity("ReserveTaPlace.Entities.ScheduleEntity", b =>
                 {
-                    b.HasOne("ReserveTaPlace.Entities.SessionEntity", null)
+                    b.HasOne("ReserveTaPlace.Entities.SessionEntity", "Session")
                         .WithMany("Schedules")
-                        .HasForeignKey("SessionEntityId");
+                        .HasForeignKey("SessionId");
+
+                    b.Navigation("Session");
                 });
 
             modelBuilder.Entity("ReserveTaPlace.Entities.SessionEntity", b =>
@@ -645,11 +669,19 @@ namespace ReserveTaPlace.Data.Migrations
                         .WithMany()
                         .HasForeignKey("MovieId");
 
-                    b.HasOne("ReserveTaPlace.Entities.RoomEntity", null)
+                    b.HasOne("ReserveTaPlace.Entities.PlanningEntity", "Planning")
+                        .WithMany()
+                        .HasForeignKey("PlanningId");
+
+                    b.HasOne("ReserveTaPlace.Entities.RoomEntity", "Room")
                         .WithMany("Sessions")
-                        .HasForeignKey("RoomEntityId");
+                        .HasForeignKey("RoomId");
 
                     b.Navigation("Movie");
+
+                    b.Navigation("Planning");
+
+                    b.Navigation("Room");
                 });
 
             modelBuilder.Entity("ReserveTaPlace.Entities.TicketEntity", b =>
