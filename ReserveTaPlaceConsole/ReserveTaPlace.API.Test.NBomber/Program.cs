@@ -5,7 +5,7 @@ using var httpClient = new HttpClient();
 
 var step = Step.Create("fetchUsers", async context =>
 {
-    var reponse = await httpClient.GetAsync("https://localhost:7091/api/User");
+    var reponse = await httpClient.GetAsync("https://localhost:7091/api/Theater");
 
     return reponse.IsSuccessStatusCode ? Response.Ok() : Response.Fail();
 });

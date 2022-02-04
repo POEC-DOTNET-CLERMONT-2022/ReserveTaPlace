@@ -634,7 +634,7 @@ namespace ReserveTaPlace.Data.Migrations
                 {
                     b.HasOne("ReserveTaPlace.Entities.SessionEntity", null)
                         .WithMany("Schedules")
-                        .HasForeignKey("SessionEntityId");
+                        .HasForeignKey("SessionId");
                 });
 
             modelBuilder.Entity("ReserveTaPlace.Entities.SessionEntity", b =>
@@ -645,7 +645,7 @@ namespace ReserveTaPlace.Data.Migrations
 
                     b.HasOne("ReserveTaPlace.Entities.RoomEntity", null)
                         .WithMany("Sessions")
-                        .HasForeignKey("RoomEntityId");
+                        .HasForeignKey("RoomId");
 
                     b.Navigation("Movie");
                 });

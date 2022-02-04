@@ -30,6 +30,15 @@ namespace ReserveTaPlace.API
             //  .ForMember(dest => dest.Theaters, opt => opt.MapFrom(src => src.Theaters))
             //  .ForMember(dest => dest.Roles, opt => opt.MapFrom(src => src.Roles));
             CreateMap<TheaterEntity, TheaterDto>().ReverseMap();
+            CreateMap<RoomEntity, RoomDto>().ReverseMap();
+            CreateMap<SeatEntity, SeatDto>().ReverseMap();
+            CreateMap<FormatEntity, FormatDto>().ReverseMap();
+            //CreateMap<TheaterEntity, TheaterDto>()
+            //    .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+            //    .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
+            //    .ForMember(dest => dest.Rooms, opt => opt.MapFrom(src => src.Rooms))
+            //    .ForMember(dest => dest.PageIndex, opt => opt.MapFrom(src => src.PageIndex))
+            //    .ForMember(dest => dest.TotalPages, opt => opt.MapFrom(src => src.TotalPages));
             CreateMap<PaginatedList<TheaterEntity>, PaginatedList<TheaterDto>>()
                 .ForMember(dest => dest.Data, opt => opt.MapFrom(src => src.Data))
                 .ForMember(dest => dest.HasNextPage, opt => opt.MapFrom(src => src.HasNextPage))
