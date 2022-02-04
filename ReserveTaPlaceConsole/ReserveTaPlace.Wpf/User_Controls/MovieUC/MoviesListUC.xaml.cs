@@ -30,7 +30,6 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
     {
         private static readonly DependencyProperty _moviesProperty = DependencyProperty.Register("Movies", typeof(ObservableCollection<MovieModel>), typeof(MoviesListUC));
         private ObservableCollection<MovieModel> _movies;
-
         public MoviesListUC()
         {
             InitializeComponent();
