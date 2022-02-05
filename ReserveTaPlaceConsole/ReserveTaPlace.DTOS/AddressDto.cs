@@ -23,8 +23,5 @@ namespace ReserveTaPlace.DTOS
         public string Number { get; set; }
         [JsonProperty(PropertyName = "County")]
         public string County { get; set; }
-        [JsonProperty(PropertyName = "TheaterId")]
-        public Guid TheaterId { get; set; }
-
     }
 }

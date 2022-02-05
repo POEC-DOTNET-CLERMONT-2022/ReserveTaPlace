@@ -97,14 +97,13 @@ namespace ReserveTaPlace.Data.Migrations
                         .HasColumnName("Street")
                         .HasColumnOrder(4);
 
-                    b.Property<Guid?>("TheaterId")
+                    b.Property<Guid>("TheaterId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
                     b.HasIndex("TheaterId")
-                        .IsUnique()
-                        .HasFilter("[TheaterId] IS NOT NULL");
+                        .IsUnique();
 
                     b.ToTable("Address");
                 });
@@ -132,7 +131,7 @@ namespace ReserveTaPlace.Data.Migrations
                     b.Property<short?>("Rate")
                         .HasColumnType("smallint");
 
-                    b.Property<Guid?>("UserId")
+                    b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -205,9 +204,14 @@ namespace ReserveTaPlace.Data.Migrations
                     b.Property<Guid?>("MovieId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("TheaterId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
                     b.HasIndex("MovieId");
+
+                    b.HasIndex("TheaterId");
 
                     b.ToTable("Media");
                 });
@@ -320,10 +324,17 @@ namespace ReserveTaPlace.Data.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid?>("SessionId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("SessionId")
+                        .IsUnique()
+                        .HasFilter("[SessionId] IS NOT NULL");
 
                     b.ToTable("Planning");
                 });
@@ -361,7 +372,7 @@ namespace ReserveTaPlace.Data.Migrations
                         .HasColumnType("nvarchar(5)")
                         .HasColumnName("Number");
 
-                    b.Property<Guid?>("TheaterId")
+                    b.Property<Guid>("TheaterId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -385,12 +396,12 @@ namespace ReserveTaPlace.Data.Migrations
                     b.Property<DateTime>("HourStart")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("SessionEntityId")
+                    b.Property<Guid?>("SessionId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SessionEntityId");
+                    b.HasIndex("SessionId");
 
                     b.ToTable("Schedule");
                 });
@@ -425,19 +436,14 @@ namespace ReserveTaPlace.Data.Migrations
                     b.Property<Guid?>("MovieId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("PlanningId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("RoomEntityId")
+                    b.Property<Guid?>("RoomId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
                     b.HasIndex("MovieId");
 
-                    b.HasIndex("PlanningId");
-
-                    b.HasIndex("RoomEntityId");
+                    b.HasIndex("RoomId");
 
                     b.ToTable("Session");
                 });
@@ -599,7 +605,9 @@ namespace ReserveTaPlace.Data.Migrations
                 {
                     b.HasOne("ReserveTaPlace.Entities.TheaterEntity", "Theater")
                         .WithOne("Address")
-                        .HasForeignKey("ReserveTaPlace.Entities.AddressEntity", "TheaterId");
+                        .HasForeignKey("ReserveTaPlace.Entities.AddressEntity", "TheaterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Theater");
                 });
@@ -612,7 +620,9 @@ namespace ReserveTaPlace.Data.Migrations
 
                     b.HasOne("ReserveTaPlace.Entities.UserEntity", "User")
                         .WithMany("Discounts")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("DiscountType");
 
@@ -625,7 +635,13 @@ namespace ReserveTaPlace.Data.Migrations
                         .WithMany("Medias")
                         .HasForeignKey("MovieId");
 
+                    b.HasOne("ReserveTaPlace.Entities.TheaterEntity", "Theater")
+                        .WithMany("Medias")
+                        .HasForeignKey("TheaterId");
+
                     b.Navigation("Movie");
+
+                    b.Navigation("Theater");
                 });
 
             modelBuilder.Entity("ReserveTaPlace.Entities.OrderEntity", b =>
@@ -637,6 +653,15 @@ namespace ReserveTaPlace.Data.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("ReserveTaPlace.Entities.PlanningEntity", b =>
+                {
+                    b.HasOne("ReserveTaPlace.Entities.SessionEntity", "Session")
+                        .WithOne("Planning")
+                        .HasForeignKey("ReserveTaPlace.Entities.PlanningEntity", "SessionId");
+
+                    b.Navigation("Session");
+                });
+
             modelBuilder.Entity("ReserveTaPlace.Entities.RoomEntity", b =>
                 {
                     b.HasOne("ReserveTaPlace.Entities.FormatEntity", "Format")
@@ -645,7 +670,9 @@ namespace ReserveTaPlace.Data.Migrations
 
                     b.HasOne("ReserveTaPlace.Entities.TheaterEntity", "Theater")
                         .WithMany("Rooms")
-                        .HasForeignKey("TheaterId");
+                        .HasForeignKey("TheaterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Format");
 
@@ -654,9 +681,11 @@ namespace ReserveTaPlace.Data.Migrations
 
             modelBuilder.Entity("ReserveTaPlace.Entities.ScheduleEntity", b =>
                 {
-                    b.HasOne("ReserveTaPlace.Entities.SessionEntity", null)
+                    b.HasOne("ReserveTaPlace.Entities.SessionEntity", "Session")
                         .WithMany("Schedules")
                         .HasForeignKey("SessionId");
+
+                    b.Navigation("Session");
                 });
 
             modelBuilder.Entity("ReserveTaPlace.Entities.SessionEntity", b =>
@@ -665,17 +694,13 @@ namespace ReserveTaPlace.Data.Migrations
                         .WithMany()
                         .HasForeignKey("MovieId");
 
-                    b.HasOne("ReserveTaPlace.Entities.PlanningEntity", "Planning")
-                        .WithMany()
-                        .HasForeignKey("PlanningId");
-
-                    b.HasOne("ReserveTaPlace.Entities.RoomEntity", null)
+                    b.HasOne("ReserveTaPlace.Entities.RoomEntity", "Room")
                         .WithMany("Sessions")
                         .HasForeignKey("RoomId");
 
                     b.Navigation("Movie");
 
-                    b.Navigation("Planning");
+                    b.Navigation("Room");
                 });
 
             modelBuilder.Entity("ReserveTaPlace.Entities.TicketEntity", b =>
@@ -761,12 +786,18 @@ namespace ReserveTaPlace.Data.Migrations
 
             modelBuilder.Entity("ReserveTaPlace.Entities.SessionEntity", b =>
                 {
+                    b.Navigation("Planning")
+                        .IsRequired();
+
                     b.Navigation("Schedules");
                 });
 
             modelBuilder.Entity("ReserveTaPlace.Entities.TheaterEntity", b =>
                 {
-                    b.Navigation("Address");
+                    b.Navigation("Address")
+                        .IsRequired();
+
+                    b.Navigation("Medias");
 
                     b.Navigation("Rooms");
                 });

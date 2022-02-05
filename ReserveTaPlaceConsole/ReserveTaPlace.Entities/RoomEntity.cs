@@ -15,7 +15,7 @@ namespace ReserveTaPlace.Entities
         [Key]
         public Guid Id { get; set; }
         public Guid? FormatId { get; set; }
-        public Guid? TheaterId { get; set; }
+        public Guid TheaterId { get; set; }
         [Column("Name", TypeName = "nvarchar(70)")]
         public string? Name { get; set; }
         [Column("Number", TypeName = "nvarchar(5)")]
@@ -23,11 +23,11 @@ namespace ReserveTaPlace.Entities
 
         [ForeignKey(nameof(TheaterId))]
         [InverseProperty("Rooms")]
-        public virtual TheaterEntity? Theater { get; set; }
+        public virtual TheaterEntity Theater { get; set; }
 
         [ForeignKey(nameof(FormatId))]
         public virtual FormatEntity? Format { get; set; }
-        public virtual ICollection<SeatEntity>? Seats { get; set; }
-        public virtual ICollection<SessionEntity>? Sessions { get; set; }
+        public virtual ICollection<SeatEntity> Seats { get; set; }
+        public virtual ICollection<SessionEntity> Sessions { get; set; }
     }
 }

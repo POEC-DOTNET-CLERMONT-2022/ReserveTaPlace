@@ -20,8 +20,5 @@ namespace ReserveTaPlace.Entities
         public RoomEntity? Room { get; set; }
         public virtual ICollection<ScheduleEntity>? Schedules { get; set; }
         public virtual PlanningEntity? Planning { get; set; }
-
-
-
     }
 }

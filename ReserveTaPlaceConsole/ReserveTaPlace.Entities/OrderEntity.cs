@@ -16,6 +16,6 @@ namespace ReserveTaPlace.Entities
         public Guid? UserId { get; set; }
         public DateTime Date { get; set; }
         public virtual ICollection<TicketEntity> Tickets { get; set; }
-        public virtual UserEntity User { get; set; }
+        public virtual UserEntity? User { get; set; }
     }
 }

@@ -14,8 +14,10 @@ namespace ReserveTaPlace.Entities
 
         [ForeignKey(nameof(SeatId))]
         public virtual SeatEntity? Seat { get; set; }
+
         [ForeignKey(nameof(sessionId))]
         public virtual SessionEntity? Session { get; set; }
+
         [ForeignKey(nameof(OrderId))]
         public virtual OrderEntity? Order { get; set; }
     }

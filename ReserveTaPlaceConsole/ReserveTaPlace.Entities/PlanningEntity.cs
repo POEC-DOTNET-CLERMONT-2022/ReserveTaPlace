@@ -13,8 +13,13 @@ namespace ReserveTaPlace.Entities
     {
         [Key]
         public Guid Id { get; set; }
+        public Guid? SessionId { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+
+        [ForeignKey(nameof(SessionId))]
+        [InverseProperty("Planning")]
+        public virtual SessionEntity? Session { get; set; }
 
 
     }

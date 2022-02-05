@@ -12,12 +12,13 @@ namespace ReserveTaPlace.Models
         private string _name;
         private IList<RoomModel> _rooms;
         private IList<UserModel> _users;
-        public TheaterModel(string name)
+      
+        public TheaterModel(string name, List<RoomModel> rooms, List<UserModel> users)
         {
             _id = Guid.NewGuid();
             _name = name;
-            _rooms = new List<RoomModel>();
-            _users = new List<UserModel>();
+            _rooms = rooms;
+            _users = users;
         }
 
         public Guid Id { get => _id; }
