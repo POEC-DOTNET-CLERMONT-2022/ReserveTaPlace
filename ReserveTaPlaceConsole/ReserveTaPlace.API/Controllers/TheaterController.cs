@@ -63,6 +63,7 @@ namespace ReserveTaPlace.API.Controllers
 
         //PUT api/<TheaterController>/5
         [HttpPut("{id}")]
+
         public async Task<ActionResult> Put([FromBody] TheaterDto theaterDto)
         {
             var theaterEntity = _mapper.Map<TheaterEntity>(theaterDto);

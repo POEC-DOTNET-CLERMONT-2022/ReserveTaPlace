@@ -11,7 +11,7 @@
              FontFamily="{materialDesign:MaterialDesignFont}"
              xmlns:local="clr-namespace:ReserveTaPlace.Wpf.User_Controls"
              xmlns:User_Controls="clr-namespace:ReserveTaPlace.Wpf.User_Controls"
-             xmlns:User_ControlsMovieUC="clr-namespace:ReserveTaPlace.Wpf.User_Controls.MovieUC" xmlns:User_ControlsMovieUC1="clr-namespace:ReserveTaPlace.Wpf.User_Controls.MovieUC"
+             xmlns:User_ControlsMovieUC="clr-namespace:ReserveTaPlace.Wpf.User_Controls.MovieUC"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              >
@@ -24,9 +24,11 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="2*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="1.5*"/>
                 <RowDefinition Height="5*"/>
-                <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
+            
             <WrapPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center">
                 <TextBlock>MOVIE PAGE</TextBlock>
                 <Button Click="ShowListMovies">Liste des Films</Button>
@@ -42,20 +44,22 @@
                 </WrapPanel>
                 <TextBlock x:Name="TBUnfound" Visibility="Collapsed">Aucun film trouvé</TextBlock>
             </StackPanel>
-            <User_ControlsMovieUC:AddMovieUC DataContext="{Binding Movies}" Visibility="Collapsed" Grid.Column="1" Grid.Row="2" x:Name="AddMovieUC"></User_ControlsMovieUC:AddMovieUC>
-            <User_ControlsMovieUC:MoviesListUC  DataContext="{Binding Movies}" Visibility="Collapsed" Grid.Column="1" Grid.Row="2" x:Name="MoviesListUC"></User_ControlsMovieUC:MoviesListUC>
-            <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center">
+            <User_ControlsMovieUC:AddMovieUC DataContext="{Binding Movies}" Visibility="Collapsed" Grid.Row="2" x:Name="AddMovieUC"></User_ControlsMovieUC:AddMovieUC>
+            <StackPanel Grid.Row="2" >
+                <User_ControlsMovieUC:MoviesListUC SelectionChanged="MoviesListUC_SelectionChanged" Movies="{Binding Movies}"  Visibility="Collapsed" x:Name="MoviesListUC"></User_ControlsMovieUC:MoviesListUC>
             </StackPanel>
-            <WrapPanel Grid.Row="3" Grid.Column="1" x:Name="SPpager" HorizontalAlignment="Center">
-                <Button Click="ShowListMovies" IsEnabled="False" Style="{StaticResource MaterialDesignIconButton}" ToolTip="MaterialDesignIconButton" x:Name="BTNPrev">
-                    <materialDesign:PackIcon Kind="SkipPrevious" Width="38" Height="38"/>
-                </Button>
-                <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center">
+            <User_ControlsMovieUC:MoviesPagerUC Grid.Row="3" DataContext="{Binding PaginatedList}" GoNextPage="pagerUC_GoNextPage" GoPreviousPage="pagerUC_GoPreviousPage" x:Name="pagerUC"></User_ControlsMovieUC:MoviesPagerUC>
+
+            <Grid Grid.Row="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Visibility="Collapsed" x:Name="SPMovieDetails" >
+                    <User_ControlsMovieUC:MovieDetailsUC CurrentMovie="{Binding CurrentMovie}" ></User_ControlsMovieUC:MovieDetailsUC>
                 </StackPanel>
-                <Button Click="ShowListMovies" IsEnabled="False" Style="{StaticResource MaterialDesignIconButton}" ToolTip="MaterialDesignIconButton" x:Name="BTNNext">
-                    <materialDesign:PackIcon Kind="SkipNext" Width="38" Height="38"/>
-                </Button>
-            </WrapPanel>
+                <User_ControlsMovieUC:PutMovieOnScreenUC Grid.Column="1"></User_ControlsMovieUC:PutMovieOnScreenUC>
+            </Grid>
         </Grid>
         <User_Controls:MainMenuUC Grid.Column="0" x:Name="MainMenuUC"></User_Controls:MainMenuUC>
         <Grid  Grid.Column="1" Grid.Row="1" Visibility="Collapsed" x:Name="Gprogress" Background="Black" Opacity="0.2">

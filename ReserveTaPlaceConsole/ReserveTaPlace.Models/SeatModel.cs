@@ -12,7 +12,7 @@ namespace ReserveTaPlace.Models
         private string _row;
         private string _number;
         private IList<RoomModel> _rooms;
-
+      
         public SeatModel(string row, string number, List<RoomModel> rooms)
         {
             _id = Guid.NewGuid();

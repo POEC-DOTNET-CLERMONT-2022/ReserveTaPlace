@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Wpf.Utils.StateManager
 {
-    internal enum MoviePageState
+    public enum MoviePageState
     {
         MoviePageView,
         AddMovieView,

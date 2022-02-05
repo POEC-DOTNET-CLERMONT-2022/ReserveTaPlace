@@ -28,14 +28,11 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
     {
         private readonly IMapper _mapper;
         private ListMovies _listMovie;
+        public PaginatedList<MovieModel> PaginatedMovies;
         private readonly IDataManager<MovieModel, MovieDto> _movieDataManager;
         private IDataManager<MovieModel, MovieDto> _movieProviderDataManager;
         private int _pageIndex;
         private int _itemsPerPage;
-        private int _totalPages;
-        private bool _hasNextPage;
-        private bool _hasPreviousPage;
-
 
         public MoviePageUC()
         {
@@ -45,11 +42,9 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
             DataContext = _listMovie;
             _movieDataManager = ((App)Application.Current).MovieDataManager;
             _movieProviderDataManager = ((App)Application.Current).MovieProviderDataManager;
-            _pageIndex = 0;
+            _pageIndex = 1;
             _itemsPerPage = 5;
-            _totalPages = 0;
-            _hasNextPage = false;
-            _hasPreviousPage = false;
+            PaginatedMovies = new PaginatedList<MovieModel>();
         }
 
         private void ShowAddMovie_Click(object sender, RoutedEventArgs e)
@@ -67,8 +62,6 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
                 Gprogress.Visibility = Visibility.Visible;
                 await Task.Delay(500);
                 await LoadMovies();
-
-
             }
             finally
             {
@@ -76,35 +69,15 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
                 Gprogress.Visibility = Visibility.Collapsed;
                 MoviesListUC.Visibility = Visibility.Visible;
                 WPSearchMovie.Visibility = Visibility.Visible;
-                MoviesListUC.Movies = _listMovie.Movies;
-
-
+                //MoviesListUC.Movies = _listMovie.Movies;
             }
 
         }
         public async Task LoadMovies()
         {
-            _pageIndex++;
-
-            var movies = await _movieDataManager.GetAllPaginated(_pageIndex, _itemsPerPage);
-            _totalPages = movies.TotalPages;
-            _listMovie.Movies = new ObservableCollection<MovieModel>(movies.Data);
-            if (movies.HasNextPage)
-            {
-                BTNNext.IsEnabled = true;
-            }
-            if (!movies.HasNextPage)
-            {
-                BTNNext.IsEnabled = false;
-            }
-            if (movies.HasPreviousPage)
-            {
-                BTNPrev.IsEnabled = true;
-            }
-            if (!movies.HasPreviousPage)
-            {
-                BTNPrev.IsEnabled = false;
-            }
+            PaginatedMovies = await _movieDataManager.GetAllPaginated(_pageIndex, _itemsPerPage);
+            _listMovie.Movies = new ObservableCollection<MovieModel>(PaginatedMovies.Data);
+            pagerUC.PaginatedList = PaginatedMovies;
         }
 
         private async void BTNFindMovie_Click(object sender, RoutedEventArgs e)
@@ -125,5 +98,22 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
 
         }
 
+        private async void pagerUC_GoNextPage(object sender, EventArgs e)
+        {
+            _pageIndex++;
+            await LoadMovies();
+        }
+
+        private async void pagerUC_GoPreviousPage(object sender, EventArgs e)
+        {
+            _pageIndex--;
+            await LoadMovies();
+        }
+
+        private void MoviesListUC_SelectionChanged(object sender, EventArgs e)
+        {
+            _listMovie.CurrentMovie=MoviesListUC.LBMovies.SelectedItem as MovieModel;
+            SPMovieDetails.Visibility = Visibility.Visible;
+        }
     }
 }
