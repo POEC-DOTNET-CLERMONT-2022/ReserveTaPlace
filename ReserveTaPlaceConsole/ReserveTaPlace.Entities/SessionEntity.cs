@@ -18,8 +18,8 @@ namespace ReserveTaPlace.Entities
         [ForeignKey(nameof(RoomId))]
         [InverseProperty("Sessions")]
         public RoomEntity? Room { get; set; }
-        public virtual ICollection<ScheduleEntity>? Schedules { get; set; }
-        public virtual PlanningEntity? Planning { get; set; }
+        public virtual ICollection<ScheduleEntity> Schedules { get; set; }
+        public virtual PlanningEntity Planning { get; set; }
 
 
 

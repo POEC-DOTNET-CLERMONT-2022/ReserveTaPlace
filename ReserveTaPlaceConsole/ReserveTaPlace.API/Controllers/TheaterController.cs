@@ -63,12 +63,8 @@ namespace ReserveTaPlace.API.Controllers
 
         //PUT api/<TheaterController>/5
         [HttpPut("{id}")]
-        public async Task<ActionResult> Put(Guid id, [FromBody] TheaterDto theaterDto)
+        public async Task<ActionResult> Put([FromBody] TheaterDto theaterDto)
         {
-            if (id != theaterDto.Id)
-            {
-                return BadRequest("Theater ID mismatch");
-            }
             var theaterEntity = _mapper.Map<TheaterEntity>(theaterDto);
             var theaterUpdate = await _theater.Update(theaterEntity);
             return Ok(theaterUpdate);
@@ -78,8 +74,8 @@ namespace ReserveTaPlace.API.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(Guid id)
         {
-            var theaterToDelete = await _theater.DeleteById(id);
-            return Ok(theaterToDelete);
+            var result = await _theater.DeleteById(id);
+            return Ok(result);
         }
     }
 }

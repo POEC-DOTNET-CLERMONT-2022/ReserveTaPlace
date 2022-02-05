@@ -16,6 +16,6 @@ namespace ReserveTaPlace.Entities
         public string Row { get; set; }
         [Column("Number", TypeName = "nvarchar(5)")]
         public string Number { get; set; }
-        public virtual ICollection<RoomEntity> Rooms { get; set; }
+        public virtual ICollection<RoomEntity>? Rooms { get; set; }
     }
 }

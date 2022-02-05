@@ -34,8 +34,8 @@ namespace ReserveTaPlace.Entities
         [Column(TypeName = "bit")]
         public bool IsMovieOnDisplay { get; set; }
 
-        public virtual ICollection<GenreEntity>? Genres { get; set; }
-        public virtual ICollection<MediaEntity>? Medias { get; set; }
-        public virtual ICollection<OriginEntity>? Origins { get; set; }
+        public virtual ICollection<GenreEntity> Genres { get; set; }
+        public virtual ICollection<MediaEntity> Medias { get; set; }
+        public virtual ICollection<OriginEntity> Origins { get; set; }
     }
 }

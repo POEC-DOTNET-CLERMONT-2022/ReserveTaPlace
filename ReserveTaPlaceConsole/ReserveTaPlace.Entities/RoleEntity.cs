@@ -11,10 +11,11 @@ namespace ReserveTaPlace.Entities
             Users = new HashSet<UserEntity>();
         }
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
         [Column("Name", TypeName = "nvarchar(70)")]
         public string Name { get; set; }
-        public virtual ICollection<UserEntity> Users { get; set; }
+
+        [InverseProperty("Roles")]
+        public virtual ICollection<UserEntity>? Users { get; set; }
     }
 }

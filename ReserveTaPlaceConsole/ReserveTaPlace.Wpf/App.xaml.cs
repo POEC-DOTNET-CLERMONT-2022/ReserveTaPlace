@@ -6,7 +6,9 @@ using ReserveTaPlace.Models;
 using ReserveTaPlace.MovieDataBaseService;
 using ReserveTaPlace.Wpf.User_Controls;
 using ReserveTaPlace.Wpf.User_Controls.MovieUC;
+using ReserveTaPlace.Wpf.User_Controls.TheaterUC;
 using ReserveTaPlace.Wpf.Utils;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -30,6 +32,7 @@ namespace ReserveTaPlace.Wpf
         public IDataManager<UserModel, UserDto> UserDataManager { get; }
         public IDataManager<MovieModel, MovieDto> MovieDataManager { get; }
         public IDataManager<MovieModel, MovieDto> MovieProviderDataManager { get; }
+        public IDataManager<TheaterModel, TheaterDto> TheaterDataManager { get; }
         public INavigator Navigator { get; }
 
         public App()
@@ -44,6 +47,7 @@ namespace ReserveTaPlace.Wpf
             HttpClient = new HttpClient();
             UserDataManager = new UserDataManager(HttpClient, Mapper, SERVER_URL);
             MovieDataManager= new MovieDataManager(HttpClient, Mapper,SERVER_URL);
+            TheaterDataManager = new TheaterDataManager(HttpClient, Mapper, SERVER_URL);
             MovieProviderDataManager = new IMDBDataManager(HttpClient, Mapper, SERVER_URL);
             Navigator = new Navigator();
 
@@ -55,9 +59,7 @@ namespace ReserveTaPlace.Wpf
             Navigator.RegisterView(new LoginPageUC());
             Navigator.RegisterView(new MoviePageUC());
             Navigator.RegisterView(new UserPageUC());
-
-
-
+            Navigator.RegisterView(new TheaterPageUC());
         }
     }
 }

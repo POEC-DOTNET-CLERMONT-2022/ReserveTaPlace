@@ -11,10 +11,9 @@ namespace ReserveTaPlace.Entities
             Movies = new HashSet<MovieEntity>();
         }
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
         [Column("Country", TypeName = "nvarchar(255)")]
         public string Country { get; set; }
-        public virtual ICollection<MovieEntity> Movies { get; set; }
+        public virtual ICollection<MovieEntity>? Movies { get; set; }
     }
 }

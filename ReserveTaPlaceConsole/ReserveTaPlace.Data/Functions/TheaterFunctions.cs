@@ -26,7 +26,10 @@ namespace ReserveTaPlace.Data.Functions
 
         public async Task<bool> DeleteById(Guid id)
         {
-            var entity = await _dbContext.Set<TheaterEntity>().FirstOrDefaultAsync(t => t.Id == id);
+            var entity = await _dbContext.Set<TheaterEntity>()
+                .Include(t => t.Address)
+                .Include(t => t.Rooms)
+                .FirstOrDefaultAsync(t => t.Id == id);
             _dbContext.Set<TheaterEntity>().Remove(entity);
             var result = await _dbContext.SaveChangesAsync();
             return result == 1;
@@ -34,7 +37,10 @@ namespace ReserveTaPlace.Data.Functions
 
         public async Task<IEnumerable<TheaterEntity>> GetAll()
         {
-            _theaters = await _dbContext.Set<TheaterEntity>().Include(t => t.Address).ToListAsync();
+            _theaters = await _dbContext.Set<TheaterEntity>()
+                .Include(t => t.Address)
+                .Include(t => t.Rooms)
+                .ToListAsync();
             return _theaters;
         }
 

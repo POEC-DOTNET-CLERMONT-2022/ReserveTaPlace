@@ -9,7 +9,7 @@ namespace ReserveTaPlace.Entities
         [Key]
         [Column(Order = 1)]
         public Guid Id { get; set; }
-        public Guid? TheaterId { get; set; }
+        public Guid TheaterId { get; set; }
 
         [Column("Address1", TypeName = "nvarchar(100)", Order = 2)]
         public string? Address1 { get; set; }
@@ -32,7 +32,7 @@ namespace ReserveTaPlace.Entities
         [Column("County", TypeName = "nvarchar(255)", Order = 8)]
         public string County { get; set; }
         [ForeignKey(nameof(TheaterId))]
-        public virtual TheaterEntity? Theater { set; get; }
+        public virtual TheaterEntity Theater { set; get; }
 
 
     }

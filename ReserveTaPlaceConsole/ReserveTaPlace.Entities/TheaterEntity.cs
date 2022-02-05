@@ -10,15 +10,16 @@ namespace ReserveTaPlace.Entities
         {
             Rooms = new HashSet<RoomEntity>();
             Users = new HashSet<UserEntity>();
+            Medias = new HashSet<MediaEntity>();
         }
 
         [Key]
         public Guid Id { get; set; }
         [Column("Name", TypeName = "nvarchar(70)")]
         public string Name { get; set; }
-        public AddressEntity? Address { get; set; }
-        public virtual ICollection<RoomEntity>? Rooms { get; set; }
-        public virtual ICollection<UserEntity>? Users { get; set; }
+        public virtual ICollection<RoomEntity> Rooms { get; set; }
+        public virtual ICollection<UserEntity> Users { get; set; }
+        public virtual ICollection<MediaEntity> Medias { get; set; }
 
 
     }

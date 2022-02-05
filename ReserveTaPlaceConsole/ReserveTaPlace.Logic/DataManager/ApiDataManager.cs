@@ -70,5 +70,31 @@ namespace ReserveTaPlace.Logic.DataManager
             var movies = JsonConvert.DeserializeObject<PaginatedList<TDto>>(moviesStrg);
             return Mapper.Map<PaginatedList<TModel>>(movies);
         }
+
+        public async Task<bool> DeleteTheaterById(Guid id)
+        {
+            var response = await HttpClient.DeleteAsync(Uri + $"/{id}");
+            return response.IsSuccessStatusCode;
+        }
+
+        public async Task<TModel> GetTheaterById(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<TModel> GetTheaterByName(string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<TModel> UpdateTheater(TModel model)
+        {
+            var response = await HttpClient.PutAsJsonAsync(Uri, model);
+            response.EnsureSuccessStatusCode();
+            var theaterString = await response.Content.ReadAsStringAsync();
+            var theater = JsonConvert.DeserializeObject<TDto>(theaterString);
+            return Mapper.Map<TModel>(theater);
+
+        }
     }
 }

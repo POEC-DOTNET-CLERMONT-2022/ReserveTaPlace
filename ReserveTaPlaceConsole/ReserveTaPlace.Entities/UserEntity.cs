@@ -36,9 +36,9 @@ namespace ReserveTaPlace.Entities
         [Column("Password", TypeName = "nvarchar(50)", Order = 5)]
         public string Password { get; set; }
         public virtual ICollection<OrderEntity>? Orders { get; set; }
-        public virtual ICollection<DiscountEntity>? Discounts { get; set; }
+        public virtual ICollection<DiscountEntity> Discounts { get; set; }
         public virtual ICollection<TheaterEntity>? Theaters { get; set; }
-        public virtual ICollection<RoleEntity>? Roles { get; set; }
+        public virtual ICollection<RoleEntity> Roles { get; set; }
 
 
 

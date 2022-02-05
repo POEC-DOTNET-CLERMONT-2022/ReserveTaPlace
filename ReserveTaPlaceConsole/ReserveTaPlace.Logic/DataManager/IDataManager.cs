@@ -11,11 +11,14 @@ namespace ReserveTaPlace.Logic.DataManager
                                                 where TDto : class
     {
         Task<IEnumerable<TModel>> GetAll();
-
         Task<bool> Add(TModel model);
         Task<TModel> GetMovie(string title, string year);
         Task<TModel> GetMovieByNameAndYear(string title,string year);
         Task<PaginatedList<TModel>> GetAllPaginated(int page, int pageSize);
+        Task<bool> DeleteTheaterById(Guid id);
+        Task<TModel> GetTheaterById(Guid id);
+        Task<TModel> GetTheaterByName(string name);
+        Task<TModel> UpdateTheater(TModel model);
 
     }
 }
