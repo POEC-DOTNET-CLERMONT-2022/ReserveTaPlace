@@ -109,5 +109,11 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
             _pageIndex--;
             await LoadMovies();
         }
+
+        private void MoviesListUC_SelectionChanged(object sender, EventArgs e)
+        {
+            _listMovie.CurrentMovie=MoviesListUC.LBMovies.SelectedItem as MovieModel;
+            SPMovieDetails.Visibility = Visibility.Visible;
+        }
     }
 }

@@ -14,18 +14,10 @@
              xmlns:User_Controls="clr-namespace:ReserveTaPlace.Wpf.User_Controls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" 
-             x:Name="root" Loaded="root_Loaded"
+             x:Name="root"
              >
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="1*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="6*"/>
-            <RowDefinition Height="1*"/>
-        </Grid.RowDefinitions>
-        <ListBox Grid.Column="0" x:Name="LBMovies" SelectionChanged="LBMovies_SelectionChanged" SelectedItem="{Binding CurrentMovie}" DataContext="{Binding .,ElementName=root}" ItemsSource="{Binding Movies}">
+        <ListBox Height="230" x:Name="LBMovies" SelectionChanged="LBMovies_SelectionChanged" SelectedItem="{Binding CurrentMovie}" DataContext="{Binding .,ElementName=root}" ItemsSource="{Binding Movies}">
             <!--<ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Style.Triggers>
@@ -59,10 +51,5 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <StackPanel HorizontalAlignment="Stretch" x:Name="SPMovieDetails" Grid.Column="1" VerticalAlignment="Top" Margin="10 0 10 0">
-            <User_ControlsMovieUC:MovieDetailsUC CurrentMovie="{Binding SelectedItem, ElementName=LBMovies}"/>
-            <Button HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0 10 0 0" x:Name="BTNPutOnScreen" Click="BTNPutOnScreen_Click" >Mettre le film à l'affiche</Button>
-        </StackPanel>
-        <User_ControlsMovieUC:PutMovieOnScreenUC Grid.Column="0" x:Name="UCPutOnScreen" Visibility="Collapsed"/>
     </Grid>
 </UserControl>

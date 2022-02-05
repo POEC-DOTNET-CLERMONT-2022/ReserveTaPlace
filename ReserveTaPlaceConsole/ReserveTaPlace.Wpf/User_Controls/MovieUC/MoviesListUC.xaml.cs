@@ -26,14 +26,19 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
     /// <summary>
     /// Interaction logic for MoviesListUC.xaml
     /// </summary>
-    public partial class MoviesListUC : UserControl, INotifyPropertyChanged
+    public partial class MoviesListUC : UserControl
     {
         private static readonly DependencyProperty _moviesProperty = DependencyProperty.Register("Movies", typeof(ObservableCollection<MovieModel>), typeof(MoviesListUC));
         private ObservableCollection<MovieModel> _movies;
+        public MovieModel SelectedMovie { get { return LBMovies.SelectedItem as MovieModel; } }
         public MoviesListUC()
         {
             InitializeComponent();
         }
+        [Browsable(true)]
+        [Category("Action")]
+        [Description("Invoked when user clicks on a movie in the list")]
+        public event EventHandler SelectionChanged;
         public ObservableCollection<MovieModel> Movies
         {
             get { return GetValue(_moviesProperty) as ObservableCollection<MovieModel>; }
@@ -41,32 +46,15 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
             {
                 if (_movies != value)
                 {
-
                     SetValue(_moviesProperty, value);
                 }
             }
         }
-        public event PropertyChangedEventHandler? PropertyChanged;
-        protected virtual void OnNotifyPropertyChanged([CallerMemberName] string propertyname = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyname));
-        }
-
-        private void root_Loaded(object sender, RoutedEventArgs e)
-        {
-            SPMovieDetails.Visibility= Visibility.Collapsed;
-        }
-
-        private void BTNPutOnScreen_Click(object sender, RoutedEventArgs e)
-        {
-            LBMovies.Visibility = Visibility.Collapsed;
-            UCPutOnScreen.Visibility = Visibility.Visible;
-            BTNPutOnScreen.IsEnabled = false;
-        }
 
         private void LBMovies_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SPMovieDetails.Visibility = Visibility.Visible;
+            if (this.SelectionChanged != null)
+                this.SelectionChanged(this, e);
         }
     }
 }
