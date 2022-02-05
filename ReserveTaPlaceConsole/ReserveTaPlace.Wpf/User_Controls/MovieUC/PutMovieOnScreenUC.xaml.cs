@@ -1,4 +1,5 @@
-﻿using ReserveTaPlace.Models;
+﻿using MaterialDesignThemes.Wpf;
+using ReserveTaPlace.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,5 +27,6 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
         {
             InitializeComponent();
         }
+
     }
 }
