@@ -4,14 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ReserveTaPlace.Wpf.Utils.StateManager
+namespace ReserveTaPlace.Models.WPFModels.StateManager
 {
     public enum MoviePageState
     {
-        MoviePageView,
         AddMovieView,
-        MovieListView,
-        PutOnScreenView
-
+        MoviesListView,
+        PutOnScreenView,
+        AllOff
     }
 }

@@ -10,47 +10,40 @@
              TextElement.FontSize="14"
              FontFamily="{materialDesign:MaterialDesignFont}"
              xmlns:local="clr-namespace:ReserveTaPlace.Wpf.User_Controls"
+             xmlns:Converters="clr-namespace:ReserveTaPlace.Wpf.Utils.Converters"
              xmlns:User_Controls="clr-namespace:ReserveTaPlace.Wpf.User_Controls"
              xmlns:User_ControlsMovieUC="clr-namespace:ReserveTaPlace.Wpf.User_Controls.MovieUC"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             >
-    <Grid>
+             Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <Converters:VisibilityConverter x:Key="VisibilityConverter"/>
+    </UserControl.Resources>
+        <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="6*"/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="1*"/>
                 <RowDefinition Height="2*"/>
-                <RowDefinition Height="4*"/>
-                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="1.1*"/>
                 <RowDefinition Height="5*"/>
             </Grid.RowDefinitions>
-            
-            <WrapPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center">
-                <TextBlock>MOVIE PAGE</TextBlock>
-                <Button Click="ShowListMovies">Liste des Films</Button>
-                <Button Click="ShowAddMovie_Click">Ajouter un film</Button>
-            </WrapPanel>
-            <StackPanel Grid.Column="1" Grid.Row="1" x:Name="SPSearchMovie">
-                <WrapPanel x:Name="WPSearchMovie" Visibility="Collapsed">
-                    <Label>Titre du film : </Label>
-                    <TextBox x:Name="TBMovieName" Margin="0,0,10,0" Width="150"></TextBox>
-                    <Label>Année de sortie : </Label>
-                    <TextBox x:Name="TBMovieYear" Margin="0,0,10,0" Width="150"></TextBox>
+            <StackPanel Grid.Column="1" Grid.Row="0" x:Name="SPSearchMovie">
+                <WrapPanel x:Name="WPSearchMovie" Visibility="{Binding StateManager.IsSPSearchVisible, Converter={StaticResource VisibilityConverter}}">
+                    <TextBox materialDesign:HintAssist.Hint="Titre du film" x:Name="TBMovieName" Margin="0,0,10,0" Width="150"></TextBox>
+                    <TextBox materialDesign:HintAssist.Hint="Année de sortie" x:Name="TBMovieYear" Margin="0,0,10,0" Width="150"></TextBox>
                     <Button x:Name="BTNFindMovie" Click="BTNFindMovie_Click">Rechercher</Button>
                 </WrapPanel>
                 <TextBlock x:Name="TBUnfound" Visibility="Collapsed">Aucun film trouvé</TextBlock>
             </StackPanel>
-            <User_ControlsMovieUC:AddMovieUC DataContext="{Binding Movies}" Visibility="Collapsed" Grid.Row="2" x:Name="AddMovieUC"></User_ControlsMovieUC:AddMovieUC>
-            <StackPanel Grid.Row="2" >
-                <User_ControlsMovieUC:MoviesListUC SelectionChanged="MoviesListUC_SelectionChanged" Movies="{Binding Movies}"  Visibility="Collapsed" x:Name="MoviesListUC"></User_ControlsMovieUC:MoviesListUC>
-            </StackPanel>
-            <User_ControlsMovieUC:MoviesPagerUC Grid.Row="3" DataContext="{Binding PaginatedList}" GoNextPage="pagerUC_GoNextPage" GoPreviousPage="pagerUC_GoPreviousPage" x:Name="pagerUC"></User_ControlsMovieUC:MoviesPagerUC>
-
-            <Grid Grid.Row="4">
+            <User_ControlsMovieUC:AddMovieUC Visibility="{Binding StateManager.IsAddMovieVisible, Converter={StaticResource VisibilityConverter}}" Grid.Row="1" x:Name="AddMovieUC"></User_ControlsMovieUC:AddMovieUC>
+            <User_ControlsMovieUC:MoviesListUC Grid.Row="1" SelectionChanged="MoviesListUC_SelectionChanged" Movies="{Binding Movies}" Visibility="{Binding StateManager.IsMoviesListVisible, Converter={StaticResource VisibilityConverter}}" x:Name="MoviesListUC"></User_ControlsMovieUC:MoviesListUC>
+            <User_ControlsMovieUC:MoviesPagerUC Visibility="{Binding StateManager.IsMoviesPagerVisible, Converter={StaticResource VisibilityConverter}}" HorizontalAlignment="Center" Grid.Row="2" DataContext="{Binding PaginatedList}" GoNextPage="pagerUC_GoNextPage" GoPreviousPage="pagerUC_GoPreviousPage" x:Name="pagerUC"></User_ControlsMovieUC:MoviesPagerUC>
+            <Button HorizontalAlignment="Right" Grid.Row="2" Click="ShowAddMovie_Click">Ajouter un film</Button>
+            <Grid Grid.Row="3" Visibility="{Binding StateManager.IsPutOnScreenVisible, Converter={StaticResource VisibilityConverter}}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="3*"/>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ReserveTaPlace.Models.WPFModels.StateManager;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -10,8 +11,16 @@ namespace ReserveTaPlace.Models.WPFModels
     public class ListMovies : ObservableObject
     {
         private ObservableCollection<MovieModel> _movies;
-
+        private MoviePageStateManager _stateManager;
         private MovieModel _currentMovie;
+
+
+        public MoviePageStateManager StateManager
+        {
+            get { return _stateManager; }
+            set { _stateManager = value; OnNotifyPropertyChanged(); }
+        }
+
         public MovieModel FoundMovie { get; set; }
         public MovieModel CurrentMovie
         {

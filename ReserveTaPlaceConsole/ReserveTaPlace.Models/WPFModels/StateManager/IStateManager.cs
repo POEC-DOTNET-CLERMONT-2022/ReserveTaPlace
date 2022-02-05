@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ReserveTaPlace.Wpf.Utils.StateManager
+namespace ReserveTaPlace.Models.WPFModels.StateManager
 {
-    internal interface IStateManager
+    public interface IStateManager
     {
+        void Set(MoviePageState state);
 
     }
 }

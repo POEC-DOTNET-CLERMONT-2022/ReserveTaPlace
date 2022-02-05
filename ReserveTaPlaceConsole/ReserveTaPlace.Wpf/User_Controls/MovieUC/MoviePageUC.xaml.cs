@@ -3,6 +3,7 @@ using ReserveTaPlace.DTOS;
 using ReserveTaPlace.Logic.DataManager;
 using ReserveTaPlace.Models;
 using ReserveTaPlace.Models.WPFModels;
+using ReserveTaPlace.Models.WPFModels.StateManager;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -37,21 +38,20 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
         public MoviePageUC()
         {
             InitializeComponent();
+            //DataContext = new { _listMovie = _listMovie, StateManager = StateManager };
             _listMovie = new ListMovies();
             _mapper = ((App)Application.Current).Mapper;
-            DataContext = _listMovie;
             _movieDataManager = ((App)Application.Current).MovieDataManager;
             _movieProviderDataManager = ((App)Application.Current).MovieProviderDataManager;
             _pageIndex = 1;
-            _itemsPerPage = 5;
+            _itemsPerPage = 8;
             PaginatedMovies = new PaginatedList<MovieModel>();
+            _listMovie.StateManager = new MoviePageStateManager(MoviePageState.MoviesListView);
+            DataContext = _listMovie;
         }
-
         private void ShowAddMovie_Click(object sender, RoutedEventArgs e)
         {
-            SPSearchMovie.Visibility = Visibility.Collapsed;
-            AddMovieUC.Visibility = Visibility.Visible;
-            MoviesListUC.Visibility = Visibility.Collapsed;
+            _listMovie.StateManager.Set(MoviePageState.AddMovieView);
         }
 
         private async void ShowListMovies(object sender, RoutedEventArgs e)
@@ -60,7 +60,7 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
             {
                 AddMovieUC.Visibility = Visibility.Collapsed;
                 Gprogress.Visibility = Visibility.Visible;
-                await Task.Delay(500);
+                await Task.Delay(200);
                 await LoadMovies();
             }
             finally
@@ -69,7 +69,6 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
                 Gprogress.Visibility = Visibility.Collapsed;
                 MoviesListUC.Visibility = Visibility.Visible;
                 WPSearchMovie.Visibility = Visibility.Visible;
-                //MoviesListUC.Movies = _listMovie.Movies;
             }
 
         }
@@ -113,7 +112,14 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
         private void MoviesListUC_SelectionChanged(object sender, EventArgs e)
         {
             _listMovie.CurrentMovie=MoviesListUC.LBMovies.SelectedItem as MovieModel;
+            _listMovie.StateManager.Set(MoviePageState.PutOnScreenView );
             SPMovieDetails.Visibility = Visibility.Visible;
+
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadMovies();
         }
     }
 }
