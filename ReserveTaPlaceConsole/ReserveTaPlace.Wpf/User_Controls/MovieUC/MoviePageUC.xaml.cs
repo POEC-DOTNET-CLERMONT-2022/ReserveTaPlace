@@ -27,7 +27,6 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
     /// </summary>
     public partial class MoviePageUC : UserControl
     {
-        private readonly IMapper _mapper;
         private ListMovies _listMovie;
         public PaginatedList<MovieModel> PaginatedMovies;
         private readonly IDataManager<MovieModel, MovieDto> _movieDataManager;
@@ -40,7 +39,6 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
             InitializeComponent();
             //DataContext = new { _listMovie = _listMovie, StateManager = StateManager };
             _listMovie = new ListMovies();
-            _mapper = ((App)Application.Current).Mapper;
             _movieDataManager = ((App)Application.Current).MovieDataManager;
             _movieProviderDataManager = ((App)Application.Current).MovieProviderDataManager;
             _pageIndex = 1;
@@ -53,7 +51,7 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
         private void ShowAddMovie_Click(object sender, RoutedEventArgs e)
         {
             _listMovie.StateManager.Set(MoviePageState.AddMovieView);
-            pagerUC.Visibility = Visibility.Collapsed;
+            //pagerUC.Visibility = Visibility.Collapsed;
             AddMovieUC.Visibility= Visibility.Visible;
         }
 
