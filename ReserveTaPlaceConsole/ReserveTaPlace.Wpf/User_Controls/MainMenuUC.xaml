@@ -10,7 +10,7 @@
         <StackPanel HorizontalAlignment="Left">
             <Button x:Name="ListUserBTNBTN" Margin="10" Click="ListUserBTNBTN_Click">Voir liste utilisateurs</Button>
             <Button x:Name="ListmovieBTN" Margin="10" Click="ListmovieBTN_Click">Voir liste film</Button>
-            <Button x:Name="ListtheaterBTN" Margin="10" Click="ListtheaterBTN_Click" Cursor="Hand">Voir liste theatre</Button>
+            <Button x:Name="ListtheaterBTN" Margin="10" Click="ListtheaterBTN_Click" Cursor="Hand">Gestion des cinémas</Button>
         </StackPanel>
     </Grid>
 </UserControl>

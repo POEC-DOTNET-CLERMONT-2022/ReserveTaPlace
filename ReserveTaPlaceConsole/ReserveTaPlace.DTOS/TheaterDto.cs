@@ -16,8 +16,8 @@ namespace ReserveTaPlace.DTOS
         [JsonProperty(PropertyName = "Rooms")]
         public IList<RoomDto> Rooms { get; set; }
 
-        //[JsonProperty(PropertyName = "Users")]
-        //public IList<UserDto> Users { get; set; }
+        [JsonProperty(PropertyName = "Users")]
+        public IList<UserDto> Users { get; set; }
 
 
     }
