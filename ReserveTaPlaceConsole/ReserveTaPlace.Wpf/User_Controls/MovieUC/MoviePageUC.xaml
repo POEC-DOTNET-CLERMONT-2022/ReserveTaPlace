@@ -9,7 +9,6 @@
              TextElement.FontWeight="Medium"
              TextElement.FontSize="14"
              FontFamily="{materialDesign:MaterialDesignFont}"
-             xmlns:local="clr-namespace:ReserveTaPlace.Wpf.User_Controls"
              xmlns:Converters="clr-namespace:ReserveTaPlace.Wpf.Utils.Converters"
              xmlns:User_Controls="clr-namespace:ReserveTaPlace.Wpf.User_Controls"
              xmlns:User_ControlsMovieUC="clr-namespace:ReserveTaPlace.Wpf.User_Controls.MovieUC"
@@ -56,7 +55,7 @@
                     <User_ControlsMovieUC:MovieDetailsUC CurrentMovie="{Binding CurrentMovie}" ></User_ControlsMovieUC:MovieDetailsUC>
                 </StackPanel>
                 <StackPanel Grid.Column="1" Visibility="{Binding StateManager.IsPutOnScreenVisible, Converter={StaticResource VisibilityConverter}}">
-                    <User_ControlsMovieUC:PutMovieOnScreenUC CurrentMovie="{Binding CurrentMovie}"></User_ControlsMovieUC:PutMovieOnScreenUC>
+                    <User_ControlsMovieUC:PutMovieOnScreenUC SessionViewModel="{Binding SessionViewModel}" x:Name="UCPutOnScreen"></User_ControlsMovieUC:PutMovieOnScreenUC>
                 </StackPanel>
             </Grid>
         </Grid>

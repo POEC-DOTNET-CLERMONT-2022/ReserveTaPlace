@@ -28,6 +28,7 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
     public partial class MoviePageUC : UserControl
     {
         private ListMovies _listMovie;
+        private SessionViewModel _sessionViewModel;
         public PaginatedList<MovieModel> PaginatedMovies;
         private readonly IDataManager<MovieModel, MovieDto> _movieDataManager;
         private IDataManager<MovieModel, MovieDto> _movieProviderDataManager;
@@ -37,8 +38,8 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
         public MoviePageUC()
         {
             InitializeComponent();
-            //DataContext = new { _listMovie = _listMovie, StateManager = StateManager };
             _listMovie = new ListMovies();
+            _sessionViewModel = new SessionViewModel();
             _movieDataManager = ((App)Application.Current).MovieDataManager;
             _movieProviderDataManager = ((App)Application.Current).MovieProviderDataManager;
             _pageIndex = 1;
@@ -46,6 +47,8 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
             PaginatedMovies = new PaginatedList<MovieModel>();
             _listMovie.StateManager = new MoviePageStateManager(MoviePageState.MoviesListView);
             DataContext = _listMovie;
+            //DataContext = new { _listMovie, _sessionViewModel };
+
         }
         private void ShowAddMovie_Click(object sender, RoutedEventArgs e)
         {
@@ -114,6 +117,8 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
             if (MoviesListUC.LBMovies.SelectedItem!=null)
             {
                 _listMovie.CurrentMovie = MoviesListUC.LBMovies.SelectedItem as MovieModel;
+                _sessionViewModel.SelectedMovie = _listMovie.CurrentMovie;
+                UCPutOnScreen.SessionViewModel = _sessionViewModel;
                 _listMovie.StateManager.Set(MoviePageState.PutOnScreenView);
 
             }
