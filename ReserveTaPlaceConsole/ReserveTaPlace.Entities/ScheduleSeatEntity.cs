@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Entities
 {
-    [Table("SessionSeat")]
-    public class SessionSeatEntity
+    [Table("ScheduleSeat")]
+    public class ScheduleSeatEntity
     {
-        public Guid SessionId { get; set; }
+        public Guid ScheduleId { get; set; }
         public Guid SeatId { get; set; }
-        public virtual SessionEntity Session { get; set; }
+        public virtual ScheduleEntity Schedule { get; set; }
         public virtual SeatEntity Seat { get; set; }
     }
 }

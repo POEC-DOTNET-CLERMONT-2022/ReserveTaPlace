@@ -10,7 +10,7 @@ namespace ReserveTaPlace.Data.ApplicationContext
         {
 
         }
-        public virtual DbSet<SessionSeatEntity> SessionSeats { get; set; }
+        public virtual DbSet<ScheduleSeatEntity> SchedulenSeats { get; set; }
         public virtual DbSet<MovieGenreEntity> MovieGenres { get; set; }
         public virtual DbSet<MovieOriginEntity> MovieOrigins { get; set; }
         public virtual DbSet<UserRoleEntity> UserRoles { get; set; }
@@ -41,15 +41,15 @@ namespace ReserveTaPlace.Data.ApplicationContext
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<SessionSeatEntity>().HasKey(ss => new { ss.SessionId, ss.SeatId });
-            modelBuilder.Entity<SessionSeatEntity>()
-            .HasOne<SessionEntity>(ss => ss.Session)
-            .WithMany(ss => ss.SessionSeats)
-            .HasForeignKey(s => s.SessionId)
+            modelBuilder.Entity<ScheduleSeatEntity>().HasKey(ss => new { ss.ScheduleId, ss.SeatId });
+            modelBuilder.Entity<ScheduleSeatEntity>()
+            .HasOne<ScheduleEntity>(ss => ss.Schedule)
+            .WithMany(ss => ss.ScheduleSeats)
+            .HasForeignKey(s => s.ScheduleId)
             .OnDelete(DeleteBehavior.NoAction);
-            modelBuilder.Entity<SessionSeatEntity>()
+            modelBuilder.Entity<ScheduleSeatEntity>()
             .HasOne<SeatEntity>(ss => ss.Seat)
-            .WithMany(ss => ss.SeatSessions)
+            .WithMany(ss => ss.SeatSchedules)
             .HasForeignKey(s => s.SeatId)
             .OnDelete(DeleteBehavior.NoAction);
 
