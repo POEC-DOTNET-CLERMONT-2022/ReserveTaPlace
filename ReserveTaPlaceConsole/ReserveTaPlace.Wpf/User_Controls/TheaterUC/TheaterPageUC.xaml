@@ -22,7 +22,7 @@
         </Grid.ColumnDefinitions>
         <User_Controls:MainMenuUC Grid.Column="0" x:Name="MainMenuUC"></User_Controls:MainMenuUC>
         <TextBlock Grid.Column="1" HorizontalAlignment="Center">TheaterPage</TextBlock>
-        <StackPanel Grid.Column="1">
+        <StackPanel Grid.Column="1" Orientation="Vertical">
             <User_ControlsTheaterUC:TheatersListUC x:Name="TheaterListUC"></User_ControlsTheaterUC:TheatersListUC>
         </StackPanel>
     </Grid>

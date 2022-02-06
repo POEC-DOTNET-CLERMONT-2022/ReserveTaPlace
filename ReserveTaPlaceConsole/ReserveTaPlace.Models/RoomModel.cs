@@ -12,16 +12,16 @@ namespace ReserveTaPlace.Models
         private string _name;
         private string _number;
         private FormatModel _format;
-        private IList<SeatModel> _seats;
+        private IList<RoomSeatModel> _roomSeats;
         private IList<SessionModel> _sessions;
 
-        public RoomModel(string name, string number, FormatModel format, List<SeatModel> seats, List<SessionModel> sessions)
+        public RoomModel(string name, string number, FormatModel format, List<RoomSeatModel> roomSeats, List<SessionModel> sessions)
         {
             _id = Guid.NewGuid();
             _name = name;
             _number = number;
             _format = format;
-            _seats = seats;
+            _roomSeats = roomSeats;
             _sessions = sessions;
         }
 
@@ -29,7 +29,7 @@ namespace ReserveTaPlace.Models
         public string Name { get { return _name; } set { _name = value; } }
         public string Number { get { return _number; } set { _number = value; } }
         public FormatModel Format { get { return _format; } set { _format = value; } }
-        public IList<SeatModel> Seats { get { return _seats; } set { _seats = value; } }
+        public IList<RoomSeatModel> RoomSeats { get { return _roomSeats; } set { _roomSeats = value; } }
         public IList<SessionModel> Sessions { get { return _sessions; } set { _sessions = value; } }
 
 

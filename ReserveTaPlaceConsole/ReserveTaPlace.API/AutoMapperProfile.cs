@@ -29,10 +29,14 @@ namespace ReserveTaPlace.API
             //  .ForMember(dest => dest.Lastname, opt => opt.MapFrom(src => src.LastName))
             //  .ForMember(dest => dest.Theaters, opt => opt.MapFrom(src => src.Theaters))
             //  .ForMember(dest => dest.Roles, opt => opt.MapFrom(src => src.Roles));
-            CreateMap<TheaterEntity, TheaterDto>().ReverseMap();
-            CreateMap<RoomEntity, RoomDto>().ReverseMap();
+            CreateMap<TheaterEntity, TheaterDto>()
+                .ForMember(dto => dto.Users, opt => opt.MapFrom(t => t.TheaterUsers.Select(ut => ut.User).ToList()));
+            CreateMap<RoomEntity, RoomDto>()
+                .ForMember(dto => dto.Seats, opt => opt.MapFrom(r => r.RoomSeats.Select(rs => rs.Seat).ToList()));
             CreateMap<SeatEntity, SeatDto>().ReverseMap();
             CreateMap<FormatEntity, FormatDto>().ReverseMap();
+            CreateMap<AddressEntity, AddressDto>().ReverseMap();
+            CreateMap<MediaEntity, MediaDto>().ReverseMap();
             //CreateMap<TheaterEntity, TheaterDto>()
             //    .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
             //    .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))

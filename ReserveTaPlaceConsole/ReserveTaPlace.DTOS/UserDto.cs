@@ -11,7 +11,6 @@ namespace ReserveTaPlace.DTOS
         public string Email { get; set; }
         public IList<OrderDto> Orders { get; set; }
         public IList<DiscountDto> Discounts { get; set; }
-        public IList<TheaterDto> Theaters { get; set; }
         public IList<RoleDto> Roles { get; set; }
     }
 }

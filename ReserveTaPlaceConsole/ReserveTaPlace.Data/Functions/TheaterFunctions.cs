@@ -29,6 +29,7 @@ namespace ReserveTaPlace.Data.Functions
             var entity = await _dbContext.Set<TheaterEntity>()
                 .Include(t => t.Address)
                 .Include(t => t.Rooms)
+                .Include(t => t.Medias)
                 .FirstOrDefaultAsync(t => t.Id == id);
             _dbContext.Set<TheaterEntity>().Remove(entity);
             var result = await _dbContext.SaveChangesAsync();
@@ -39,7 +40,11 @@ namespace ReserveTaPlace.Data.Functions
         {
             _theaters = await _dbContext.Set<TheaterEntity>()
                 .Include(t => t.Address)
-                .Include(t => t.Rooms)
+                .Include(t => t.Rooms).ThenInclude(r => r.Format)
+                .Include(t => t.Rooms).ThenInclude(r => r.Sessions)
+                .Include(t => t.Rooms).ThenInclude(r => r.RoomSeats).ThenInclude(rs => rs.Seat)
+                .Include(t => t.Medias)
+                .Include(t => t.TheaterUsers).ThenInclude(u => u.User)
                 .ToListAsync();
             return _theaters;
         }
