@@ -15,8 +15,8 @@ namespace ReserveTaPlace.Entities
         {
             Orders = new HashSet<OrderEntity>();
             Discounts = new HashSet<DiscountEntity>();
-            Theaters = new HashSet<TheaterEntity>();
-            Roles = new HashSet<RoleEntity>();
+            UserTheaters = new HashSet<UserTheaterEntity>();
+            UserRoles = new HashSet<UserRoleEntity>();
         }
 
         [Key]
@@ -37,8 +37,8 @@ namespace ReserveTaPlace.Entities
         public string Password { get; set; }
         public virtual ICollection<OrderEntity>? Orders { get; set; }
         public virtual ICollection<DiscountEntity> Discounts { get; set; }
-        public virtual ICollection<TheaterEntity>? Theaters { get; set; }
-        public virtual ICollection<RoleEntity> Roles { get; set; }
+        public virtual ICollection<UserTheaterEntity> UserTheaters { get; set; }
+        public virtual ICollection<UserRoleEntity> UserRoles { get; set; }
 
 
 

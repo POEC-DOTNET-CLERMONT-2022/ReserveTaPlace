@@ -8,7 +8,7 @@ namespace ReserveTaPlace.Entities
     {
         public RoomEntity()
         {
-            Seats = new HashSet<SeatEntity>();
+            RoomSeats = new HashSet<RoomSeatEntity>();
             Sessions = new HashSet<SessionEntity>();
         }
 
@@ -27,7 +27,7 @@ namespace ReserveTaPlace.Entities
 
         [ForeignKey(nameof(FormatId))]
         public virtual FormatEntity? Format { get; set; }
-        public virtual ICollection<SeatEntity> Seats { get; set; }
+        public virtual ICollection<RoomSeatEntity> RoomSeats { get; set; }
         public virtual ICollection<SessionEntity> Sessions { get; set; }
     }
 }

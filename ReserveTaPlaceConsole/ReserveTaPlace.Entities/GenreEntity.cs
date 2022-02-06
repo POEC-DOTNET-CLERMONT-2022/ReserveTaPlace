@@ -8,13 +8,13 @@ namespace ReserveTaPlace.Entities
     {
         public GenreEntity()
         {
-            Movies= new HashSet<MovieEntity>();
+            GenreMovies = new HashSet<MovieGenreEntity>();
         }
 
         [Key]
         public Guid Id { get; set; }
         [Column("Name", TypeName = "nvarchar(50)")]
         public string Name { get; set; }
-        public virtual ICollection<MovieEntity>? Movies { get; set; }
+        public virtual ICollection<MovieGenreEntity> GenreMovies { get; set; }
     }
 }

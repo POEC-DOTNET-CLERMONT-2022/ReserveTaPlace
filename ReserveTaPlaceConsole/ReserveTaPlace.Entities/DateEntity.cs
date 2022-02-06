@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Entities
 {
-    [Table("Planning")]
-    public class PlanningEntity
+    [Table("Date")]
+    public class DateEntity
     {
         [Key]
         public Guid Id { get; set; }
@@ -18,7 +18,7 @@ namespace ReserveTaPlace.Entities
         public DateTime EndDate { get; set; }
 
         [ForeignKey(nameof(SessionId))]
-        [InverseProperty("Planning")]
+        [InverseProperty("Date")]
         public virtual SessionEntity? Session { get; set; }
 
 

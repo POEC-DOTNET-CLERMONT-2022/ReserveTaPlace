@@ -8,14 +8,12 @@ namespace ReserveTaPlace.Entities
     {
         public RoleEntity()
         {
-            Users = new HashSet<UserEntity>();
+            RoleUsers = new HashSet<UserRoleEntity>();
         }
         [Key]
         public Guid Id { get; set; }
         [Column("Name", TypeName = "nvarchar(70)")]
         public string Name { get; set; }
-
-        [InverseProperty("Roles")]
-        public virtual ICollection<UserEntity>? Users { get; set; }
+        public virtual ICollection<UserRoleEntity> RoleUsers { get; set; }
     }
 }

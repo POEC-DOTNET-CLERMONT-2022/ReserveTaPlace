@@ -9,7 +9,7 @@ namespace ReserveTaPlace.Entities
         public TheaterEntity()
         {
             Rooms = new HashSet<RoomEntity>();
-            Users = new HashSet<UserEntity>();
+            TheaterUsers = new HashSet<UserTheaterEntity>();
             Medias = new HashSet<MediaEntity>();
         }
 
@@ -19,9 +19,8 @@ namespace ReserveTaPlace.Entities
         public string Name { get; set; }
         public virtual AddressEntity Address { get; set; }
         public virtual ICollection<RoomEntity> Rooms { get; set; }
-        public virtual ICollection<UserEntity> Users { get; set; }
+        public virtual ICollection<UserTheaterEntity> TheaterUsers { get; set; }
         public virtual ICollection<MediaEntity> Medias { get; set; }
-
 
     }
 }
