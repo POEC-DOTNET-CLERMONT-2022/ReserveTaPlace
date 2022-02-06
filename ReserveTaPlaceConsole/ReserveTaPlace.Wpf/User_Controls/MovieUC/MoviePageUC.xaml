@@ -55,7 +55,9 @@
                 <StackPanel Grid.Column="0" Visibility="{Binding StateManager.IsMovieDetailsVisible, Converter={StaticResource VisibilityConverter}}" x:Name="SPMovieDetails" >
                     <User_ControlsMovieUC:MovieDetailsUC CurrentMovie="{Binding CurrentMovie}" ></User_ControlsMovieUC:MovieDetailsUC>
                 </StackPanel>
-                <User_ControlsMovieUC:PutMovieOnScreenUC Grid.Column="1"></User_ControlsMovieUC:PutMovieOnScreenUC>
+                <StackPanel Grid.Column="1" Visibility="{Binding StateManager.IsPutOnScreenVisible, Converter={StaticResource VisibilityConverter}}">
+                    <User_ControlsMovieUC:PutMovieOnScreenUC CurrentMovie="{Binding CurrentMovie}"></User_ControlsMovieUC:PutMovieOnScreenUC>
+                </StackPanel>
             </Grid>
         </Grid>
         <User_Controls:MainMenuUC Grid.Column="0" x:Name="MainMenuUC"></User_Controls:MainMenuUC>
