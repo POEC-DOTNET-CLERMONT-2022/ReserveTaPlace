@@ -9,6 +9,7 @@ namespace ReserveTaPlace.Entities
         public SessionEntity()
         {
             Schedules = new HashSet<ScheduleEntity>();
+            SessionSeats = new HashSet<SessionSeatEntity>();
         }
         [Key]
         public Guid Id { get; set; }
@@ -19,6 +20,8 @@ namespace ReserveTaPlace.Entities
         [InverseProperty("Sessions")]
         public RoomEntity? Room { get; set; }
         public virtual ICollection<ScheduleEntity>? Schedules { get; set; }
-        public virtual PlanningEntity? Planning { get; set; }
+        public virtual DateEntity? Date { get; set; }
+        public virtual ICollection<SessionSeatEntity> SessionSeats { get; set; }
+
     }
 }

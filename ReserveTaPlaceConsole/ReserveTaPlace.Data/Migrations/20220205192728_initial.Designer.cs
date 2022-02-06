@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ReserveTaPlace.Data.ApplicationContext;
 
@@ -11,9 +12,10 @@ using ReserveTaPlace.Data.ApplicationContext;
 namespace ReserveTaPlace.Data.Migrations
 {
     [DbContext(typeof(ReserveTaPlaceContext))]
-    partial class ReserveTaPlaceContextModelSnapshot : ModelSnapshot
+    [Migration("20220205192728_initial")]
+    partial class initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -76,30 +78,6 @@ namespace ReserveTaPlace.Data.Migrations
                         .IsUnique();
 
                     b.ToTable("Address");
-                });
-
-            modelBuilder.Entity("ReserveTaPlace.Entities.DateEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("SessionId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SessionId")
-                        .IsUnique()
-                        .HasFilter("[SessionId] IS NOT NULL");
-
-                    b.ToTable("Date");
                 });
 
             modelBuilder.Entity("ReserveTaPlace.Entities.DiscountEntity", b =>
@@ -339,6 +317,30 @@ namespace ReserveTaPlace.Data.Migrations
                     b.ToTable("Origin");
                 });
 
+            modelBuilder.Entity("ReserveTaPlace.Entities.PlanningEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("SessionId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SessionId")
+                        .IsUnique()
+                        .HasFilter("[SessionId] IS NOT NULL");
+
+                    b.ToTable("Planning");
+                });
+
             modelBuilder.Entity("ReserveTaPlace.Entities.RoleEntity", b =>
                 {
                     b.Property<Guid>("Id")
@@ -463,21 +465,6 @@ namespace ReserveTaPlace.Data.Migrations
                     b.ToTable("Session");
                 });
 
-            modelBuilder.Entity("ReserveTaPlace.Entities.SessionSeatEntity", b =>
-                {
-                    b.Property<Guid>("SessionId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("SeatId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("SessionId", "SeatId");
-
-                    b.HasIndex("SeatId");
-
-                    b.ToTable("SessionSeat");
-                });
-
             modelBuilder.Entity("ReserveTaPlace.Entities.TheaterEntity", b =>
                 {
                     b.Property<Guid>("Id")
@@ -597,15 +584,6 @@ namespace ReserveTaPlace.Data.Migrations
                     b.Navigation("Theater");
                 });
 
-            modelBuilder.Entity("ReserveTaPlace.Entities.DateEntity", b =>
-                {
-                    b.HasOne("ReserveTaPlace.Entities.SessionEntity", "Session")
-                        .WithOne("Date")
-                        .HasForeignKey("ReserveTaPlace.Entities.DateEntity", "SessionId");
-
-                    b.Navigation("Session");
-                });
-
             modelBuilder.Entity("ReserveTaPlace.Entities.DiscountEntity", b =>
                 {
                     b.HasOne("ReserveTaPlace.Entities.DiscountType", "DiscountType")
@@ -685,6 +663,15 @@ namespace ReserveTaPlace.Data.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("ReserveTaPlace.Entities.PlanningEntity", b =>
+                {
+                    b.HasOne("ReserveTaPlace.Entities.SessionEntity", "Session")
+                        .WithOne("Planning")
+                        .HasForeignKey("ReserveTaPlace.Entities.PlanningEntity", "SessionId");
+
+                    b.Navigation("Session");
+                });
+
             modelBuilder.Entity("ReserveTaPlace.Entities.RoomEntity", b =>
                 {
                     b.HasOne("ReserveTaPlace.Entities.FormatEntity", "Format")
@@ -743,25 +730,6 @@ namespace ReserveTaPlace.Data.Migrations
                     b.Navigation("Movie");
 
                     b.Navigation("Room");
-                });
-
-            modelBuilder.Entity("ReserveTaPlace.Entities.SessionSeatEntity", b =>
-                {
-                    b.HasOne("ReserveTaPlace.Entities.SeatEntity", "Seat")
-                        .WithMany("SeatSessions")
-                        .HasForeignKey("SeatId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("ReserveTaPlace.Entities.SessionEntity", "Session")
-                        .WithMany("SessionSeats")
-                        .HasForeignKey("SessionId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Seat");
-
-                    b.Navigation("Session");
                 });
 
             modelBuilder.Entity("ReserveTaPlace.Entities.TicketEntity", b =>
@@ -862,17 +830,13 @@ namespace ReserveTaPlace.Data.Migrations
             modelBuilder.Entity("ReserveTaPlace.Entities.SeatEntity", b =>
                 {
                     b.Navigation("SeatRooms");
-
-                    b.Navigation("SeatSessions");
                 });
 
             modelBuilder.Entity("ReserveTaPlace.Entities.SessionEntity", b =>
                 {
-                    b.Navigation("Date");
+                    b.Navigation("Planning");
 
                     b.Navigation("Schedules");
-
-                    b.Navigation("SessionSeats");
                 });
 
             modelBuilder.Entity("ReserveTaPlace.Entities.TheaterEntity", b =>

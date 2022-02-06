@@ -6,6 +6,7 @@ using ReserveTaPlace.Models.WPFModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,6 +40,10 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
             _movieDataManager = ((App)Application.Current).MovieDataManager;
             _movieProviderDataManager = ((App)Application.Current).MovieProviderDataManager;
         }
+        [Browsable(true)]
+        [Category("Action")]
+        [Description("Invoked when user clicks previous page's icon")]
+        public event EventHandler GoPreviousPage;
         private async void Button_AddMovie(object sender, RoutedEventArgs e)
         {
             var result = await _movieDataManager.Add(_listMovie.CurrentMovie);
@@ -62,5 +67,12 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
                 _listMovie.CurrentMovie = movie;
                 SPImbdResult.Visibility = Visibility.Visible;
         }
+
+        private void Button_Return(object sender, RoutedEventArgs e)
+        {
+            if (this.GoPreviousPage != null)
+                this.GoPreviousPage(this, e);
+        }
+
     }
 }
