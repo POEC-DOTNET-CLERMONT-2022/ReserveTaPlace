@@ -44,7 +44,9 @@
                 <User_ControlsMovieUC:MoviesPagerUC  HorizontalAlignment="Center" DataContext="{Binding PaginatedList}" GoNextPage="pagerUC_GoNextPage" GoPreviousPage="pagerUC_GoPreviousPage" x:Name="pagerUC"></User_ControlsMovieUC:MoviesPagerUC>
             </StackPanel>
             <Button HorizontalAlignment="Right" Grid.Row="2" Click="ShowAddMovie_Click">Ajouter un film</Button>
-            <User_ControlsMovieUC:AddMovieUC Visibility="{Binding StateManager.IsAddMovieVisible, Converter={StaticResource VisibilityConverter}}" GoPreviousPage="AddMovieUC_GoPreviousPage" Grid.Row="3" x:Name="AddMovieUC"></User_ControlsMovieUC:AddMovieUC>
+            <StackPanel  Grid.Row="3" Visibility="{Binding StateManager.IsAddMovieVisible, Converter={StaticResource VisibilityConverter}}">
+                <User_ControlsMovieUC:AddMovieUC  GoPreviousPage="AddMovieUC_GoPreviousPage" x:Name="AddMovieUC"></User_ControlsMovieUC:AddMovieUC>
+            </StackPanel>
             <Grid Grid.Row="3" Visibility="{Binding StateManager.IsPutOnScreenVisible, Converter={StaticResource VisibilityConverter}}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>

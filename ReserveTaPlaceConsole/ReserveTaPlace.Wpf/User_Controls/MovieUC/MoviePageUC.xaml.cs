@@ -51,7 +51,6 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
         private void ShowAddMovie_Click(object sender, RoutedEventArgs e)
         {
             _listMovie.StateManager.Set(MoviePageState.AddMovieView);
-            //pagerUC.Visibility = Visibility.Collapsed;
             AddMovieUC.Visibility= Visibility.Visible;
         }
 
