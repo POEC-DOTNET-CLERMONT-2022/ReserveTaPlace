@@ -63,14 +63,5 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
                 this.GoPreviousPage(this, e);
         }
 
-        private void BTNPrev_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void BTNNext_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

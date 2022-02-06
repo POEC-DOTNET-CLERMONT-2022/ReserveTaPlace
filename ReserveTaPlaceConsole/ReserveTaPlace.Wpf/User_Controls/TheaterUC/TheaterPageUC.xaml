@@ -10,15 +10,20 @@
              TextElement.FontSize="14"
              FontFamily="{materialDesign:MaterialDesignFont}"
              xmlns:local="clr-namespace:ReserveTaPlace.Wpf.User_Controls.TheaterUC" 
-             xmlns:User_Control="clr-namespace:ReserveTaPlace.Wpf.User_Controls"
+             xmlns:User_Controls="clr-namespace:ReserveTaPlace.Wpf.User_Controls"
+             xmlns:User_ControlsTheaterUC="clr-namespace:ReserveTaPlace.Wpf.User_Controls.TheaterUC"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             Loaded="UserControl_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="6*"/>
         </Grid.ColumnDefinitions>
-        <User_Control:MainMenuUC Grid.Column="0" x:Name="MainMenuUC"></User_Control:MainMenuUC>
+        <User_Controls:MainMenuUC Grid.Column="0" x:Name="MainMenuUC"></User_Controls:MainMenuUC>
         <TextBlock Grid.Column="1" HorizontalAlignment="Center">TheaterPage</TextBlock>
+        <StackPanel Grid.Column="1">
+            <User_ControlsTheaterUC:TheatersListUC x:Name="TheaterListUC"></User_ControlsTheaterUC:TheatersListUC>
+        </StackPanel>
     </Grid>
 </UserControl>

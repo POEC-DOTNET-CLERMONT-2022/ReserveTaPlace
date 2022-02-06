@@ -11,12 +11,36 @@
              FontFamily="{materialDesign:MaterialDesignFont}"
              xmlns:User_ControlsTheaterUC =" clr-namespace:ReserveTaPlace.Wpf.User_Controls.TheaterUC"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             x:Name="root">
     <Grid>
-        <DataGrid
-            ItemsSource="{Binding Theaters}"
-            CanUserAddRows="False"
-            SelectionUnit="Cell"
-            SelectionMode="Extended" />
+        <ListBox
+            x:Name="LBTheaters"
+            DataContext="{Binding .,ElementName=root}"
+            ItemsSource="{Binding Theaters}">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="IsSelected" Value="True"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel>
+                        
+                    </WrapPanel>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Name}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+         </ListBox>
     </Grid>
 </UserControl>
