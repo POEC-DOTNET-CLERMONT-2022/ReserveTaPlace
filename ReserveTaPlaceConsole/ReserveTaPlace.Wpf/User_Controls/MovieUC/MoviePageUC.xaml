@@ -26,7 +26,7 @@
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="2*"/>
+                <RowDefinition Height="1*"/>
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="1.1*"/>
                 <RowDefinition Height="5*"/>
@@ -39,16 +39,16 @@
                 </WrapPanel>
                 <TextBlock x:Name="TBUnfound" Visibility="Collapsed">Aucun film trouvé</TextBlock>
             </StackPanel>
-            <User_ControlsMovieUC:AddMovieUC Visibility="{Binding StateManager.IsAddMovieVisible, Converter={StaticResource VisibilityConverter}}" Grid.Row="1" x:Name="AddMovieUC"></User_ControlsMovieUC:AddMovieUC>
             <User_ControlsMovieUC:MoviesListUC Grid.Row="1" SelectionChanged="MoviesListUC_SelectionChanged" Movies="{Binding Movies}" Visibility="{Binding StateManager.IsMoviesListVisible, Converter={StaticResource VisibilityConverter}}" x:Name="MoviesListUC"></User_ControlsMovieUC:MoviesListUC>
             <User_ControlsMovieUC:MoviesPagerUC Visibility="{Binding StateManager.IsMoviesPagerVisible, Converter={StaticResource VisibilityConverter}}" HorizontalAlignment="Center" Grid.Row="2" DataContext="{Binding PaginatedList}" GoNextPage="pagerUC_GoNextPage" GoPreviousPage="pagerUC_GoPreviousPage" x:Name="pagerUC"></User_ControlsMovieUC:MoviesPagerUC>
             <Button HorizontalAlignment="Right" Grid.Row="2" Click="ShowAddMovie_Click">Ajouter un film</Button>
+            <User_ControlsMovieUC:AddMovieUC Visibility="{Binding StateManager.IsAddMovieVisible, Converter={StaticResource VisibilityConverter}}" GoPreviousPage="AddMovieUC_GoPreviousPage" Grid.Row="3" x:Name="AddMovieUC"></User_ControlsMovieUC:AddMovieUC>
             <Grid Grid.Row="3" Visibility="{Binding StateManager.IsPutOnScreenVisible, Converter={StaticResource VisibilityConverter}}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="3*"/>
                 </Grid.ColumnDefinitions>
-                <StackPanel Grid.Column="0" Visibility="Collapsed" x:Name="SPMovieDetails" >
+                <StackPanel Grid.Column="0" Visibility="{Binding StateManager.IsMovieDetailsVisible, Converter={StaticResource VisibilityConverter}}" x:Name="SPMovieDetails" >
                     <User_ControlsMovieUC:MovieDetailsUC CurrentMovie="{Binding CurrentMovie}" ></User_ControlsMovieUC:MovieDetailsUC>
                 </StackPanel>
                 <User_ControlsMovieUC:PutMovieOnScreenUC Grid.Column="1"></User_ControlsMovieUC:PutMovieOnScreenUC>

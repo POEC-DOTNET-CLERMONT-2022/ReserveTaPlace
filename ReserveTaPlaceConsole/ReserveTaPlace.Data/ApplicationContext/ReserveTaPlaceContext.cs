@@ -10,6 +10,7 @@ namespace ReserveTaPlace.Data.ApplicationContext
         {
 
         }
+        public virtual DbSet<SessionSeatEntity> SessionSeats { get; set; }
         public virtual DbSet<MovieGenreEntity> MovieGenres { get; set; }
         public virtual DbSet<MovieOriginEntity> MovieOrigins { get; set; }
         public virtual DbSet<UserRoleEntity> UserRoles { get; set; }
@@ -40,6 +41,18 @@ namespace ReserveTaPlace.Data.ApplicationContext
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<SessionSeatEntity>().HasKey(ss => new { ss.SessionId, ss.SeatId });
+            modelBuilder.Entity<SessionSeatEntity>()
+            .HasOne<SessionEntity>(ss => ss.Session)
+            .WithMany(ss => ss.SessionSeats)
+            .HasForeignKey(s => s.SessionId)
+            .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<SessionSeatEntity>()
+            .HasOne<SeatEntity>(ss => ss.Seat)
+            .WithMany(ss => ss.SeatSessions)
+            .HasForeignKey(s => s.SeatId)
+            .OnDelete(DeleteBehavior.NoAction);
+
             modelBuilder.Entity<MovieGenreEntity>().HasKey(mg => new { mg.MovieId, mg.GenreId });
             modelBuilder.Entity<MovieGenreEntity>()
             .HasOne<MovieEntity>(mg => mg.Movie)

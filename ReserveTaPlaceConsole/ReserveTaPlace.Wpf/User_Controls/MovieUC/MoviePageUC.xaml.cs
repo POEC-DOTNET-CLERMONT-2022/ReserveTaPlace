@@ -48,10 +48,13 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
             PaginatedMovies = new PaginatedList<MovieModel>();
             _listMovie.StateManager = new MoviePageStateManager(MoviePageState.MoviesListView);
             DataContext = _listMovie;
+            AddMovieUC.Visibility = Visibility.Collapsed;
         }
         private void ShowAddMovie_Click(object sender, RoutedEventArgs e)
         {
             _listMovie.StateManager.Set(MoviePageState.AddMovieView);
+            pagerUC.Visibility = Visibility.Collapsed;
+            AddMovieUC.Visibility= Visibility.Visible;
         }
 
         private async void ShowListMovies(object sender, RoutedEventArgs e)
@@ -99,12 +102,14 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
 
         private async void pagerUC_GoNextPage(object sender, EventArgs e)
         {
+            SPMovieDetails.Visibility = Visibility.Hidden;
             _pageIndex++;
             await LoadMovies();
         }
 
         private async void pagerUC_GoPreviousPage(object sender, EventArgs e)
         {
+            SPMovieDetails.Visibility = Visibility.Hidden;
             _pageIndex--;
             await LoadMovies();
         }
@@ -120,6 +125,13 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             LoadMovies();
+        }
+
+        private void AddMovieUC_GoPreviousPage(object sender, EventArgs e)
+        {
+            AddMovieUC.Visibility = Visibility.Collapsed;
+            pagerUC.Visibility = Visibility.Visible;
+            _listMovie.StateManager.Set(MoviePageState.MoviesListView);
         }
     }
 }

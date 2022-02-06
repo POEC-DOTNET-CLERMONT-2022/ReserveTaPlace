@@ -15,6 +15,7 @@ namespace ReserveTaPlace.Models.WPFModels.StateManager
         private bool _isPutOnScreenVisible;
         private bool _isMoviesPagerVisible;
         private bool _isSPSearchVisible;
+        private bool _isMovieDetailsVisible;
 
         public MoviePageStateManager(MoviePageState state)
         {
@@ -27,6 +28,8 @@ namespace ReserveTaPlace.Models.WPFModels.StateManager
         public bool IsPutOnScreenVisible { get { return _isPutOnScreenVisible; } set { _isPutOnScreenVisible = value; OnNotifyPropertyChanged(); } }
         public bool IsMoviesPagerVisible { get { return _isMoviesPagerVisible; } set { _isMoviesPagerVisible = value; OnNotifyPropertyChanged(); } }
         public bool IsSPSearchVisible { get { return _isSPSearchVisible; } set { _isSPSearchVisible = value; OnNotifyPropertyChanged(); } }
+        public bool IsMovieDetailsVisible { get { return _isMovieDetailsVisible; } set { _isMovieDetailsVisible = value; OnNotifyPropertyChanged(); } }
+
         public void Set(MoviePageState state)
         {
             switch (state)
@@ -37,6 +40,7 @@ namespace ReserveTaPlace.Models.WPFModels.StateManager
                     IsMoviesPagerVisible = true;
                     IsAddMovieVisible = false;
                     IsSPSearchVisible = true;
+                    IsMovieDetailsVisible = false;
                     break;
                 case MoviePageState.AllOff:
                     IsPutOnScreenVisible = false;
@@ -44,6 +48,7 @@ namespace ReserveTaPlace.Models.WPFModels.StateManager
                     IsMoviesPagerVisible = false;
                     IsAddMovieVisible = false;
                     IsSPSearchVisible = false;
+                    IsMovieDetailsVisible = false;
                     break;
                 case MoviePageState.AddMovieView:
                     IsPutOnScreenVisible = false;
@@ -51,6 +56,7 @@ namespace ReserveTaPlace.Models.WPFModels.StateManager
                     IsMoviesPagerVisible = false;
                     IsAddMovieVisible = true;
                     IsSPSearchVisible = false;
+                    IsMovieDetailsVisible = false;
                     break;
                 case MoviePageState.PutOnScreenView:
                     IsPutOnScreenVisible = true;
@@ -58,6 +64,7 @@ namespace ReserveTaPlace.Models.WPFModels.StateManager
                     IsAddMovieVisible = false;
                     IsMoviesPagerVisible =true;
                     IsSPSearchVisible = true;
+                    IsMovieDetailsVisible = false;
                     break;
                 default:
                     break;
