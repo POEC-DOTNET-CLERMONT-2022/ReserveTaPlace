@@ -16,7 +16,7 @@ namespace ReserveTaPlace.Wpf.User_Controls.TheaterUC
         public TheatersListUC()
         {
             InitializeComponent();
-            DataContext = this;
+            DataContext = _theaters;
         }
         public ObservableCollection<TheaterModel> Theaters
         {

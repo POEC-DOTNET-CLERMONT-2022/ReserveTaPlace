@@ -30,7 +30,7 @@ namespace ReserveTaPlace.Wpf.User_Controls.TheaterUC
             InitializeComponent();
             _theaterViewModel = new TheaterViewModel();
             _theaterDataManager = ((App)Application.Current).TheaterDataManager;
-            DataContext = this;
+            DataContext = _theaterViewModel;
             
         }
 
