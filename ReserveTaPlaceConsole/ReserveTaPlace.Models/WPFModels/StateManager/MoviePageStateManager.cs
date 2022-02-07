@@ -64,7 +64,7 @@ namespace ReserveTaPlace.Models.WPFModels.StateManager
                     IsAddMovieVisible = false;
                     IsMoviesPagerVisible =true;
                     IsSPSearchVisible = true;
-                    IsMovieDetailsVisible = false;
+                    IsMovieDetailsVisible = true;
                     break;
                 default:
                     break;
