@@ -34,6 +34,7 @@ namespace ReserveTaPlace.Wpf.User_Controls.TheaterUC
             
         }
 
+
         private async void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             var theaters = await _theaterDataManager.GetAll();
