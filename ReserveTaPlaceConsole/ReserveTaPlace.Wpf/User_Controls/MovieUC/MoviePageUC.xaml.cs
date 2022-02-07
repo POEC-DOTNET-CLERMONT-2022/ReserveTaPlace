@@ -28,6 +28,7 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
     public partial class MoviePageUC : UserControl
     {
         private ListMovies _listMovie;
+        private SessionViewModel _sessionViewModel;
         public PaginatedList<MovieModel> PaginatedMovies;
         private readonly IDataManager<MovieModel, MovieDto> _movieDataManager;
         private IDataManager<MovieModel, MovieDto> _movieProviderDataManager;
@@ -37,8 +38,8 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
         public MoviePageUC()
         {
             InitializeComponent();
-            //DataContext = new { _listMovie = _listMovie, StateManager = StateManager };
             _listMovie = new ListMovies();
+            _sessionViewModel = new SessionViewModel();
             _movieDataManager = ((App)Application.Current).MovieDataManager;
             _movieProviderDataManager = ((App)Application.Current).MovieProviderDataManager;
             _pageIndex = 1;
@@ -46,12 +47,12 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
             PaginatedMovies = new PaginatedList<MovieModel>();
             _listMovie.StateManager = new MoviePageStateManager(MoviePageState.MoviesListView);
             DataContext = _listMovie;
-            AddMovieUC.Visibility = Visibility.Collapsed;
+            //DataContext = new { _listMovie, _sessionViewModel };
+
         }
         private void ShowAddMovie_Click(object sender, RoutedEventArgs e)
         {
             _listMovie.StateManager.Set(MoviePageState.AddMovieView);
-            AddMovieUC.Visibility= Visibility.Visible;
         }
 
         private async void ShowListMovies(object sender, RoutedEventArgs e)
@@ -99,35 +100,42 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
 
         private async void pagerUC_GoNextPage(object sender, EventArgs e)
         {
-            SPMovieDetails.Visibility = Visibility.Hidden;
+            _listMovie.StateManager.Set(MoviePageState.MoviesListView);
             _pageIndex++;
             await LoadMovies();
         }
 
         private async void pagerUC_GoPreviousPage(object sender, EventArgs e)
         {
-            SPMovieDetails.Visibility = Visibility.Hidden;
+            _listMovie.StateManager.Set(MoviePageState.MoviesListView);
             _pageIndex--;
             await LoadMovies();
         }
 
         private void MoviesListUC_SelectionChanged(object sender, EventArgs e)
         {
-            _listMovie.CurrentMovie=MoviesListUC.LBMovies.SelectedItem as MovieModel;
-            _listMovie.StateManager.Set(MoviePageState.PutOnScreenView );
-            SPMovieDetails.Visibility = Visibility.Visible;
+            if (MoviesListUC.LBMovies.SelectedItem!=null)
+            {
+                _listMovie.CurrentMovie = MoviesListUC.LBMovies.SelectedItem as MovieModel;
+                _sessionViewModel.SelectedMovie = _listMovie.CurrentMovie;
+                UCPutOnScreen.SessionViewModel = _sessionViewModel;
+                _listMovie.StateManager.Set(MoviePageState.PutOnScreenView);
 
+            }
+            if (MoviesListUC.LBMovies.SelectedItem == null)
+            {
+                _listMovie.StateManager.Set(MoviePageState.MoviesListView);
+
+            }
         }
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        private async void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            LoadMovies();
+            await LoadMovies();
         }
 
         private void AddMovieUC_GoPreviousPage(object sender, EventArgs e)
         {
-            AddMovieUC.Visibility = Visibility.Collapsed;
-            pagerUC.Visibility = Visibility.Visible;
             _listMovie.StateManager.Set(MoviePageState.MoviesListView);
         }
     }

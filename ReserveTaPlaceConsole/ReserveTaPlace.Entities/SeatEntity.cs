@@ -8,7 +8,7 @@ namespace ReserveTaPlace.Entities
     {
         public SeatEntity()
         {
-            SeatRooms = new HashSet<RoomSeatEntity>();
+            SeatSchedules = new HashSet<ScheduleSeatEntity>();
         }
         [Key]
         public Guid Id { get; set; }
@@ -17,7 +17,7 @@ namespace ReserveTaPlace.Entities
         [Column("Number", TypeName = "nvarchar(5)")]
         public string Number { get; set; }
         public virtual ICollection<RoomSeatEntity> SeatRooms { get; set; }
-        public virtual ICollection<SessionSeatEntity> SeatSessions { get; set; }
+        public virtual ICollection<ScheduleSeatEntity> SeatSchedules { get; set; }
 
     }
 }

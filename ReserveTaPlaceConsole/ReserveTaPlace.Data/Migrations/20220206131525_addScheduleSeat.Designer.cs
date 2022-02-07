@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ReserveTaPlace.Data.ApplicationContext;
 
@@ -11,9 +12,10 @@ using ReserveTaPlace.Data.ApplicationContext;
 namespace ReserveTaPlace.Data.Migrations
 {
     [DbContext(typeof(ReserveTaPlaceContext))]
-    partial class ReserveTaPlaceContextModelSnapshot : ModelSnapshot
+    [Migration("20220206131525_addScheduleSeat")]
+    partial class addScheduleSeat
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -76,26 +78,6 @@ namespace ReserveTaPlace.Data.Migrations
                         .IsUnique();
 
                     b.ToTable("Address");
-                });
-
-            modelBuilder.Entity("ReserveTaPlace.Entities.CalendarEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("SessionId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SessionId")
-                        .IsUnique();
-
-                    b.ToTable("Calendar");
                 });
 
             modelBuilder.Entity("ReserveTaPlace.Entities.DiscountEntity", b =>
@@ -459,6 +441,9 @@ namespace ReserveTaPlace.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
                     b.Property<Guid?>("MovieId")
                         .HasColumnType("uniqueidentifier");
 
@@ -591,17 +576,6 @@ namespace ReserveTaPlace.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Theater");
-                });
-
-            modelBuilder.Entity("ReserveTaPlace.Entities.CalendarEntity", b =>
-                {
-                    b.HasOne("ReserveTaPlace.Entities.SessionEntity", "Session")
-                        .WithOne("Calendar")
-                        .HasForeignKey("ReserveTaPlace.Entities.CalendarEntity", "SessionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Session");
                 });
 
             modelBuilder.Entity("ReserveTaPlace.Entities.DiscountEntity", b =>
@@ -873,9 +847,6 @@ namespace ReserveTaPlace.Data.Migrations
 
             modelBuilder.Entity("ReserveTaPlace.Entities.SessionEntity", b =>
                 {
-                    b.Navigation("Calendar")
-                        .IsRequired();
-
                     b.Navigation("Schedules");
                 });
 
