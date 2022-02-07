@@ -6,5 +6,6 @@ namespace ReserveTaPlace.DTOS
 {
     public class DiscountDto
     {
+
     }
 }

@@ -23,8 +23,8 @@ namespace ReserveTaPlace.DTOS
         [JsonProperty(PropertyName = "Seats")]
         public IList<SeatDto> Seats { get; set; }
 
-        [JsonProperty(PropertyName = "Sessions")]
-        public IList<SessionDto> Sessions { get; set; }
+        //[JsonProperty(PropertyName = "Sessions")]
+        //public IList<SessionDto> Sessions { get; set; }
 
 
     }
