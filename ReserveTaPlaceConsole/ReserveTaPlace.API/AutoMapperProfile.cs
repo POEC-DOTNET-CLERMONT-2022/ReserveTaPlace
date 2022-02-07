@@ -22,7 +22,10 @@ namespace ReserveTaPlace.API
                 .ForMember(dest => dest.TotalPages, opt => opt.MapFrom(src => src.TotalPages));
 
             //CreateMap<MovieEntity, MovieDto>().ForMember(dest => dest.Name, src => src.MapFrom(src => src.FirstName));
-            CreateMap<UserEntity, UserDto>().ReverseMap();
+            CreateMap<UserEntity, UserDto>()
+                .ForMember(dto => dto.Roles, opt => opt.MapFrom(u => u.UserRoles.Select(ur => ur.Role).ToList()))
+                .ForMember(dto => dto.Discounts, opt => opt.MapFrom(u => u.Discounts))
+                .ForMember(dto => dto.Orders, opt => opt.MapFrom(u => u.Discounts));
             //CreateMap<UserEntity, UserDto>()
             //  .ForMember(dest => dest.Email, opt => opt.MapFrom(src =>src.Email))
             //  .ForMember(dest => dest.Firstname, opt => opt.MapFrom(src => src.FirstName))
@@ -30,7 +33,9 @@ namespace ReserveTaPlace.API
             //  .ForMember(dest => dest.Theaters, opt => opt.MapFrom(src => src.Theaters))
             //  .ForMember(dest => dest.Roles, opt => opt.MapFrom(src => src.Roles));
             CreateMap<TheaterEntity, TheaterDto>()
-                .ForMember(dto => dto.Users, opt => opt.MapFrom(t => t.TheaterUsers.Select(ut => ut.User).ToList()));
+                .ForMember(dto => dto.Users, opt => opt.MapFrom(t => t.TheaterUsers.Select(ut => ut.User).ToList()))
+                .ForMember(dto => dto.Rooms, opt => opt.MapFrom(t => t.Rooms))
+                .ForMember(dto => dto.Medias, opt => opt.MapFrom(t => t.Medias));
             CreateMap<RoomEntity, RoomDto>()
                 .ForMember(dto => dto.Seats, opt => opt.MapFrom(r => r.RoomSeats.Select(rs => rs.Seat).ToList()));
             CreateMap<SeatEntity, SeatDto>().ReverseMap();
