@@ -8,6 +8,11 @@ namespace ReserveTaPlace.Models
 {
     public class RoleModel
     {
+        public RoleModel(string name)
+        {
+            _id = Guid.NewGuid();
+            _name = name;
+        }
         private Guid _id;
 
         public Guid ID
