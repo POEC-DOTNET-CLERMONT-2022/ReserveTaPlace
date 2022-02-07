@@ -13,13 +13,13 @@ namespace ReserveTaPlace.Entities
         [Key]
         public Guid Id { get; set; }
         public Guid? RoomId { get; set; }
-        public DateTime Date { get; set; }
         public virtual MovieEntity? Movie { get; set; }
 
         [ForeignKey(nameof(RoomId))]
         [InverseProperty("Sessions")]
         public RoomEntity? Room { get; set; }
         public virtual ICollection<ScheduleEntity> Schedules { get; set; }
+        public virtual CalendarEntity Calendar { get; set; }
 
     }
 }

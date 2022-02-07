@@ -20,7 +20,7 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Margin="20 0 0 0" Grid.Column="0">
-                <TextBlock TextWrapping="Wrap" FontSize="24" DataContext="{Binding .,ElementName=root}" Text="{Binding SelectedMovie.Title, StringFormat='Programmer :  {0}'}"></TextBlock>
+            <TextBlock TextWrapping="Wrap" FontSize="24" DataContext="{Binding .,ElementName=root}" Text="{Binding SessionViewModel.SelectedMovie.Title, StringFormat='Programmer :  {0}'}"></TextBlock>
                 <WrapPanel HorizontalAlignment="Left">
                 <ComboBox Margin="0 0 10 0" MinWidth="150" x:Name="CBCinema" materialDesign:HintAssist.Hint="Choisir le cinéma"></ComboBox>
                 <ComboBox MinWidth="150" x:Name="CBSalle" materialDesign:HintAssist.Hint="Choisir la salle"></ComboBox>

@@ -10,6 +10,7 @@ namespace ReserveTaPlace.Data.ApplicationContext
         {
 
         }
+        public virtual DbSet<CalendarEntity> Calendars { get; set; }
         public virtual DbSet<ScheduleSeatEntity> SchedulenSeats { get; set; }
         public virtual DbSet<MovieGenreEntity> MovieGenres { get; set; }
         public virtual DbSet<MovieOriginEntity> MovieOrigins { get; set; }
