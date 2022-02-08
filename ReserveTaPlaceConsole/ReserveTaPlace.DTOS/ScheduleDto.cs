@@ -1,11 +1,18 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace ReserveTaPlace.DTOS
 {
+    [JsonObject("schedule")]
     public class ScheduleDto
     {
-        public Guid _id { get; set; }
-        public DateTime _hourStart { get; set; }
-        public DateTime _hourEnd { get; set; }
+        [JsonProperty("id")]
+        public Guid Id { get; set; }
+
+        [JsonProperty("hourStart")]
+        public DateTime HourStart { get; set; }
+
+        [JsonProperty("hourEnd")]
+        public DateTime HourEnd { get; set; }
     }
 }

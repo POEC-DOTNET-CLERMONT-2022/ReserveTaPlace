@@ -5,23 +5,31 @@ using System.Text;
 
 namespace ReserveTaPlace.DTOS
 {
+    [JsonObject("address")]
     public class AddressDto
     {
-        [JsonProperty(PropertyName = "Id")]
+        [JsonProperty(PropertyName = "id")]
         public Guid Id { get; set; }
-        [JsonProperty(PropertyName = "Address1")]
+
+        [JsonProperty(PropertyName = "address1")]
         public string Address1 { get; set; }
-        [JsonProperty(PropertyName = "Address2")]
+
+        [JsonProperty(PropertyName = "address2")]
         public string Address2 { get; set; }
-        [JsonProperty(PropertyName = "Street")]
+
+        [JsonProperty(PropertyName = "street")]
         public string Street { get; set; }
-        [JsonProperty(PropertyName = "City")]
+
+        [JsonProperty(PropertyName = "city")]
         public string City { get; set; }
-        [JsonProperty(PropertyName = "PostalCode")]
+
+        [JsonProperty(PropertyName = "postalCode")]
         public string PostalCode { get; set; }
-        [JsonProperty(PropertyName = "Number")]
+
+        [JsonProperty(PropertyName = "number")]
         public string Number { get; set; }
-        [JsonProperty(PropertyName = "County")]
+
+        [JsonProperty(PropertyName = "county")]
         public string County { get; set; }
     }
 }

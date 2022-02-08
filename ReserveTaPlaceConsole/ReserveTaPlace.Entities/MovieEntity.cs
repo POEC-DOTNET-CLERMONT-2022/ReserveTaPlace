@@ -8,9 +8,9 @@ namespace ReserveTaPlace.Entities
     {
         public MovieEntity()
         {
-            MovieGenres = new HashSet<MovieGenreEntity>();
+            Genres = new HashSet<GenreEntity>();
             Medias = new HashSet<MediaEntity>();
-            MovieOrigins = new HashSet<MovieOriginEntity>();
+            Origins = new HashSet<OriginEntity>();
         }
 
         [Key]
@@ -34,8 +34,8 @@ namespace ReserveTaPlace.Entities
         [Column(TypeName = "bit")]
         public bool IsMovieOnDisplay { get; set; }
 
-        public virtual ICollection<MovieGenreEntity> MovieGenres { get; set; }
+        public virtual ICollection<GenreEntity> Genres { get; set; }
         public virtual ICollection<MediaEntity> Medias { get; set; }
-        public virtual ICollection<MovieOriginEntity> MovieOrigins { get; set; }
+        public virtual ICollection<OriginEntity> Origins { get; set; }
     }
 }
