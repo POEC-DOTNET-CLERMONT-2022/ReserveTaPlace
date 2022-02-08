@@ -19,7 +19,7 @@ namespace ReserveTaPlace.DTOS
 
         [JsonProperty(PropertyName = "rooms")]
         public IList<RoomDto> Rooms { get; set; }
-
+      
         [JsonProperty(PropertyName = "users")]
         public IList<UserDto> Users { get; set; }
 

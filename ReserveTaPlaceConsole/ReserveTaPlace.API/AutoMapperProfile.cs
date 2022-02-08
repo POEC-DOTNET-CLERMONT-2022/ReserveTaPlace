@@ -12,8 +12,9 @@ namespace ReserveTaPlace.API
         {
             //Todo Implémenter flattened DTOS https://enroute.osgi.org/FAQ/420-dtos.html
             CreateMap<MovieEntity, MovieDto>().ReverseMap();
+
             CreateMap<MovieEntity, MovieModel>().ReverseMap();
-            //CreateMap(typeof(PaginatedList<MovieEntity>), typeof(PaginatedList<MovieModel>));
+
             CreateMap<PaginatedList<MovieEntity>, PaginatedList<MovieDto>>()
                 .ForMember(dest => dest.Data, opt => opt.MapFrom(src => src.Data))
                 .ForMember(dest => dest.HasNextPage, opt => opt.MapFrom(src => src.HasNextPage))
@@ -21,7 +22,6 @@ namespace ReserveTaPlace.API
                 .ForMember(dest => dest.PageIndex, opt => opt.MapFrom(src => src.PageIndex))
                 .ForMember(dest => dest.TotalPages, opt => opt.MapFrom(src => src.TotalPages));
 
- 
             CreateMap<UserEntity, UserDto>().ReverseMap();
             CreateMap<TheaterEntity, TheaterDto>().ReverseMap();
             CreateMap<RoomEntity, RoomDto>().ReverseMap();
