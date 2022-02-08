@@ -1,6 +1,6 @@
 ﻿namespace ReserveTaPlace.DTOS
 {
-    public class PlanningDto
+    public class CalendarDto
     {
     }
 }
