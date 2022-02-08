@@ -22,6 +22,36 @@ namespace ReserveTaPlace.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("GenreEntityMovieEntity", b =>
+                {
+                    b.Property<Guid>("GenresId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("MoviesId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("GenresId", "MoviesId");
+
+                    b.HasIndex("MoviesId");
+
+                    b.ToTable("MovieGenres", (string)null);
+                });
+
+            modelBuilder.Entity("MovieEntityOriginEntity", b =>
+                {
+                    b.Property<Guid>("MoviesId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("OriginsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("MoviesId", "OriginsId");
+
+                    b.HasIndex("OriginsId");
+
+                    b.ToTable("MovieOrigins", (string)null);
+                });
+
             modelBuilder.Entity("ReserveTaPlace.Entities.AddressEntity", b =>
                 {
                     b.Property<Guid>("Id")
@@ -270,36 +300,6 @@ namespace ReserveTaPlace.Data.Migrations
                     b.ToTable("Movie");
                 });
 
-            modelBuilder.Entity("ReserveTaPlace.Entities.MovieGenreEntity", b =>
-                {
-                    b.Property<Guid>("MovieId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("GenreId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("MovieId", "GenreId");
-
-                    b.HasIndex("GenreId");
-
-                    b.ToTable("MovieGenre");
-                });
-
-            modelBuilder.Entity("ReserveTaPlace.Entities.MovieOriginEntity", b =>
-                {
-                    b.Property<Guid>("MovieId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("OriginId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("MovieId", "OriginId");
-
-                    b.HasIndex("OriginId");
-
-                    b.ToTable("MovieOrigin");
-                });
-
             modelBuilder.Entity("ReserveTaPlace.Entities.OrderEntity", b =>
                 {
                     b.Property<Guid>("Id")
@@ -380,21 +380,6 @@ namespace ReserveTaPlace.Data.Migrations
                     b.ToTable("Room");
                 });
 
-            modelBuilder.Entity("ReserveTaPlace.Entities.RoomSeatEntity", b =>
-                {
-                    b.Property<Guid>("RoomId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("SeatId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("RoomId", "SeatId");
-
-                    b.HasIndex("SeatId");
-
-                    b.ToTable("RoomSeat");
-                });
-
             modelBuilder.Entity("ReserveTaPlace.Entities.ScheduleEntity", b =>
                 {
                     b.Property<Guid>("Id")
@@ -415,21 +400,6 @@ namespace ReserveTaPlace.Data.Migrations
                     b.HasIndex("SessionId");
 
                     b.ToTable("Schedule");
-                });
-
-            modelBuilder.Entity("ReserveTaPlace.Entities.ScheduleSeatEntity", b =>
-                {
-                    b.Property<Guid>("ScheduleId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("SeatId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("ScheduleId", "SeatId");
-
-                    b.HasIndex("SeatId");
-
-                    b.ToTable("ScheduleSeat");
                 });
 
             modelBuilder.Entity("ReserveTaPlace.Entities.SeatEntity", b =>
@@ -552,34 +522,94 @@ namespace ReserveTaPlace.Data.Migrations
                     b.ToTable("User");
                 });
 
-            modelBuilder.Entity("ReserveTaPlace.Entities.UserRoleEntity", b =>
+            modelBuilder.Entity("RoleEntityUserEntity", b =>
                 {
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid>("RolesId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("RoleId")
+                    b.Property<Guid>("UsersId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("UserId", "RoleId");
+                    b.HasKey("RolesId", "UsersId");
 
-                    b.HasIndex("RoleId");
+                    b.HasIndex("UsersId");
 
-                    b.ToTable("UserRole");
+                    b.ToTable("UserRoles", (string)null);
                 });
 
-            modelBuilder.Entity("ReserveTaPlace.Entities.UserTheaterEntity", b =>
+            modelBuilder.Entity("RoomEntitySeatEntity", b =>
                 {
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid>("RoomsId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("TheaterId")
+                    b.Property<Guid>("SeatsId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("UserId", "TheaterId");
+                    b.HasKey("RoomsId", "SeatsId");
 
-                    b.HasIndex("TheaterId");
+                    b.HasIndex("SeatsId");
 
-                    b.ToTable("UserTheater");
+                    b.ToTable("RoomSeats", (string)null);
+                });
+
+            modelBuilder.Entity("ScheduleEntitySeatEntity", b =>
+                {
+                    b.Property<Guid>("SchedulesId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("SeatsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("SchedulesId", "SeatsId");
+
+                    b.HasIndex("SeatsId");
+
+                    b.ToTable("ScheduleSeats", (string)null);
+                });
+
+            modelBuilder.Entity("TheaterEntityUserEntity", b =>
+                {
+                    b.Property<Guid>("TheatersId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UsersId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("TheatersId", "UsersId");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("UserTheaters", (string)null);
+                });
+
+            modelBuilder.Entity("GenreEntityMovieEntity", b =>
+                {
+                    b.HasOne("ReserveTaPlace.Entities.GenreEntity", null)
+                        .WithMany()
+                        .HasForeignKey("GenresId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ReserveTaPlace.Entities.MovieEntity", null)
+                        .WithMany()
+                        .HasForeignKey("MoviesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MovieEntityOriginEntity", b =>
+                {
+                    b.HasOne("ReserveTaPlace.Entities.MovieEntity", null)
+                        .WithMany()
+                        .HasForeignKey("MoviesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ReserveTaPlace.Entities.OriginEntity", null)
+                        .WithMany()
+                        .HasForeignKey("OriginsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("ReserveTaPlace.Entities.AddressEntity", b =>
@@ -636,44 +666,6 @@ namespace ReserveTaPlace.Data.Migrations
                     b.Navigation("Theater");
                 });
 
-            modelBuilder.Entity("ReserveTaPlace.Entities.MovieGenreEntity", b =>
-                {
-                    b.HasOne("ReserveTaPlace.Entities.GenreEntity", "Genre")
-                        .WithMany("GenreMovies")
-                        .HasForeignKey("GenreId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("ReserveTaPlace.Entities.MovieEntity", "Movie")
-                        .WithMany("MovieGenres")
-                        .HasForeignKey("MovieId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Genre");
-
-                    b.Navigation("Movie");
-                });
-
-            modelBuilder.Entity("ReserveTaPlace.Entities.MovieOriginEntity", b =>
-                {
-                    b.HasOne("ReserveTaPlace.Entities.MovieEntity", "Movie")
-                        .WithMany("MovieOrigins")
-                        .HasForeignKey("MovieId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("ReserveTaPlace.Entities.OriginEntity", "Origin")
-                        .WithMany("OriginMovies")
-                        .HasForeignKey("OriginId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Movie");
-
-                    b.Navigation("Origin");
-                });
-
             modelBuilder.Entity("ReserveTaPlace.Entities.OrderEntity", b =>
                 {
                     b.HasOne("ReserveTaPlace.Entities.UserEntity", "User")
@@ -700,25 +692,6 @@ namespace ReserveTaPlace.Data.Migrations
                     b.Navigation("Theater");
                 });
 
-            modelBuilder.Entity("ReserveTaPlace.Entities.RoomSeatEntity", b =>
-                {
-                    b.HasOne("ReserveTaPlace.Entities.RoomEntity", "Room")
-                        .WithMany("RoomSeats")
-                        .HasForeignKey("RoomId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("ReserveTaPlace.Entities.SeatEntity", "Seat")
-                        .WithMany("SeatRooms")
-                        .HasForeignKey("SeatId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Room");
-
-                    b.Navigation("Seat");
-                });
-
             modelBuilder.Entity("ReserveTaPlace.Entities.ScheduleEntity", b =>
                 {
                     b.HasOne("ReserveTaPlace.Entities.SessionEntity", "Session")
@@ -728,25 +701,6 @@ namespace ReserveTaPlace.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Session");
-                });
-
-            modelBuilder.Entity("ReserveTaPlace.Entities.ScheduleSeatEntity", b =>
-                {
-                    b.HasOne("ReserveTaPlace.Entities.ScheduleEntity", "Schedule")
-                        .WithMany("ScheduleSeats")
-                        .HasForeignKey("ScheduleId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("ReserveTaPlace.Entities.SeatEntity", "Seat")
-                        .WithMany("SeatSchedules")
-                        .HasForeignKey("SeatId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Schedule");
-
-                    b.Navigation("Seat");
                 });
 
             modelBuilder.Entity("ReserveTaPlace.Entities.SessionEntity", b =>
@@ -785,56 +739,69 @@ namespace ReserveTaPlace.Data.Migrations
                     b.Navigation("Session");
                 });
 
-            modelBuilder.Entity("ReserveTaPlace.Entities.UserRoleEntity", b =>
+            modelBuilder.Entity("RoleEntityUserEntity", b =>
                 {
-                    b.HasOne("ReserveTaPlace.Entities.RoleEntity", "Role")
-                        .WithMany("RoleUsers")
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                    b.HasOne("ReserveTaPlace.Entities.RoleEntity", null)
+                        .WithMany()
+                        .HasForeignKey("RolesId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ReserveTaPlace.Entities.UserEntity", "User")
-                        .WithMany("UserRoles")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                    b.HasOne("ReserveTaPlace.Entities.UserEntity", null)
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Role");
-
-                    b.Navigation("User");
                 });
 
-            modelBuilder.Entity("ReserveTaPlace.Entities.UserTheaterEntity", b =>
+            modelBuilder.Entity("RoomEntitySeatEntity", b =>
                 {
-                    b.HasOne("ReserveTaPlace.Entities.TheaterEntity", "Theater")
-                        .WithMany("TheaterUsers")
-                        .HasForeignKey("TheaterId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                    b.HasOne("ReserveTaPlace.Entities.RoomEntity", null)
+                        .WithMany()
+                        .HasForeignKey("RoomsId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ReserveTaPlace.Entities.UserEntity", "User")
-                        .WithMany("UserTheaters")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                    b.HasOne("ReserveTaPlace.Entities.SeatEntity", null)
+                        .WithMany()
+                        .HasForeignKey("SeatsId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Theater");
-
-                    b.Navigation("User");
                 });
 
-            modelBuilder.Entity("ReserveTaPlace.Entities.GenreEntity", b =>
+            modelBuilder.Entity("ScheduleEntitySeatEntity", b =>
                 {
-                    b.Navigation("GenreMovies");
+                    b.HasOne("ReserveTaPlace.Entities.ScheduleEntity", null)
+                        .WithMany()
+                        .HasForeignKey("SchedulesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ReserveTaPlace.Entities.SeatEntity", null)
+                        .WithMany()
+                        .HasForeignKey("SeatsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("TheaterEntityUserEntity", b =>
+                {
+                    b.HasOne("ReserveTaPlace.Entities.TheaterEntity", null)
+                        .WithMany()
+                        .HasForeignKey("TheatersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ReserveTaPlace.Entities.UserEntity", null)
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("ReserveTaPlace.Entities.MovieEntity", b =>
                 {
                     b.Navigation("Medias");
-
-                    b.Navigation("MovieGenres");
-
-                    b.Navigation("MovieOrigins");
                 });
 
             modelBuilder.Entity("ReserveTaPlace.Entities.OrderEntity", b =>
@@ -842,33 +809,9 @@ namespace ReserveTaPlace.Data.Migrations
                     b.Navigation("Tickets");
                 });
 
-            modelBuilder.Entity("ReserveTaPlace.Entities.OriginEntity", b =>
-                {
-                    b.Navigation("OriginMovies");
-                });
-
-            modelBuilder.Entity("ReserveTaPlace.Entities.RoleEntity", b =>
-                {
-                    b.Navigation("RoleUsers");
-                });
-
             modelBuilder.Entity("ReserveTaPlace.Entities.RoomEntity", b =>
                 {
-                    b.Navigation("RoomSeats");
-
                     b.Navigation("Sessions");
-                });
-
-            modelBuilder.Entity("ReserveTaPlace.Entities.ScheduleEntity", b =>
-                {
-                    b.Navigation("ScheduleSeats");
-                });
-
-            modelBuilder.Entity("ReserveTaPlace.Entities.SeatEntity", b =>
-                {
-                    b.Navigation("SeatRooms");
-
-                    b.Navigation("SeatSchedules");
                 });
 
             modelBuilder.Entity("ReserveTaPlace.Entities.SessionEntity", b =>
@@ -887,8 +830,6 @@ namespace ReserveTaPlace.Data.Migrations
                     b.Navigation("Medias");
 
                     b.Navigation("Rooms");
-
-                    b.Navigation("TheaterUsers");
                 });
 
             modelBuilder.Entity("ReserveTaPlace.Entities.UserEntity", b =>
@@ -896,10 +837,6 @@ namespace ReserveTaPlace.Data.Migrations
                     b.Navigation("Discounts");
 
                     b.Navigation("Orders");
-
-                    b.Navigation("UserRoles");
-
-                    b.Navigation("UserTheaters");
                 });
 #pragma warning restore 612, 618
         }

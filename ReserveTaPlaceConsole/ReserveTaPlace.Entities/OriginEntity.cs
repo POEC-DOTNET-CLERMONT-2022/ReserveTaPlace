@@ -8,12 +8,12 @@ namespace ReserveTaPlace.Entities
     {
         public OriginEntity()
         {
-            OriginMovies = new HashSet<MovieOriginEntity>();
+            Movies = new HashSet<MovieEntity>();
         }
         [Key]
         public Guid Id { get; set; }
         [Column("Country", TypeName = "nvarchar(255)")]
         public string Country { get; set; }
-        public virtual ICollection<MovieOriginEntity> OriginMovies { get; set; }
+        public virtual ICollection<MovieEntity> Movies { get; set; }
     }
 }

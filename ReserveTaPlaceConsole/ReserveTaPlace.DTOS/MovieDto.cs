@@ -3,29 +3,30 @@ using System;
 
 namespace ReserveTaPlace.DTOS
 {
+    [JsonObject("movie")]
     public class MovieDto
     {
-        [JsonProperty(PropertyName = "Id")]
+        [JsonProperty(PropertyName = "id")]
         public Guid Id { get; set; }
-        [JsonProperty(PropertyName = "Title")]
+        [JsonProperty(PropertyName = "title")]
         public string Title { get; set; }
-        [JsonProperty(PropertyName = "Released")]
+        [JsonProperty(PropertyName = "released")]
         public string Released { get; set; }
-        [JsonProperty(PropertyName = "Runtime")]
+        [JsonProperty(PropertyName = "runtime")]
         public string Runtime { get; set; }
-        [JsonProperty(PropertyName = "Genre")]
+        [JsonProperty(PropertyName = "genre")]
         public string Genre { get; set; }
-        [JsonProperty(PropertyName = "Director")]
+        [JsonProperty(PropertyName = "director")]
         public string Director { get; set; }
-        [JsonProperty(PropertyName = "Actors")]
+        [JsonProperty(PropertyName = "actors")]
         public string Actors { get; set; }
-        [JsonProperty(PropertyName = "Plot")]
+        [JsonProperty(PropertyName = "plot")]
         public string Plot { get; set; }
-        [JsonProperty(PropertyName = "ImdbId")]
+        [JsonProperty(PropertyName = "imdbId")]
         public string ImdbId { get; set; }
-        [JsonProperty(PropertyName = "Poster")]
+        [JsonProperty(PropertyName = "poster")]
         public string Poster { get; set; }
-        [JsonProperty(PropertyName = "Country")]
+        [JsonProperty(PropertyName = "country")]
         public string Country { get; set; }
 
 

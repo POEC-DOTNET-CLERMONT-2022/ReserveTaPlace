@@ -31,6 +31,7 @@ namespace ReserveTaPlace.Entities
 
         [Column("County", TypeName = "nvarchar(255)", Order = 8)]
         public string County { get; set; }
+
         [ForeignKey(nameof(TheaterId))]
         public virtual TheaterEntity Theater { set; get; }
 

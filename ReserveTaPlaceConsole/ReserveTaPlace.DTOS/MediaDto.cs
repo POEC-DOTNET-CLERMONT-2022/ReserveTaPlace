@@ -5,12 +5,13 @@ using System.Text;
 
 namespace ReserveTaPlace.DTOS
 {
+    [JsonObject("media")]
     public class MediaDto
     {
-        [JsonProperty(PropertyName = "Id")]
+        [JsonProperty(PropertyName = "id")]
         public Guid Id { get; set; }
 
-        [JsonProperty(PropertyName = "Link")]
+        [JsonProperty(PropertyName = "link")]
         public string Link { get; set; }
     }
 }

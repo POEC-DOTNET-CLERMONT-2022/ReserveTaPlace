@@ -5,26 +5,27 @@ using System.Text;
 
 namespace ReserveTaPlace.DTOS
 {
+    [JsonObject("room")]
     public class RoomDto
     {
-        [JsonProperty(PropertyName = "Id")]
+        [JsonProperty(PropertyName = "id")]
         public Guid Id { get; set; }
 
-        [JsonProperty(PropertyName = "Name")]
+        [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
 
-        [JsonProperty(PropertyName = "Number")]
+        [JsonProperty(PropertyName = "number")]
         public string Number { get; set; }
 
 
-        [JsonProperty(PropertyName = "Format")]
+        [JsonProperty(PropertyName = "format")]
         public FormatDto Format { get; set; }
 
-        [JsonProperty(PropertyName = "Seats")]
+        [JsonProperty(PropertyName = "seats")]
         public IList<SeatDto> Seats { get; set; }
 
-        [JsonProperty(PropertyName = "Sessions")]
-        public IList<SessionDto> Sessions { get; set; }
+        //[JsonProperty(PropertyName = "sessions")]
+        //public IList<SessionDto> Sessions { get; set; }
 
 
     }
