@@ -96,5 +96,16 @@ namespace ReserveTaPlace.Logic.DataManager
             return Mapper.Map<TModel>(theater);
 
         }
+
+        public async Task<TModel> GetCalendarByDate(DateTime date)
+        {
+            string query = date.Day.ToString();
+            var response = await HttpClient.PostAsJsonAsync(Uri, query);
+            response.EnsureSuccessStatusCode();
+            var calendarString = await response.Content.ReadAsStringAsync();
+            var calendar = JsonConvert.DeserializeObject<TDto>(calendarString);
+            return Mapper.Map<TModel>(calendar);
+
+        }
     }
 }

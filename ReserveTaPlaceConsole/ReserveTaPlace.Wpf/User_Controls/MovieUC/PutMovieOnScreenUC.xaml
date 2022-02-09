@@ -27,8 +27,8 @@
                 </WrapPanel>
             <TextBlock Margin="0 10 0 10" TextWrapping="Wrap">Définir un planning de diffusion</TextBlock>
             <WrapPanel HorizontalAlignment="Left">
-                <DatePicker Margin="0 0 10 0" MinWidth="100" materialDesign:HintAssist.Hint="Date de début" materialDesign:TextFieldAssist.HasClearButton="True" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
-                <DatePicker MinWidth="100" materialDesign:HintAssist.Hint="Date de fin" materialDesign:TextFieldAssist.HasClearButton="True" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                <DatePicker SelectedDateChanged="DPStartDate_SelectedDateChanged" x:Name="DPStartDate" Margin="0 0 10 0" MinWidth="100" materialDesign:HintAssist.Hint="Date de début" materialDesign:TextFieldAssist.HasClearButton="True" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                <DatePicker SelectedDateChanged="DPEndDate_SelectedDateChanged" x:Name="DPEndDate" MinWidth="100" materialDesign:HintAssist.Hint="Date de fin" materialDesign:TextFieldAssist.HasClearButton="True" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
             </WrapPanel>
             <TextBlock Margin="0 10 0 10" TextWrapping="Wrap">Créer des séances</TextBlock>
             <TextBlock Margin="0 10 0 10" TextWrapping="Wrap">Ajouter des horaires</TextBlock>

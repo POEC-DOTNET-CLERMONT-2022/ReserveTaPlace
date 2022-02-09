@@ -41,5 +41,26 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
             InitializeComponent();
             DataContext = SessionViewModel;
         }
+
+        private void DPStartDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (DPStartDate.SelectedDate!=null)
+            {
+                DateTime startDate = DPStartDate.SelectedDate.HasValue ? DPStartDate.SelectedDate.Value : DateTime.UtcNow ;
+                DateTime endDate = DPEndDate.SelectedDate.HasValue ? DPEndDate.SelectedDate.Value : DateTime.UtcNow;
+                List<DateTime> dates = new List<DateTime>();
+                TimeSpan ts = endDate - startDate;
+                int numberOfDays = ts.Days;
+                for (int i = 0; i < numberOfDays; i++)
+                {
+                    DPStartDate.SelectedDate.Value.Add(new TimeSpan(24,0, 0, 0));
+                }
+            }
+        }
+
+        private void DPEndDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

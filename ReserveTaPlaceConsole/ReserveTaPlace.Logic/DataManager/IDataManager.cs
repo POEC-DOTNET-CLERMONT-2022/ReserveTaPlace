@@ -20,5 +20,7 @@ namespace ReserveTaPlace.Logic.DataManager
         Task<TModel> GetTheaterByName(string name);
         Task<TModel> UpdateTheater(TModel model);
 
+        Task<TModel> GetCalendarByDate(DateTime date);
+
     }
 }
