@@ -22,6 +22,12 @@ namespace ReserveTaPlace.Wpf
                 .ForMember(dest => dest.HasPreviousPage, opt => opt.MapFrom(src => src.HasPreviousPage))
                 .ForMember(dest => dest.PageIndex, opt => opt.MapFrom(src => src.PageIndex))
                 .ForMember(dest => dest.TotalPages, opt => opt.MapFrom(src => src.TotalPages));
+            CreateMap<PaginatedList<UserDto>, PaginatedList<UserModel>>()
+                .ForMember(dest => dest.Data, opt => opt.MapFrom(src => src.Data))
+                .ForMember(dest => dest.HasNextPage, opt => opt.MapFrom(src => src.HasNextPage))
+                .ForMember(dest => dest.HasPreviousPage, opt => opt.MapFrom(src => src.HasPreviousPage))
+                .ForMember(dest => dest.PageIndex, opt => opt.MapFrom(src => src.PageIndex))
+                .ForMember(dest => dest.TotalPages, opt => opt.MapFrom(src => src.TotalPages));
             CreateMap<UserModel, UserDto>().ReverseMap();
             CreateMap<TheaterDto, TheaterModel>()
                 .ForMember(mod => mod.TheaterUsers, opt => opt.MapFrom(t => t.Users));

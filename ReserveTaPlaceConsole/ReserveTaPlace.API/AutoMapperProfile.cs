@@ -39,6 +39,14 @@ namespace ReserveTaPlace.API
                 .ForMember(dest => dest.HasPreviousPage, opt => opt.MapFrom(src => src.HasPreviousPage))
                 .ForMember(dest => dest.PageIndex, opt => opt.MapFrom(src => src.PageIndex))
                 .ForMember(dest => dest.TotalPages, opt => opt.MapFrom(src => src.TotalPages));
+
+
+            CreateMap<PaginatedList<UserEntity>, PaginatedList<UserDto>>()
+                .ForMember(dest => dest.Data, opt => opt.MapFrom(src => src.Data))
+                .ForMember(dest => dest.HasNextPage, opt => opt.MapFrom(src => src.HasNextPage))
+                .ForMember(dest => dest.HasPreviousPage, opt => opt.MapFrom(src => src.HasPreviousPage))
+                .ForMember(dest => dest.PageIndex, opt => opt.MapFrom(src => src.PageIndex))
+                .ForMember(dest => dest.TotalPages, opt => opt.MapFrom(src => src.TotalPages));
         }
     }
 }

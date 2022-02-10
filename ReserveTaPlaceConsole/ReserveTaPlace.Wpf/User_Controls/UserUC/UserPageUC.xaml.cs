@@ -1,4 +1,8 @@
-﻿using System;
+﻿using ReserveTaPlace.DTOS;
+using ReserveTaPlace.Logic.DataManager;
+using ReserveTaPlace.Models;
+using ReserveTaPlace.Models.WPFModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +24,30 @@ namespace ReserveTaPlace.Wpf.User_Controls
     /// </summary>
     public partial class UserPageUC : UserControl
     {
+        private UserViewModel _userViewModel;
+        private IDataManager<UserModel, UserDto> _dataManager;
+        private int _pageIndex;
+        private int _pageSize;
         public UserPageUC()
         {
             InitializeComponent();
+            _userViewModel = new UserViewModel();
+            _dataManager = ((App)Application.Current).UserDataManager;
+            _pageIndex = 1;
+            _pageSize = 8;
+            DataContext = _userViewModel;
+
+        }
+
+        private async void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            await LoadUsers();
+        }
+
+        private async Task LoadUsers()
+        {
+            var users = await _dataManager.GetAllPaginated(_pageIndex, _pageSize);
+
         }
     }
 }

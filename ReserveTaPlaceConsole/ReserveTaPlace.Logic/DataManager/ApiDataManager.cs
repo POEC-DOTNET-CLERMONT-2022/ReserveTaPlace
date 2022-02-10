@@ -66,9 +66,9 @@ namespace ReserveTaPlace.Logic.DataManager
             var ressourceList = new List<int>() { page, pageSize };
             var _uri = new Uri(Uri + "/GetAllPaginated");
             var result = await HttpClient.PostAsJsonAsync<List<int>>(_uri, ressourceList);
-            var moviesStrg = await result.Content.ReadAsStringAsync();
-            var movies = JsonConvert.DeserializeObject<PaginatedList<TDto>>(moviesStrg);
-            return Mapper.Map<PaginatedList<TModel>>(movies);
+            var lisStrg = await result.Content.ReadAsStringAsync();
+            var listDto = JsonConvert.DeserializeObject<PaginatedList<TDto>>(lisStrg);
+            return Mapper.Map<PaginatedList<TModel>>(listDto);
         }
 
         public async Task<bool> DeleteTheaterById(Guid id)

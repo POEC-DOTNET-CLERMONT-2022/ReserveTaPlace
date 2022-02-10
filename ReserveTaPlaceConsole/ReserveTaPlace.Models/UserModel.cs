@@ -25,9 +25,10 @@ namespace ReserveTaPlace.Models
             _email = email;
             _password = password;
             _Roles = new List<RoleModel>();
+            _userTheaters = new List<TheaterUserModel>();
         }
         [JsonConstructor]
-        public UserModel(Guid id, string firstName, string lastName, string email, string password, List<RoleModel> roles, List<TheaterUserModel> userTheater)
+        public UserModel(Guid id, string firstName, string lastName, string email, string password, List<RoleModel> roles, List<TheaterUserModel> userTheaters)
         {
             _id = id;
             _firstName = firstName;
@@ -35,7 +36,7 @@ namespace ReserveTaPlace.Models
             _email = email;
             _password = password;
             _Roles = roles;
-            _userTheaters = userTheater;
+            _userTheaters = userTheaters;
 
         }
 
@@ -49,8 +50,7 @@ namespace ReserveTaPlace.Models
         public string Email { get { return _email; } }
         [JsonProperty(PropertyName = "Password")]
         public string Password { get { return _password; } }
-        [JsonProperty(PropertyName = "UserRoles")]
-
+        [JsonProperty(PropertyName = "Roles")]
         public IList<RoleModel> Roles
         {
             get { return _Roles; }
