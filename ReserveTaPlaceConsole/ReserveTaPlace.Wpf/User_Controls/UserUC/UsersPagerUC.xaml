@@ -11,7 +11,8 @@
              FontFamily="{materialDesign:MaterialDesignFont}"
              xmlns:local="clr-namespace:ReserveTaPlace.Wpf.User_Controls.UserUC"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             x:Name="root">
     <Grid>
         <WrapPanel x:Name="SPpager" HorizontalAlignment="Center">
             <Button Click="BTNPrev_Click" DataContext="{Binding .,ElementName=root}" IsEnabled="{Binding PaginatedList.HasPreviousPage}" Style="{StaticResource MaterialDesignIconButton}" ToolTip="MaterialDesignIconButton" x:Name="BTNPrev">
