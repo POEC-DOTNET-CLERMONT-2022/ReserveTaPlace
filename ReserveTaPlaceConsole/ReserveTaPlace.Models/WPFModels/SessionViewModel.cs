@@ -9,12 +9,19 @@ namespace ReserveTaPlace.Models.WPFModels
 {
     public class SessionViewModel : ObservableObject
     {
-        private List<CalendarModel> _calendars;
+        private ObservableCollection<CalendarModel> _calendars;
         private RoomModel _roomModel;
         private MovieModel _selectedMovie;
         private TheaterModel _selectedTheatre;
         private ObservableCollection<ScheduleModel> _schedules;
         private CalendarModel _currentCalendar;
+        private ScheduleModel _currentSchedule;
+
+        public ScheduleModel CurrentSchedule
+        {
+            get { return _currentSchedule; }
+            set { _currentSchedule = value; }
+        }
 
         public CalendarModel CurrentCalendar
         {
@@ -22,7 +29,7 @@ namespace ReserveTaPlace.Models.WPFModels
             set { _currentCalendar = value; }
         }
 
-        public List<CalendarModel> Calendars
+        public ObservableCollection<CalendarModel> Calendars
         {
             get { return _calendars; }
             set { _calendars = value; }

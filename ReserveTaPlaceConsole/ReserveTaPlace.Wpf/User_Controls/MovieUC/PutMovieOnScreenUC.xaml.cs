@@ -6,6 +6,7 @@ using ReserveTaPlace.Models.WPFModels;
 using ReserveTaPlace.Wpf.Utils;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,32 +46,48 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
             InitializeComponent();
             _calendarDataManager = ((App)Application.Current).CalendarDataManager;
             DataContext = SessionViewModel;
+            DPStartDate.DisplayDateStart = DateTime.Now;
+            DPStartDate.DisplayDateEnd = DateTime.Now.Add(new TimeSpan(400, 0, 0, 0));
+            DPEndDate.DisplayDateStart = DateTime.Now;
+            DPEndDate.DisplayDateEnd = DateTime.Now.Add(new TimeSpan(400, 0, 0, 0));
         }
-
-        private async void DPStartDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        private async Task PopulateCalendars()
         {
-            if (DPStartDate.SelectedDate.HasValue)
+
+            if (DPStartDate.SelectedDate.HasValue && DPEndDate.SelectedDate.HasValue && DPStartDate.SelectedDate.Value < DPEndDate.SelectedDate.Value)
             {
-                DateTime startDate = DPStartDate.SelectedDate.HasValue ? DPStartDate.SelectedDate.Value : DateTime.UtcNow ;
+                var calendars = new List<CalendarModel>();
+                DateTime startDate = DPStartDate.SelectedDate.HasValue ? DPStartDate.SelectedDate.Value : DateTime.UtcNow;
                 DateTime endDate = DPEndDate.SelectedDate.HasValue ? DPEndDate.SelectedDate.Value : DateTime.UtcNow;
-                List<DateTime> dates = new List<DateTime>();
                 TimeSpan ts = endDate - startDate;
                 int numberOfDays = ts.Days;
-                for (int i = 0; i < numberOfDays; i++)
+                if (numberOfDays==0)
                 {
-                    var dateToGet = startDate.Add(new TimeSpan(i,0, 0, 0)).ToString();
-                    //SessionViewModel.CurrentCalendar = await _calendarDataManager.GetCalendarByDate(dateToGet);
-                    //SessionViewModel.Calendars.Add(SessionViewModel.CurrentCalendar);
+                    Calendar.DisplayDateStart = DateTime.UtcNow;
+                    Calendar.DisplayDateEnd = DateTime.UtcNow;
 
                 }
+                else
+                {
+                    for (int i = 0; i < numberOfDays; i++)
+                    {
+                        var dateToGet = startDate.Add(new TimeSpan(i, 0, 0, 0)).ToString();
+                        var calendar = await _calendarDataManager.GetCalendarByDate(dateToGet);
+                        calendars.Add(calendar);
+                    }
+                    SessionViewModel.Calendars = new ObservableCollection<CalendarModel>(calendars);
+                    Calendar.DisplayDateStart = SessionViewModel.Calendars.First().Date;
+                    Calendar.DisplayDateEnd = SessionViewModel.Calendars.Last().Date;
+                }
+
             }
+            else
+            {
+                Calendar.DisplayDateStart = DateTime.UtcNow;
+                Calendar.DisplayDateEnd = DateTime.UtcNow;
+            }
+
         }
-
-        private void DPEndDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
         private async void BTNGenerateCalendar_Click(object sender, RoutedEventArgs e)
         {
             DateTime startDate = DateTime.UtcNow;
@@ -81,6 +98,36 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
                 var calendarModel = new CalendarModel(dateItem.Date);
                 await _calendarDataManager.AddCalendar(calendarModel);
             }
+        }
+        private void PopulateSchedules()
+        {
+            if (DPStartHour.SelectedTime.HasValue && DPEndHour.SelectedTime.HasValue && DPStartHour.SelectedTime.Value< DPEndHour.SelectedTime.Value)
+            {
+                DateTime startHour = DPStartHour.SelectedTime.Value;
+                DateTime endHour = DPEndHour.SelectedTime.Value;
+                var schedule = new ScheduleModel(startHour, endHour);
+                var schedules = new List<ScheduleModel>();
+                schedules.Add(schedule);
+                SessionViewModel.Schedules = new ObservableCollection<ScheduleModel>(schedules);
+                LBSchedules.Items.Add(schedule);
+            }
+
+        }
+        private void BTNAddSchedule_Click(object sender, RoutedEventArgs e)
+        {
+            PopulateSchedules();
+        }
+        private async void BTNAddCalendar_Click(object sender, RoutedEventArgs e)
+        {
+            await PopulateCalendars();
+
+        }
+
+        private void BTNReset_Click(object sender, RoutedEventArgs e)
+        {
+            LBSchedules.Items.Clear();
+            SessionViewModel.Calendars = null;
+            SessionViewModel.Schedules = null;
         }
     }
 }

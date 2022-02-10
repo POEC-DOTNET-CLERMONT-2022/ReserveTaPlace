@@ -20,22 +20,23 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Margin="20 0 0 0" Grid.Column="0">
-            <TextBlock TextWrapping="Wrap" FontSize="24" DataContext="{Binding .,ElementName=root}" Text="{Binding SessionViewModel.SelectedMovie.Title, StringFormat='Programmer :  {0}'}"></TextBlock>
                 <WrapPanel HorizontalAlignment="Left">
                 <ComboBox Margin="0 0 10 0" MinWidth="150" x:Name="CBCinema" materialDesign:HintAssist.Hint="Choisir le cinéma"></ComboBox>
                 <ComboBox MinWidth="150" x:Name="CBSalle" materialDesign:HintAssist.Hint="Choisir la salle"></ComboBox>
                 </WrapPanel>
             <TextBlock Margin="0 10 0 10" TextWrapping="Wrap">Définir un planning de diffusion</TextBlock>
             <WrapPanel HorizontalAlignment="Left">
-                <DatePicker SelectedDateChanged="DPStartDate_SelectedDateChanged" x:Name="DPStartDate" Margin="0 0 10 0" MinWidth="100" materialDesign:HintAssist.Hint="Date de début" materialDesign:TextFieldAssist.HasClearButton="True" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
-                <DatePicker SelectedDateChanged="DPEndDate_SelectedDateChanged" x:Name="DPEndDate" MinWidth="100" materialDesign:HintAssist.Hint="Date de fin" materialDesign:TextFieldAssist.HasClearButton="True" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                <DatePicker x:Name="DPStartDate" Margin="0 0 10 0" MinWidth="100" materialDesign:HintAssist.Hint="Date de début" materialDesign:TextFieldAssist.HasClearButton="True" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                <DatePicker x:Name="DPEndDate" MinWidth="100" materialDesign:HintAssist.Hint="Date de fin" materialDesign:TextFieldAssist.HasClearButton="True" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                <Button x:Name="BTNAddCalendar" Click="BTNAddCalendar_Click" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignIconButton}">
+                    <materialDesign:PackIcon Kind="PlusCircle" />
+                </Button>
             </WrapPanel>
-            <TextBlock Margin="0 10 0 10" TextWrapping="Wrap">Créer des séances</TextBlock>
             <TextBlock Margin="0 10 0 10" TextWrapping="Wrap">Ajouter des horaires</TextBlock>
             <WrapPanel HorizontalAlignment="Left">
-                <materialDesign:TimePicker Margin="0 0 10 0" MinWidth="100" Style="{StaticResource MaterialDesignFloatingHintTimePicker}" materialDesign:HintAssist.Hint="Heure de début" />
-                <materialDesign:TimePicker Margin="0 0 10 0" MinWidth="100" Style="{StaticResource MaterialDesignFloatingHintTimePicker}" materialDesign:HintAssist.Hint="Heure de fin" />
-                <Button HorizontalAlignment="Center" Style="{StaticResource MaterialDesignIconButton}">
+                <materialDesign:TimePicker x:Name="DPStartHour" Margin="0 0 10 0" MinWidth="100" Style="{StaticResource MaterialDesignFloatingHintTimePicker}" materialDesign:HintAssist.Hint="Heure de début" />
+                <materialDesign:TimePicker x:Name="DPEndHour" Margin="0 0 10 0" MinWidth="100" Style="{StaticResource MaterialDesignFloatingHintTimePicker}" materialDesign:HintAssist.Hint="Heure de fin" />
+                <Button x:Name="BTNAddSchedule" Click="BTNAddSchedule_Click" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignIconButton}">
                     <materialDesign:PackIcon Kind="PlusCircle" />
                 </Button>
             </WrapPanel>
@@ -44,14 +45,47 @@
                     <DataTemplate></DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <Button HorizontalAlignment="Center" Style="{StaticResource MaterialDesignIconButton}">
-                <materialDesign:PackIcon Kind="DeleteCircle" />
-            </Button>
         </StackPanel>
         <StackPanel Grid.Column="1">
             <TextBlock FontSize="24" DataContext="{Binding SessionViewModel.SelectedMovie}" Text="{Binding Title}"></TextBlock>
         </StackPanel>
-        <Button Grid.ColumnSpan="2" VerticalAlignment="Bottom" HorizontalAlignment="Right">Valider</Button>
-        <Button Grid.ColumnSpan="2" VerticalAlignment="Bottom" HorizontalAlignment="Left" x:Name="BTNGenerateCalendar" Click="BTNGenerateCalendar_Click">GenerateCalendar</Button>
+        <Button Grid.ColumnSpan="2" VerticalAlignment="Bottom" HorizontalAlignment="Left" x:Name="BTNGenerateCalendar" Visibility="Collapsed" Click="BTNGenerateCalendar_Click">GenerateCalendar</Button>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.7*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="0.5*"/>
+
+            </Grid.RowDefinitions>
+            <StackPanel>
+                <TextBlock>Cinéma :</TextBlock>
+                <TextBlock>Salle :</TextBlock>
+                <TextBlock TextWrapping="Wrap" FontSize="24" DataContext="{Binding .,ElementName=root}" Text="{Binding SessionViewModel.SelectedMovie.Title, StringFormat='Film : {0}'}"></TextBlock>
+            </StackPanel>
+            <Calendar Grid.Row="1" MinHeight="330" HorizontalAlignment="Left" Height="250" Width="300" IsTodayHighlighted="false" IsManipulationEnabled="False"  x:Name="Calendar" SelectionMode="SingleRange"/>
+            <ListBox Grid.Row="2" MaxHeight="70" MinHeight="70" x:Name="LBSchedules" SelectedItem="{Binding CurrentSchedule}" DataContext="{Binding SessionViewModel}" ItemsSource="{Binding Schedules}">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel  HorizontalAlignment="Left">
+                            </WrapPanel>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel MinWidth="100">
+                                <TextBlock Text="Horaire"></TextBlock>
+                                <TextBlock Text="{Binding HourStart, StringFormat=HH:mm}"></TextBlock>
+                                <TextBlock Text="{Binding HourEnd, StringFormat=HH:mm}"></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            <WrapPanel VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="3" Margin="0 5 0 0">
+                <Button Margin="0 0 10 0">Créer les séances</Button>
+                <Button Margin="0 0 1 0" x:Name="BTNReset" Click="BTNReset_Click">Réinitialiser</Button>
+            </WrapPanel>
+        </Grid>
     </Grid>
 </UserControl>
