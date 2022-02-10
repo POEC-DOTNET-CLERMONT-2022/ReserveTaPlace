@@ -9,15 +9,23 @@ namespace ReserveTaPlace.Models.WPFModels
 {
     public class SessionViewModel : ObservableObject
     {
-        private DateTime _sessionDate;
+        private List<CalendarModel> _calendars;
         private RoomModel _roomModel;
         private MovieModel _selectedMovie;
         private TheaterModel _selectedTheatre;
         private ObservableCollection<ScheduleModel> _schedules;
-        public DateTime SessionDate
+        private CalendarModel _currentCalendar;
+
+        public CalendarModel CurrentCalendar
         {
-            get { return _sessionDate; }
-            set { _sessionDate = value; }
+            get { return _currentCalendar; }
+            set { _currentCalendar = value; }
+        }
+
+        public List<CalendarModel> Calendars
+        {
+            get { return _calendars; }
+            set { _calendars = value; }
         }
 
         public RoomModel RoomModel

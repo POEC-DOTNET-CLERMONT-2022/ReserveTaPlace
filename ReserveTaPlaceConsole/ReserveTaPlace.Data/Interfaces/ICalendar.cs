@@ -10,5 +10,6 @@ namespace ReserveTaPlace.Data.Interfaces
     public interface ICalendar
     {
         Task<CalendarEntity> GetCalendarByDate(string sessionDate);
+        Task<bool> AddCalendar(CalendarEntity calendar);
     }
 }

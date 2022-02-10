@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ReserveTaPlace.Data.ApplicationContext;
 
@@ -11,9 +12,10 @@ using ReserveTaPlace.Data.ApplicationContext;
 namespace ReserveTaPlace.Data.Migrations
 {
     [DbContext(typeof(ReserveTaPlaceContext))]
-    partial class ReserveTaPlaceContextModelSnapshot : ModelSnapshot
+    [Migration("20220210102257_nullableCalendarInSession")]
+    partial class nullableCalendarInSession
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -117,7 +119,14 @@ namespace ReserveTaPlace.Data.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid?>("SessionId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("SessionId")
+                        .IsUnique()
+                        .HasFilter("[SessionId] IS NOT NULL");
 
                     b.ToTable("Calendar");
                 });
@@ -423,9 +432,6 @@ namespace ReserveTaPlace.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("CalendarId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid?>("MovieId")
                         .HasColumnType("uniqueidentifier");
 
@@ -433,8 +439,6 @@ namespace ReserveTaPlace.Data.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CalendarId");
 
                     b.HasIndex("MovieId");
 
@@ -622,6 +626,15 @@ namespace ReserveTaPlace.Data.Migrations
                     b.Navigation("Theater");
                 });
 
+            modelBuilder.Entity("ReserveTaPlace.Entities.CalendarEntity", b =>
+                {
+                    b.HasOne("ReserveTaPlace.Entities.SessionEntity", "Session")
+                        .WithOne("Calendar")
+                        .HasForeignKey("ReserveTaPlace.Entities.CalendarEntity", "SessionId");
+
+                    b.Navigation("Session");
+                });
+
             modelBuilder.Entity("ReserveTaPlace.Entities.DiscountEntity", b =>
                 {
                     b.HasOne("ReserveTaPlace.Entities.DiscountType", "DiscountType")
@@ -693,10 +706,6 @@ namespace ReserveTaPlace.Data.Migrations
 
             modelBuilder.Entity("ReserveTaPlace.Entities.SessionEntity", b =>
                 {
-                    b.HasOne("ReserveTaPlace.Entities.CalendarEntity", "Calendar")
-                        .WithMany()
-                        .HasForeignKey("CalendarId");
-
                     b.HasOne("ReserveTaPlace.Entities.MovieEntity", "Movie")
                         .WithMany()
                         .HasForeignKey("MovieId");
@@ -704,8 +713,6 @@ namespace ReserveTaPlace.Data.Migrations
                     b.HasOne("ReserveTaPlace.Entities.RoomEntity", "Room")
                         .WithMany("Sessions")
                         .HasForeignKey("RoomId");
-
-                    b.Navigation("Calendar");
 
                     b.Navigation("Movie");
 
@@ -810,6 +817,8 @@ namespace ReserveTaPlace.Data.Migrations
 
             modelBuilder.Entity("ReserveTaPlace.Entities.SessionEntity", b =>
                 {
+                    b.Navigation("Calendar");
+
                     b.Navigation("Schedules");
                 });
 

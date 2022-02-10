@@ -1,6 +1,9 @@
 ﻿using MaterialDesignThemes.Wpf;
+using ReserveTaPlace.DTOS;
+using ReserveTaPlace.Logic.DataManager;
 using ReserveTaPlace.Models;
 using ReserveTaPlace.Models.WPFModels;
+using ReserveTaPlace.Wpf.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +28,7 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
     {
         private static readonly DependencyProperty _sessionViewModelProperty = DependencyProperty.Register("SessionViewModel", typeof(SessionViewModel), typeof(PutMovieOnScreenUC));
         private SessionViewModel _sessionViewModel;
+        private IDataManager<CalendarModel, CalendarDto> _calendarDataManager;
         public SessionViewModel SessionViewModel
         {
             get { return GetValue(_sessionViewModelProperty) as SessionViewModel; }
@@ -39,12 +43,13 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
         public PutMovieOnScreenUC()
         {
             InitializeComponent();
+            _calendarDataManager = ((App)Application.Current).CalendarDataManager;
             DataContext = SessionViewModel;
         }
 
-        private void DPStartDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        private async void DPStartDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (DPStartDate.SelectedDate!=null)
+            if (DPStartDate.SelectedDate.HasValue)
             {
                 DateTime startDate = DPStartDate.SelectedDate.HasValue ? DPStartDate.SelectedDate.Value : DateTime.UtcNow ;
                 DateTime endDate = DPEndDate.SelectedDate.HasValue ? DPEndDate.SelectedDate.Value : DateTime.UtcNow;
@@ -53,7 +58,10 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
                 int numberOfDays = ts.Days;
                 for (int i = 0; i < numberOfDays; i++)
                 {
-                    DPStartDate.SelectedDate.Value.Add(new TimeSpan(24,0, 0, 0));
+                    var dateToGet = startDate.Add(new TimeSpan(i,0, 0, 0)).ToString();
+                    //SessionViewModel.CurrentCalendar = await _calendarDataManager.GetCalendarByDate(dateToGet);
+                    //SessionViewModel.Calendars.Add(SessionViewModel.CurrentCalendar);
+
                 }
             }
         }
@@ -61,6 +69,18 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
         private void DPEndDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private async void BTNGenerateCalendar_Click(object sender, RoutedEventArgs e)
+        {
+            DateTime startDate = DateTime.UtcNow;
+            DateTime endDate = DateTime.UtcNow.AddDays(10000);
+            var calendar = CalendarGenerator.GetDateRange(startDate, endDate).ToList();
+            foreach (var dateItem in calendar)
+            {
+                var calendarModel = new CalendarModel(dateItem.Date);
+                await _calendarDataManager.AddCalendar(calendarModel);
+            }
         }
     }
 }

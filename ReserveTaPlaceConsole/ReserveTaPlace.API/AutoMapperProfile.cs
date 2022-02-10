@@ -30,6 +30,8 @@ namespace ReserveTaPlace.API
             CreateMap<AddressEntity, AddressDto>().ReverseMap();
             CreateMap<MediaEntity, MediaDto>().ReverseMap();
             CreateMap<RoleEntity, RoleDto>().ReverseMap();
+            CreateMap<CalendarEntity, CalendarDto>().ReverseMap();
+
 
             CreateMap<PaginatedList<TheaterEntity>, PaginatedList<TheaterDto>>()
                 .ForMember(dest => dest.Data, opt => opt.MapFrom(src => src.Data))

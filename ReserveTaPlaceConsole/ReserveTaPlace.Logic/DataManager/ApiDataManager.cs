@@ -97,15 +97,24 @@ namespace ReserveTaPlace.Logic.DataManager
 
         }
 
-        public async Task<TModel> GetCalendarByDate(DateTime date)
+        public async Task<TModel> GetCalendarByDate(string date)
         {
-            string query = date.Day.ToString();
-            var response = await HttpClient.PostAsJsonAsync(Uri, query);
+            var _uri = new Uri(Uri + "/CalendarByDate");
+            var response = await HttpClient.PostAsJsonAsync(_uri, date);
             response.EnsureSuccessStatusCode();
             var calendarString = await response.Content.ReadAsStringAsync();
             var calendar = JsonConvert.DeserializeObject<TDto>(calendarString);
             return Mapper.Map<TModel>(calendar);
 
+        }
+
+        public async Task<bool> AddCalendar(TModel Calendar)
+        {
+            var calendartDto = Mapper.Map<TDto>(Calendar);
+            var response = await HttpClient.PostAsJsonAsync(Uri, calendartDto);
+            response.EnsureSuccessStatusCode();
+            var resultString = await response.Content.ReadAsStringAsync();
+            return resultString=="true";
         }
     }
 }

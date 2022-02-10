@@ -9,10 +9,8 @@ using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Logic.DataManager
 {
-    internal class CalendarDataManager : ApiDataManager<CalendarModel, CalendarDto>
-    {
-        public CalendarDataManager(HttpClient client, IMapper mapper, string serverUrl)
-    : base(client, mapper, serverUrl, "/api/Calendar")
+    public class CalendarDataManager : ApiDataManager<CalendarModel, CalendarDto>    {
+        public CalendarDataManager(HttpClient client, IMapper mapper, string serverUrl): base(client, mapper, serverUrl, "/api/Calendar")
         {
         }
     }

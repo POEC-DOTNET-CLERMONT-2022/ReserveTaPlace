@@ -24,5 +24,12 @@ namespace ReserveTaPlace.Data.Functions
             _calendar = await _dbContext.Set<CalendarEntity>().FirstOrDefaultAsync(c => c.Date == dateTime);
             return _calendar;
         }
+        public async Task<bool> AddCalendar(CalendarEntity calendar)
+        {
+            await _dbContext.Set<CalendarEntity>().AddAsync(calendar);
+            var result = await _dbContext.SaveChangesAsync();
+            return result > 0;
+
+        }
     }
 }

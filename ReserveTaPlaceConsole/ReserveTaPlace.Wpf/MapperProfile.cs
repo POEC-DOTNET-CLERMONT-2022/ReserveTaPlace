@@ -33,6 +33,8 @@ namespace ReserveTaPlace.Wpf
             CreateMap<FormatDto, FormatModel>().ReverseMap();
             CreateMap<AddressDto, AddressModel>().ReverseMap();
             CreateMap<MediaDto, MediaModel>().ReverseMap();
+            CreateMap<CalendarModel, CalendarDto>().ReverseMap();
+
         }
     }
 }
