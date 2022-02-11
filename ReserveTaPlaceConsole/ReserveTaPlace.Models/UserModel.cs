@@ -14,8 +14,8 @@ namespace ReserveTaPlace.Models
         private string _lastName;
         private string _email;
         private string _password;
-        private IList<RoleModel> _Roles;
-        private IList<TheaterUserModel> _userTheaters;
+        private IList<RoleModel> _roles;
+        private IList<TheaterModel> _theaters;
 
         public UserModel(string firstName, string lastName, string email, string password)
         {
@@ -24,23 +24,22 @@ namespace ReserveTaPlace.Models
             _lastName = lastName;
             _email = email;
             _password = password;
-            _Roles = new List<RoleModel>();
-            _userTheaters = new List<TheaterUserModel>();
+            _roles = new List<RoleModel>();
         }
         [JsonConstructor]
-        public UserModel(Guid id, string firstName, string lastName, string email, string password, List<RoleModel> roles, List<TheaterUserModel> userTheaters)
+        public UserModel(Guid id, string firstName, string lastName, string email, string password, List<RoleModel> roles, List<TheaterModel> theaters)
         {
             _id = id;
             _firstName = firstName;
             _lastName = lastName;
             _email = email;
             _password = password;
-            _Roles = roles;
-            _userTheaters = userTheaters;
+            _roles = roles;
+            _theaters = theaters;
 
         }
 
-        [JsonProperty(PropertyName = "Id")]
+        [JsonProperty(PropertyName = "id")]
         public Guid Id { get { return _id; } }
         [JsonProperty(PropertyName = "FirstName")]
         public string FirstName { get { return _firstName; } }
@@ -53,8 +52,8 @@ namespace ReserveTaPlace.Models
         [JsonProperty(PropertyName = "Roles")]
         public IList<RoleModel> Roles
         {
-            get { return _Roles; }
-            set { _Roles = value; }
+            get { return _roles; }
+            set { _roles = value; }
         }
 
     }

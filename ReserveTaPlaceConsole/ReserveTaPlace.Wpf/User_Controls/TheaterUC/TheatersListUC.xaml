@@ -38,11 +38,71 @@
                 <DataTemplate>
                     <StackPanel>
                         <TextBlock Text="{Binding Name}"/>
+                        <TextBlock Text="{Binding Medias.Count}"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
          </ListBox>-->
-        <DataGrid x:Name="dgTheaters" DataContext="{Binding .,ElementName=root}"
-            ItemsSource="{Binding Theaters}" AutoGenerateColumns="True" />
+        <!--<DataGrid x:Name="dgTheaters" DataContext="{Binding .,ElementName=root}"
+            ItemsSource="{Binding Theaters}" SelectedItem="{Binding CurrentTheater}" 
+            SelectionChanged="dgTheaters_SelectionChanged" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Nom" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Image" Binding="{Binding Medias.Count}"/>
+                <DataGridTextColumn Header="Salles" Binding="{Binding Rooms.Count}"/>
+                <DataGridTextColumn Header="Utilisateurs" Binding="{Binding Users.Count}"/>
+            </DataGrid.Columns>
+            <DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <DockPanel>
+                        <Image DockPanel.Dock="Left" Source="{Binding Id}" Height="64" Margin="10" />
+                        <Grid Margin="0,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Text="ID: " FontWeight="Bold" />
+                            <TextBlock Text="{Binding Id}" Grid.Column="1" />
+                            <TextBlock Text="Name: " FontWeight="Bold" Grid.Row="1" />
+                            <TextBlock Text="{Binding Name}" Grid.Column="1" Grid.Row="1" />
+                        </Grid>
+                    </DockPanel>
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
+        </DataGrid>-->
+            <ListView x:Name="LVTheaters" DataContext="{Binding .,ElementName=root}" ItemsSource="{Binding Theaters}" 
+                      SelectedItem="{Binding CurrentTheater}" SelectionChanged="LVTheaters_SelectionChanged">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Nom"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Medias.Count}" Header="Image"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Rooms.Count}" Header="Salles"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Users.Count}" Header="Utilisateurs"/>
+                    <!--<GridViewColumn
+            Header="Options">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ComboBox
+                  Width="100">
+                                        <ComboBoxItem
+                    Content="Test" />
+                                        <ComboBoxItem
+                    Content="Test2" />
+                                        <ComboBoxItem
+                    Content="Test3" />
+                                    </ComboBox>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>-->
+                    </GridView>
+                </ListView.View>
+            </ListView>
     </Grid>
 </UserControl>

@@ -5,6 +5,7 @@ using System.Text;
 
 namespace ReserveTaPlace.DTOS
 {
+    [JsonObject("user")]
     public class UserDto
     {
         [JsonProperty(PropertyName = "Id")]
@@ -26,7 +27,7 @@ namespace ReserveTaPlace.DTOS
         //public IList<OrderDto> Orders { get; set; }
         //[JsonProperty("discounts")]
         //public IList<DiscountDto> Discounts { get; set; }
-
+      
         [JsonProperty(PropertyName = "Roles")]
         public IList<RoleDto> Roles { get; set; }
 

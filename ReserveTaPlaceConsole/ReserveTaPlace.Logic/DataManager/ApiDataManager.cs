@@ -32,7 +32,8 @@ namespace ReserveTaPlace.Logic.DataManager
         public async Task<IEnumerable<TModel>> GetAll()
         {
             var result = await HttpClient.GetFromJsonAsync<IEnumerable<TDto>>(Uri);
-            return Mapper.Map<IEnumerable<TModel>>(result);
+            var map = Mapper.Map<IEnumerable<TModel>>(result);
+            return map;
         }
 
         public async Task<bool> Add(TModel model)

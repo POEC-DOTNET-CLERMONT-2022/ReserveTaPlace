@@ -23,14 +23,14 @@ namespace ReserveTaPlace.Wpf.User_Controls.TheaterUC
     /// </summary>
     public partial class TheaterPageUC : UserControl
     {
-        private TheaterViewModel _theaterViewModel { get; set; }
+        public TheaterViewModel TheaterViewModel { get; set; }
         private readonly IDataManager<TheaterModel, TheaterDto> _theaterDataManager;
         public TheaterPageUC()
         {
             InitializeComponent();
-            _theaterViewModel = new TheaterViewModel();
+            TheaterViewModel = new TheaterViewModel();
             _theaterDataManager = ((App)Application.Current).TheaterDataManager;
-            DataContext = _theaterViewModel;
+            DataContext = TheaterViewModel;
             
         }
 
@@ -38,8 +38,20 @@ namespace ReserveTaPlace.Wpf.User_Controls.TheaterUC
         private async void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             var theaters = await _theaterDataManager.GetAll();
-            _theaterViewModel.Theaters = new ObservableCollection<TheaterModel>(theaters);
-            TheaterListUC.Theaters = _theaterViewModel.Theaters;
+            TheaterViewModel.Theaters = new ObservableCollection<TheaterModel>(theaters);
+            //var roomList = _theaterViewModel.CurrentTheater.Rooms;
+            //foreach (var room in roomList)
+            //{
+            //    room.
+            //}
+            //_theaterViewModel.SeatList = new ObservableCollection<SeatModel>()
+            TheaterListUC.Theaters = TheaterViewModel.Theaters;
+        }
+
+        private void TheaterListUC_SelectionChanged(object sender, System.EventArgs e)
+        {
+            TheaterViewModel.CurrentTheater = TheaterListUC.LVTheaters.SelectedItem as TheaterModel;
+            TheaterDetailsUC.TheaterViewModel = TheaterViewModel;
         }
     }
 }

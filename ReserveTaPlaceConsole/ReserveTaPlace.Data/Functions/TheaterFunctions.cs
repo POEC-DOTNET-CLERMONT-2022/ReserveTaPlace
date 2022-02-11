@@ -41,9 +41,9 @@ namespace ReserveTaPlace.Data.Functions
             _theaters = await _dbContext.Set<TheaterEntity>()
                 .Include(t => t.Address)
                 .Include(t => t.Rooms).ThenInclude(r => r.Format)
-                //.Include(t => t.Rooms).ThenInclude(r => r.RoomSeats).ThenInclude(rs => rs.Seat)
+                .Include(t => t.Rooms).ThenInclude(r => r.Seats)
                 .Include(t => t.Medias)
-                //.Include(t => t.TheaterUsers).ThenInclude(u => u.User)
+                .Include(t => t.Users).ThenInclude(u => u.Roles)
                 .ToListAsync();
             return _theaters;
         }
