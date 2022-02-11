@@ -41,24 +41,20 @@ namespace ReserveTaPlace.Models
 
         [JsonProperty(PropertyName = "id")]
         public Guid Id { get { return _id; } }
-
-        [JsonProperty(PropertyName = "firstName")]
-        public string FirstName { get { return _firstName; } set { _firstName = value; } }
-
-        [JsonProperty(PropertyName = "lastName")]
-        public string LastName { get { return _lastName; } set { _lastName = value; } }
-
-        [JsonProperty(PropertyName = "email")]
-        public string Email { get { return _email; } set { _email = value; } } 
-
-        [JsonProperty(PropertyName = "password")]
-        public string Password { get { return _password; } set { _password = value; } }
-
-        [JsonProperty(PropertyName = "roles")]
-        public IList<RoleModel> Roles { get { return _roles; } set { _roles = value; } }
-
-        [JsonProperty(PropertyName = "theaters")]
-        public IList<TheaterModel> Theaters { get { return _theaters; } set { _theaters = value; } }
+        [JsonProperty(PropertyName = "FirstName")]
+        public string FirstName { get { return _firstName; } }
+        [JsonProperty(PropertyName = "LastName")]
+        public string LastName { get { return _lastName; } }
+        [JsonProperty(PropertyName = "Email")]
+        public string Email { get { return _email; } }
+        [JsonProperty(PropertyName = "Password")]
+        public string Password { get { return _password; } }
+        [JsonProperty(PropertyName = "Roles")]
+        public IList<RoleModel> Roles
+        {
+            get { return _roles; }
+            set { _roles = value; }
+        }
 
     }
 }

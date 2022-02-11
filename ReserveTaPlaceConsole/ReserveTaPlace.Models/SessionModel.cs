@@ -11,12 +11,12 @@ namespace ReserveTaPlace.Models
         private Guid _id;
         private MovieModel _movie;
         private IList<ScheduleModel> _schedules;
-        private PlanningModel _planning;
-        public SessionModel(MovieModel movieModel, List<ScheduleModel> schedules, PlanningModel planningModel )
+        private CalendarModel _calendar;
+        public SessionModel(MovieModel movieModel, List<ScheduleModel> schedules, CalendarModel calendar )
         {
             _id = Guid.NewGuid();
             _movie = movieModel;
-            _planning = planningModel;
+            _calendar = calendar;
             _schedules = schedules;
         }
         public Guid Id
@@ -29,10 +29,10 @@ namespace ReserveTaPlace.Models
             get { return _movie; }
             set { _movie = value; }
         }
-        public PlanningModel Planning
+        public CalendarModel Calendar
         {
-            get { return _planning; }
-            set { _planning = value; }
+            get { return _calendar; }
+            set { _calendar = value; }
         }
         public IList<ScheduleModel> Schedules
         {

@@ -17,7 +17,7 @@
              x:Name="root"
              >
     <Grid>
-        <ListBox Height="230" x:Name="LBMovies" SelectionChanged="LBMovies_SelectionChanged" SelectedItem="{Binding CurrentMovie}" DataContext="{Binding .,ElementName=root}" ItemsSource="{Binding Movies}">
+        <ListBox Height="230" x:Name="LBMovies" SelectionChanged="LBMovies_SelectionChanged" SelectedItem="{Binding SelectedMovie}" DataContext="{Binding .,ElementName=root}" ItemsSource="{Binding Movies}">
             <!--<ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Style.Triggers>

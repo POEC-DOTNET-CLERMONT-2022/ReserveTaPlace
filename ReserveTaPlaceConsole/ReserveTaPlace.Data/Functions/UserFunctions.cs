@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ReserveTaPlace.Data.ApplicationContext;
 using ReserveTaPlace.Data.Interfaces;
+using ReserveTaPlace.Data.Utils;
 using ReserveTaPlace.Entities;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,10 @@ namespace ReserveTaPlace.Data.Functions
             _dbContext = context;
             _users = new List<UserEntity>();
         }
-
+        public async Task<PaginatedList<UserEntity>> GetAllPaginated(int pageIndex, int pageSize)
+        {
+            return await PaginatedList<UserEntity>.CreateAsync(_dbContext.Set<UserEntity>(), pageIndex, pageSize);
+        }
         public async Task<IEnumerable<UserEntity>> GetAll()
         {
 
