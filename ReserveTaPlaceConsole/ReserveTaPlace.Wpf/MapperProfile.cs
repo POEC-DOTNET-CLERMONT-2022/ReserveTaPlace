@@ -22,17 +22,21 @@ namespace ReserveTaPlace.Wpf
                 .ForMember(dest => dest.HasPreviousPage, opt => opt.MapFrom(src => src.HasPreviousPage))
                 .ForMember(dest => dest.PageIndex, opt => opt.MapFrom(src => src.PageIndex))
                 .ForMember(dest => dest.TotalPages, opt => opt.MapFrom(src => src.TotalPages));
-            CreateMap<UserModel, UserDto>().ReverseMap();
+            CreateMap<UserDto, UserModel>().ReverseMap();
             CreateMap<TheaterDto, TheaterModel>()
-                .ForMember(mod => mod.TheaterUsers, opt => opt.MapFrom(t => t.Users));
-            CreateMap<TheaterModel, TheaterDto>()
-                .ForMember(dto => dto.Users, opt => opt.MapFrom(t => t.TheaterUsers.Select(r => r.User).ToList()));
-            CreateMap<RoomModel, RoomDto>()
-                .ForMember(dto => dto.Seats, opt => opt.MapFrom(r => r.RoomSeats.Select(rs => rs.Seat).ToList()));
+                .ForMember(dest => dest.Medias, opt => opt.MapFrom(src => src.Medias));
+            CreateMap<RoomDto, RoomModel>().ReverseMap();
             CreateMap<SeatDto, SeatModel>().ReverseMap();
             CreateMap<FormatDto, FormatModel>().ReverseMap();
             CreateMap<AddressDto, AddressModel>().ReverseMap();
+            //CreateMap<MediaDto, MediaModel>()
+            //    .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+            //    .ForMember(dest => dest.Link, opt => opt.MapFrom(src => src.Link));
+            //CreateMap<MediaModel, MediaDto>()
+            //    .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+            //    .ForMember(dest => dest.Link, opt => opt.MapFrom(src => src.Link));
             CreateMap<MediaDto, MediaModel>().ReverseMap();
+            CreateMap<RoleDto, RoleModel>().ReverseMap();
         }
     }
 }

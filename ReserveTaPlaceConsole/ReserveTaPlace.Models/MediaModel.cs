@@ -13,11 +13,12 @@ namespace ReserveTaPlace.Models
         private MovieModel _movie;
         private TheaterModel _theater;
 
-        public MediaModel(string link, MovieModel movie, TheaterModel theater)
+        public MediaModel(Guid id, string link/*, MovieModel movie, TheaterModel theater*/)
         {
+            _id = id;
             _link = link;
-            _movie = movie;
-            _theater = theater;
+            //_movie = movie;
+            //_theater = theater;
         }
 
         public Guid Id { get => _id; }

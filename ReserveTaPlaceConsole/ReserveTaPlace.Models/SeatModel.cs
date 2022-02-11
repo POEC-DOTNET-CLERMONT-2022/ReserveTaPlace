@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Models
@@ -11,19 +12,20 @@ namespace ReserveTaPlace.Models
         private Guid _id;
         private string _row;
         private string _number;
-        private IList<RoomSeatModel> _seatRooms;
-      
-        public SeatModel(string row, string number, List<RoomSeatModel> seatRooms)
+        //private IList<RoomModel> _rooms;
+
+        [JsonConstructor]
+        public SeatModel(Guid id, string row, string number/*, List<RoomModel> rooms*/)
         {
-            _id = Guid.NewGuid();
+            _id = id;
             _row = row;
             _number = number;
-            _seatRooms = seatRooms;
+            //_rooms = rooms;
         }
 
         public Guid Id { get => _id; }
         public string Row { get { return _row; } set { _row = value; } }
         public string Number { get { return _number; } set { _number = value; } }
-        public IList<RoomSeatModel> SeatRooms { get { return _seatRooms; } set { _seatRooms = value; } }
+        //public IList<RoomModel> Rooms { get { return _rooms; } set { _rooms = value; } }
     }
 }

@@ -14,8 +14,8 @@ namespace ReserveTaPlace.Models
         private string _lastName;
         private string _email;
         private string _password;
-        private IList<RoleModel> _Roles;
-        private IList<TheaterUserModel> _userTheaters;
+        private IList<RoleModel> _roles;
+        private IList<TheaterModel> _theaters;
 
         public UserModel(string firstName, string lastName, string email, string password)
         {
@@ -24,38 +24,41 @@ namespace ReserveTaPlace.Models
             _lastName = lastName;
             _email = email;
             _password = password;
-            _Roles = new List<RoleModel>();
+            _roles = new List<RoleModel>();
         }
         [JsonConstructor]
-        public UserModel(Guid id, string firstName, string lastName, string email, string password, List<RoleModel> roles, List<TheaterUserModel> userTheater)
+        public UserModel(Guid id, string firstName, string lastName, string email, string password, List<RoleModel> roles, List<TheaterModel> theaters)
         {
             _id = id;
             _firstName = firstName;
             _lastName = lastName;
             _email = email;
             _password = password;
-            _Roles = roles;
-            _userTheaters = userTheater;
+            _roles = roles;
+            _theaters = theaters;
 
         }
 
-        [JsonProperty(PropertyName = "Id")]
+        [JsonProperty(PropertyName = "id")]
         public Guid Id { get { return _id; } }
-        [JsonProperty(PropertyName = "FirstName")]
-        public string FirstName { get { return _firstName; } }
-        [JsonProperty(PropertyName = "LastName")]
-        public string LastName { get { return _lastName; } }
-        [JsonProperty(PropertyName = "Email")]
-        public string Email { get { return _email; } }
-        [JsonProperty(PropertyName = "Password")]
-        public string Password { get { return _password; } }
-        [JsonProperty(PropertyName = "UserRoles")]
 
-        public IList<RoleModel> Roles
-        {
-            get { return _Roles; }
-            set { _Roles = value; }
-        }
+        [JsonProperty(PropertyName = "firstName")]
+        public string FirstName { get { return _firstName; } set { _firstName = value; } }
+
+        [JsonProperty(PropertyName = "lastName")]
+        public string LastName { get { return _lastName; } set { _lastName = value; } }
+
+        [JsonProperty(PropertyName = "email")]
+        public string Email { get { return _email; } set { _email = value; } } 
+
+        [JsonProperty(PropertyName = "password")]
+        public string Password { get { return _password; } set { _password = value; } }
+
+        [JsonProperty(PropertyName = "roles")]
+        public IList<RoleModel> Roles { get { return _roles; } set { _roles = value; } }
+
+        [JsonProperty(PropertyName = "theaters")]
+        public IList<TheaterModel> Theaters { get { return _theaters; } set { _theaters = value; } }
 
     }
 }

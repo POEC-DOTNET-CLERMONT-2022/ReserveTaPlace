@@ -20,10 +20,17 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="6*"/>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
         <User_Controls:MainMenuUC Grid.Column="0" x:Name="MainMenuUC"></User_Controls:MainMenuUC>
         <TextBlock Grid.Column="1" HorizontalAlignment="Center">TheaterPage</TextBlock>
-        <StackPanel Grid.Column="1" Orientation="Vertical">
-            <User_ControlsTheaterUC:TheatersListUC x:Name="TheaterListUC"></User_ControlsTheaterUC:TheatersListUC>
+        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical">
+            <User_ControlsTheaterUC:TheatersListUC SelectionChanged="TheaterListUC_SelectionChanged" x:Name="TheaterListUC"></User_ControlsTheaterUC:TheatersListUC>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1" x:Name="SPTheaterDetails" >
+            <User_ControlsTheaterUC:TheaterDetailsUC x:Name="TheaterDetailsUC" DataContext="{Binding TheaterViewModel}"></User_ControlsTheaterUC:TheaterDetailsUC>
         </StackPanel>
     </Grid>
 </UserControl>
