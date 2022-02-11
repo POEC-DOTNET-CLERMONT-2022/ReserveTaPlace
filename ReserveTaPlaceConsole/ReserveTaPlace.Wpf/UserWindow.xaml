@@ -59,7 +59,7 @@
             <TextBox x:Name="TBpasswordConfirmation" Width="200" VerticalAlignment = "Center"></TextBox>
         </StackPanel>
         <StackPanel Grid.Row="6" Grid.Column="0" HorizontalAlignment="Left">
-            <Button Width="80" Click="AddUser_Click">Valider</Button>
+            <Button Width="80" >Valider</Button>
         </StackPanel>
     </Grid>
 </Window>

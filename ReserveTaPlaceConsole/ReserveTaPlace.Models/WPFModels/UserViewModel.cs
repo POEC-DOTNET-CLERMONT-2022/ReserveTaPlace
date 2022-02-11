@@ -7,8 +7,16 @@ using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Models.WPFModels
 {
-    public class ListUsers : ObservableObject
+    public class UserViewModel : ObservableObject
     {
+        private PaginatedList<UserModel> _usersPaginated;
+
+        public PaginatedList<UserModel> UsersPaginated
+        {
+            get { return _usersPaginated; }
+            set { _usersPaginated = value; OnNotifyPropertyChanged();}
+        }
+
         private ObservableCollection<UserModel> _users;
         private UserModel _currentUser;
         public UserModel CurrentUser
@@ -28,7 +36,7 @@ namespace ReserveTaPlace.Models.WPFModels
             get { return _users; }
             set
             {
-                if(value != _users)
+                if (value != _users)
                 {
                     _users = value;
                     OnNotifyPropertyChanged();

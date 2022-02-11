@@ -66,9 +66,9 @@ namespace ReserveTaPlace.Logic.DataManager
             var ressourceList = new List<int>() { page, pageSize };
             var _uri = new Uri(Uri + "/GetAllPaginated");
             var result = await HttpClient.PostAsJsonAsync<List<int>>(_uri, ressourceList);
-            var moviesStrg = await result.Content.ReadAsStringAsync();
-            var movies = JsonConvert.DeserializeObject<PaginatedList<TDto>>(moviesStrg);
-            return Mapper.Map<PaginatedList<TModel>>(movies);
+            var lisStrg = await result.Content.ReadAsStringAsync();
+            var listDto = JsonConvert.DeserializeObject<PaginatedList<TDto>>(lisStrg);
+            return Mapper.Map<PaginatedList<TModel>>(listDto);
         }
 
         public async Task<bool> DeleteTheaterById(Guid id)
@@ -95,6 +95,26 @@ namespace ReserveTaPlace.Logic.DataManager
             var theater = JsonConvert.DeserializeObject<TDto>(theaterString);
             return Mapper.Map<TModel>(theater);
 
+        }
+
+        public async Task<TModel> GetCalendarByDate(string date)
+        {
+            var _uri = new Uri(Uri + "/CalendarByDate");
+            var response = await HttpClient.PostAsJsonAsync(_uri, date);
+            response.EnsureSuccessStatusCode();
+            var calendarString = await response.Content.ReadAsStringAsync();
+            var calendar = JsonConvert.DeserializeObject<TDto>(calendarString);
+            return Mapper.Map<TModel>(calendar);
+
+        }
+
+        public async Task<bool> AddCalendar(TModel Calendar)
+        {
+            var calendartDto = Mapper.Map<TDto>(Calendar);
+            var response = await HttpClient.PostAsJsonAsync(Uri, calendartDto);
+            response.EnsureSuccessStatusCode();
+            var resultString = await response.Content.ReadAsStringAsync();
+            return resultString=="true";
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using ReserveTaPlace.Entities;
+﻿using ReserveTaPlace.Data.Utils;
+using ReserveTaPlace.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,6 @@ namespace ReserveTaPlace.Data.Interfaces
     public interface IUser
     {
         Task<IEnumerable<UserEntity>> GetAll();
+        Task<PaginatedList<UserEntity>> GetAllPaginated(int pageIndex, int pageSize);
     }
 }

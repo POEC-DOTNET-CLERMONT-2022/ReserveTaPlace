@@ -42,13 +42,6 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
             }
         }
         public event PropertyChangedEventHandler? PropertyChanged;
-        protected virtual void OnNotifyPropertyChanged([CallerMemberName] string propertyname =null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyname));
-            //if (PropertyChanged != null)
-            //{
-            //    PropertyChanged(this, new PropertyChangedEventArgs(propertyname));
-            //}
-        }
+
     }
 }

@@ -5,22 +5,21 @@ using System.Text;
 
 namespace ReserveTaPlace.DTOS
 {
-    [JsonObject("user")]
     public class UserDto
     {
-        [JsonProperty("id")]
+        [JsonProperty(PropertyName = "Id")]
         public Guid Id { get; set; }
 
-        [JsonProperty("firstName")]
+        [JsonProperty(PropertyName = "FirstName")]
         public string Firstname { get; set; }
 
-        [JsonProperty("lastName")]
+        [JsonProperty(PropertyName = "LastName")]
         public string Lastname { get; set; }
 
-        [JsonProperty("email")]
+        [JsonProperty(PropertyName = "Email")]
         public string Email { get; set; }
 
-        [JsonProperty("password")]
+        [JsonProperty(PropertyName = "Password")]
         public string Password { get; set; }
 
         //[JsonProperty("orders")]
@@ -28,7 +27,9 @@ namespace ReserveTaPlace.DTOS
         //[JsonProperty("discounts")]
         //public IList<DiscountDto> Discounts { get; set; }
 
-        [JsonProperty("roles")]
+        [JsonProperty(PropertyName = "Roles")]
         public IList<RoleDto> Roles { get; set; }
+
+
     }
 }

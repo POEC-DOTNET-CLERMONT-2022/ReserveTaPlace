@@ -11,10 +11,7 @@ namespace ReserveTaPlace.Entities
     public class CalendarEntity
     {
         public Guid Id { get; set; }
-        public Guid SessionId { get; set; }
         public DateTime Date { get; set; }
 
-        [ForeignKey(nameof(SessionId))]
-        public virtual SessionEntity Session { set; get; }
     }
 }

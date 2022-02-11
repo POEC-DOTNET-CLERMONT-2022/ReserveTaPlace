@@ -20,7 +20,7 @@
     </UserControl.Resources>
         <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="0.5*"/>
             <ColumnDefinition Width="6*"/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="1">
@@ -34,15 +34,21 @@
                 <WrapPanel x:Name="WPSearchMovie" Visibility="{Binding StateManager.IsSPSearchVisible, Converter={StaticResource VisibilityConverter}}">
                     <TextBox materialDesign:HintAssist.Hint="Titre du film" x:Name="TBMovieName" Margin="0,0,10,0" Width="150"></TextBox>
                     <TextBox materialDesign:HintAssist.Hint="Année de sortie" x:Name="TBMovieYear" Margin="0,0,10,0" Width="150"></TextBox>
-                    <Button x:Name="BTNFindMovie" Click="BTNFindMovie_Click">Rechercher</Button>
+                    <Button Width="30" Height="30" Style="{StaticResource MaterialDesignIconButton}" ToolTip="Rechercher dans la base de données" Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
+                    x:Name="BTNFindMovie" Margin="10" Click="BTNFindMovie_Click">
+                        <materialDesign:PackIcon Width="20" Height="30" Kind="DatabaseSearch" />
+                    </Button>
                 </WrapPanel>
                 <TextBlock x:Name="TBUnfound" Visibility="Collapsed">Aucun film trouvé</TextBlock>
             </StackPanel>
             <User_ControlsMovieUC:MoviesListUC Grid.Row="1" SelectionChanged="MoviesListUC_SelectionChanged" Movies="{Binding Movies}" Visibility="{Binding StateManager.IsMoviesListVisible, Converter={StaticResource VisibilityConverter}}" x:Name="MoviesListUC"></User_ControlsMovieUC:MoviesListUC>
             <StackPanel Grid.Row="2" Visibility="{Binding StateManager.IsMoviesPagerVisible, Converter={StaticResource VisibilityConverter}}">
-                <User_ControlsMovieUC:MoviesPagerUC  HorizontalAlignment="Center" DataContext="{Binding PaginatedList}" GoNextPage="pagerUC_GoNextPage" GoPreviousPage="pagerUC_GoPreviousPage" x:Name="pagerUC"></User_ControlsMovieUC:MoviesPagerUC>
+                <User_ControlsMovieUC:MoviesPagerUC  HorizontalAlignment="Center" DataContext="{Binding PaginatedMovies}" GoNextPage="pagerUC_GoNextPage" GoPreviousPage="pagerUC_GoPreviousPage" x:Name="pagerUC"></User_ControlsMovieUC:MoviesPagerUC>
             </StackPanel>
-            <Button HorizontalAlignment="Right" Grid.Row="2" Click="ShowAddMovie_Click">Ajouter un film</Button>
+            <Button Width="30" Height="30" Style="{StaticResource MaterialDesignIconButton}" ToolTip="Ajouter un film" Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
+                    HorizontalAlignment="Right" Grid.Row="2" Click="ShowAddMovie_Click">
+                <materialDesign:PackIcon Width="20" Height="30" Kind="PlusCircle" />
+            </Button>
             <StackPanel  Grid.Row="3" Visibility="{Binding StateManager.IsAddMovieVisible, Converter={StaticResource VisibilityConverter}}">
                 <User_ControlsMovieUC:AddMovieUC  GoPreviousPage="AddMovieUC_GoPreviousPage" x:Name="AddMovieUC"></User_ControlsMovieUC:AddMovieUC>
             </StackPanel>

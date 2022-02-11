@@ -1,4 +1,5 @@
-﻿using ReserveTaPlace.Models.WPFModels;
+﻿using ReserveTaPlace.Models;
+using ReserveTaPlace.Models.WPFModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,5 +21,7 @@ namespace ReserveTaPlace.Logic.DataManager
         Task<TModel> GetTheaterByName(string name);
         Task<TModel> UpdateTheater(TModel model);
 
+        Task<TModel> GetCalendarByDate(string date);
+        Task<bool> AddCalendar(TModel Calendar);
     }
 }

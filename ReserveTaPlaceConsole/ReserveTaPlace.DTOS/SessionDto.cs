@@ -15,7 +15,7 @@ namespace ReserveTaPlace.DTOS
         public MovieDto Movie { get; set; }
 
         [JsonProperty("planning")]
-        public PlanningDto Planning { get; set; }
+        public CalendarDto Calendar { get; set; }
 
         [JsonProperty("schedules")]
         public IList<ScheduleDto> Schedules { get; set; }
