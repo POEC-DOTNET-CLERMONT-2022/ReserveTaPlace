@@ -4,6 +4,7 @@ using ReserveTaPlace.Models;
 using ReserveTaPlace.Models.WPFModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,18 +25,18 @@ namespace ReserveTaPlace.Wpf.User_Controls
     /// </summary>
     public partial class UserPageUC : UserControl
     {
-        private UserViewModel _userViewModel;
+        public UserViewModel UserViewModel;
         private IDataManager<UserModel, UserDto> _dataManager;
         private int _pageIndex;
         private int _pageSize;
         public UserPageUC()
         {
             InitializeComponent();
-            _userViewModel = new UserViewModel();
+            UserViewModel = new UserViewModel();
             _dataManager = ((App)Application.Current).UserDataManager;
             _pageIndex = 1;
             _pageSize = 8;
-            DataContext = _userViewModel;
+            DataContext = UserViewModel;
 
         }
 
@@ -47,7 +48,8 @@ namespace ReserveTaPlace.Wpf.User_Controls
         private async Task LoadUsers()
         {
             var users = await _dataManager.GetAllPaginated(_pageIndex, _pageSize);
-
+            UserViewModel.Users = new ObservableCollection<UserModel>(users.Data);
+            UCUsersList.Users = UserViewModel.Users;
         }
     }
 }
