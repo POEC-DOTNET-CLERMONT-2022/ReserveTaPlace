@@ -26,7 +26,7 @@ namespace ReserveTaPlace.Data.Functions
 
         public async Task<IEnumerable<RoomEntity>> GetAll()
         {
-            var result = await _dbContext.Set<RoomEntity>().Include(r=>r.Format).ToListAsync();
+            var result = await _dbContext.Set<RoomEntity>().Include(r=>r.Format).Include(r=>r.Sessions).ToListAsync();
             return result;
         }
     }
