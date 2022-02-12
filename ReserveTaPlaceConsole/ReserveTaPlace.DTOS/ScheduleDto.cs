@@ -6,13 +6,13 @@ namespace ReserveTaPlace.DTOS
     [JsonObject("schedule")]
     public class ScheduleDto
     {
-        [JsonProperty("id")]
+        [JsonProperty(PropertyName = "Id")]
         public Guid Id { get; set; }
 
-        [JsonProperty("hourStart")]
+        [JsonProperty(PropertyName = "HourStart")]
         public DateTime HourStart { get; set; }
 
-        [JsonProperty("hourEnd")]
+        [JsonProperty(PropertyName = "HourEnd")]
         public DateTime HourEnd { get; set; }
     }
 }

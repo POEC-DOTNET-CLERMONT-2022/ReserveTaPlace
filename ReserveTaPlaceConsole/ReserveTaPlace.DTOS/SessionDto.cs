@@ -8,16 +8,16 @@ namespace ReserveTaPlace.DTOS
     [JsonObject("session")]
     public class SessionDto
     {
-        [JsonProperty("id")]
+        [JsonProperty(PropertyName = "Id")]
         public Guid Id { get; set; }
 
-        [JsonProperty("movie")]
+        [JsonProperty(PropertyName = "Movie")]
         public MovieDto Movie { get; set; }
 
-        [JsonProperty("calendar")]
+        [JsonProperty(PropertyName = "Calendar")]
         public CalendarDto Calendar { get; set; }
 
-        [JsonProperty("schedules")]
+        [JsonProperty(PropertyName = "Schedules")]
         public IList<ScheduleDto> Schedules { get; set; }
     }
 }

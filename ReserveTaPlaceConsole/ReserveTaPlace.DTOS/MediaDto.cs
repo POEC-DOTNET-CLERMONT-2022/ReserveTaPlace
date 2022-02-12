@@ -8,10 +8,10 @@ namespace ReserveTaPlace.DTOS
     [JsonObject("media")]
     public class MediaDto
     {
-        [JsonProperty(PropertyName = "id")]
+        [JsonProperty(PropertyName = "Id")]
         public Guid Id { get; set; }
 
-        [JsonProperty(PropertyName = "link")]
+        [JsonProperty(PropertyName = "Link")]
         public string Link { get; set; }
     }
 }

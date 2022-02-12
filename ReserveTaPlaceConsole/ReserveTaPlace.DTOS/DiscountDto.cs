@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ReserveTaPlace.DTOS
 {
-    [JsonObject("discount")]
+    [JsonObject("Discount")]
     public class DiscountDto
     {
 

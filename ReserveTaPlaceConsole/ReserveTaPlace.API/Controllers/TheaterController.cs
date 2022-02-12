@@ -44,7 +44,7 @@ namespace ReserveTaPlace.API.Controllers
 
         // POST api/<TheaterController>
         [HttpPost]
-        public async Task<ActionResult> Add([FromBody] TheaterDto theaterDto)
+        public async Task<ActionResult> Add([FromBody] NewTheaterDto theaterDto)
         {
             var theaterEntity = _mapper.Map<TheaterEntity>(theaterDto);
             var theaterEntityResult = await _theater.Add(theaterEntity);

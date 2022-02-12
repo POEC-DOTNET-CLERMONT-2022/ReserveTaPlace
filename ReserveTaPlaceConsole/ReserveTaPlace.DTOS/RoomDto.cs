@@ -8,23 +8,23 @@ namespace ReserveTaPlace.DTOS
     [JsonObject("room")]
     public class RoomDto
     {
-        [JsonProperty(PropertyName = "id")]
+        [JsonProperty(PropertyName = "Id")]
         public Guid Id { get; set; }
 
-        [JsonProperty(PropertyName = "name")]
+        [JsonProperty(PropertyName = "Name")]
         public string Name { get; set; }
 
-        [JsonProperty(PropertyName = "number")]
+        [JsonProperty(PropertyName = "Number")]
         public string Number { get; set; }
 
 
-        [JsonProperty(PropertyName = "format")]
+        [JsonProperty(PropertyName = "Format")]
         public FormatDto Format { get; set; }
 
-        [JsonProperty(PropertyName = "seats")]
+        [JsonProperty(PropertyName = "Seats")]
         public IList<SeatDto> Seats { get; set; }
       
-        [JsonProperty(PropertyName = "sessions")]
+        [JsonProperty(PropertyName = "Sessions")]
         public IList<SessionDto> Sessions { get; set; }
 
 
