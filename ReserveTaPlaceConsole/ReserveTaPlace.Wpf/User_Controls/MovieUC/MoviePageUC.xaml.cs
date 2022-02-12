@@ -31,6 +31,7 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
         private SessionViewModel _sessionViewModel;
         public PaginatedList<MovieModel> PaginatedMovies;
         private readonly IDataManager<MovieModel, MovieDto> _movieDataManager;
+        private readonly IDataManager<TheaterModel, TheaterDto> _theaterDataManager;
         private IDataManager<MovieModel, MovieDto> _movieProviderDataManager;
         private int _pageIndex;
         private int _itemsPerPage;
@@ -46,6 +47,7 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
             _itemsPerPage = 8;
             PaginatedMovies = new PaginatedList<MovieModel>();
             _listMovie.StateManager = new MoviePageStateManager(MoviePageState.MoviesListView);
+            _theaterDataManager = ((App)Application.Current).TheaterDataManager;
             DataContext = _listMovie;
             //DataContext = new { _listMovie, _sessionViewModel };
 
@@ -132,6 +134,13 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
         private async void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             await LoadMovies();
+            await LoadTheaters();
+        }
+
+        private async Task LoadTheaters()
+        {
+            var theaters = await _theaterDataManager.GetAll();
+            _sessionViewModel.Theaters = new ObservableCollection<TheaterModel>(theaters);
         }
 
         private void AddMovieUC_GoPreviousPage(object sender, EventArgs e)

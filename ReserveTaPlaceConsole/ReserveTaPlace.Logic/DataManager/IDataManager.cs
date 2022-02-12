@@ -23,5 +23,6 @@ namespace ReserveTaPlace.Logic.DataManager
 
         Task<TModel> GetCalendarByDate(string date);
         Task<bool> AddCalendar(TModel Calendar);
+        Task<bool> AddSessions(List<TModel> sessions);
     }
 }

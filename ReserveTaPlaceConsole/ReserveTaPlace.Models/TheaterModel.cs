@@ -11,9 +11,9 @@ namespace ReserveTaPlace.Models
     {
         private Guid _id;
         private string _name;
-        private IList<MediaModel> _medias;
-        private IList<RoomModel> _rooms;
-        private IList<UserModel> _users;
+        private List<MediaModel> _medias;
+        private List<RoomModel> _rooms;
+        private List<UserModel> _users;
 
 
         [JsonConstructor]
@@ -26,19 +26,14 @@ namespace ReserveTaPlace.Models
             _users = users;
         }
 
-        [JsonPropertyName("id")]
-        public Guid Id { get => _id; }
+        public Guid Id { get => _id; set { _id = value; } }
 
-        [JsonPropertyName("name")]
         public string Name { get { return _name; } set { _name = value; } }
 
-        [JsonPropertyName("media")]
-        public IList<MediaModel> Medias { get { return _medias; } set { _medias = value; } }
+        public List<MediaModel> Medias { get { return _medias; } set { _medias = value; } }
 
-        [JsonPropertyName("rooms")]
-        public IList<RoomModel> Rooms { get { return _rooms; } set { _rooms = value; } }
+        public List<RoomModel> Rooms { get { return _rooms; } set { _rooms = value; } }
 
-        [JsonPropertyName("users")]
-        public IList<UserModel> Users { get { return _users; } set { _users = value; } }
+        public List<UserModel> Users { get { return _users; } set { _users = value; } }
     }
 }

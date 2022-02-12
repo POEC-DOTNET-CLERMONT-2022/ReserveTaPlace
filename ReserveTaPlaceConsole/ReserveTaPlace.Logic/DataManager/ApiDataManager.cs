@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Newtonsoft.Json;
+using ReserveTaPlace.Models;
 using ReserveTaPlace.Models.WPFModels;
 using System;
 using System.Collections.Generic;
@@ -116,6 +117,16 @@ namespace ReserveTaPlace.Logic.DataManager
             response.EnsureSuccessStatusCode();
             var resultString = await response.Content.ReadAsStringAsync();
             return resultString=="true";
+        }
+
+        public async Task<bool> AddSessions(List<TModel> sessions)
+        {
+            var _uri = new Uri(Uri + "/AddSessions");
+            var sessionsDto = Mapper.Map<List<TDto>>(sessions);
+            var response = await HttpClient.PostAsJsonAsync(_uri, sessionsDto);
+            response.EnsureSuccessStatusCode();
+            var resultString = await response.Content.ReadAsStringAsync();
+            return resultString == "true";
         }
     }
 }

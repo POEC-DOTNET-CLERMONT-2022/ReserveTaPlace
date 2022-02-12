@@ -1,9 +1,10 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 
 namespace ReserveTaPlace.DTOS
 {
-    [JsonObject("movie")]
+    [JsonObject("Movie")]
     public class MovieDto
     {
         [JsonProperty(PropertyName = "Id")]
@@ -28,7 +29,7 @@ namespace ReserveTaPlace.DTOS
         public string Poster { get; set; }
         [JsonProperty(PropertyName = "Country")]
         public string Country { get; set; }
-
-
+        [JsonProperty(PropertyName = "Medias")]
+        public List<MediaDto> Medias { get; set; }
     }
 }

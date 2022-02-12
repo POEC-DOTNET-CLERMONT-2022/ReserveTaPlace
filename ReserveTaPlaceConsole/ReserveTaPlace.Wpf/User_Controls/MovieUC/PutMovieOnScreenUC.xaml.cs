@@ -30,6 +30,8 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
         private static readonly DependencyProperty _sessionViewModelProperty = DependencyProperty.Register("SessionViewModel", typeof(SessionViewModel), typeof(PutMovieOnScreenUC));
         private SessionViewModel _sessionViewModel;
         private IDataManager<CalendarModel, CalendarDto> _calendarDataManager;
+        private IDataManager<SessionModel, SessionDto> _sessionDataManager;
+
         public SessionViewModel SessionViewModel
         {
             get { return GetValue(_sessionViewModelProperty) as SessionViewModel; }
@@ -45,6 +47,7 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
         {
             InitializeComponent();
             _calendarDataManager = ((App)Application.Current).CalendarDataManager;
+            _sessionDataManager = ((App)Application.Current).SessionDataManager;
             DataContext = SessionViewModel;
             DPStartDate.DisplayDateStart = DateTime.Now;
             DPStartDate.DisplayDateEnd = DateTime.Now.Add(new TimeSpan(400, 0, 0, 0));
@@ -128,6 +131,34 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
             LBSchedules.Items.Clear();
             SessionViewModel.Calendars = null;
             SessionViewModel.Schedules = null;
+        }
+        private async void BTNCreateSessions_Click(object sender, RoutedEventArgs e)
+        {
+            SessionViewModel.SelectedTheatre = CBTheaters.SelectedItem as TheaterModel;
+            foreach (var item in SessionViewModel.SelectedTheatre.Rooms)
+            {
+                if (item.Id== SessionViewModel.Room.Id)
+                {
+                    SessionViewModel.Room = item;
+                }
+            }
+            var sessionsToAdd = new List<SessionModel>();
+            foreach (var item in SessionViewModel.Calendars)
+            {
+                var session = new SessionModel(SessionViewModel.SelectedMovie, item, SessionViewModel.Room);
+                foreach (var schedule in SessionViewModel.Schedules.ToList())
+                {
+                    schedule.SessionId = session.Id;
+                }
+                session.Schedules = SessionViewModel.Schedules.ToList();
+                sessionsToAdd.Add(session);
+            }
+            var result = await _sessionDataManager.AddSessions(sessionsToAdd);
+        }
+
+        private void CBRooms_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SessionViewModel.Room = CBRooms.SelectedItem as RoomModel;
         }
     }
 }
