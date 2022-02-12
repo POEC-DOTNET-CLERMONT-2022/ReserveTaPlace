@@ -35,6 +35,8 @@ namespace ReserveTaPlace.Wpf
         public IDataManager<TheaterModel, TheaterDto> TheaterDataManager { get; }
         public IDataManager<CalendarModel, CalendarDto> CalendarDataManager { get; }
         public IDataManager<SessionModel, SessionDto> SessionDataManager { get; }
+        public IDataManager<RoomModel, RoomDto> RoomDataManager { get; }
+
 
 
         public INavigator Navigator { get; }
@@ -55,6 +57,7 @@ namespace ReserveTaPlace.Wpf
             MovieProviderDataManager = new IMDBDataManager(HttpClient, Mapper, SERVER_URL);
             CalendarDataManager = new CalendarDataManager(HttpClient, Mapper, SERVER_URL);
             SessionDataManager = new SessionDataManager(HttpClient, Mapper, SERVER_URL);
+            RoomDataManager = new RoomDataManager(HttpClient, Mapper, SERVER_URL);
             Navigator = new Navigator();
 
         }

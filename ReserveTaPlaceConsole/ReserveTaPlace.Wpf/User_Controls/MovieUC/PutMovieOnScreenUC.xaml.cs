@@ -31,6 +31,7 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
         private SessionViewModel _sessionViewModel;
         private IDataManager<CalendarModel, CalendarDto> _calendarDataManager;
         private IDataManager<SessionModel, SessionDto> _sessionDataManager;
+        IDataManager<RoomModel, RoomDto> _roomDataManager;
 
         public SessionViewModel SessionViewModel
         {
@@ -48,6 +49,7 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
             InitializeComponent();
             _calendarDataManager = ((App)Application.Current).CalendarDataManager;
             _sessionDataManager = ((App)Application.Current).SessionDataManager;
+            _roomDataManager = ((App)Application.Current).RoomDataManager;
             DataContext = SessionViewModel;
             DPStartDate.DisplayDateStart = DateTime.Now;
             DPStartDate.DisplayDateEnd = DateTime.Now.Add(new TimeSpan(400, 0, 0, 0));
@@ -152,7 +154,9 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
                 }
                 session.Schedules = SessionViewModel.Schedules.ToList();
                 sessionsToAdd.Add(session);
+                //var result = await _sessionDataManager.AddRoomSession(session);
             }
+
             var result = await _sessionDataManager.AddSessions(sessionsToAdd);
         }
 

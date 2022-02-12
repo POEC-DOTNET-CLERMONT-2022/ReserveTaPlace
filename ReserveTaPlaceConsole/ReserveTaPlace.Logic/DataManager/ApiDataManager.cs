@@ -128,5 +128,15 @@ namespace ReserveTaPlace.Logic.DataManager
             var resultString = await response.Content.ReadAsStringAsync();
             return resultString == "true";
         }
+
+        public async Task<bool> AddRoomSession(TModel session)
+        {
+            var _uri = new Uri(Uri + "/AddRoomSession");
+            var sessionDto = Mapper.Map<TDto>(session);
+            var response = await HttpClient.PostAsJsonAsync(_uri, sessionDto);
+            response.EnsureSuccessStatusCode();
+            var resultString = await response.Content.ReadAsStringAsync();
+            return resultString == "true";
+        }
     }
 }

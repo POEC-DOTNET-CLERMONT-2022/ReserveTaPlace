@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Data.Interfaces
 {
-    public interface ISessions
+    public interface IRoom
     {
-        Task<bool> AddSessions(List<SessionEntity> sessionEntity);
-        Task<IEnumerable<SessionEntity>> GetSessions();
+        Task<bool> AddRoomSession(Guid roomId, SessionEntity session);
     }
 }

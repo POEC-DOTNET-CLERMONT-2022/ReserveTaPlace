@@ -22,5 +22,14 @@ namespace ReserveTaPlace.Data.Functions
             var result = await _dbContext.SaveChangesAsync();
             return result > 0;
         }
+
+        public async Task<IEnumerable<SessionEntity>> GetSessions()
+        {
+            var result = await _dbContext.Set<SessionEntity>()
+                //.Include(s=>s.Schedules)
+                .ToListAsync();
+            return result;
+
+        }
     }
 }
