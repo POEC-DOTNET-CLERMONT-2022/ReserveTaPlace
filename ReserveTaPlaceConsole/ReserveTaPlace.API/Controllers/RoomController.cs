@@ -21,6 +21,12 @@ namespace ReserveTaPlace.API.Controllers
             _room = new RoomFunctions(dbContext);
             _mapper = mapper;
         }
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            var result = await _room.GetAll();
+            return Ok(result);
+        }
 
     }
 }
