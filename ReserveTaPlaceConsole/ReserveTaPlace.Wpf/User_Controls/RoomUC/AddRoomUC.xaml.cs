@@ -2,6 +2,7 @@
 using ReserveTaPlace.Logic.DataManager;
 using ReserveTaPlace.Models;
 using ReserveTaPlace.Models.WPFModels;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
@@ -21,6 +22,7 @@ namespace ReserveTaPlace.Wpf.User_Controls.RoomUC
         {
             InitializeComponent();
             _formatDataManager = ((App)Application.Current).FormatDataManager;
+            _roomViewModel = new RoomViewModel();
         }
         public RoomViewModel RoomViewModel
         {

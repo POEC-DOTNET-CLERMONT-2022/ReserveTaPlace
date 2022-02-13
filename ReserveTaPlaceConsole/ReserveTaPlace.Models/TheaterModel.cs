@@ -31,14 +31,14 @@ namespace ReserveTaPlace.Models
 
         public string Name { get { return _name; } set { _name = value; } }
 
-        [JsonPropertyName("address")]
+        [JsonPropertyName("Address")]
         public AddressModel Address { get { return _address; } set { _address = value; } }
 
-        [JsonPropertyName("media")]
+        [JsonPropertyName("Medias")]
         public IList<MediaModel> Medias { get { return _medias; } set { _medias = value; } }
 
-        public List<RoomModel> Rooms { get { return _rooms; } set { _rooms = value; } }
+        public IList<RoomModel> Rooms { get { return _rooms; } set { _rooms = value; } }
 
-        public List<UserModel> Users { get { return _users; } set { _users = value; } }
+        public IList<UserModel> Users { get { return _users; } set { _users = value; } }
     }
 }

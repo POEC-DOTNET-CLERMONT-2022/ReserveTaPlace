@@ -28,6 +28,6 @@ namespace ReserveTaPlace.Entities
         [ForeignKey(nameof(FormatId))]
         public virtual FormatEntity? Format { get; set; }
         public virtual ICollection<SeatEntity> Seats { get; set; }
-        public virtual ICollection<SessionEntity> Sessions { get; set; }
+        public virtual ICollection<SessionEntity>? Sessions { get; set; }
     }
 }

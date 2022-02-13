@@ -9,10 +9,11 @@ namespace ReserveTaPlace.DTOS
     {
         [JsonProperty(PropertyName = "Id")]
         public Guid Id { get; set; }
-        [JsonProperty(PropertyName = "TheaterId")]
-        public Guid TheaterId { get; set; }
-        [JsonProperty(PropertyName = "FormatId")]
-        public Guid FormatId { get; set; }
+
+        //[JsonProperty(PropertyName = "TheaterId")]
+        //public Guid TheaterId { get; set; }
+        //[JsonProperty(PropertyName = "FormatId")]
+        //public Guid FormatId { get; set; }
 
         [JsonProperty(PropertyName = "Name")]
         public string Name { get; set; }
@@ -20,9 +21,12 @@ namespace ReserveTaPlace.DTOS
         [JsonProperty(PropertyName = "Number")]
         public string Number { get; set; }
 
+        [JsonProperty(PropertyName = "Format")]
+        public FormatDto Format { get; set; }
 
-        //[JsonProperty(PropertyName = "Format")]
-        //public FormatDto Format { get; set; }
+        [JsonProperty(PropertyName = "Seats")]
+        public List<SeatDto> Seats { get; set; }
+
         //[JsonProperty(PropertyName = "Theatre")]
         //public TheaterDto Theater { get; set; }
 
