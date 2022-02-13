@@ -92,11 +92,11 @@ namespace ReserveTaPlace.Models.WPFModels
                 }
             }
         }
+        
         public TheaterModel TheaterToCreate
         {
             get { return _theaterToCreate; }
             set { _theaterToCreate = value; }
         }
-
     }
 }

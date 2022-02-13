@@ -34,6 +34,7 @@ namespace ReserveTaPlace.Models
         [JsonPropertyName("name")]
         public string Name { get { return _name; } set { _name = value; } }
 
+
         [JsonPropertyName("address")]
         public AddressModel Address { get { return _address; } set { _address = value; } }
 

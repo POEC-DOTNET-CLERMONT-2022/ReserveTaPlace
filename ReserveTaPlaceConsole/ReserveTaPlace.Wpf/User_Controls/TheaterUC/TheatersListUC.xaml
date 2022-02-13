@@ -107,7 +107,6 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-
                     <!--<GridViewColumn
             Header="Options">
                             <GridViewColumn.CellTemplate>
