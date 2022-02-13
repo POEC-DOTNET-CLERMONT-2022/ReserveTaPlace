@@ -15,32 +15,32 @@ namespace ReserveTaPlace.Wpf.User_Controls.RoomUC
     /// </summary>
     public partial class AddRoomUC : UserControl, INotifyPropertyChanged
     {
-        private static readonly DependencyProperty _roomViewModelProperty = DependencyProperty.Register("RoomViewModel", typeof(RoomViewModel), typeof(AddRoomUC));
-        private RoomViewModel _roomViewModel;
+        //private static readonly DependencyProperty _roomViewModelProperty = DependencyProperty.Register("RoomViewModel", typeof(RoomViewModel), typeof(AddRoomUC));
+        public RoomViewModel RoomViewModel { get; set; }
         private readonly IDataManager<FormatModel, FormatDto> _formatDataManager;
         public AddRoomUC()
         {
             InitializeComponent();
             _formatDataManager = ((App)Application.Current).FormatDataManager;
-            _roomViewModel = new RoomViewModel();
+            RoomViewModel = new RoomViewModel();
         }
-        public RoomViewModel RoomViewModel
-        {
-            get { return GetValue(_roomViewModelProperty) as RoomViewModel; }
-            set
-            {
-                if (_roomViewModel != value)
-                {
-                    SetValue(_roomViewModelProperty, value);
-                }
-            }
-        }
+        //public RoomViewModel RoomViewModel
+        //{
+        //    get { return GetValue(_roomViewModelProperty) as RoomViewModel; }
+        //    set
+        //    {
+        //        if (_roomViewModel != value)
+        //        {
+        //            SetValue(_roomViewModelProperty, value);
+        //        }
+        //    }
+        //}
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
         private void BTNAddRoom_Click(object sender, RoutedEventArgs e)
         {
-            _roomViewModel.Rooms.Add(_roomViewModel.RoomToCreate);
+            RoomViewModel.Rooms.Add(RoomViewModel.RoomToCreate);
         }
 
         private async void UserControl_Loaded(object sender, RoutedEventArgs e)
