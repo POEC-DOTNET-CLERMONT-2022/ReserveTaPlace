@@ -1,20 +1,10 @@
-﻿using AutoMapper;
-using ReserveTaPlace.DTOS;
+﻿using ReserveTaPlace.DTOS;
 using ReserveTaPlace.Logic.DataManager;
 using ReserveTaPlace.Models;
 using ReserveTaPlace.Models.WPFModels;
-using System.Collections;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ReserveTaPlace.Wpf.User_Controls.TheaterUC
 {
@@ -39,12 +29,6 @@ namespace ReserveTaPlace.Wpf.User_Controls.TheaterUC
         {
             var theaters = await _theaterDataManager.GetAll();
             TheaterViewModel.Theaters = new ObservableCollection<TheaterModel>(theaters);
-            //var roomList = _theaterViewModel.CurrentTheater.Rooms;
-            //foreach (var room in roomList)
-            //{
-            //    room.
-            //}
-            //_theaterViewModel.SeatList = new ObservableCollection<SeatModel>()
             TheaterListUC.Theaters = TheaterViewModel.Theaters;
         }
 
@@ -52,6 +36,16 @@ namespace ReserveTaPlace.Wpf.User_Controls.TheaterUC
         {
             TheaterViewModel.CurrentTheater = TheaterListUC.LVTheaters.SelectedItem as TheaterModel;
             TheaterDetailsUC.TheaterViewModel = TheaterViewModel;
+        }
+
+        private void BTNCreateTheater_Click(object sender, RoutedEventArgs e)
+        {
+            SPAddTheater.Visibility = Visibility.Visible;
+        }
+
+        private void BTNCreateRoom_Click(object sender, RoutedEventArgs e)
+        {
+            AddRoomUC.Visibility = Visibility.Visible;
         }
     }
 }

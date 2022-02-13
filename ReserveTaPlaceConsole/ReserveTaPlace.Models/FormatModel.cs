@@ -11,9 +11,9 @@ namespace ReserveTaPlace.Models
         private Guid _id;
         private string _name;
 
-        public FormatModel(string name)
+        public FormatModel(Guid id, string name)
         {
-            _id = Guid.NewGuid();
+            _id = id;
             _name = name;
         }
 
