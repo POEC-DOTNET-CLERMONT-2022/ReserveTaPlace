@@ -12,6 +12,7 @@ namespace ReserveTaPlace.Models.WPFModels
         private ObservableCollection<TheaterModel> _theaters;
         private TheaterModel _currentTheater;
         private RoomModel _currentRoom;
+        private TheaterModel _theaterToCreate;
         private ObservableCollection<List<SeatModel>> _seatList;
         private ObservableCollection<List<RoomModel>> _roomList;
         private ObservableCollection<List<UserModel>> _userList;
@@ -91,6 +92,11 @@ namespace ReserveTaPlace.Models.WPFModels
                 }
             }
         }
-
+        
+        public TheaterModel TheaterToCreate
+        {
+            get { return _theaterToCreate; }
+            set { _theaterToCreate = value; }
+        }
     }
 }

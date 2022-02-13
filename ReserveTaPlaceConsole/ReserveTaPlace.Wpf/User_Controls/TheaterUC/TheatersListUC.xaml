@@ -78,13 +78,35 @@
             </DataGrid.RowDetailsTemplate>
         </DataGrid>-->
             <ListView x:Name="LVTheaters" DataContext="{Binding .,ElementName=root}" ItemsSource="{Binding Theaters}" 
-                      SelectedItem="{Binding CurrentTheater}" SelectionChanged="LVTheaters_SelectionChanged">
+                      SelectedItem="{Binding CurrentTheater}" SelectionChanged="LVTheaters_SelectionChanged" HorizontalAlignment="Center">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Nom"/>
                         <GridViewColumn DisplayMemberBinding="{Binding Medias.Count}" Header="Image"/>
                         <GridViewColumn DisplayMemberBinding="{Binding Rooms.Count}" Header="Salles"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Users.Count}" Header="Utilisateurs"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Users.Count}" Header="Utilisateurs"/>
+                    <GridViewColumn Header="Action">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                                            ToolTip="Supprimer" Margin="0 0 8 0"
+                                            x:Name="BTNDelete" Click="BTNDelete_Click" Height="30" Width="30">
+                                        <materialDesign:PackIcon Kind="Delete"
+                                                                 Height="14"
+                                                                 Width="14" />
+                                    </Button>
+                                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                                            ToolTip="Supprimer"
+                                            x:Name="BTNUpdate" Click="BTNUpdate_Click" Height="30" Width="30">
+                                        <materialDesign:PackIcon Kind="PencilOutline"
+                                                                 Height="14"
+                                                                 Width="14" />
+                                    </Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                     <!--<GridViewColumn
             Header="Options">
                             <GridViewColumn.CellTemplate>

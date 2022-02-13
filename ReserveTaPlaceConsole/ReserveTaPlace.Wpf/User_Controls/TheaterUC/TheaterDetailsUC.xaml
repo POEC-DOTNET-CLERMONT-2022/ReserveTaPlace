@@ -14,102 +14,70 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              x:Name="root">
-    <Grid>
-        <materialDesign:Card DataContext="{Binding .,ElementName=root}" MaxWidth="400">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="3*"/>
-                </Grid.ColumnDefinitions>
-                <ListBox materialDesign:ListBoxItemAssist.ShowSelection="False"
-                         ItemsSource="{Binding TheaterViewModel.CurrentTheater.Medias}" Grid.Column="0">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Image Source="{Binding Link}" Stretch="UniformToFill" Margin="0 5 0 0"/>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-                <TextBlock Grid.Column="1" FontSize="18" TextWrapping="Wrap" HorizontalAlignment="Center" Text="{Binding TheaterViewModel.CurrentTheater.Name}" />
-                <ListBox Grid.Column="1" materialDesign:ListBoxItemAssist.ShowSelection="False"
-                         ItemsSource="{Binding TheaterViewModel.CurrentTheater.Rooms}" >
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel>
-                                    <TextBlock TextWrapping="Wrap" Width="100">
-                                        <TextBlock.Text>
-                                            <MultiBinding StringFormat="{}- Salle n° {0}({1}) / {2} sièges / {3} séance(s) programmée(s) / format : {4}.">
-                                                <Binding Path="Number" />
-                                                <Binding Path="Name" />
-                                                <Binding Path="Seats.Count" />
-                                                <Binding Path="Sessions.Count" />
-                                                <Binding Path="Format.Name" />
-                                            </MultiBinding>
-                                        </TextBlock.Text>
-                                    </TextBlock>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                <ListBox Grid.Column="2" materialDesign:ListBoxItemAssist.ShowSelection="False"
-                         ItemsSource="{Binding TheaterViewModel.CurrentTheater.Users}" >
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel>
-                                <TextBlock Text="{Binding Email}"/>
-                                <TextBlock>
-                                    <TextBlock.Text>
-                                        <MultiBinding StringFormat="{}{0}{1}{2}">
-                                            <Binding Path="LastName" />
-                                            <Binding Path="FirstName" />
-                                            <Binding Path="Roles.Name" />
-                                        </MultiBinding>
-                                    </TextBlock.Text>
-                                </TextBlock>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </Grid>
-        </materialDesign:Card>
+    <Grid DataContext="{Binding .,ElementName=root}"  VerticalAlignment="Top">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 0 0 20">
+            <StackPanel Margin="0 0 40 0">
+                <TextBlock Text="{Binding TheaterViewModel.CurrentTheater.Name, StringFormat='Adresse de {0}'}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold"/>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="{Binding TheaterViewModel.CurrentTheater.Address.Address1}"/>
+                    <TextBlock Text="{Binding TheaterViewModel.CurrentTheater.Address.Address2}"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding TheaterViewModel.CurrentTheater.Address.Number}" Margin="0 0 5 0"/>
+                        <TextBlock Text="{Binding TheaterViewModel.CurrentTheater.Address.Street}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding TheaterViewModel.CurrentTheater.Address.PostalCode}" Margin="0 0 5 0"/>
+                        <TextBlock Text="{Binding TheaterViewModel.CurrentTheater.Address.City}"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="Liste des utilisateurs" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+                <ListView x:Name="LVTheatersUsersDétails" ItemsSource="{Binding TheaterViewModel.CurrentTheater.Users}"
+                                    HorizontalAlignment="Center">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding LastName}" Header="Nom"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding FirstName}" Header="Prénom"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Email}" Header="Email"/>
+                            <GridViewColumn Header="Rôle">
+                                <GridViewColumn.CellTemplate >
+                                    <DataTemplate>
+                                        <ListBox materialDesign:ListBoxItemAssist.ShowSelection="False" ItemsSource="{Binding Roles}">
+                                            <ListBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel >
+                                                        <TextBlock Text="{Binding Name}" />
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ListBox.ItemTemplate>
+                                        </ListBox>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+            <TextBlock Text="Liste des salles" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+            <ListView  x:Name="LVTheatersRoomsDétails" ItemsSource="{Binding TheaterViewModel.CurrentTheater.Rooms}"
+                              HorizontalAlignment="Center">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Format.Name}" Header="Format"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Number}" Header="Numéro"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Nom"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Seats.Count}" Header="Nombre de sièges"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Sessions.Count}" Header="Nombre de sessions"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
     </Grid>
-    <!--<Grid DataContext="{Binding ., ElementName=root}">-->
-        <!--<WrapPanel DataContext="{Binding ., ElementName=root}" Orientation="Vertical">
-            <TextBlock Text="{Binding CurrentTheater.Name}" FontSize="18" materialDesign:TextBlockAssist.AutoToolTip="True" ></TextBlock>
-            
-            <TreeView ItemsSource="{Binding CurrentTheater.Rooms}">
-                <TreeView.Resources>
-                    <Style TargetType="TreeViewItem" BasedOn="{StaticResource MaterialDesignTreeViewItem}">
-                        <Setter Property="materialDesign:TreeViewAssist.ExpanderSize" Value="32" />
-                        <Setter Property="materialDesign:TreeViewAssist.ShowSelection" Value="False" />
-                    </Style>
-                </TreeView.Resources>
-                <TreeView.ItemTemplate>
-                    <HierarchicalDataTemplate>
-                        <HierarchicalDataTemplate >
-
-                        </HierarchicalDataTemplate>
-                    </HierarchicalDataTemplate>
-                </TreeView.ItemTemplate>
-            </TreeView>
-        </WrapPanel>-->
-        <!--<TextBlock Text="{Binding TheaterViewModel.CurrentTheater.Name}"/>
-        <Grid>
-            <TreeView ItemsSource="{Binding TheaterViewModel.CurrentTheater.Rooms}" Margin="10">
-                
-                <TreeView.Resources>
-                    <Style TargetType="TreeViewItem" BasedOn="{StaticResource MaterialDesignTreeViewItem}">
-                        <Setter Property="materialDesign:TreeViewAssist.ExpanderSize" Value="32" />
-                        <Setter Property="materialDesign:TreeViewAssist.ShowSelection" Value="False" />
-                    </Style>
-                    <HierarchicalDataTemplate DataType="{x:Type model:RoomModel}">
-                        <TextBlock Text="{Binding Number, StringFormat='Salle n° {0}'}"/>
-                    </HierarchicalDataTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Format.Name}"/>
-                    </DataTemplate>
-                </TreeView.Resources>
-            </TreeView>
-        </Grid>-->
-    <!--</Grid>-->
 </UserControl>

@@ -16,11 +16,10 @@ namespace ReserveTaPlace.Models
         private string _postalCode;
         private string _number;
         private string _county;
-        private TheaterModel _theater;
 
-        public AddressModel(string address1, string address2, string street, string city, string postalCode, string number, string county, TheaterModel theater)
+        public AddressModel(Guid id, string address1, string address2, string street, string city, string postalCode, string number, string county)
         {
-            _id = Guid.NewGuid();
+            _id = id;
             _address1 = address1;
             _address2 = address2;
             _street = street;
@@ -28,7 +27,6 @@ namespace ReserveTaPlace.Models
             _postalCode = postalCode;
             _number = number;
             _county = county;
-            _theater = theater;
         }
 
         public Guid Id { get => _id; }
@@ -39,7 +37,6 @@ namespace ReserveTaPlace.Models
         public string PostalCode { get { return _postalCode; }set { _postalCode = value; } }
         public string Number { get { return _number; }set { _number = value; } }
         public string County { get { return _county; }set { _county = value; } }
-        public TheaterModel Theater { get { return _theater; }set { _theater = value; } }
 
     }
 }
