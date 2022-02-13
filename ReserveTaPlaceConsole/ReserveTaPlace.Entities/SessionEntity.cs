@@ -22,8 +22,8 @@ namespace ReserveTaPlace.Entities
 
         [ForeignKey(nameof(CalendarId))]
         public virtual CalendarEntity? Calendar { get; set; }
-        //[InverseProperty("Sessions")]
-        //public RoomEntity? Room { get; set; }
+        [InverseProperty("Sessions")]
+        public RoomEntity? Room { get; set; }
         public virtual ICollection<ScheduleEntity> Schedules { get; set; }
 
     }
