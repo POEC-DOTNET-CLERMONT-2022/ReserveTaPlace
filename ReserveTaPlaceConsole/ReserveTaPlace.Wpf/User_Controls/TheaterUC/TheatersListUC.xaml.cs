@@ -38,5 +38,15 @@ namespace ReserveTaPlace.Wpf.User_Controls.TheaterUC
             if (this.SelectionChanged != null)
                 this.SelectionChanged(this, e);
         }
+
+        private void BTNDelete_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BTNUpdate_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
