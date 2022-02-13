@@ -9,18 +9,27 @@ using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Data.Functions
 {
-    public class SessionFunctions : ISession
+    public class SessionFunctions : ISessions
     {
         private DbContext _dbContext;
         public SessionFunctions(DbContext DbContext)
         {
             _dbContext= DbContext;
         }
-        public async Task<bool> AddSession(SessionEntity sessionEntity)
+        public async Task<bool> AddSessions(List<SessionEntity> sessionEntities)
         {
-            _dbContext.Set<SessionEntity>().Add(sessionEntity);
+            await _dbContext.Set<SessionEntity>().AddRangeAsync(sessionEntities);
             var result = await _dbContext.SaveChangesAsync();
             return result > 0;
+        }
+
+        public async Task<IEnumerable<SessionEntity>> GetSessions()
+        {
+            var result = await _dbContext.Set<SessionEntity>()
+                //.Include(s=>s.Schedules)
+                .ToListAsync();
+            return result;
+
         }
     }
 }

@@ -22,7 +22,7 @@ namespace ReserveTaPlace.Data.Functions
         }
         public async Task<PaginatedList<UserEntity>> GetAllPaginated(int pageIndex, int pageSize)
         {
-            return await PaginatedList<UserEntity>.CreateAsync(_dbContext.Set<UserEntity>(), pageIndex, pageSize);
+            return await PaginatedList<UserEntity>.CreateAsync(_dbContext.Set<UserEntity>().Include(u=>u.Roles), pageIndex, pageSize);
         }
         public async Task<IEnumerable<UserEntity>> GetAll()
         {

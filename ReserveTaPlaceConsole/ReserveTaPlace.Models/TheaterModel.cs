@@ -16,7 +16,6 @@ namespace ReserveTaPlace.Models
         private IList<RoomModel> _rooms;
         private IList<UserModel> _users;
 
-
         [JsonConstructor]
         public TheaterModel(Guid id, string name, AddressModel address, List<MediaModel> medias, List<RoomModel> rooms, List<UserModel> users)
         {
@@ -28,12 +27,9 @@ namespace ReserveTaPlace.Models
             _users = users;
         }
 
-        [JsonPropertyName("id")]
-        public Guid Id { get => _id; }
+        public Guid Id { get => _id; set { _id = value; } }
 
-        [JsonPropertyName("name")]
         public string Name { get { return _name; } set { _name = value; } }
-
 
         [JsonPropertyName("address")]
         public AddressModel Address { get { return _address; } set { _address = value; } }
@@ -41,10 +37,8 @@ namespace ReserveTaPlace.Models
         [JsonPropertyName("media")]
         public IList<MediaModel> Medias { get { return _medias; } set { _medias = value; } }
 
-        [JsonPropertyName("rooms")]
-        public IList<RoomModel> Rooms { get { return _rooms; } set { _rooms = value; } }
+        public List<RoomModel> Rooms { get { return _rooms; } set { _rooms = value; } }
 
-        [JsonPropertyName("users")]
-        public IList<UserModel> Users { get { return _users; } set { _users = value; } }
+        public List<UserModel> Users { get { return _users; } set { _users = value; } }
     }
 }

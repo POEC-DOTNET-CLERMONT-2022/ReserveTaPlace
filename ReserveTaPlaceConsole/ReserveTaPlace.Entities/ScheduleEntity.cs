@@ -9,16 +9,14 @@ namespace ReserveTaPlace.Entities
         public ScheduleEntity()
         {
             Seats = new HashSet<SeatEntity>();
+            Sessions = new HashSet<SessionEntity>();
         }
         [Key]
         public Guid Id { get; set; }
-        public Guid SessionId { get; set; }
         public DateTime HourStart { get; set; }
         public DateTime HourEnd { get; set; }
 
-        [ForeignKey(nameof(SessionId))]
-        [InverseProperty("Schedules")]
-        public SessionEntity Session { get; set; }
+        public ICollection<SessionEntity> Sessions { get; set; }
         public virtual ICollection<SeatEntity> Seats { get; set; }
     }
 }

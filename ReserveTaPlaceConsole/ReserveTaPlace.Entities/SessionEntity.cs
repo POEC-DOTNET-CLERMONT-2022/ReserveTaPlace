@@ -12,6 +12,7 @@ namespace ReserveTaPlace.Entities
         }
         [Key]
         public Guid Id { get; set; }
+        [ForeignKey(nameof(RoomId))]
         public Guid? RoomId { get; set; }
         public Guid? CalendarId { get; set; }
         public Guid? MovieId { get; set; }
@@ -21,7 +22,6 @@ namespace ReserveTaPlace.Entities
 
         [ForeignKey(nameof(CalendarId))]
         public virtual CalendarEntity? Calendar { get; set; }
-        [ForeignKey(nameof(RoomId))]
         [InverseProperty("Sessions")]
         public RoomEntity? Room { get; set; }
         public virtual ICollection<ScheduleEntity> Schedules { get; set; }

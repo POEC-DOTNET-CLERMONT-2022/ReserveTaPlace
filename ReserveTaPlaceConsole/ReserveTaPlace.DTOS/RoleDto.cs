@@ -8,10 +8,10 @@ namespace ReserveTaPlace.DTOS
     [JsonObject("role")]
     public class RoleDto
     {
-        [JsonProperty("id")]
+        [JsonProperty(PropertyName = "Id")]
         public Guid Id { get; set; }
 
-        [JsonProperty("name")]
+        [JsonProperty(PropertyName = "Name")]
         public string Name { get; set; }
     }
 }

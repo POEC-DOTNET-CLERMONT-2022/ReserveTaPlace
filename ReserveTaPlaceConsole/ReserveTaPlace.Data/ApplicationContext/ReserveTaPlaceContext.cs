@@ -36,6 +36,17 @@ namespace ReserveTaPlace.Data.ApplicationContext
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // Table SessionSchedule
+            modelBuilder
+                .Entity<ScheduleEntity>()
+                .HasMany(s => s.Sessions)
+                .WithMany(s => s.Schedules)
+                .UsingEntity(j => j.ToTable("SessionSchedule"));
+            modelBuilder
+                .Entity<SessionEntity>()
+                .HasMany(s => s.Schedules)
+                .WithMany(s => s.Sessions)
+                .UsingEntity(j => j.ToTable("SessionSchedule"));
             // Table ScheduleSeats
             modelBuilder
                 .Entity<ScheduleEntity>()
@@ -115,8 +126,8 @@ namespace ReserveTaPlace.Data.ApplicationContext
         public override DbSet<TEntity> Set<TEntity>()
         {
             ChangeTracker.LazyLoadingEnabled = false;
-            ChangeTracker.AutoDetectChangesEnabled = false;
-            ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+            //ChangeTracker.AutoDetectChangesEnabled = false;
+            //ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
             return base.Set<TEntity>();
         }
     }

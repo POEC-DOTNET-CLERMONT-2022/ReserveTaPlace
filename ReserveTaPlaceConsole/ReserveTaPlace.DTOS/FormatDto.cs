@@ -8,10 +8,10 @@ namespace ReserveTaPlace.DTOS
     [JsonObject("format")]
     public class FormatDto
     {
-        [JsonProperty(PropertyName = "id")]
+        [JsonProperty(PropertyName = "Id")]
         public Guid Id { get; set; }
 
-        [JsonProperty(PropertyName = "name")]
+        [JsonProperty(PropertyName = "Name")]
         public string Name { get; set; }
     }
 }

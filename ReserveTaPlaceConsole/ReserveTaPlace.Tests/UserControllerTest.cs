@@ -55,7 +55,7 @@ namespace ReserveTaPlace.API.Tests
             //dbContext.SaveChanges();
             //_userGenericRepo = new GenericFunctions<UserEntity>(dbContext);
 
-            _userController = new UserController(Mapper, _mockGenericRepo.Object, _logger);
+            //_userController = new UserController(Mapper, _mockGenericRepo.Object, _logger);
 
         }
 

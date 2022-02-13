@@ -8,13 +8,13 @@ namespace ReserveTaPlace.DTOS
     [JsonObject("seat")]
     public class SeatDto
     {
-        [JsonProperty(PropertyName = "id")]
+        [JsonProperty(PropertyName = "Id")]
         public Guid Id { get; set; }
 
-        [JsonProperty(PropertyName = "row")]
+        [JsonProperty(PropertyName = "Row")]
         public string Row { get; set; }
 
-        [JsonProperty(PropertyName = "number")]
+        [JsonProperty(PropertyName = "Number")]
         public string Number { get; set; }
 
 
