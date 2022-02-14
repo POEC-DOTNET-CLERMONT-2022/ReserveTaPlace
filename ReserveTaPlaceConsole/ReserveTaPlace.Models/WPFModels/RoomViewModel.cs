@@ -10,7 +10,7 @@ namespace ReserveTaPlace.Models.WPFModels
     public class RoomViewModel : ObservableObject
     {
         private ObservableCollection<RoomModel> _rooms;
-        private ObservableCollection<List<SeatModel>> _seats;
+        private ObservableCollection<SeatModel> _seats;
         private ObservableCollection<FormatModel> _formats;
         private RoomModel _roomToCreate;
 
@@ -26,7 +26,7 @@ namespace ReserveTaPlace.Models.WPFModels
                 }
             }
         }
-        public ObservableCollection<List<SeatModel>> Seats
+        public ObservableCollection<SeatModel> Seats
         {
             get { return _seats; }
             set

@@ -12,10 +12,11 @@
              xmlns:local="clr-namespace:ReserveTaPlace.Wpf.User_Controls.RoomUC"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             Loaded="UserControl_Loaded">
-    <Grid>
+             Loaded="UserControl_Loaded"
+             x:Name="root">
+    <Grid DataContext="{Binding ., ElementName=root}">
         <StackPanel>
-            <Grid>
+            <Grid DataContext="{Binding RoomViewModel}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="2*"/>
@@ -36,7 +37,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="1">
                     <TextBlock Text="Format de la salle :" Margin="5"/>
-                    <ComboBox x:Name="CBFormatList" materialDesign:HintAssist.Hint="Format" MinWidth="72" ItemsSource="{Binding RoomViewModel.Format}"
+                    <ComboBox x:Name="CBFormatList" materialDesign:HintAssist.Hint="Format" MinWidth="72" ItemsSource="{Binding Formats}"
                               DisplayMemberPath="Name" SelectedValuePath="Name" SelectedValue="{Binding RoomViewModel.RoomToCreate.Format.Id}"
                               SelectedItem="{Binding RoomViewModel.RoomToCreate.Format}">
                     </ComboBox>
@@ -45,16 +46,16 @@
                     <TextBlock Text="Selection des sièges :" Margin="5"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Margin="5">
-                    <ListBox>
+                    <ListBox ItemsSource="{Binding Seats}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <WrapPanel Orientation="Horizontal">
-                                    <CheckBox Content="1A" Style="{StaticResource MaterialDesignCheckBox}" />
-                                    <CheckBox Content="1A" Style="{StaticResource MaterialDesignCheckBox}" />
-                                    <CheckBox Content="1A" Style="{StaticResource MaterialDesignCheckBox}" />
-                                    <CheckBox Content="1A" Style="{StaticResource MaterialDesignCheckBox}" />
-                                    <CheckBox Content="1A" Style="{StaticResource MaterialDesignCheckBox}" />
-                                    <CheckBox Content="1A" Style="{StaticResource MaterialDesignCheckBox}" />
+                                    <CheckBox Style="{StaticResource MaterialDesignCheckBox}">
+                                        <MultiBinding StringFormat="{}{0}{1}">
+                                            <Binding Path="Row"/>
+                                            <Binding Path="Number"/>
+                                        </MultiBinding>
+                                    </CheckBox>
                                 </WrapPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>

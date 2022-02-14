@@ -18,10 +18,12 @@ namespace ReserveTaPlace.Wpf.User_Controls.RoomUC
         //private static readonly DependencyProperty _roomViewModelProperty = DependencyProperty.Register("RoomViewModel", typeof(RoomViewModel), typeof(AddRoomUC));
         public RoomViewModel RoomViewModel { get; set; }
         private readonly IDataManager<FormatModel, FormatDto> _formatDataManager;
+        private readonly IDataManager<SeatModel, SeatDto> _seatDataManager;
         public AddRoomUC()
         {
             InitializeComponent();
             _formatDataManager = ((App)Application.Current).FormatDataManager;
+            _seatDataManager = ((App)Application.Current).SeatDataManager;
             RoomViewModel = new RoomViewModel();
         }
         //public RoomViewModel RoomViewModel
@@ -40,13 +42,15 @@ namespace ReserveTaPlace.Wpf.User_Controls.RoomUC
 
         private void BTNAddRoom_Click(object sender, RoutedEventArgs e)
         {
-            RoomViewModel.Rooms.Add(RoomViewModel.RoomToCreate);
+            
         }
 
         private async void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             var formats = await _formatDataManager.GetAll();
+            var seats = await _seatDataManager.GetAll();
             RoomViewModel.Formats = new ObservableCollection<FormatModel>(formats);
+            RoomViewModel.Seats = new ObservableCollection<SeatModel>(seats);
         }
     }
 }
