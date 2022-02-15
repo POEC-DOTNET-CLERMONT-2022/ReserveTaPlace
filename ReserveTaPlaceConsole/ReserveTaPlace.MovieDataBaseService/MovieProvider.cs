@@ -76,6 +76,7 @@ namespace ReserveTaPlace.MovieDataBaseService
                 }
 
                 var body = await response.Content.ReadAsStringAsync();
+                List<MovieDto> test = JsonConvert.DeserializeObject<List<MovieDto>>(body);
                 var result = JsonConvert.DeserializeObject<ImdbSearch>(body);
                 foreach (var item in result.ImdbMovies)
                 {

@@ -27,9 +27,8 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
     /// </summary>
     public partial class MoviePageUC : UserControl
     {
-        private ListMovies _listMovie;
+        public ListMovies ListMovie;
         private SessionViewModel _sessionViewModel;
-        public PaginatedList<MovieModel> PaginatedMovies;
         private readonly IDataManager<MovieModel, MovieDto> _movieDataManager;
         private readonly IDataManager<TheaterModel, TheaterDto> _theaterDataManager;
         private IDataManager<MovieModel, MovieDto> _movieProviderDataManager;
@@ -39,22 +38,22 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
         public MoviePageUC()
         {
             InitializeComponent();
-            _listMovie = new ListMovies();
+            ListMovie = new ListMovies();
             _sessionViewModel = new SessionViewModel();
             _movieDataManager = ((App)Application.Current).MovieDataManager;
             _movieProviderDataManager = ((App)Application.Current).MovieProviderDataManager;
             _pageIndex = 1;
             _itemsPerPage = 8;
-            PaginatedMovies = new PaginatedList<MovieModel>();
-            _listMovie.StateManager = new MoviePageStateManager(MoviePageState.MoviesListView);
+            ListMovie.StateManager = new MoviePageStateManager(MoviePageState.MoviesListView);
             _theaterDataManager = ((App)Application.Current).TheaterDataManager;
-            DataContext = _listMovie;
-            //DataContext = new { _listMovie, _sessionViewModel };
+            DataContext = ListMovie;
+
 
         }
         private void ShowAddMovie_Click(object sender, RoutedEventArgs e)
         {
-            _listMovie.StateManager.Set(MoviePageState.AddMovieView);
+            ListMovie.StateManager.Set(MoviePageState.AddMovieView);
+            UCPutOnScreen.SessionViewModel.SelectedMovie = null;
         }
 
         private async void ShowListMovies(object sender, RoutedEventArgs e)
@@ -77,39 +76,39 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
         }
         public async Task LoadMovies()
         {
-            PaginatedMovies = await _movieDataManager.GetAllPaginated(_pageIndex, _itemsPerPage);
-            _listMovie.Movies = new ObservableCollection<MovieModel>(PaginatedMovies.Data);
-            pagerUC.PaginatedList = PaginatedMovies;
+            ListMovie.PaginatedMovies = await _movieDataManager.GetAllPaginated(_pageIndex, _itemsPerPage);
+            ListMovie.Movies = new ObservableCollection<MovieModel>(ListMovie.PaginatedMovies.Data);
+            pagerUC.PaginatedList = ListMovie.PaginatedMovies;
         }
 
         private async void BTNFindMovie_Click(object sender, RoutedEventArgs e)
         {
             TBUnfound.Visibility = Visibility.Collapsed;
             var movieFound = await _movieDataManager.GetMovieByNameAndYear(TBMovieName.Text, TBMovieYear.Text);
-            var ListMovie = new List<MovieModel>();
+            var movies = new List<MovieModel>();
             if (movieFound==null)
             {
                 TBUnfound.Visibility = Visibility.Visible;
             }
             if (movieFound!=null)
             {
-                ListMovie.Add(movieFound);
-                _listMovie.Movies = new ObservableCollection<MovieModel>(ListMovie);
-                MoviesListUC.Movies = _listMovie.Movies;
+                movies.Add(movieFound);
+                ListMovie.Movies = new ObservableCollection<MovieModel>(movies);
+                MoviesListUC.Movies = ListMovie.Movies;
             }
 
         }
 
         private async void pagerUC_GoNextPage(object sender, EventArgs e)
         {
-            _listMovie.StateManager.Set(MoviePageState.MoviesListView);
+            ListMovie.StateManager.Set(MoviePageState.MoviesListView);
             _pageIndex++;
             await LoadMovies();
         }
 
         private async void pagerUC_GoPreviousPage(object sender, EventArgs e)
         {
-            _listMovie.StateManager.Set(MoviePageState.MoviesListView);
+            ListMovie.StateManager.Set(MoviePageState.MoviesListView);
             _pageIndex--;
             await LoadMovies();
         }
@@ -118,15 +117,15 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
         {
             if (MoviesListUC.LBMovies.SelectedItem!=null)
             {
-                _listMovie.CurrentMovie = MoviesListUC.LBMovies.SelectedItem as MovieModel;
-                _sessionViewModel.SelectedMovie = _listMovie.CurrentMovie;
+                ListMovie.CurrentMovie = MoviesListUC.LBMovies.SelectedItem as MovieModel;
+                _sessionViewModel.SelectedMovie = ListMovie.CurrentMovie;
                 UCPutOnScreen.SessionViewModel = _sessionViewModel;
-                _listMovie.StateManager.Set(MoviePageState.PutOnScreenView);
+                ListMovie.StateManager.Set(MoviePageState.PutOnScreenView);
 
             }
             if (MoviesListUC.LBMovies.SelectedItem == null)
             {
-                _listMovie.StateManager.Set(MoviePageState.MoviesListView);
+                ListMovie.StateManager.Set(MoviePageState.MoviesListView);
 
             }
         }
@@ -145,7 +144,7 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
 
         private void AddMovieUC_GoPreviousPage(object sender, EventArgs e)
         {
-            _listMovie.StateManager.Set(MoviePageState.MoviesListView);
+            ListMovie.StateManager.Set(MoviePageState.MoviesListView);
         }
     }
 }

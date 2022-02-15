@@ -14,19 +14,23 @@
              d:DesignHeight="450" d:DesignWidth="800"
              x:Name="root">
 
-    <Grid  MaxHeight="400" MaxWidth="300">
-            <materialDesign:Card DataContext="{Binding .,ElementName=root}">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="2*" />
-                    <RowDefinition Height="1*" />
-                </Grid.RowDefinitions>
-                <Image Grid.Row="0" Source="{Binding CurrentMovie.Poster}" Stretch="Uniform" Margin="0 5 0 0"/>
-                <StackPanel Grid.Row="1" Margin="8 5 8 5">
-                    <TextBlock FontSize="18" TextWrapping="Wrap" HorizontalAlignment="Center" Text="{Binding CurrentMovie.Title}" />
-                    <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding CurrentMovie.Plot}" />
-                </StackPanel>
-            </Grid>
-        </materialDesign:Card>
+    <Grid>
+            <materialDesign:Card MaxHeight="450" MaxWidth="300" DataContext="{Binding .,ElementName=root}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" FontSize="18" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="0 0 0 0" Text="{Binding CurrentMovie.Title}" />
+                    <Image Grid.Row="0" Source="{Binding CurrentMovie.Poster}" MaxHeight="380" Stretch="Uniform" Margin="0 20 0 0"/>
+                    <StackPanel Grid.Row="1" Margin="8 5 8 5">
+                    <ScrollViewer MaxHeight="30" VerticalScrollBarVisibility="Visible">
+                        <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding CurrentMovie.Plot}" />
+                    </ScrollViewer>
+                    </StackPanel>
+                </Grid>
+            </materialDesign:Card>
+
+
     </Grid>
 </UserControl>

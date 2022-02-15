@@ -14,7 +14,13 @@ namespace ReserveTaPlace.Models.WPFModels
         private MoviePageStateManager _stateManager;
         private MovieModel _currentMovie;
 
+        private PaginatedList<MovieModel> _paginatedMovies;
 
+        public PaginatedList<MovieModel> PaginatedMovies
+        {
+            get { return _paginatedMovies; }
+            set { _paginatedMovies = value; OnNotifyPropertyChanged(); }
+        }
         public MoviePageStateManager StateManager
         {
             get { return _stateManager; }

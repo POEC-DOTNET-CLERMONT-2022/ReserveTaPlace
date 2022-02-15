@@ -43,13 +43,33 @@ namespace ReserveTaPlace.Wpf.User_Controls
         private async void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             await LoadUsers();
+            LoadRoles();
+        }
+
+        private void LoadRoles()
+        {
+            UCAddUser.UserViewModel = UserViewModel;
         }
 
         private async Task LoadUsers()
         {
             var users = await _dataManager.GetAllPaginated(_pageIndex, _pageSize);
             UserViewModel.Users = new ObservableCollection<UserModel>(users.Data);
-            UCUsersList.Users = UserViewModel.Users;
+            UserViewModel.Roles = new ObservableCollection<string> { "GlobalAdmin", "Customer" };
+        }
+
+        private async void UsersPagerUC_GoPreviousPage(object sender, EventArgs e)
+        {
+            _pageIndex--;
+            await LoadUsers();
+
+        }
+
+        private async void UsersPagerUC_GoNextPage(object sender, EventArgs e)
+        {
+            _pageIndex++;
+            await LoadUsers();
+
         }
     }
 }

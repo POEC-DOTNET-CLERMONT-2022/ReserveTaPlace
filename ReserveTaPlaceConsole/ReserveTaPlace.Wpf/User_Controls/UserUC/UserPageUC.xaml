@@ -30,15 +30,16 @@
             </Grid.RowDefinitions>
             <WrapPanel  HorizontalAlignment="Left">
                 <TextBox materialDesign:HintAssist.Hint="User@Mail" x:Name="TBUserName" Margin="0,0,10,0" Width="150"></TextBox>
-                <Button Style="{StaticResource MaterialDesignIconButton}" ToolTip="MaterialDesignIconButton" Background="{DynamicResource MaterialDesignTextFieldBoxBackground}">
+                <Button Style="{StaticResource MaterialDesignIconButton}" ToolTip="Rechercher" Background="{DynamicResource MaterialDesignTextFieldBoxBackground}">
                     <materialDesign:PackIcon Kind="AccountSearch" />
                 </Button>
             </WrapPanel>
-            <UserUC:UsersListUC x:Name="UCUsersList" DataContext="{Binding Users}" Grid.Row="1" />
-            <UserUC:UsersPagerUC Grid.Row="2"/>
-            <Button  Grid.Row="2" HorizontalAlignment="Right" Style="{StaticResource MaterialDesignIconButton}" ToolTip="MaterialDesignIconButton" Background="{DynamicResource MaterialDesignTextFieldBoxBackground}">
+            <UserUC:UsersListUC x:Name="UCUsersList" Users="{Binding Users}" Grid.Row="1" />
+            <UserUC:UsersPagerUC Grid.Row="2" GoPreviousPage="UsersPagerUC_GoPreviousPage" GoNextPage="UsersPagerUC_GoNextPage"/>
+            <Button  Grid.Row="0" HorizontalAlignment="Right" Style="{StaticResource MaterialDesignIconButton}" ToolTip="Ajouter" Background="{DynamicResource MaterialDesignTextFieldBoxBackground}">
                 <materialDesign:PackIcon Kind="AccountPlus" />
             </Button>
+            <UserUC:AddUserUC x:Name="UCAddUser" UserViewModel="{Binding UserViewModel}" HorizontalAlignment="Left" Grid.Row="3"/>
         </Grid>
     </Grid>
 </UserControl>

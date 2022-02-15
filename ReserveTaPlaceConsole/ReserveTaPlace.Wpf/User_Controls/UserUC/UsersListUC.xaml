@@ -13,8 +13,13 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              x:Name="root">
-    <Grid>
-        <ListBox Height="230" x:Name="LBUsers" SelectionChanged="LBUsers_SelectionChanged" SelectedItem="{Binding SelectedUser}" DataContext="{Binding .,ElementName=root}" ItemsSource="{Binding Users}">
+    <Grid DataContext="{Binding .,ElementName=root}">
+        <ListBox MinHeight="230" x:Name="LBUsers" SelectionChanged="LBUsers_SelectionChanged" SelectedItem="{Binding SelectedUser}"  ItemsSource="{Binding Users}">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ListBoxItem}">
+                    <Setter Property="Focusable" Value="False"/>
+                </Style>
+            </ListBox.ItemContainerStyle>
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel  HorizontalAlignment="Left">
@@ -24,12 +29,34 @@
             </ListBox.ItemsPanel>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <!--<materialDesign:Chip  Content="{Binding FirstName}" Style="{StaticResource MaterialDesignOutlineChip}">
-                        <materialDesign:Chip.Icon>
-                            <materialDesign:PackIcon Kind="AccountOutline" />
-                        </materialDesign:Chip.Icon>
-                    </materialDesign:Chip>-->
-                    <TextBlock Text="{Binding FirstName}"/>
+                    <materialDesign:Card Background="{DynamicResource MaterialDesignLightBackground}"  Width="200" Padding="8" UniformCornerRadius="6">
+                        <WrapPanel HorizontalAlignment="Center">
+                            <materialDesign:PackIcon Kind="Account" />
+                            <TextBlock Margin="10 0" TextWrapping="Wrap" Text="{Binding FirstName}" />
+                            <TextBlock TextWrapping="Wrap" Text="{Binding LastName}" />
+                            <TextBlock TextWrapping="Wrap" Text="{Binding Email}" />
+                            <WrapPanel MinWidth="150">
+                                <Expander HorizontalAlignment="Stretch" Header="Roles">
+                                    <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
+                                        <ListBox ItemsSource="{Binding Roles}">
+                                            <ListBox.ItemContainerStyle>
+                                                <Style TargetType="{x:Type ListBoxItem}">
+                                                    <Setter Property="Focusable" Value="False"/>
+                                                </Style>
+                                            </ListBox.ItemContainerStyle>
+                                            <ListBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock TextWrapping="Wrap" Text="{Binding Name}" />
+                                                </DataTemplate>
+                                            </ListBox.ItemTemplate>
+                                        </ListBox>
+                                    </StackPanel>
+                                </Expander>
+                            </WrapPanel>
+
+                        </WrapPanel>
+
+                    </materialDesign:Card>
 
                 </DataTemplate>
             </ListBox.ItemTemplate>
