@@ -10,10 +10,7 @@ namespace ReserveTaPlace.API
     {
         public AutoMapperProfile()
         {
-            //Todo Implémenter flattened DTOS https://enroute.osgi.org/FAQ/420-dtos.html
             CreateMap<MovieEntity, MovieDto>().ReverseMap();
-
-            //CreateMap<MovieEntity, MovieDto>().ReverseMap();
             CreateMap<TheaterEntity, NewTheaterDto>().ReverseMap();
             CreateMap<RoomEntity, NewRoomDto>().ReverseMap();
             CreateMap<SeatEntity, SeatDto>().ReverseMap();
@@ -24,20 +21,7 @@ namespace ReserveTaPlace.API
             CreateMap<CalendarEntity, CalendarDto>().ReverseMap();
             CreateMap<UserEntity, UserDto>().ReverseMap();
             CreateMap<ScheduleEntity, ScheduleDto>().ReverseMap();
-
-            //CreateMap<List<SessionEntity>, List<SessionDto>>().ReverseMap();
-
             CreateMap<SessionDto, SessionEntity>().ReverseMap();
-                //.ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
-                //.ForMember(dest => dest.Schedules, opt => opt.MapFrom(src => src.Schedules))
-                //.ForMember(dest => dest.Calendar, opt => opt.MapFrom(src => src.Calendar))
-                //.ForMember(dest => dest.Movie, opt => opt.MapFrom(src => src.Movie))
-                //.ForMember(dest => dest.Room, opt => opt.MapFrom(src => src.Room))
-                //.ForMember(dest => dest.CalendarId, opt => opt.MapFrom(src => src.Calendar.Id))
-                //.ForMember(dest => dest.RoomId, opt => opt.MapFrom(src => src.Room.Id))
-                //.ForMember(dest => dest.MovieId, opt => opt.MapFrom(src => src.Movie.Id));
-
-
             CreateMap<TheaterEntity, TheaterDto>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
                 .ForMember(dest => dest.Medias, opt => opt.MapFrom(src => src.Medias))
