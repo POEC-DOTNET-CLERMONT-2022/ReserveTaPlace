@@ -10,6 +10,7 @@ namespace ReserveTaPlace.API
     {
         public AutoMapperProfile()
         {
+            CreateMap<RoleEntity, RoleDto>().ReverseMap();
             CreateMap<MovieEntity, MovieDto>().ReverseMap();
             CreateMap<TheaterEntity, NewTheaterDto>().ReverseMap();
             CreateMap<RoomEntity, NewRoomDto>().ReverseMap();

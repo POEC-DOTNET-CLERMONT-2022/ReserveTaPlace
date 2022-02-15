@@ -10,6 +10,7 @@ namespace ReserveTaPlace.Data.Interfaces
 {
     public interface IUser
     {
+        Task<bool> Add(UserEntity user);
         Task<IEnumerable<UserEntity>> GetAll();
         Task<PaginatedList<UserEntity>> GetAllPaginated(int pageIndex, int pageSize);
     }

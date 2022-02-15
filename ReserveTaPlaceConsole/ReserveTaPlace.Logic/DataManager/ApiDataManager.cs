@@ -138,5 +138,6 @@ namespace ReserveTaPlace.Logic.DataManager
             var resultString = await response.Content.ReadAsStringAsync();
             return resultString == "true";
         }
+
     }
 }
