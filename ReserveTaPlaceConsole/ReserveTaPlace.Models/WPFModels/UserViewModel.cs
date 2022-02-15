@@ -9,6 +9,28 @@ namespace ReserveTaPlace.Models.WPFModels
 {
     public class UserViewModel : ObservableObject
     {
+        private ObservableCollection<string> _roles;
+        private string _roleStrg;
+
+        public string RoleStrg
+        {
+            get { return _roleStrg; }
+            set { _roleStrg = value; }
+        }
+
+        private RoleModel _selectedRole;
+
+        public RoleModel SelectedRole
+        {
+            get { return _selectedRole; }
+            set { _selectedRole = value; OnNotifyPropertyChanged(); }
+        }
+
+        public ObservableCollection<string> Roles
+        {
+            get { return _roles; }
+            set { _roles = value; OnNotifyPropertyChanged(); }
+        }
         private PaginatedList<UserModel> _usersPaginated;
 
         public PaginatedList<UserModel> UsersPaginated

@@ -1,14 +1,12 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace ReserveTaPlace.DTOS
 {
-    [JsonObject("Movie")]
-    public class MovieDto
+    public class ImdbMovieDto
     {
-        [JsonProperty(PropertyName = "Id")]
-        public Guid Id { get; set; }
         [JsonProperty(PropertyName = "Title")]
         public string Title { get; set; }
         [JsonProperty(PropertyName = "Released")]
@@ -23,13 +21,11 @@ namespace ReserveTaPlace.DTOS
         public string Actors { get; set; }
         [JsonProperty(PropertyName = "Plot")]
         public string Plot { get; set; }
-        [JsonProperty(PropertyName = "Imdbid")]
+        [JsonProperty(PropertyName = "imdbID")]
         public string ImdbId { get; set; }
         [JsonProperty(PropertyName = "Poster")]
         public string Poster { get; set; }
         [JsonProperty(PropertyName = "Country")]
         public string Country { get; set; }
-        [JsonProperty(PropertyName = "Medias")]
-        public List<MediaDto> Medias { get; set; }
     }
 }
