@@ -48,6 +48,7 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
             _theaterDataManager = ((App)Application.Current).TheaterDataManager;
             DataContext = ListMovie;
 
+
         }
         private void ShowAddMovie_Click(object sender, RoutedEventArgs e)
         {

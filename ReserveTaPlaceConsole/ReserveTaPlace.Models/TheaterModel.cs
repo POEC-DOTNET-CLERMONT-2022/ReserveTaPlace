@@ -31,7 +31,9 @@ namespace ReserveTaPlace.Models
 
         public string Name { get { return _name; } set { _name = value; } }
 
+
         [JsonPropertyName("Address")]
+
         public AddressModel Address { get { return _address; } set { _address = value; } }
 
         [JsonPropertyName("Medias")]
@@ -40,5 +42,6 @@ namespace ReserveTaPlace.Models
         public IList<RoomModel> Rooms { get { return _rooms; } set { _rooms = value; } }
 
         public IList<UserModel> Users { get { return _users; } set { _users = value; } }
+
     }
 }

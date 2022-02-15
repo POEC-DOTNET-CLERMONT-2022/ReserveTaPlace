@@ -23,7 +23,7 @@ namespace ReserveTaPlace.DTOS
         public string Actors { get; set; }
         [JsonProperty(PropertyName = "Plot")]
         public string Plot { get; set; }
-        [JsonProperty(PropertyName = "Imdbid")]
+        [JsonProperty(PropertyName = "ImdbId")]
         public string ImdbId { get; set; }
         [JsonProperty(PropertyName = "Poster")]
         public string Poster { get; set; }

@@ -22,6 +22,7 @@ namespace ReserveTaPlace.Models.WPFModels
         {
             get { return _theaters; }
             set { _theaters = value; OnNotifyPropertyChanged(); }
+
         }
         public ScheduleModel CurrentSchedule
         {
