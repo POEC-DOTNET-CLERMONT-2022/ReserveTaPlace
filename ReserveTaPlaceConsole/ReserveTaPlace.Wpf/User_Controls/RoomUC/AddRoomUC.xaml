@@ -37,26 +37,25 @@
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="1">
                     <TextBlock Text="Format de la salle :" Margin="5"/>
-                    <ComboBox x:Name="CBFormatList" materialDesign:HintAssist.Hint="Format" MinWidth="72" ItemsSource="{Binding Formats}"
-                              DisplayMemberPath="Name" SelectedValuePath="Name" SelectedValue="{Binding RoomViewModel.RoomToCreate.Format.Id}"
-                              SelectedItem="{Binding RoomViewModel.RoomToCreate.Format}">
+                    <ComboBox DataContext="{Binding RoomViewModel}" x:Name="CBFormatList" materialDesign:HintAssist.Hint="Format" MinWidth="72" ItemsSource="{Binding Formats}"
+                              DisplayMemberPath="Name" SelectedValuePath="Name" SelectedValue="{Binding RoomViewModel.RoomToCreate.Format}">
                     </ComboBox>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="2">
                     <TextBlock Text="Selection des sièges :" Margin="5"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Margin="5">
-                    <ListBox ItemsSource="{Binding Seats}">
+                    <ListBox Name="LBSeatList" ItemsSource="{Binding Seats}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <WrapPanel Orientation="Horizontal">
+                                <StackPanel Orientation="Horizontal">
                                     <CheckBox Style="{StaticResource MaterialDesignCheckBox}">
                                         <MultiBinding StringFormat="{}{0}{1}">
                                             <Binding Path="Row"/>
                                             <Binding Path="Number"/>
                                         </MultiBinding>
                                     </CheckBox>
-                                </WrapPanel>
+                                </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>

@@ -51,6 +51,8 @@ namespace ReserveTaPlace.Wpf.User_Controls.RoomUC
             var seats = await _seatDataManager.GetAll();
             RoomViewModel.Formats = new ObservableCollection<FormatModel>(formats);
             RoomViewModel.Seats = new ObservableCollection<SeatModel>(seats);
+            CBFormatList.ItemsSource = RoomViewModel.Formats;
+            LBSeatList.ItemsSource = RoomViewModel.Seats;
         }
     }
 }

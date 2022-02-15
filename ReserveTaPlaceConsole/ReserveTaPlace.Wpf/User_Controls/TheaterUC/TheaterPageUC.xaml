@@ -53,7 +53,7 @@
                 <TextBlock Text="Ajouter une salle" />
             </Button>
         </StackPanel>
-        <StackPanel Grid.Row="3" Grid.Column="2">
+        <StackPanel Grid.Row="2" Grid.Column="2" Grid.RowSpan="2">
             <User_ControlsRoomUC:AddRoomUC x:Name="AddRoomUC" DataContext="{Binding RoomViewModel}" Visibility="Collapsed"></User_ControlsRoomUC:AddRoomUC>
         </StackPanel>
     </Grid>
