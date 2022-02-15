@@ -10,6 +10,7 @@ namespace ReserveTaPlace.Entities
         {
             Seats = new HashSet<SeatEntity>();
             Sessions = new HashSet<SessionEntity>();
+            Tickets = new HashSet<TicketEntity>();
         }
         [Key]
         public Guid Id { get; set; }
@@ -18,5 +19,7 @@ namespace ReserveTaPlace.Entities
 
         public ICollection<SessionEntity> Sessions { get; set; }
         public virtual ICollection<SeatEntity> Seats { get; set; }
+        public virtual ICollection<TicketEntity> Tickets { get; set; }
+
     }
 }
