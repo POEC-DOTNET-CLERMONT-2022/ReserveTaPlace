@@ -44,10 +44,10 @@ namespace ReserveTaPlace.API.Controllers
             }
 
         }
-        [HttpPost("GetAllPaginated")]
-        public async Task<ActionResult> GetAllPaginated([FromBody] List<int> ressourceList)
+        [HttpPost("AllPaginated")]
+        public async Task<ActionResult> GetAllPaginated([FromQuery] int pageIndex, int pageSize)
         {
-            var users = await _user.GetAllPaginated(ressourceList[0], ressourceList[1]);
+            var users = await _user.GetAllPaginated(pageIndex, pageSize);
             var usersDto = _mapper.Map<PaginatedList<UserDto>>(users);
             return Ok(usersDto);
         }
@@ -58,8 +58,8 @@ namespace ReserveTaPlace.API.Controllers
             var result = await _user.Add(userEntity);
             return Ok(result);
         }
-        [HttpPost("GetUserHash")]
-        public async Task<ActionResult> GetUserHash([FromBody] string email)
+        [HttpGet("UserHash")]
+        public async Task<ActionResult> UserHash([FromQuery] string email)
         {
             var result = await _user.GetUserHash(email);
             return Ok(result);

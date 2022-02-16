@@ -66,8 +66,8 @@ namespace ReserveTaPlace.Logic.DataManager
         public async Task<PaginatedList<TModel>> GetAllPaginated(int page, int pageSize)
         {
             var ressourceList = new List<int>() { page, pageSize };
-            var _uri = new Uri(Uri + "/GetAllPaginated");
-            var result = await HttpClient.PostAsJsonAsync<List<int>>(_uri, ressourceList);
+            var _uri = new Uri(Uri + $"/AllPaginated/?pageindex={page}?pagesize={pageSize}");
+            var result = await HttpClient.GetAsync(_uri);
             var lisStrg = await result.Content.ReadAsStringAsync();
             var listDto = JsonConvert.DeserializeObject<PaginatedList<TDto>>(lisStrg);
             return Mapper.Map<PaginatedList<TModel>>(listDto);
@@ -141,8 +141,8 @@ namespace ReserveTaPlace.Logic.DataManager
 
         public async Task<string> GetUserHash(string email)
         {
-            var _uri = new Uri(Uri + "/GetUserHash");
-            var response = await HttpClient.PostAsJsonAsync(_uri, email);
+            var _uri = new Uri(Uri + $"/UserHash/?email={email}");
+            var response = await HttpClient.GetAsync(_uri);
             response.EnsureSuccessStatusCode();
             var resultString = await response.Content.ReadAsStringAsync();
             return resultString;
