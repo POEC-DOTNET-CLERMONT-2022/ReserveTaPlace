@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ReserveTaPlace.DTOS
 {
-    [JsonObject("format")]
+    [JsonObject("Format")]
     public class FormatDto
     {
         [JsonProperty(PropertyName = "Id")]

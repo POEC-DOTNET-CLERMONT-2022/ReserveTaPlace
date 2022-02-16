@@ -11,24 +11,23 @@ namespace ReserveTaPlace.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class FormatController : ControllerBase
+    public class SeatController : ControllerBase
     {
-        private IFormat _format;
+        private ISeat _seat;
         private IMapper _mapper;
 
-        public FormatController(IMapper mapper, DbContext context)
+        public SeatController(IMapper mapper, DbContext context)
         {
-            _format = new FormatFunctions(context);
+            _seat = new SeatFunctions(context);
             _mapper = mapper;
         }
-
-        // GET: api/<FormatController>
+        // GET: api/<SeatController>
         [HttpGet]
         public async Task<ActionResult> Get()
         {
-            var formats = await _format.GetAll();
-            var formatDto = _mapper.Map<IEnumerable<FormatDto>>(formats);
-            return Ok(formatDto);
+            var seats = await _seat.GetAll();
+            var seatDto = _mapper.Map<IEnumerable<SeatDto>>(seats);
+            return Ok(seatDto);
         }
     }
 }
