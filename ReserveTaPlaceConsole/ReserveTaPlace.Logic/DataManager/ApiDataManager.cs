@@ -47,6 +47,7 @@ namespace ReserveTaPlace.Logic.DataManager
         public async Task<TModel> GetMovie(string title, string year)
         {
             string ressource = $"?s={title}&r=json&type=movie&y={year}&page=1";
+            var _uri = new Uri(Uri + $"/ImdbMovie/?ressource={ressource}");
             var result = await HttpClient.PostAsJsonAsync(Uri, ressource);
             var movieStrg = await result.Content.ReadAsStringAsync();
             var movie = JsonConvert.DeserializeObject<TDto>(movieStrg);
@@ -55,9 +56,8 @@ namespace ReserveTaPlace.Logic.DataManager
 
         public async Task<TModel> GetMovieByNameAndYear(string title, string year)
         {
-            var ressourceList = new List<string>() { title,year};
-            var _uri = new Uri(Uri + "/GetMovieByNameAndYear");
-            var result = await HttpClient.PostAsJsonAsync<List<string>>(_uri, ressourceList);
+            var _uri = new Uri(Uri + $"/MovieByNameAndYear/?name={title}&year={year}");
+            var result = await HttpClient.GetAsync(_uri);
             var movieStrg = await result.Content.ReadAsStringAsync();
             var movie = JsonConvert.DeserializeObject<TDto>(movieStrg);
             return Mapper.Map<TModel>(movie);
@@ -65,8 +65,7 @@ namespace ReserveTaPlace.Logic.DataManager
 
         public async Task<PaginatedList<TModel>> GetAllPaginated(int page, int pageSize)
         {
-            var ressourceList = new List<int>() { page, pageSize };
-            var _uri = new Uri(Uri + $"/AllPaginated/?pageindex={page}?pagesize={pageSize}");
+            var _uri = new Uri(Uri + $"/AllPaginated/?pageIndex={page}&pageSize={pageSize}");
             var result = await HttpClient.GetAsync(_uri);
             var lisStrg = await result.Content.ReadAsStringAsync();
             var listDto = JsonConvert.DeserializeObject<PaginatedList<TDto>>(lisStrg);
@@ -101,8 +100,8 @@ namespace ReserveTaPlace.Logic.DataManager
 
         public async Task<TModel> GetCalendarByDate(string date)
         {
-            var _uri = new Uri(Uri + "/CalendarByDate");
-            var response = await HttpClient.PostAsJsonAsync(_uri, date);
+            var _uri = new Uri(Uri + $"/CalendarByDate/?date={date}");
+            var response = await HttpClient.GetAsync(_uri);
             response.EnsureSuccessStatusCode();
             var calendarString = await response.Content.ReadAsStringAsync();
             var calendar = JsonConvert.DeserializeObject<TDto>(calendarString);

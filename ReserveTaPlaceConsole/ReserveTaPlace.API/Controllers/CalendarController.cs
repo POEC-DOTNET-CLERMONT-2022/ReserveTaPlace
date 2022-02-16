@@ -29,8 +29,8 @@ namespace ReserveTaPlace.API.Controllers
             return Ok(result);
         }
 
-        [HttpPost("CalendarByDate")]
-        public async Task<ActionResult> GetCalendarByDate([FromBody] string sessionDate)
+        [HttpGet("CalendarByDate")]
+        public async Task<ActionResult> CalendarByDate([FromQuery] string sessionDate)
         {
             var calendar = await _calendar.GetCalendarByDate(sessionDate);
             var calendarDto = _mapper.Map<CalendarDto>(calendar);

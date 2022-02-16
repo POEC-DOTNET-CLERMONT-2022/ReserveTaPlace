@@ -44,7 +44,7 @@ namespace ReserveTaPlace.API.Controllers
             }
 
         }
-        [HttpPost("AllPaginated")]
+        [HttpGet("AllPaginated")]
         public async Task<ActionResult> GetAllPaginated([FromQuery] int pageIndex, int pageSize)
         {
             var users = await _user.GetAllPaginated(pageIndex, pageSize);
