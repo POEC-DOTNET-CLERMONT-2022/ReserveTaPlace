@@ -21,24 +21,25 @@ namespace ReserveTaPlace.Models.WPFModels
         public ObservableCollection<TheaterModel> Theaters
         {
             get { return _theaters; }
-            set { _theaters = value; }
+            set { _theaters = value; OnNotifyPropertyChanged(); }
+
         }
         public ScheduleModel CurrentSchedule
         {
             get { return _currentSchedule; }
-            set { _currentSchedule = value; }
+            set { _currentSchedule = value; OnNotifyPropertyChanged(); }
         }
 
         public CalendarModel CurrentCalendar
         {
             get { return _currentCalendar; }
-            set { _currentCalendar = value; }
+            set { _currentCalendar = value; OnNotifyPropertyChanged(); }
         }
 
         public ObservableCollection<CalendarModel> Calendars
         {
             get { return _calendars; }
-            set { _calendars = value; }
+            set { _calendars = value; OnNotifyPropertyChanged(); }
         }
 
         public RoomModel Room

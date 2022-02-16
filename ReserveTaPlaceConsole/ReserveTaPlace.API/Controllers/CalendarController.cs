@@ -29,6 +29,8 @@ namespace ReserveTaPlace.API.Controllers
             return Ok(result);
         }
 
+        //TODO : pas besoin => pas RESTFull
+        //TODO : Ici il faut faire un GET !!!!! 
         [HttpPost("CalendarByDate")]
         public async Task<ActionResult> GetCalendarByDate([FromBody] string sessionDate)
         {

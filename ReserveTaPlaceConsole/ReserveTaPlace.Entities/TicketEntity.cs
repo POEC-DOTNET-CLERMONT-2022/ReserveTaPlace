@@ -11,6 +11,8 @@ namespace ReserveTaPlace.Entities
         public Guid? SeatId { get; set; }
         public Guid? sessionId { get; set; }
         public Guid? OrderId { get; set; }
+        public Guid? ScheduleId { get; set; }
+
 
         [ForeignKey(nameof(SeatId))]
         public virtual SeatEntity? Seat { get; set; }
@@ -20,5 +22,7 @@ namespace ReserveTaPlace.Entities
 
         [ForeignKey(nameof(OrderId))]
         public virtual OrderEntity? Order { get; set; }
+        [ForeignKey(nameof(ScheduleId))]
+        public virtual ScheduleEntity? Schedule { get; set; }
     }
 }

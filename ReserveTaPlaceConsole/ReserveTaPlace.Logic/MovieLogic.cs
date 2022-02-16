@@ -10,6 +10,7 @@ namespace ReserveTaPlace.Logic
 
     public class MovieLogic : IMovieLogic
     {
+        //TODO : pas besoin ? 
         public async Task<IEnumerable<MovieDto>> GetAll()
         {
             var movies = new List<MovieDto>();

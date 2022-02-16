@@ -12,7 +12,9 @@
         xmlns:uc="clr-namespace:ReserveTaPlace.Wpf.User_Controls"
         xmlns:local="clr-namespace:ReserveTaPlace.Wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="Reserve ta place" Height="450" Width="800"
+        WindowStyle="SingleBorderWindow" ResizeMode="CanResizeWithGrip"  
+        WindowStartupLocation="CenterScreen" WindowState="Maximized"
         >
     <Grid>
         <ContentControl x:Name="ContentControl" Content="{Binding Navigator.CurrentContentControl}"/>

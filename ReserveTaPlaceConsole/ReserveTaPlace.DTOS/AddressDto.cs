@@ -5,9 +5,12 @@ using System.Text;
 
 namespace ReserveTaPlace.DTOS
 {
+
+    //TODO : pas besoin ? 
     [JsonObject("Address")]
     public class AddressDto
     {
+        //TODO : pas besoin ? 
         [JsonProperty(PropertyName = "Id")]
         public Guid Id { get; set; }
 

@@ -10,6 +10,7 @@ namespace ReserveTaPlace.Logic
 {
     public class GenericLogic<T> : IGenericLogic<T> where T : class
     {
+        //TODO : pas besoin ? 
         public async Task<IEnumerable<T>> GetAll()
         {
             var models = new List<T>();

@@ -36,13 +36,13 @@
         </ListBox.ItemsPanel>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <materialDesign:Card Width="150" >
+                    <materialDesign:Card Width="140" >
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="160" />
                                 <RowDefinition Height="35" />
                             </Grid.RowDefinitions>
-                            <Image Source="{Binding Poster}"  Stretch="Uniform" Margin="0 20 0 0"/>
+                            <Image Grid.Row="0" Source="{Binding Poster}"  Stretch="Uniform" Margin="0 20 0 0"/>
                             <StackPanel Grid.Row="1" Margin="8 0 8 0">
                                 <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center" Text="{Binding Title}" />
                             </StackPanel>

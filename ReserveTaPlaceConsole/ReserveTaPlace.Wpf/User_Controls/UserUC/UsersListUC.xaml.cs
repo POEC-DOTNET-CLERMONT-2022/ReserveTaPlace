@@ -23,7 +23,8 @@ namespace ReserveTaPlace.Wpf.User_Controls.UserUC
     /// </summary>
     public partial class UsersListUC : UserControl
     {
-        private static readonly DependencyProperty _usersProperty = DependencyProperty.Register("Users", typeof(ObservableCollection<UserModel>), typeof(UsersListUC));
+        private static readonly DependencyProperty _usersProperty = DependencyProperty
+            .Register("Users", typeof(ObservableCollection<UserModel>), typeof(UsersListUC));
         private ObservableCollection<UserModel> _users;
         public UserModel SelectedUser { get; set; }
         public UsersListUC()

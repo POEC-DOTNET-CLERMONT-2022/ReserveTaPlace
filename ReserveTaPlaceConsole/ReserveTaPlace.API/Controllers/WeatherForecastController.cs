@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ReserveTaPlace.API.Controllers
 {
+    //TODO : à supprimer
     [ApiController]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase

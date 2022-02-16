@@ -13,6 +13,8 @@ namespace ReserveTaPlace.Wpf
     /// </summary>
     public partial class UserWindow : Window
     {
+
+        //TODO : à supprimer
         //private IGenericLogic<UserModel> _userLogic = new GenericLogic<UserModel>();
         //private readonly IMapper _mapper;
         //private ListUsers _listUser;

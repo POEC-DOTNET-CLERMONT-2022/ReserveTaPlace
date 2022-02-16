@@ -29,6 +29,7 @@ namespace ReserveTaPlace.Models
             _county = county;
         }
 
+        //TODO : qu'une property pas de champ 
         public Guid Id { get => _id; }
         public string Address1 { get { return _address1; }set { _address1 = value; } }
         public string Address2 { get { return _address2; }set { _address2 = value; } }

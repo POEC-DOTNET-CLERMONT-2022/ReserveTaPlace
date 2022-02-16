@@ -39,7 +39,7 @@ namespace ReserveTaPlace.API.Controllers
             }
             catch (Exception e)
             {
-                _logger.LogError(e,"une erreur et survenue",e.StackTrace);
+                _logger.LogError(e,"une erreur et survenue",e.StackTrace);//TODO : juste 2 param
                 return StatusCode(500);
             }
 
@@ -47,6 +47,7 @@ namespace ReserveTaPlace.API.Controllers
         [HttpPost("GetAllPaginated")]
         public async Task<ActionResult> GetAllPaginated([FromBody] List<int> ressourceList)
         {
+            //TODO : meilleurs gestion de la pagination
             var users = await _user.GetAllPaginated(ressourceList[0], ressourceList[1]);
             var usersDto = _mapper.Map<PaginatedList<UserDto>>(users);
             return Ok(usersDto);

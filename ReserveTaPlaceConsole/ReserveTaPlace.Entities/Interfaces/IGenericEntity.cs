@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Entities.Interfaces
 {
+    //TODO : pas besoin ? 
     internal interface IGenericEntity
     {
 

@@ -62,22 +62,20 @@ namespace ReserveTaPlace.API.Controllers
             var httpClient = _httpClientFactory.CreateClient("Imdb");
             var moviesDto = new List<MovieDto>();
             var movieDto = new MovieDto();
-
-            using (var imdbSearchStrg = httpClient.GetStringAsync(ressource))
-            {
-                ImdbSearch result = JsonConvert.DeserializeObject<ImdbSearch>(imdbSearchStrg.Result);
-                moviesDto = result.ImdbMovies;
-            }
+            ImdbSearch result = new ImdbSearch();
+            var imdbSearchStrg = await httpClient.GetStringAsync(ressource);
+            result = JsonConvert.DeserializeObject<ImdbSearch>(imdbSearchStrg);
+            moviesDto = result.ImdbMovies;
             if (moviesDto.Count > 0)
             {
-                using (var imdbSearchStrg = httpClient.GetStringAsync($"?&r=json&i={moviesDto[0].ImdbId}"))
-                {
-                    movieDto = JsonConvert.DeserializeObject<MovieDto>(imdbSearchStrg.Result);
-                }
+                imdbSearchStrg = await httpClient.GetStringAsync($"?&r=json&i={moviesDto[0].ImdbId}");
+                movieDto = JsonConvert.DeserializeObject<MovieDto>(imdbSearchStrg);
                 return Ok(movieDto);
             }
             return Ok(movieDto);
         }
+
+        //TODO : Ici il faut faire un GET !!!!! 
         [HttpPost("GetMovieByNameAndYear")]
         public async Task<ActionResult> GetMovieByNameAndYear([FromBody] List<string> ressourceList)
         {
@@ -85,6 +83,8 @@ namespace ReserveTaPlace.API.Controllers
             var movieDto = _mapper.Map<MovieDto>(movie);
             return Ok(movieDto);
         }
+
+        //TODO : Ici il faut faire un GET !!!!! 
         [HttpPost("GetAllPaginated")]
         public async Task<ActionResult> GetAllPaginated([FromBody] List<int> ressourceList)
         {

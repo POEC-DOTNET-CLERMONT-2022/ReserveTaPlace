@@ -13,6 +13,7 @@ namespace ReserveTaPlace.Models
             _date = date;
 
         }
+        //TODO : pas besoin ? 
         [JsonProperty(PropertyName = "Id")]
         public Guid Id
         {
