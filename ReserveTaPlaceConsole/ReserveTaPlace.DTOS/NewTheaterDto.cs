@@ -20,8 +20,9 @@ namespace ReserveTaPlace.DTOS
 
         [JsonProperty(PropertyName = "Medias")]
         public IList<MediaDto> Medias { get; set; }
+
         [JsonProperty(PropertyName = "Rooms")]
-        public IList<RoomDto> Rooms { get; set; }
+        public IList<NewRoomDto> Rooms { get; set; }
 
     }
 }

@@ -14,8 +14,10 @@ namespace ReserveTaPlace.Wpf
     /// <summary>
     /// Interaction logic for MovieWindow.xaml
     /// </summary>
+    //TODO : à supprimer
     public partial class MovieWindow : Window
     {
+        //TODO : à supprimer
         //private IMovieLogic _movieLogic;
         //private IMovieProvider _movieProvider;
         private readonly IMapper _mapper;
@@ -25,6 +27,7 @@ namespace ReserveTaPlace.Wpf
 
         public MovieWindow()
         {
+            //TODO : à supprimer
             //_movieProvider = ((App)Application.Current).MovieProvider;
             //_movieLogic = ((App)Application.Current).MovieLogic;
             _listMovie = new ListMovies();
@@ -38,6 +41,7 @@ namespace ReserveTaPlace.Wpf
         }
         public async void LoadMovies()
         {
+            //TODO : à mettre dans un service /manager
             var movies = await _movieDataManager.GetAll();
             var moviesModel = _mapper.Map<IEnumerable<MovieModel>>(movies);
             _listMovie.Movies = new ObservableCollection<MovieModel>(moviesModel);

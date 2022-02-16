@@ -36,6 +36,8 @@ namespace ReserveTaPlace.Data.ApplicationContext
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            //TODO : pas mixte entre annotation et déclaration fluent 
             // Table SessionSchedule
             modelBuilder
                 .Entity<ScheduleEntity>()

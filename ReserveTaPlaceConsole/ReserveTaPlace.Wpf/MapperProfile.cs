@@ -15,6 +15,7 @@ namespace ReserveTaPlace.Wpf
     {
         public MapperProfile()
         {
+            //TODO : même chose que les dto ?? 
             CreateMap<MovieDto, MovieModel>().ReverseMap();
             CreateMap<UserModel, UserDto>().ReverseMap();
             CreateMap<TheaterDto, TheaterModel>()

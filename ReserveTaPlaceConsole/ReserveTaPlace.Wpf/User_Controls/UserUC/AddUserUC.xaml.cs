@@ -42,6 +42,9 @@ namespace ReserveTaPlace.Wpf.User_Controls.UserUC
         {
             InitializeComponent();
         }
+
+
+        //TODO : à supprimer ?
         [Browsable(true)]
         [Category("Action")]
         [Description("Invoked when user clicks previous page's icon")]
@@ -51,6 +54,7 @@ namespace ReserveTaPlace.Wpf.User_Controls.UserUC
             if (this.GoBack != null)
                 this.GoBack(this, e);
         }
+        
         [Browsable(true)]
         [Category("Action")]
         [Description("Invoked when user clicks on addUser button")]

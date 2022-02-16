@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ReserveTaPlace.DTOS
 {
-    [JsonObject("room")]
+    [JsonObject("Room")]
     public class RoomDto
     {
         [JsonProperty(PropertyName = "Id")]

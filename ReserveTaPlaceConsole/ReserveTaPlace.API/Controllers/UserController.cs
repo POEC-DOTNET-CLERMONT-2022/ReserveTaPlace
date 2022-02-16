@@ -39,7 +39,7 @@ namespace ReserveTaPlace.API.Controllers
             }
             catch (Exception e)
             {
-                _logger.LogError(e,"une erreur et survenue",e.StackTrace);
+                _logger.LogError(e,"une erreur et survenue",e.StackTrace);//TODO : juste 2 param
                 return StatusCode(500);
             }
 
