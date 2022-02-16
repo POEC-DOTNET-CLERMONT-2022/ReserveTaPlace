@@ -58,6 +58,12 @@ namespace ReserveTaPlace.API.Controllers
             var result = await _user.Add(userEntity);
             return Ok(result);
         }
-       
+        [HttpPost("GetUserHash")]
+        public async Task<ActionResult> GetUserHash([FromBody] string email)
+        {
+            var result = await _user.GetUserHash(email);
+            return Ok(result);
+        }
+
     }
 }

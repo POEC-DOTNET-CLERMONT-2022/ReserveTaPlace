@@ -13,5 +13,6 @@ namespace ReserveTaPlace.Data.Interfaces
         Task<bool> Add(UserEntity user);
         Task<IEnumerable<UserEntity>> GetAll();
         Task<PaginatedList<UserEntity>> GetAllPaginated(int pageIndex, int pageSize);
+        Task<string> GetUserHash(string email);
     }
 }

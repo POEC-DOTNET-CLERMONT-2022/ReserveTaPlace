@@ -66,16 +66,21 @@ namespace ReserveTaPlace.Wpf.User_Controls
 
         }
 
-        private void UCAddUser_AddUser(object sender, EventArgs e)
+        private async void UCAddUser_AddUser(object sender, EventArgs e)
         {
             if (UCAddUser.TBPassword.Text == UCAddUser.TBConfirmPassword.Text)
             {
                 var passwordHash = BCrypt.Net.BCrypt.HashPassword(UCAddUser.TBPassword.Text);
-                //var user = new UserModel(UCAddUser.TBFirstName.Text, UCAddUser.TBLastName.Text, UCAddUser.TBEMail.Text, passwordHash);
-                var user = new UserModel("Julien", "Boisserie", "jul.boisserie@gmail.com", passwordHash);
+                var user = new UserModel(UCAddUser.TBFirstName.Text, UCAddUser.TBLastName.Text, UCAddUser.TBEMail.Text, passwordHash);
+                //var user = new UserModel("Simon", "Bascobert", "Simon.Bascobert@gmail.com", passwordHash);
                 var role = UCAddUser.CBRoles.SelectedItem as RoleModel;
                 user.Roles.Add(role);
-                _dataManager.Add(user);
+                var result = await _dataManager.Add(user);
+                if (result)
+                {
+                    await LoadUsers();
+                }
+
             }
         }
     }

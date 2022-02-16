@@ -41,5 +41,11 @@ namespace ReserveTaPlace.Data.Functions
             var result = await _dbContext.SaveChangesAsync();
             return result > 0;
         }
+
+        public async Task<string> GetUserHash(string email)
+        {
+            var user = await _dbContext.Set<UserEntity>().FirstOrDefaultAsync(u => u.Email == email);
+            return user.Password;
+        }
     }
 }

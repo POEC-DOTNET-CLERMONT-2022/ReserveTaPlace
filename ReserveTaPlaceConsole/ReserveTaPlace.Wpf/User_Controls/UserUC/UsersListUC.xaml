@@ -29,12 +29,12 @@
             </ListBox.ItemsPanel>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <materialDesign:Card Background="{DynamicResource MaterialDesignLightBackground}"  Width="200" Padding="8" UniformCornerRadius="6">
+                    <materialDesign:Card Background="{DynamicResource MaterialDesignLightBackground}" Width="200" Padding="8" UniformCornerRadius="6">
                         <WrapPanel HorizontalAlignment="Center">
                             <materialDesign:PackIcon Kind="Account" />
                             <TextBlock Margin="10 0" TextWrapping="Wrap" Text="{Binding FirstName}" />
                             <TextBlock TextWrapping="Wrap" Text="{Binding LastName}" />
-                            <TextBlock TextWrapping="Wrap" Text="{Binding Email}" />
+                            <TextBlock FontSize="12" TextWrapping="Wrap" Text="{Binding Email}" />
                             <WrapPanel MinWidth="150">
                                 <Expander HorizontalAlignment="Stretch" Header="Roles">
                                     <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">

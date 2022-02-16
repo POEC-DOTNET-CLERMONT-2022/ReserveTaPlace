@@ -139,5 +139,13 @@ namespace ReserveTaPlace.Logic.DataManager
             return resultString == "true";
         }
 
+        public async Task<string> GetUserHash(string email)
+        {
+            var _uri = new Uri(Uri + "/GetUserHash");
+            var response = await HttpClient.PostAsJsonAsync(_uri, email);
+            response.EnsureSuccessStatusCode();
+            var resultString = await response.Content.ReadAsStringAsync();
+            return resultString;
+        }
     }
 }
