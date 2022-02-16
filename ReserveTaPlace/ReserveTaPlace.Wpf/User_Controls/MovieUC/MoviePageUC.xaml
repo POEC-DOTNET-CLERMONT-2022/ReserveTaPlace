@@ -42,6 +42,10 @@
                     HorizontalAlignment="Right" Grid.Row="2" Click="ShowAddMovie_Click">
                         <materialDesign:PackIcon Width="20" Height="30" Kind="PlusCircle" />
                     </Button>
+                    <Button x:Name="BTNReload" Click="BTNReload_Click" Width="30" Height="30" Style="{StaticResource MaterialDesignIconButton}" ToolTip="Ajouter un film" Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
+                    HorizontalAlignment="Right" Grid.Row="2">
+                        <materialDesign:PackIcon Width="20" Height="30" Kind="Reload" />
+                    </Button>
                 </WrapPanel>
                 <TextBlock x:Name="TBUnfound" Visibility="Collapsed">Aucun film trouvé</TextBlock>
             </StackPanel>

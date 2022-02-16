@@ -157,5 +157,12 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
         {
             ListMovie.StateManager.Set(MoviePageState.MoviesListView);
         }
+
+        private async void BTNReload_Click(object sender, RoutedEventArgs e)
+        {
+            _pageIndex = 1;
+            await LoadMovies();
+            MoviesListUC.Movies = ListMovie.Movies;
+        }
     }
 }
