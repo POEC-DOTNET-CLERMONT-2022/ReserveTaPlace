@@ -72,6 +72,7 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
                 MoviesListUC.Visibility = Visibility.Visible;
                 WPSearchMovie.Visibility = Visibility.Visible;
             }
+            //TODO :Binding ? 
 
         }
         public async Task LoadMovies()

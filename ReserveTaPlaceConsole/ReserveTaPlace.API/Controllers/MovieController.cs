@@ -74,6 +74,8 @@ namespace ReserveTaPlace.API.Controllers
             }
             return Ok(movieDto);
         }
+
+        //TODO : Ici il faut faire un GET !!!!! 
         [HttpPost("GetMovieByNameAndYear")]
         public async Task<ActionResult> GetMovieByNameAndYear([FromBody] List<string> ressourceList)
         {
@@ -81,6 +83,8 @@ namespace ReserveTaPlace.API.Controllers
             var movieDto = _mapper.Map<MovieDto>(movie);
             return Ok(movieDto);
         }
+
+        //TODO : Ici il faut faire un GET !!!!! 
         [HttpPost("GetAllPaginated")]
         public async Task<ActionResult> GetAllPaginated([FromBody] List<int> ressourceList)
         {

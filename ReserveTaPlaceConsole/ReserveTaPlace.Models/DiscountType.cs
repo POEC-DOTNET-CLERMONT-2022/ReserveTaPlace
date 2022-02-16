@@ -21,6 +21,8 @@ namespace ReserveTaPlace.Models
         public Guid Id { get { return _id; } }
         public string Name { get { return _name; } }
         public string Description { get { return _description; } }
+
+        //TODO : pas besoin ? 
         public uint? Rate { get { return _rate; } }
         public decimal? Amount { get { return _amount; } }
 

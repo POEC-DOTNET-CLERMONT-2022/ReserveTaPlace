@@ -51,6 +51,7 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
 
         private async void Button_SearchMovie(object sender, RoutedEventArgs e)
         {
+            //TODO binding ? 
             SPMovieFound.Visibility = Visibility.Collapsed;
             var movieName = TBMovieToAddName.Text;
             var movieYear = TBMovieToAddYear.Text;

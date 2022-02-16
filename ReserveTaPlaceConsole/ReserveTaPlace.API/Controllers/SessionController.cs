@@ -27,6 +27,8 @@ namespace ReserveTaPlace.API.Controllers
         [HttpPost("AddSessions")]
         public async Task<ActionResult> AddSessions([FromBody] List<SessionDto> sessions)
         {
+            //TODO :Gestion des exception
+            //TODO : ajouter des logs 
             var test = sessions;
             var sessionsEntities = _mapper.Map<List<SessionEntity>>(sessions);
             var result = await _session.AddSessions(sessionsEntities);
