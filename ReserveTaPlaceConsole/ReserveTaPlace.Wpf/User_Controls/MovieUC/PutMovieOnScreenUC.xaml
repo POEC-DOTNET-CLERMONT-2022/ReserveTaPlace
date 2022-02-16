@@ -67,7 +67,9 @@
                 <TextBlock Text="{Binding ElementName=CBTheaters, Path=SelectedItem.Name}"></TextBlock>
                 <TextBlock Text="{Binding ElementName=CBRooms, Path=SelectedItem.Name}"></TextBlock>
             </StackPanel>
-            <Calendar  Grid.Row="0" HorizontalAlignment="Center" MaxHeight="250" MaxWidth="300" IsTodayHighlighted="false" IsManipulationEnabled="False"  x:Name="Calendar" SelectionMode="SingleRange"/>
+            <Calendar  Grid.Row="0" HorizontalAlignment="Center" MaxHeight="250" MaxWidth="300" IsTodayHighlighted="false" IsManipulationEnabled="False"  x:Name="Calendar" SelectionMode="SingleRange">
+                
+            </Calendar>
             <ListBox Grid.Row="1" MaxHeight="70" MinHeight="70" x:Name="LBSchedules" SelectedItem="{Binding CurrentSchedule}" DataContext="{Binding SessionViewModel}" ItemsSource="{Binding Schedules}">
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>

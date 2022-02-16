@@ -31,5 +31,21 @@ namespace ReserveTaPlace.Data.Functions
 
             return _users;
         }
+        public async Task<bool> Add(UserEntity user)
+        {
+            var roleId = user.Roles.First().Id;
+            user.Roles.Clear();
+            var role = await _dbContext.Set<RoleEntity>().FirstOrDefaultAsync(r => r.Id == roleId);
+            user.Roles.Add(role);
+            await _dbContext.Set<UserEntity>().AddAsync(user);
+            var result = await _dbContext.SaveChangesAsync();
+            return result > 0;
+        }
+
+        public async Task<string> GetUserHash(string email)
+        {
+            var user = await _dbContext.Set<UserEntity>().FirstOrDefaultAsync(u => u.Email == email);
+            return user.Password;
+        }
     }
 }

@@ -21,14 +21,7 @@
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top">
-            <TextBlock>Entrer le nom du film à ajouter :</TextBlock>
-            <TextBox x:Name="TBMovieToAddName"></TextBox>
-            <TextBlock>Entrer l'année du film :</TextBlock>
-            <TextBox x:Name="TBMovieToAddYear"></TextBox>
-            <Button Width="150" Click="Button_SearchMovie">Rechercher</Button>
-            <Button Width="150" Click="Button_Return">Retour</Button>
-        </StackPanel>
+
         <StackPanel Grid.Column="1" x:Name="SPImbdResult" Visibility="Collapsed">
             <User_ControlsMovieUC:MovieDetailsUC DataContext="{Binding CurrentMovie}" x:Name="MovieDetailsUC" ></User_ControlsMovieUC:MovieDetailsUC>
             <Button VerticalAlignment="Bottom" Width="150" Margin="0 20 0 0" Click="Button_AddMovie">Valider</Button>
@@ -38,7 +31,15 @@
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
-            <StackPanel Grid.Row="1" Visibility="Hidden" x:Name="SPMovieFound" Margin="0 20 0 0 ">
+            <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <TextBlock>Entrer le nom du film à ajouter :</TextBlock>
+                <TextBox x:Name="TBMovieToAddName"></TextBox>
+                <TextBlock>Entrer l'année du film :</TextBlock>
+                <TextBox x:Name="TBMovieToAddYear"></TextBox>
+                <Button Width="150" Click="Button_SearchMovie">Rechercher</Button>
+                <Button Width="150" Click="Button_Return">Retour</Button>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Visibility="Collapsed" x:Name="SPMovieFound" Margin="0 20 0 0 ">
                 <TextBlock TextWrapping="Wrap" >Un film correspondant à vos critères de recherche est présent dans la base de données :</TextBlock>
                 <Image DataContext="{Binding FoundMovie}" Source="{Binding FoundMovie.Poster}" Height="300" Stretch="Uniform" x:Name="IMGmovieFound"/>
             </StackPanel>

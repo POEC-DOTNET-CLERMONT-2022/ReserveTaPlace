@@ -14,7 +14,7 @@ namespace ReserveTaPlace.Wpf.Utils
         private string _hash;
         public PasswordHasher(string password)
         {
-            _salt = GenerateSalt();
+            _salt = new byte[10];
             _hash = Hash(password);
         }
         public string HashedPassword { get { return _hash; } }

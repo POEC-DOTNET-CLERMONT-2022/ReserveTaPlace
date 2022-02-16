@@ -18,6 +18,7 @@ namespace ReserveTaPlace.Data.Functions
         }
         public async Task<bool> AddSessions(List<SessionEntity> sessionEntities)
         {
+            var room = await _dbContext.Set<RoomEntity>().FirstOrDefaultAsync(r=>r.Id == sessionEntities[0].RoomId);
             await _dbContext.Set<SessionEntity>().AddRangeAsync(sessionEntities);
             var result = await _dbContext.SaveChangesAsync();
             return result > 0;

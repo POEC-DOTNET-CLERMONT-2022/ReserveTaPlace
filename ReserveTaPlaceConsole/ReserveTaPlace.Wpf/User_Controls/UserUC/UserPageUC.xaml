@@ -39,7 +39,7 @@
             <Button  Grid.Row="0" HorizontalAlignment="Right" Style="{StaticResource MaterialDesignIconButton}" ToolTip="Ajouter" Background="{DynamicResource MaterialDesignTextFieldBoxBackground}">
                 <materialDesign:PackIcon Kind="AccountPlus" />
             </Button>
-            <UserUC:AddUserUC x:Name="UCAddUser" UserViewModel="{Binding UserViewModel}" HorizontalAlignment="Left" Grid.Row="3"/>
+            <UserUC:AddUserUC x:Name="UCAddUser" AddUser="UCAddUser_AddUser" UserViewModel="{Binding UserViewModel}" HorizontalAlignment="Left" Grid.Row="3"/>
         </Grid>
     </Grid>
 </UserControl>

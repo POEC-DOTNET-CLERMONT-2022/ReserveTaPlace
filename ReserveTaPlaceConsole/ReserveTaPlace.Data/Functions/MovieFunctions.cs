@@ -53,7 +53,7 @@ namespace ReserveTaPlace.Data.Functions
             return movie;
         }
 
-        public async Task<MovieEntity> GetByName(string title)
+        public async Task<MovieEntity> GetMovieByName(string title)
         {
             var movie = new MovieEntity();
             movie = await _dbContext.Set<MovieEntity>().FirstOrDefaultAsync(m => m.Title.ToLower().StartsWith(title));

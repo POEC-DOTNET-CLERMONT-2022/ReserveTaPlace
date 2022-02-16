@@ -33,7 +33,6 @@ namespace ReserveTaPlace.Entities
         [Column("Email", TypeName = "nvarchar(255)", Order = 4)]
         public string Email { get; set; }
         [DataType(DataType.Password)]
-        [Column("Password", TypeName = "nvarchar(50)", Order = 5)]
         public string Password { get; set; }
         public virtual ICollection<OrderEntity>? Orders { get; set; }
         public virtual ICollection<DiscountEntity> Discounts { get; set; }

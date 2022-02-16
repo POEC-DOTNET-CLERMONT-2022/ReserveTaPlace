@@ -17,7 +17,7 @@ namespace ReserveTaPlace.Models
             _name = name;
         }
 
-        public Guid ID
+        public Guid Id
         {
             get { return _id; }
             set { _id = value; }

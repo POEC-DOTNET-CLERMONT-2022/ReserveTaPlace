@@ -46,7 +46,9 @@
                 <TextBlock x:Name="TBUnfound" Visibility="Collapsed">Aucun film trouvé</TextBlock>
             </StackPanel>
             <User_ControlsMovieUC:MoviesListUC Grid.Row="1" SelectionChanged="MoviesListUC_SelectionChanged" Movies="{Binding Movies}" Visibility="{Binding StateManager.IsMoviesListVisible, Converter={StaticResource VisibilityConverter}}" x:Name="MoviesListUC"></User_ControlsMovieUC:MoviesListUC>
-                <User_ControlsMovieUC:MoviesPagerUC  HorizontalAlignment="Center" PaginatedList="{Binding PaginatedMovies}" GoNextPage="pagerUC_GoNextPage" GoPreviousPage="pagerUC_GoPreviousPage" x:Name="pagerUC" Grid.Row="2" Visibility="{Binding StateManager.IsMoviesPagerVisible, Converter={StaticResource VisibilityConverter}}"></User_ControlsMovieUC:MoviesPagerUC>
+            <StackPanel Grid.Row="2" Visibility="{Binding StateManager.IsMoviesPagerVisible, Converter={StaticResource VisibilityConverter}}">
+                <User_ControlsMovieUC:MoviesPagerUC  HorizontalAlignment="Center" PaginatedList="{Binding PaginatedMovies}" GoNextPage="pagerUC_GoNextPage" GoPreviousPage="pagerUC_GoPreviousPage" x:Name="pagerUC" Grid.Row="2" ></User_ControlsMovieUC:MoviesPagerUC>
+            </StackPanel> 
             <StackPanel  Grid.Row="3" Visibility="{Binding StateManager.IsAddMovieVisible, Converter={StaticResource VisibilityConverter}}">
                 <User_ControlsMovieUC:AddMovieUC  GoPreviousPage="AddMovieUC_GoPreviousPage" x:Name="AddMovieUC"></User_ControlsMovieUC:AddMovieUC>
             </StackPanel>

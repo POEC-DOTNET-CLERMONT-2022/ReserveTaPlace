@@ -74,21 +74,17 @@ namespace ReserveTaPlace.API.Controllers
             }
             return Ok(movieDto);
         }
-
-        //TODO : Ici il faut faire un GET !!!!! 
-        [HttpPost("GetMovieByNameAndYear")]
-        public async Task<ActionResult> GetMovieByNameAndYear([FromBody] List<string> ressourceList)
+        [HttpGet("MovieByNameAndYear")]
+        public async Task<ActionResult> GetMovieByNameAndYear([FromQuery] string name, string year)
         {
-            var movie = await _movieSpec.GetMovieByNameAndYear(ressourceList[0].ToString(), ressourceList[1].ToString());
-            var movieDto = _mapper.Map<MovieDto>(movie);
-            return Ok(movieDto);
+                var movie = await _movieSpec.GetMovieByNameAndYear(name, year);
+                var movieDto = _mapper.Map<MovieDto>(movie);
+                return Ok(movieDto);
         }
-
-        //TODO : Ici il faut faire un GET !!!!! 
-        [HttpPost("GetAllPaginated")]
-        public async Task<ActionResult> GetAllPaginated([FromBody] List<int> ressourceList)
+        [HttpGet("AllPaginated")]
+        public async Task<ActionResult> GetAllPaginated([FromQuery] int pageIndex, int pageSize)
         {
-            var movies = await _movieSpec.GetAllPaginated(ressourceList[0], ressourceList[1]);
+            var movies = await _movieSpec.GetAllPaginated(pageIndex, pageSize);
             var moviesDto = _mapper.Map<PaginatedList<MovieDto>>(movies);
 
             return Ok(moviesDto);

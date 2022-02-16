@@ -15,11 +15,12 @@
              x:Name="root">
     <Grid DataContext="{Binding .,ElementName=root}">
         <StackPanel HorizontalAlignment="Left" MinWidth="200">
-            <TextBox materialDesign:HintAssist.Hint="Nom"/>
-            <TextBox materialDesign:HintAssist.Hint="Prénom"/>
-            <TextBox materialDesign:HintAssist.Hint="Mot de passe"/>
-            <TextBox materialDesign:HintAssist.Hint="Confirmer le mot de base"/>
-            <ComboBox x:Name="CBRoles" materialDesign:HintAssist.Hint="Role" DataContext="{Binding .,ElementName=root}" ItemsSource="{Binding UserViewModel.Roles}" SelectedValue="{Binding UserViewModel.RoleStrg}">
+            <TextBox x:Name="TBLastName" materialDesign:HintAssist.Hint="Nom"/>
+            <TextBox x:Name="TBFirstName" materialDesign:HintAssist.Hint="Prénom"/>
+            <TextBox x:Name="TBEMail" materialDesign:HintAssist.Hint="E-Mail"/>
+            <TextBox x:Name="TBPassword" materialDesign:HintAssist.Hint="Mot de passe"/>
+            <TextBox x:Name="TBConfirmPassword" materialDesign:HintAssist.Hint="Confirmer le mot de base"/>
+            <ComboBox x:Name="CBRoles" materialDesign:HintAssist.Hint="Role" DataContext="{Binding .,ElementName=root}" ItemsSource="{Binding UserViewModel.Roles}" SelectedValue="{Binding UserViewModel.SelectedRole}" DisplayMemberPath="Name">
             </ComboBox>
             <WrapPanel Orientation="Horizontal" >
                 <Button x:Name="BTNAddUser" Click="BTNAddUser_Click" Margin=" 50 0" Style="{StaticResource MaterialDesignIconButton}" ToolTip="Ajouter" Background="{DynamicResource MaterialDesignTextFieldBoxBackground}">

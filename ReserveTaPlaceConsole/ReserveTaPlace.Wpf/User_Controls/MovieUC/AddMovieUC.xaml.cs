@@ -4,21 +4,9 @@ using ReserveTaPlace.Logic.DataManager;
 using ReserveTaPlace.Models;
 using ReserveTaPlace.Models.WPFModels;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
 {
@@ -55,7 +43,7 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
             SPMovieFound.Visibility = Visibility.Collapsed;
             var movieName = TBMovieToAddName.Text;
             var movieYear = TBMovieToAddYear.Text;
-            if (await _movieDataManager.GetMovieByNameAndYear(movieName, movieYear)!=null)
+            if (!String.IsNullOrEmpty(movieYear) && await _movieDataManager.GetMovieByNameAndYear(movieName, movieYear)!=null)
             {
                 _listMovie.FoundMovie = await _movieDataManager.GetMovieByNameAndYear(movieName, movieYear);
                 IMGmovieFound.DataContext = _listMovie;

@@ -53,7 +53,10 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
         private void ShowAddMovie_Click(object sender, RoutedEventArgs e)
         {
             ListMovie.StateManager.Set(MoviePageState.AddMovieView);
-            UCPutOnScreen.SessionViewModel.SelectedMovie = null;
+            if (UCPutOnScreen.SessionViewModel != null)
+            {
+                UCPutOnScreen.SessionViewModel.SelectedMovie = null;
+            }
         }
 
         private async void ShowListMovies(object sender, RoutedEventArgs e)
@@ -85,17 +88,24 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
         private async void BTNFindMovie_Click(object sender, RoutedEventArgs e)
         {
             TBUnfound.Visibility = Visibility.Collapsed;
-            var movieFound = await _movieDataManager.GetMovieByNameAndYear(TBMovieName.Text, TBMovieYear.Text);
-            var movies = new List<MovieModel>();
-            if (movieFound==null)
+            if (String.IsNullOrEmpty(TBMovieYear.Text))
             {
-                TBUnfound.Visibility = Visibility.Visible;
+
             }
-            if (movieFound!=null)
+            else
             {
-                movies.Add(movieFound);
-                ListMovie.Movies = new ObservableCollection<MovieModel>(movies);
-                MoviesListUC.Movies = ListMovie.Movies;
+                var movieFound = await _movieDataManager.GetMovieByNameAndYear(TBMovieName.Text, TBMovieYear.Text);
+                var movies = new List<MovieModel>();
+                if (movieFound == null)
+                {
+                    TBUnfound.Visibility = Visibility.Visible;
+                }
+                if (movieFound != null)
+                {
+                    movies.Add(movieFound);
+                    ListMovie.Movies = new ObservableCollection<MovieModel>(movies);
+                    MoviesListUC.Movies = ListMovie.Movies;
+                }
             }
 
         }

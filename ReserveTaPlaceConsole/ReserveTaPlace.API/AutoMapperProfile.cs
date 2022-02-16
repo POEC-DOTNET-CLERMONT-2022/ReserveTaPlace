@@ -10,10 +10,8 @@ namespace ReserveTaPlace.API
     {
         public AutoMapperProfile()
         {
-            //Todo Implémenter flattened DTOS https://enroute.osgi.org/FAQ/420-dtos.html
+            CreateMap<RoleEntity, RoleDto>().ReverseMap();
             CreateMap<MovieEntity, MovieDto>().ReverseMap();
-
-            //CreateMap<MovieEntity, MovieDto>().ReverseMap();
             CreateMap<TheaterEntity, NewTheaterDto>().ReverseMap();
             CreateMap<RoomEntity, NewRoomDto>().ReverseMap();
             CreateMap<SeatEntity, SeatDto>().ReverseMap();
@@ -24,9 +22,6 @@ namespace ReserveTaPlace.API
             CreateMap<CalendarEntity, CalendarDto>().ReverseMap();
             CreateMap<UserEntity, UserDto>().ReverseMap();
             CreateMap<ScheduleEntity, ScheduleDto>().ReverseMap();
-
-            //CreateMap<List<SessionEntity>, List<SessionDto>>().ReverseMap();
-
             CreateMap<SessionDto, SessionEntity>().ReverseMap();
             //.ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
             //.ForMember(dest => dest.Schedules, opt => opt.MapFrom(src => src.Schedules))

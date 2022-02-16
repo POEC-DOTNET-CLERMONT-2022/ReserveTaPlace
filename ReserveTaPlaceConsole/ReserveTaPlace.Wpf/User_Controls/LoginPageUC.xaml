@@ -30,14 +30,13 @@
             </StackPanel>
             <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-                    <TextBox x:Name ="LoginTB" TextWrapping="Wrap" MinWidth="150" materialDesign:HintAssist.Hint="E-Mail"/>
+                    <TextBox x:Name ="TBLogin" TextWrapping="Wrap" MinWidth="150" materialDesign:HintAssist.Hint="E-Mail"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-                    <TextBox x:Name ="PasswordTB" TextWrapping="Wrap" MinWidth="150" materialDesign:HintAssist.Hint="Password"/>
+                    <TextBox x:Name ="TBPassword" TextWrapping="Wrap" MinWidth="150" materialDesign:HintAssist.Hint="Password"/>
                 </WrapPanel>
             </StackPanel>
             <WrapPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center"  VerticalAlignment="Center">
-                <Button x:Name="ForgetPasswordBTN" Margin="10">Mot de passe perdu ?</Button>
                 <Button x:Name="LoginBTN" Margin="10" Click="LoginBTN_Click">Se connecter</Button>
                 <TextBlock x:Name="ResultTB"/>
             </WrapPanel>

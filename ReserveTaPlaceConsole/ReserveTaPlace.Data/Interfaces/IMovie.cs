@@ -15,6 +15,8 @@ namespace ReserveTaPlace.Data.Interfaces
         Task<bool> DeleteById(Guid id);
         Task<bool> Add(MovieEntity entity);
         Task<MovieEntity> GetMovieByNameAndYear(string title,string year);
+        Task<MovieEntity> GetMovieByName(string title);
+
 
     }
 }
