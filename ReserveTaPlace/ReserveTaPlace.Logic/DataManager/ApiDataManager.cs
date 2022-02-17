@@ -146,5 +146,16 @@ namespace ReserveTaPlace.Logic.DataManager
             var resultString = await response.Content.ReadAsStringAsync();
             return resultString;
         }
+
+        public async Task<TModel> GetUserByEmail(string email)
+        {
+            var _uri = new Uri(Uri + $"/UserByMail/?email={email}");
+            var response = await HttpClient.GetAsync(_uri);
+            response.EnsureSuccessStatusCode();
+            var resultString = await response.Content.ReadAsStringAsync();
+            var user = JsonConvert.DeserializeObject<TDto>(resultString);
+            var userModel = Mapper.Map<TModel>(user);
+            return userModel;
+        }
     }
 }

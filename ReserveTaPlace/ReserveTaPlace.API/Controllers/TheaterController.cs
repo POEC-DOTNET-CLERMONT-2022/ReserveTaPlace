@@ -23,7 +23,6 @@ namespace ReserveTaPlace.API.Controllers
             _theater = new TheaterFunctions(context);
             _mapper = mapper;
         }
-
         // GET: api/<TheaterController>
         [HttpGet]
         public async Task<ActionResult> GetAll()
@@ -32,7 +31,6 @@ namespace ReserveTaPlace.API.Controllers
             var theaterDto = _mapper.Map<IEnumerable<TheaterDto>>(theaters);
             return Ok(theaterDto);
         }
-
         // GET api/<TheaterController>/5
         [HttpGet("{id}")]
         public async Task<ActionResult> Get(Guid id)
@@ -41,7 +39,6 @@ namespace ReserveTaPlace.API.Controllers
             var theaterDto = _mapper.Map<TheaterDto>(theaterEntity);
             return Ok(theaterDto);
         }
-
         // POST api/<TheaterController>
         [HttpPost]
         public async Task<ActionResult> Add([FromBody] NewTheaterDto theaterDto)
@@ -50,27 +47,14 @@ namespace ReserveTaPlace.API.Controllers
             var theaterEntityResult = await _theater.Add(theaterEntity);
             return Ok(theaterEntityResult);
         }
-
-
-        //[HttpPost("GetAllPaginated")]
-        //public async Task<ActionResult> GetAllPaginated([FromBody] List<int> ressourceList)
-        //{
-        //    var theaters = await _theaterSpec.GetAllPaginated(ressourceList[0], ressourceList[1]);
-        //    var theatersDto = _mapper.Map<PaginatedList<TheaterDto>>(theaters);
-
-        //    return Ok(theatersDto);
-        //}
-
         //PUT api/<TheaterController>/5
         [HttpPut("{id}")]
-
         public async Task<ActionResult> Put([FromBody] TheaterDto theaterDto)
         {
             var theaterEntity = _mapper.Map<TheaterEntity>(theaterDto);
             var theaterUpdate = await _theater.Update(theaterEntity);
             return Ok(theaterUpdate);
         }
-
         //DELETE api/<TheaterController>/5
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(Guid id)

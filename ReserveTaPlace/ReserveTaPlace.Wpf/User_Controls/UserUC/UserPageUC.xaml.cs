@@ -3,6 +3,7 @@ using ReserveTaPlace.Logic.DataManager;
 using ReserveTaPlace.Models;
 using ReserveTaPlace.Models.WPFModels;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows;
@@ -48,8 +49,9 @@ namespace ReserveTaPlace.Wpf.User_Controls
 
         private async Task LoadUsers()
         {
-            var users = await _dataManager.GetAllPaginated(_pageIndex, _pageSize);
-            UserViewModel.Users = new ObservableCollection<UserModel>(users.Data);
+            UserViewModel.UsersPaginated = await _dataManager.GetAllPaginated(_pageIndex, _pageSize);
+            UCPager.PaginatedList = UserViewModel.UsersPaginated;
+            UCUsersList.Users = UserViewModel.UsersPaginated;
         }
 
         private async void UsersPagerUC_GoPreviousPage(object sender, EventArgs e)
@@ -82,6 +84,20 @@ namespace ReserveTaPlace.Wpf.User_Controls
                 }
 
             }
+        }
+
+        private async void BTNSearchUser_Click(object sender, RoutedEventArgs e)
+        {
+            if (!String.IsNullOrEmpty(TBEmail.Text))
+            {
+                var user = await _dataManager.GetUserByEmail(TBEmail.Text);
+                UCUserDetails.User = user;
+            }
+        }
+
+        private async void BTNReload_Click(object sender, RoutedEventArgs e)
+        {
+            await LoadUsers();
         }
     }
 }

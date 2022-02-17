@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ReserveTaPlace.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,20 @@ namespace ReserveTaPlace.Wpf.User_Controls
     /// </summary>
     public partial class UserDetailsUC : UserControl
     {
+        private static readonly DependencyProperty _userProperty = DependencyProperty
+       .Register("User", typeof(UserModel), typeof(UserDetailsUC));
+        private UserModel _user;
+        public UserModel User
+        {
+            get { return GetValue(_userProperty) as UserModel; }
+            set
+            {
+                if (_user != value)
+                {
+                    SetValue(_userProperty, value);
+                }
+            }
+        }
         public UserDetailsUC()
         {
             InitializeComponent();

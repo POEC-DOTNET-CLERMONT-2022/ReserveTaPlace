@@ -64,6 +64,12 @@ namespace ReserveTaPlace.API.Controllers
             var result = await _user.GetUserHash(email);
             return Ok(result);
         }
-
+        [HttpGet("UserByMail")]
+        public async Task<ActionResult> UserByMail([FromQuery] string email)
+        {
+            var result = await _user.GetUserByMail(email);
+            var userDto = _mapper.Map<UserDto>(result);
+            return Ok(result);
+        }
     }
 }

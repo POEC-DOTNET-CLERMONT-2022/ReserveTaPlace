@@ -13,14 +13,14 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              x:Name="root">
-    <Grid>
+    <Grid DataContext="{Binding .,ElementName=root}">
         <WrapPanel x:Name="SPpager" HorizontalAlignment="Center">
-            <Button Click="BTNPrev_Click" DataContext="{Binding .,ElementName=root}" IsEnabled="{Binding PaginatedList.HasPreviousPage}" Style="{StaticResource MaterialDesignIconButton}" ToolTip="MaterialDesignIconButton" x:Name="BTNPrev">
+            <Button Click="BTNPrev_Click" IsEnabled="{Binding PaginatedList.HasPreviousPage}" Style="{StaticResource MaterialDesignIconButton}" ToolTip="MaterialDesignIconButton" x:Name="BTNPrev">
                 <materialDesign:PackIcon Kind="SkipPrevious" MinWidth="38" MinHeight="38"/>
             </Button>
             <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center">
             </StackPanel>
-            <Button Click="BTNNext_Click" DataContext="{Binding .,ElementName=root}" IsEnabled="{Binding PaginatedList.HasNextPage}" Style="{StaticResource MaterialDesignIconButton}" ToolTip="MaterialDesignIconButton" x:Name="BTNNext">
+            <Button Click="BTNNext_Click" DataContext="{Binding .,ElementName=root}" IsEnabled="{Binding PaginatedList.HasPreviousPage}" Style="{StaticResource MaterialDesignIconButton}" ToolTip="MaterialDesignIconButton" x:Name="BTNNext">
                 <materialDesign:PackIcon Kind="SkipNext" MinWidth="38" MinHeight="38"/>
             </Button>
         </WrapPanel>

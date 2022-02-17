@@ -29,17 +29,28 @@
                 <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
             <WrapPanel  HorizontalAlignment="Left">
-                <TextBox materialDesign:HintAssist.Hint="User@Mail" x:Name="TBUserName" Margin="0,0,10,0" Width="150"></TextBox>
-                <Button Style="{StaticResource MaterialDesignIconButton}" ToolTip="Rechercher" Background="{DynamicResource MaterialDesignTextFieldBoxBackground}">
+                <TextBox x:Name="TBEmail" materialDesign:HintAssist.Hint="User@Mail" Margin="0,0,10,0" Width="150"></TextBox>
+                <Button x:Name="BTNSearchUser" Click="BTNSearchUser_Click" Style="{StaticResource MaterialDesignIconButton}" ToolTip="Rechercher" Background="{DynamicResource MaterialDesignTextFieldBoxBackground}">
                     <materialDesign:PackIcon Kind="AccountSearch" />
                 </Button>
+                <Button x:Name="BTNReload" Click="BTNReload_Click" Width="30" Height="30" Style="{StaticResource MaterialDesignIconButton}" ToolTip="Ajouter un film" Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
+                    HorizontalAlignment="Right" Grid.Row="2">
+                    <materialDesign:PackIcon Width="20" Height="30" Kind="Reload" />
+                </Button>
             </WrapPanel>
-            <UserUC:UsersListUC x:Name="UCUsersList" Users="{Binding Users}" Grid.Row="1" />
-            <UserUC:UsersPagerUC Grid.Row="2" GoPreviousPage="UsersPagerUC_GoPreviousPage" GoNextPage="UsersPagerUC_GoNextPage"/>
+            <UserUC:UsersListUC x:Name="UCUsersList" Users="{Binding UsersPaginated.Data}" Grid.Row="1" />
+            <UserUC:UsersPagerUC x:Name="UCPager" PaginatedList="{Binding UsersPaginated}" Grid.Row="2" GoPreviousPage="UsersPagerUC_GoPreviousPage" GoNextPage="UsersPagerUC_GoNextPage"/>
             <Button  Grid.Row="0" HorizontalAlignment="Right" Style="{StaticResource MaterialDesignIconButton}" ToolTip="Ajouter" Background="{DynamicResource MaterialDesignTextFieldBoxBackground}">
                 <materialDesign:PackIcon Kind="AccountPlus" />
             </Button>
-            <UserUC:AddUserUC x:Name="UCAddUser" AddUser="UCAddUser_AddUser" UserViewModel="{Binding UserViewModel}" HorizontalAlignment="Left" Grid.Row="3"/>
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <UserUC:AddUserUC x:Name="UCAddUser" AddUser="UCAddUser_AddUser" UserViewModel="{Binding UserViewModel}" HorizontalAlignment="Left" Grid.Column="0"/>
+                <User_Controls:UserDetailsUC x:Name="UCUserDetails" Grid.Column="1"/>
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>

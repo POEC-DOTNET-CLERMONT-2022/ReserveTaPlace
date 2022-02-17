@@ -23,25 +23,10 @@ namespace ReserveTaPlace.API
             CreateMap<UserEntity, UserDto>().ReverseMap();
             CreateMap<ScheduleEntity, ScheduleDto>().ReverseMap();
             CreateMap<SessionDto, SessionEntity>().ReverseMap();
-            //TODO : pas besoin ? 
-            CreateMap<TheaterEntity, TheaterDto>()
-                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
-                .ForMember(dest => dest.Medias, opt => opt.MapFrom(src => src.Medias))
-                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
-                .ForMember(dest => dest.Address, opt => opt.MapFrom(src => src.Address))
-                .ForMember(dest => dest.Users, opt => opt.MapFrom(src => src.Users))
-                .ForMember(dest => dest.Rooms, opt => opt.MapFrom(src => src.Rooms));
-            CreateMap<RoomEntity, RoomDto>()
-                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
-                .ForMember(dest => dest.TheaterId, opt => opt.MapFrom(src => src.TheaterId))
-                .ForMember(dest => dest.Seats, opt => opt.MapFrom(src => src.Seats))
-                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
-                .ForMember(dest => dest.Format, opt => opt.MapFrom(src => src.Format))
-                .ForMember(dest => dest.Number, opt => opt.MapFrom(src => src.Number));
+            CreateMap<TheaterEntity, TheaterDto>().ReverseMap();
+            CreateMap<RoomEntity, RoomDto>().ReverseMap();
             CreateMap<PaginatedList<MovieEntity>, PaginatedList<MovieDto>>().ReverseMap();
-
             CreateMap<PaginatedList<TheaterEntity>, PaginatedList<TheaterDto>>().ReverseMap();
-
             CreateMap<PaginatedList<UserEntity>, PaginatedList<UserDto>>().ReverseMap();
 
         }

@@ -1,4 +1,5 @@
 ﻿using ReserveTaPlace.Models;
+using ReserveTaPlace.Models.WPFModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -24,9 +25,21 @@ namespace ReserveTaPlace.Wpf.User_Controls.UserUC
     public partial class UsersListUC : UserControl
     {
         private static readonly DependencyProperty _usersProperty = DependencyProperty
-            .Register("Users", typeof(ObservableCollection<UserModel>), typeof(UsersListUC));
-        private ObservableCollection<UserModel> _users;
+            .Register("Users", typeof(PaginatedList<UserModel>), typeof(UsersListUC));
+        private PaginatedList<UserModel> _users;
         public UserModel SelectedUser { get; set; }
+
+        public PaginatedList<UserModel> Users
+        {
+            get { return GetValue(_usersProperty) as PaginatedList<UserModel>; }
+            set
+            {
+                if (_users != value)
+                {
+                    SetValue(_usersProperty, value);
+                }
+            }
+        }
         public UsersListUC()
         {
             InitializeComponent();
@@ -36,18 +49,6 @@ namespace ReserveTaPlace.Wpf.User_Controls.UserUC
         [Category("Action")]
         [Description("Invoked when user clicks on a movie in the list")]
         public event EventHandler SelectionChanged;
-        public ObservableCollection<UserModel> Users
-        {
-            get { return GetValue(_usersProperty) as ObservableCollection<UserModel>; }
-            set
-            {
-                if (_users != value)
-                {
-                    SetValue(_usersProperty, value);
-                }
-            }
-        }
-
         private void LBUsers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (this.SelectionChanged != null)

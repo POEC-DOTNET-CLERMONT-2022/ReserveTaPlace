@@ -47,5 +47,10 @@ namespace ReserveTaPlace.Data.Functions
             var user = await _dbContext.Set<UserEntity>().FirstOrDefaultAsync(u => u.Email == email);
             return user.Password;
         }
+
+        public async Task<UserEntity> GetUserByMail(string email)
+        {
+            return await _dbContext.Set<UserEntity>().Include(u=>u.Roles).FirstOrDefaultAsync(u => u.Email.ToLower() == email.ToLower());
+        }
     }
 }
