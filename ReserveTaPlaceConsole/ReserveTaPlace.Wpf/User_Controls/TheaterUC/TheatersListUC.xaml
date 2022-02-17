@@ -77,54 +77,68 @@
                 </DataTemplate>
             </DataGrid.RowDetailsTemplate>
         </DataGrid>-->
+        <StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock FontSize="18" FontWeight="Bold" VerticalAlignment="Center">Gestion des cinémas</TextBlock>
+                <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                        x:Name="BTNCreateTheater" Click="BTNCreateTheater_Click"
+                        Height="25"
+                        materialDesign:ButtonAssist.CornerRadius="25"
+                        ToolTip="Ajouter un cinéma"
+                        Margin="20 0 0 0" Cursor="Hand">
+                    <TextBlock Text="Ajouter un cinéma" />
+                </Button>
+            </StackPanel>
             <ListView x:Name="LVTheaters" DataContext="{Binding .,ElementName=root}" ItemsSource="{Binding Theaters}" 
-                      SelectedItem="{Binding CurrentTheater}" SelectionChanged="LVTheaters_SelectionChanged" HorizontalAlignment="Center">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Nom"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Medias.Count}" Header="Image"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Rooms.Count}" Header="Salles"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Users.Count}" Header="Utilisateurs"/>
-                    <GridViewColumn Header="Action">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
-                                            ToolTip="Supprimer" Margin="0 0 8 0"
-                                            x:Name="BTNDelete" Click="BTNDelete_Click" Height="30" Width="30">
-                                        <materialDesign:PackIcon Kind="Delete"
-                                                                 Height="14"
-                                                                 Width="14" />
-                                    </Button>
-                                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
-                                            ToolTip="Supprimer"
-                                            x:Name="BTNUpdate" Click="BTNUpdate_Click" Height="30" Width="30">
-                                        <materialDesign:PackIcon Kind="PencilOutline"
-                                                                 Height="14"
-                                                                 Width="14" />
-                                    </Button>
-                                </StackPanel>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <!--<GridViewColumn
-            Header="Options">
+                          SelectedItem="{Binding CurrentTheater}" SelectionChanged="LVTheaters_SelectionChanged" HorizontalAlignment="Center"
+                      Margin="0 10">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Nom"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Medias.Count}" Header="Image"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Rooms.Count}" Header="Salles"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Users.Count}" Header="Utilisateurs"/>
+                        <GridViewColumn Header="Action">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <ComboBox
-                  Width="100">
-                                        <ComboBoxItem
-                    Content="Test" />
-                                        <ComboBoxItem
-                    Content="Test2" />
-                                        <ComboBoxItem
-                    Content="Test3" />
-                                    </ComboBox>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                                                ToolTip="Supprimer" Margin="0 0 8 0"
+                                                x:Name="BTNDelete" Click="BTNDelete_Click" Height="30" Width="30">
+                                            <materialDesign:PackIcon Kind="Delete"
+                                                                     Height="14"
+                                                                     Width="14" />
+                                        </Button>
+                                        <Button Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                                                ToolTip="Modifier"
+                                                x:Name="BTNUpdate" Click="BTNUpdate_Click" Height="30" Width="30">
+                                            <materialDesign:PackIcon Kind="PencilOutline"
+                                                                     Height="14"
+                                                                     Width="14" />
+                                        </Button>
+                                    </StackPanel>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
-                        </GridViewColumn>-->
-                    </GridView>
-                </ListView.View>
-            </ListView>
+                        </GridViewColumn>
+                        <!--<GridViewColumn
+                Header="Options">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ComboBox
+                      Width="100">
+                                            <ComboBoxItem
+                        Content="Test" />
+                                            <ComboBoxItem
+                        Content="Test2" />
+                                            <ComboBoxItem
+                        Content="Test3" />
+                                        </ComboBox>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>-->
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+        </StackPanel>
     </Grid>
 </UserControl>

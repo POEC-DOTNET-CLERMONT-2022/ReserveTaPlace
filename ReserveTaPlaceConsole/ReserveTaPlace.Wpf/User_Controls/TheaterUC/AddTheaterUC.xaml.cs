@@ -32,5 +32,10 @@ namespace ReserveTaPlace.Wpf.User_Controls.TheaterUC
                 }
             }
         }
+
+        private void BTNCreateRoom_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

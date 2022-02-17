@@ -1,4 +1,6 @@
 ﻿using ReserveTaPlace.Models;
+using ReserveTaPlace.Models.WPFModels;
+using ReserveTaPlace.Models.WPFModels.StateManager;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -14,10 +16,13 @@ namespace ReserveTaPlace.Wpf.User_Controls.TheaterUC
     {
         private static readonly DependencyProperty _theatersProperty = DependencyProperty.Register("Theaters", typeof(ObservableCollection<TheaterModel>), typeof(TheatersListUC));
         private ObservableCollection<TheaterModel> _theaters;
+        public TheaterViewModel TheaterViewModel { get; set; }
         public TheaterModel SelectedTheater { get { return LVTheaters.SelectedItem as TheaterModel; } }
         public TheatersListUC()
         {
             InitializeComponent();
+            TheaterViewModel = new TheaterViewModel();
+            TheaterViewModel.StateManager = new TheaterPageStateManager(TheaterPageState.AddTheaterView);
         }
         [Browsable(true)]
         [Category("Action")]
@@ -31,8 +36,8 @@ namespace ReserveTaPlace.Wpf.User_Controls.TheaterUC
                 if(_theaters != value) SetValue(_theatersProperty, value);
             }
         }
-        public event PropertyChangedEventHandler? PropertyChanged;
 
+        public event PropertyChangedEventHandler? PropertyChanged;
         private void LVTheaters_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (this.SelectionChanged != null)
@@ -46,6 +51,11 @@ namespace ReserveTaPlace.Wpf.User_Controls.TheaterUC
         private void BTNUpdate_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void BTNCreateTheater_Click(object sender, RoutedEventArgs e)
+        {
+            TheaterViewModel.StateManager.Set(TheaterPageState.AddTheaterView);
         }
     }
 }

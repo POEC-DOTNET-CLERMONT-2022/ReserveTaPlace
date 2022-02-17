@@ -30,5 +30,15 @@ namespace ReserveTaPlace.Wpf.User_Controls.TheaterUC
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
+
+        private void BTNDeleteRoom_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BTNUpdateRoom_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
