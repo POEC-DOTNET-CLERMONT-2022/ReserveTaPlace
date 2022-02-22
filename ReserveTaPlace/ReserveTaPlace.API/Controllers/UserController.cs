@@ -54,14 +54,18 @@ namespace ReserveTaPlace.API.Controllers
         [HttpPost]
         public async Task<ActionResult> Add([FromBody] UserDto userDto)
         {
+            userDto.Password = BCrypt.Net.BCrypt.HashPassword(userDto.Password);
             var userEntity = _mapper.Map<UserEntity>(userDto);
             var result = await _user.Add(userEntity);
             return Ok(result);
         }
-        [HttpGet("UserHash")]
-        public async Task<ActionResult> UserHash([FromQuery] string email)
+
+        [HttpGet("VerifyUser")]
+        public async Task<ActionResult> VerifyUser([FromQuery]string email,string password)
         {
-            var result = await _user.GetUserHash(email);
+            var user = await _user.GetUserByMail(email);
+            if (user == null) return BadRequest();
+            var result = BCrypt.Net.BCrypt.Verify(password, user.Password);
             return Ok(result);
         }
         [HttpGet("UserByMail")]

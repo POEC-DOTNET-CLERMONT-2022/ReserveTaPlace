@@ -1,6 +1,7 @@
 ﻿using ReserveTaPlace.DTOS;
 using ReserveTaPlace.Logic.DataManager;
 using ReserveTaPlace.Models;
+using ReserveTaPlace.Models.WPFModels;
 using ReserveTaPlace.Wpf.Utils;
 using System;
 using System.Threading.Tasks;
@@ -27,9 +28,9 @@ namespace ReserveTaPlace.Wpf.User_Controls
 
         private async void LoginBTN_Click(object sender, RoutedEventArgs e)
         {
-            if (TBPassword.Text!=null && TBLogin.Text != null && TBPassword.Text != String.Empty && TBLogin.Text != String.Empty)
+            if (TBPassword.Password!=null && TBLogin.Text != null && TBPassword.Password != String.Empty && TBLogin.Text != String.Empty)
             {
-                if (await CheckUser(TBPassword.Text,TBLogin.Text))
+                if (await CheckUser(TBPassword.Password, TBLogin.Text))
                 {
                     Navigator.NavigateTo(typeof(HomePage));
                 }
@@ -39,8 +40,9 @@ namespace ReserveTaPlace.Wpf.User_Controls
 
         private async Task<bool> CheckUser(string password,string email)
         {
-            string passwordHash = await _userDataManager.GetUserHash(email);
-            return BCrypt.Net.BCrypt.Verify(password, passwordHash);
+            var userToVerify = new UserToVerify() { Password = password, Email = email };   
+            var result = await _userDataManager.VerifyUser(userToVerify);
+            return result;
         }
     }
 }

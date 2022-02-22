@@ -33,7 +33,7 @@
                     <TextBox x:Name ="TBLogin" TextWrapping="Wrap" MinWidth="150" materialDesign:HintAssist.Hint="E-Mail"/>
                 </WrapPanel>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-                    <TextBox x:Name ="TBPassword" TextWrapping="Wrap" MinWidth="150" materialDesign:HintAssist.Hint="Password"/>
+                    <PasswordBox x:Name ="TBPassword" MinWidth="150" materialDesign:HintAssist.Hint="Password"/>
                 </WrapPanel>
             </StackPanel>
             <WrapPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center"  VerticalAlignment="Center">

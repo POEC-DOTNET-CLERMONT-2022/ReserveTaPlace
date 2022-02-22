@@ -42,7 +42,7 @@ var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
 {
-    var db = scope.ServiceProvider.GetRequiredService<ReserveTaPlaceContext>();
+    var db = scope.ServiceProvider.GetService<ReserveTaPlaceContext>();
     db.Database.Migrate();
 }
 

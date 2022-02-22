@@ -17,19 +17,10 @@
              x:Name="root"
              >
     <Grid>
-        <ListBox Height="230" x:Name="LBMovies" SelectionChanged="LBMovies_SelectionChanged" SelectedItem="{Binding SelectedMovie}" DataContext="{Binding .,ElementName=root}" ItemsSource="{Binding Movies}">
-            <!--<ListBox.ItemContainerStyle>
-                <Style TargetType="ListBoxItem">
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="IsSelected" Value="True"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </ListBox.ItemContainerStyle>-->
+        <ListBox Background="LightGray" Height="230" x:Name="LBMovies" SelectionChanged="LBMovies_SelectionChanged" SelectedItem="{Binding SelectedMovie}" DataContext="{Binding .,ElementName=root}" ItemsSource="{Binding Movies}">
             <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
-                    <WrapPanel  HorizontalAlignment="Left">
+                    <WrapPanel  HorizontalAlignment="Center">
 
                     </WrapPanel>
                 </ItemsPanelTemplate>

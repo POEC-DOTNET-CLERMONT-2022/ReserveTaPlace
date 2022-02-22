@@ -28,5 +28,6 @@ namespace ReserveTaPlace.Logic.DataManager
         Task<bool> AddRoomSession(TModel session);
         Task<string> GetUserHash(string email);
         Task<TModel> GetUserByEmail(string text);
+        Task<bool> VerifyUser(UserToVerify userToVerify);
     }
 }

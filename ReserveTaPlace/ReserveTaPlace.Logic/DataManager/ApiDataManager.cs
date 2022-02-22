@@ -157,5 +157,15 @@ namespace ReserveTaPlace.Logic.DataManager
             var userModel = Mapper.Map<TModel>(user);
             return userModel;
         }
+
+        public async Task<bool> VerifyUser(UserToVerify userToVerify)
+        {
+            var _uri = new Uri(Uri + $"/VerifyUser/?email={userToVerify.Email}&password={userToVerify.Password}");
+            var response = await HttpClient.GetAsync(_uri);
+            response.EnsureSuccessStatusCode();
+            var resultString = await response.Content.ReadAsStringAsync();
+            Boolean.TryParse(resultString, out bool result);
+            return result;
+        }
     }
 }

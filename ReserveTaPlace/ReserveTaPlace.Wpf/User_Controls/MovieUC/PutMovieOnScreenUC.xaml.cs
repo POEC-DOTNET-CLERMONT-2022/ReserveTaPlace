@@ -128,7 +128,7 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
         }
         private async void BTNCreateSessions_Click(object sender, RoutedEventArgs e)
         {
-            //TODO : trop complexe 
+            //TODO : trop complexe
             SessionViewModel.SelectedTheatre = CBTheaters.SelectedItem as TheaterModel;
             foreach (var item in SessionViewModel.SelectedTheatre.Rooms)
             {

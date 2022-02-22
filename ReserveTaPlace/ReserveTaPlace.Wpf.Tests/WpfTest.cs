@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ReserveTaPlace.Wpf.Tests
@@ -18,7 +19,11 @@ namespace ReserveTaPlace.Wpf.Tests
         [TestMethod]
         public void TestApp()
         {
+           var login = session.FindElementByAccessibilityId("TBPassword");
+            login.Click();
+            login.SendKeys("pqss");
             session.FindElementByAccessibilityId("LoginBTN").Click();
+            Thread.Sleep(10000);
         }
         [ClassCleanup]
         public static void ClassCleanUp()

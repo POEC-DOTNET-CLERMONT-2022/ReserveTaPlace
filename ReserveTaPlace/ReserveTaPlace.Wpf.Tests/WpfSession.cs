@@ -14,7 +14,7 @@ namespace ReserveTaPlace.Wpf.Tests
     {
         // Note: append /wd/hub to the URL if you're directing the test at Appium
         private const string WindowsApplicationDriverUrl = "http://127.0.0.1:4723/";
-        private const string AppPath = @"C:\ProjetIFPME\ReserveTaPlaceConsole\ReserveTaPlace.Wpf\bin\Debug\net6.0-windows\ReserveTaPlace.Wpf.exe";
+        private const string AppPath = @"C:\ProjetIFPME\ReserveTaPlace\ReserveTaPlace.Wpf\bin\Debug\net6.0-windows\ReserveTaPlace.Wpf.exe";
 
         protected static WindowsDriver<WindowsElement> session;
 

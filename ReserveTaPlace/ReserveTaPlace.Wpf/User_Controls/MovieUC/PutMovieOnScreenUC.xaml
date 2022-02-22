@@ -57,20 +57,24 @@
         <Button Grid.ColumnSpan="2" VerticalAlignment="Bottom" HorizontalAlignment="Left" x:Name="BTNGenerateCalendar" Visibility="Collapsed" Click="BTNGenerateCalendar_Click">GenerateCalendar</Button>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="3*"/>
+                <RowDefinition Height="2*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
-                <RowDefinition Height="0.5*"/>
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0" HorizontalAlignment="Left">
                 <TextBlock TextWrapping="Wrap" MaxWidth="200" FontSize="20" DataContext="{Binding .,ElementName=root}" Text="{Binding SessionViewModel.SelectedMovie.Title, StringFormat='Film : {0}'}"></TextBlock>
                 <TextBlock Text="{Binding ElementName=CBTheaters, Path=SelectedItem.Name}"></TextBlock>
                 <TextBlock Text="{Binding ElementName=CBRooms, Path=SelectedItem.Name}"></TextBlock>
             </StackPanel>
-            <Calendar  Grid.Row="0" HorizontalAlignment="Center" MaxHeight="250" MaxWidth="300" IsTodayHighlighted="false" IsManipulationEnabled="False"  x:Name="Calendar" SelectionMode="SingleRange">
-                
-            </Calendar>
-            <ListBox Grid.Row="1" MaxHeight="70" MinHeight="70" x:Name="LBSchedules" SelectedItem="{Binding CurrentSchedule}" DataContext="{Binding SessionViewModel}" ItemsSource="{Binding Schedules}">
+            <Calendar materialDesign:CalendarAssist.IsHeaderVisible="False" Grid.Row="0" HorizontalAlignment="Center" MaxHeight="330" IsTodayHighlighted="false" IsManipulationEnabled="False"  x:Name="Calendar" SelectionMode="SingleRange" >
+                    <Calendar.RenderTransform>
+                        <ScaleTransform>
+                            <ScaleTransform.ScaleX>1</ScaleTransform.ScaleX>
+                            <ScaleTransform.ScaleY>1</ScaleTransform.ScaleY>
+                        </ScaleTransform>
+                    </Calendar.RenderTransform>
+                </Calendar>
+            <ListBox Grid.Row="1" VerticalAlignment="Top"  MaxHeight="70" MinHeight="70" x:Name="LBSchedules" SelectedItem="{Binding CurrentSchedule}" DataContext="{Binding SessionViewModel}" ItemsSource="{Binding Schedules}">
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel  HorizontalAlignment="Left">
@@ -79,7 +83,7 @@
                     </ListBox.ItemsPanel>
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel MinWidth="100">
+                            <StackPanel MinWidth="100" MaxWidth="100">
                                 <TextBlock Text="Horaire"></TextBlock>
                                 <TextBlock Text="{Binding HourStart, StringFormat=HH:mm}"></TextBlock>
                                 <TextBlock Text="{Binding HourEnd, StringFormat=HH:mm}"></TextBlock>
@@ -87,7 +91,7 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-            <WrapPanel VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="3" Margin="0 5 0 0">
+            <WrapPanel Height="150" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="2" Margin="0 5 0 0">
                 <Button x:Name="BTNCreateSessions" Click="BTNCreateSessions_Click" Margin="0 0 10 0">Créer les séances</Button>
                 <Button Margin="0 0 1 0" x:Name="BTNReset" Click="BTNReset_Click">Réinitialiser</Button>
             </WrapPanel>
