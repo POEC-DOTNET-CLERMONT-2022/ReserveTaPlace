@@ -17,7 +17,7 @@
              x:Name="root"
              >
     <Grid>
-        <ListBox Background="LightGray" Height="230" x:Name="LBMovies" SelectionChanged="LBMovies_SelectionChanged" SelectedItem="{Binding SelectedMovie}" DataContext="{Binding .,ElementName=root}" ItemsSource="{Binding Movies}">
+        <ListBox Margin="0 0 5 0" Background="LightGray" Height="230" x:Name="LBMovies" SelectionChanged="LBMovies_SelectionChanged" SelectedItem="{Binding SelectedMovie}" DataContext="{Binding .,ElementName=root}" ItemsSource="{Binding Movies}">
             <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
                     <WrapPanel  HorizontalAlignment="Center">
