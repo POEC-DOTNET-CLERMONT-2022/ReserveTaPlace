@@ -14,7 +14,8 @@ builder.Services.AddCors(options =>
                           builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
                       });
 });
-
+//todo
+//builder.Services.AddCors(a)
 // Add services to the container.
 
 builder.Services.AddControllers().AddJsonOptions(options =>
@@ -56,6 +57,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseCors(devCorsPolicy);
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
