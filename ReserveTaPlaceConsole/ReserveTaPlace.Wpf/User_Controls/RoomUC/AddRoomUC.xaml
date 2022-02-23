@@ -53,6 +53,28 @@
                     </WrapPanel>
                     
                 </StackPanel>
+                <ListBox x:Name="LBRowSeat" SelectedItem="{Binding RoomViewModel.Row}" MaxWidth="200" Grid.Row="2" Grid.Column="1" >
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel  HorizontalAlignment="Left">
+                            </WrapPanel>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel MinWidth="100">
+                                <TextBlock>
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="{}Rangée {0}, {1} sièges ajoutées !">
+                                            <Binding Path="RowLetter"/>
+                                            <Binding Path="TotalSeat"/>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
             </Grid>
             <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" Height="40" Width="250" Margin="5"
                     x:Name="BTNAddRoom" Click="BTNAddRoom_Click"
@@ -60,21 +82,5 @@
                 <TextBlock Text="Ajouter la salle" />
             </Button>
         </StackPanel>
-        <ListBox x:Name="LBRowSeat" SelectedItem="{Binding RoomViewModel.Row}" MaxWidth="200" Grid.Row="2" Grid.Column="1" >
-            <ListBox.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel  HorizontalAlignment="Left">
-                    </WrapPanel>
-                </ItemsPanelTemplate>
-            </ListBox.ItemsPanel>
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel MinWidth="100">
-                        <TextBlock Text="Horaire"></TextBlock>
-                        <TextBlock Text="{Binding RowLetter}"></TextBlock>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
     </Grid>
 </UserControl>

@@ -61,10 +61,12 @@ namespace ReserveTaPlace.Wpf.User_Controls.RoomUC
 
         private void AddRow_Click(object sender, RoutedEventArgs e)
         {
-            if (String.IsNullOrEmpty(UDTotalSeat.Text)&& String.IsNullOrEmpty(TBRowName.Text))
+            if (!String.IsNullOrEmpty(UDTotalSeat.Text)&& !String.IsNullOrEmpty(TBRowName.Text))
             {
                 var row = new RowModel() { RowLetter = TBRowName.Text, TotalSeat = UDTotalSeat.Text };
-                RoomViewModel.RowModels.Add(row);
+                var rowlist = new List<RowModel>();
+                rowlist.Add(row);
+                RoomViewModel.RowModels = new ObservableCollection<RowModel>(rowlist);
                 LBRowSeat.ItemsSource = RoomViewModel.RowModels;
             }
         }
