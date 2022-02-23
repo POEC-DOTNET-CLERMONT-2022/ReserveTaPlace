@@ -40,23 +40,16 @@ namespace ReserveTaPlace.Models
 
         }
 
-        [JsonProperty(PropertyName = "id")]
         public Guid Id { get { return _id; } }
-        [JsonProperty(PropertyName = "FirstName")]
         public string FirstName { get { return _firstName; } }
-        [JsonProperty(PropertyName = "LastName")]
         public string LastName { get { return _lastName; } }
-        [JsonProperty(PropertyName = "Email")]
         public string Email { get { return _email; } }
-        [JsonProperty(PropertyName = "Password")]
         public string Password { get { return _password; } }
-        [JsonProperty(PropertyName = "Roles")]
         public List<RoleModel> Roles
         {
             get { return _roles; }
             set { _roles = value; }
         }
-        [JsonProperty(PropertyName = "Roles")]
         public List<TheaterModel> Theaters
         {
             get { return _theaters; }
