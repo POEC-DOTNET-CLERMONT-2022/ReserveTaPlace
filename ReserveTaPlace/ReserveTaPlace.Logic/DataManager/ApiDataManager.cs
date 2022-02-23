@@ -78,16 +78,6 @@ namespace ReserveTaPlace.Logic.DataManager
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<TModel> GetTheaterById(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<TModel> GetTheaterByName(string name)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<TModel> UpdateTheater(TModel model)
         {
             var response = await HttpClient.PutAsJsonAsync(Uri, model);

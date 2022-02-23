@@ -57,7 +57,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseCors(devCorsPolicy);
-
+//Todo Implement security auth0
 app.UseAuthentication();
 
 app.UseAuthorization();
