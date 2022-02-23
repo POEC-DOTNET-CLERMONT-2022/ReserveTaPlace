@@ -41,9 +41,17 @@ namespace ReserveTaPlace.Models.WPFModels.StateManager
                     IsUpdateTheaterVisible = false;
                     IsUpdateRoomVisible = false;
                     break;
-                case TheaterPageState.AddTheaterView:
+                case TheaterPageState.AddRoomView:
                     IsAddTheaterVisible = true;
                     IsAddRoomVisible = true;
+                    IsTheaterListVisible = false;
+                    IsTheaterDetailsVisible = false;
+                    IsUpdateTheaterVisible = false;
+                    IsUpdateRoomVisible = false;
+                    break;
+                case TheaterPageState.AddTheaterView:
+                    IsAddTheaterVisible = true;
+                    IsAddRoomVisible = false;
                     IsTheaterListVisible = false;
                     IsTheaterDetailsVisible = false;
                     IsUpdateTheaterVisible = false;

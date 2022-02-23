@@ -9,6 +9,7 @@ namespace ReserveTaPlace.Models.WPFModels.StateManager
     public enum TheaterPageState
     {
         AddTheaterView,
+        AddRoomView,
         TheaterListView,
         UpdateTheaterView,
         UpdateRoomView

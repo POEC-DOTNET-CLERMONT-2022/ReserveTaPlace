@@ -39,5 +39,15 @@ namespace ReserveTaPlace.Wpf.User_Controls.TheaterUC
             TheaterViewModel.CurrentTheater = TheaterList.LVTheaters.SelectedItem as TheaterModel;
             TheaterDetails.DataContext = TheaterViewModel.CurrentTheater;
         }
+
+        private void TheaterList_CreateTheater(object sender, System.EventArgs e)
+        {
+            TheaterViewModel.StateManager.Set(TheaterPageState.AddTheaterView);
+        }
+
+        private void AddTheater_CreateRoom(object sender, System.EventArgs e)
+        {
+            TheaterViewModel.StateManager.Set(TheaterPageState.AddRoomView);
+        }
     }
 }

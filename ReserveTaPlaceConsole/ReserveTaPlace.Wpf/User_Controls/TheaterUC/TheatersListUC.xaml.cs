@@ -53,9 +53,14 @@ namespace ReserveTaPlace.Wpf.User_Controls.TheaterUC
 
         }
 
+        [Browsable(true)]
+        [Category("Action")]
+        [Description("Invoked when user clicks on button createTheater")]
+        public event EventHandler CreateTheater;
         private void BTNCreateTheater_Click(object sender, RoutedEventArgs e)
         {
-            TheaterViewModel.StateManager.Set(TheaterPageState.AddTheaterView);
+            if (this.CreateTheater != null)
+                this.CreateTheater(this, e);
         }
     }
 }

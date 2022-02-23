@@ -2,6 +2,8 @@
 using ReserveTaPlace.Logic.DataManager;
 using ReserveTaPlace.Models;
 using ReserveTaPlace.Models.WPFModels;
+using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -33,9 +35,14 @@ namespace ReserveTaPlace.Wpf.User_Controls.TheaterUC
             }
         }
 
+        [Browsable(true)]
+        [Category("Action")]
+        [Description("Invoked when user clicks on button createTheater")]
+        public event EventHandler CreateRoom;
         private void BTNCreateRoom_Click(object sender, RoutedEventArgs e)
         {
-
+            if (this.CreateRoom != null)
+                this.CreateRoom(this, e);
         }
     }
 }

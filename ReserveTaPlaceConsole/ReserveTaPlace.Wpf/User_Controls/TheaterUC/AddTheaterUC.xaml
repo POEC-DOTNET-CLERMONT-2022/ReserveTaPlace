@@ -30,6 +30,7 @@
                     <RowDefinition Height="2*"/>
                     <RowDefinition Height="2*"/>
                     <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*"/>
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="0">
                     <TextBlock Text="Adresse 1 :" Margin="5"/>
@@ -59,7 +60,10 @@
                     <TextBlock Text="Region :" Margin="5"/>
                     <TextBox x:Name="TBTheaterCounty" Margin="5"/>
                 </StackPanel>
-                <Button Grid.Row="3" Grid.Column="1"
+                <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="3">
+                    
+                </StackPanel>
+                <Button Grid.Row="4" Grid.Column="1"
                     Style="{StaticResource MaterialDesignRaisedDarkButton}" Height="40" Width="250" Margin="5"
                     x:Name="BTNCreateRoom" Click="BTNCreateRoom_Click" materialDesign:ButtonAssist.CornerRadius="25" ToolTip="Ajouter une salle" Cursor="Hand">
                     <TextBlock Text="Ajouter une salle" />

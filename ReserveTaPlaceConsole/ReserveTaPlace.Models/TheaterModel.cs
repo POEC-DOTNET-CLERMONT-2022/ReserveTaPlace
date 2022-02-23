@@ -27,7 +27,16 @@ namespace ReserveTaPlace.Models
             _users = users;
         }
 
-        public Guid Id { get => _id; set { _id = value; } }
+        public TheaterModel(string name, AddressModel address)
+        {
+            _id = Guid.NewGuid();
+            _name = name;
+            _address = address;
+            _medias = new List<MediaModel>();
+            _rooms = new List<RoomModel>();
+        }
+
+        public Guid Id { get => _id; }
 
         public string Name { get { return _name; } set { _name = value; } }
 

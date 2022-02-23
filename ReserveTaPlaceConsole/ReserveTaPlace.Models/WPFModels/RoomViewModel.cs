@@ -9,19 +9,19 @@ namespace ReserveTaPlace.Models.WPFModels
 {
     public class RoomViewModel : ObservableObject
     {
-        private ObservableCollection<RoomModel> _rooms;
+        private ObservableCollection<RoomModel> _roomsToCreate;
         private ObservableCollection<SeatModel> _seats;
         private ObservableCollection<FormatModel> _formats;
         private RoomModel _roomToCreate;
 
-        public ObservableCollection<RoomModel> Rooms
+        public ObservableCollection<RoomModel> RoomsToCreate
         {
-            get { return _rooms; }
+            get { return _roomsToCreate; }
             set
             {
-                if (_rooms != value)
+                if (_roomsToCreate != value)
                 {
-                    _rooms = value;
+                    _roomsToCreate = value;
                     OnNotifyPropertyChanged();
                 }
             }
