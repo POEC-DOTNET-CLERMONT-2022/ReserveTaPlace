@@ -9,7 +9,7 @@
              TextElement.FontWeight="Medium"
              TextElement.FontSize="14"
              FontFamily="{materialDesign:MaterialDesignFont}"
-             xmlns:local="clr-namespace:ReserveTaPlace.Wpf.User_Controls.RoomUC"
+             xmlns:local="clr-namespace:ReserveTaPlace.Wpf.User_Controls.RoomUC" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Loaded="UserControl_Loaded"
@@ -43,22 +43,15 @@
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="2">
                     <TextBlock Text="Selection des sièges :" Margin="5"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Margin="5">
-                    <ListBox Name="LBSeatList" ItemsSource="{Binding Seats}">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <CheckBox Style="{StaticResource MaterialDesignCheckBox}">
-                                        <MultiBinding StringFormat="{}{0}{1}">
-                                            <Binding Path="Row"/>
-                                            <Binding Path="Number"/>
-                                        </MultiBinding>
-                                    </CheckBox>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
+                    <WrapPanel>
+                        <TextBox materialDesign:HintAssist.Hint="Lettre de rangée" x:Name="TBRowName"></TextBox>
+                    </WrapPanel>
+                    <WrapPanel>
+                        <TextBlock Text="indiquer le nombre de sièges pour la rangée :" Margin="5"/>
+                        <xctk:IntegerUpDown x:Name="UDTotalSeat" MinWidth="50" MaxWidth="50" />
+                        <Button Click="AddRow_Click" x:Name="AddRow"/>
+                    </WrapPanel>
+                    
                 </StackPanel>
             </Grid>
             <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" Height="40" Width="250" Margin="5"
@@ -67,5 +60,21 @@
                 <TextBlock Text="Ajouter la salle" />
             </Button>
         </StackPanel>
+        <ListBox x:Name="LBRowSeat" SelectedItem="{Binding RoomViewModel.Row}" MaxWidth="200" Grid.Row="2" Grid.Column="1" >
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel  HorizontalAlignment="Left">
+                    </WrapPanel>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel MinWidth="100">
+                        <TextBlock Text="Horaire"></TextBlock>
+                        <TextBlock Text="{Binding RowLetter}"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </UserControl>

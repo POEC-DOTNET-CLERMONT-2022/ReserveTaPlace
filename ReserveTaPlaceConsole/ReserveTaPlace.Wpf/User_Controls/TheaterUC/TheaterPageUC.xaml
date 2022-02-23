@@ -30,6 +30,7 @@
             <RowDefinition Height="3*"/>
             <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
+        <Button Visibility="Collapsed" Grid.Column="1" Click="Button_Click" Width="100"> generate seats</Button>
         <User_Controls:MainMenuUC Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" x:Name="MainMenuUC"></User_Controls:MainMenuUC>
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical" Visibility="{Binding StateManager.IsTheaterListVisible, Converter={StaticResource VisibilityConverter}}">
             <User_ControlsTheaterUC:TheatersListUC CreateTheater="TheaterList_CreateTheater" SelectionChanged="TheaterListUC_SelectionChanged" x:Name="TheaterList"></User_ControlsTheaterUC:TheatersListUC>
@@ -41,7 +42,7 @@
             <User_ControlsTheaterUC:AddTheaterUC CreateRoom="AddTheater_CreateRoom" DataContext="{Binding TheaterViewModel}" x:Name="AddTheater" ></User_ControlsTheaterUC:AddTheaterUC>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="1" Visibility="{Binding StateManager.IsAddRoomVisible, Converter={StaticResource VisibilityConverter}}">
-            <User_ControlsRoomUC:AddRoomUC DataContext="{Binding RoomViewModel}" x:Name="AddRoom" ></User_ControlsRoomUC:AddRoomUC>
+            <User_ControlsRoomUC:AddRoomUC AddRoom="AddRoom_AddRoom" DataContext="{Binding RoomViewModel}" x:Name="AddRoomUC" ></User_ControlsRoomUC:AddRoomUC>
         </StackPanel>
     </Grid>
 </UserControl>

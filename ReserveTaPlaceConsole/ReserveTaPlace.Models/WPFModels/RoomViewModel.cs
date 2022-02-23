@@ -13,6 +13,15 @@ namespace ReserveTaPlace.Models.WPFModels
         private ObservableCollection<SeatModel> _seats;
         private ObservableCollection<FormatModel> _formats;
         private RoomModel _roomToCreate;
+        public RowModel Row { get; set; }
+        private ObservableCollection<RowModel> _rowModels;
+
+        public ObservableCollection<RowModel> RowModels
+        {
+            get { return _rowModels; }
+            set { _rowModels = value; }
+        }
+
 
         public ObservableCollection<RoomModel> RoomsToCreate
         {

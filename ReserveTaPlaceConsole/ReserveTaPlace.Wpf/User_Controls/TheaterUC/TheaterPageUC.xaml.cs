@@ -16,12 +16,15 @@ namespace ReserveTaPlace.Wpf.User_Controls.TheaterUC
     {
         public TheaterViewModel TheaterViewModel { get; set; }
         private readonly IDataManager<TheaterModel, TheaterDto> _theaterDataManager;
+        private readonly IDataManager<SeatModel, SeatDto> _seatDataManager;
+
         public TheaterPageUC()
         {
             InitializeComponent();
             TheaterViewModel = new TheaterViewModel();
             TheaterViewModel.StateManager = new TheaterPageStateManager(TheaterPageState.TheaterListView);
             _theaterDataManager = ((App)Application.Current).TheaterDataManager;
+            _seatDataManager = ((App)Application.Current).SeatDataManager;
             DataContext = TheaterViewModel;
             
         }
@@ -48,6 +51,30 @@ namespace ReserveTaPlace.Wpf.User_Controls.TheaterUC
         private void AddTheater_CreateRoom(object sender, System.EventArgs e)
         {
             TheaterViewModel.StateManager.Set(TheaterPageState.AddRoomView);
+        }
+        //Todo facto to layer
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            for (int i = 1; i < 26; i++)
+            {
+                _seatDataManager.Add(new SeatModel("A", i.ToString()));
+                _seatDataManager.Add(new SeatModel("B", i.ToString()));
+                _seatDataManager.Add(new SeatModel("C", i.ToString()));
+                _seatDataManager.Add(new SeatModel("D", i.ToString()));
+                _seatDataManager.Add(new SeatModel("E", i.ToString()));
+                _seatDataManager.Add(new SeatModel("F", i.ToString()));
+                _seatDataManager.Add(new SeatModel("G", i.ToString()));
+                _seatDataManager.Add(new SeatModel("H", i.ToString()));
+                _seatDataManager.Add(new SeatModel("I", i.ToString()));
+                _seatDataManager.Add(new SeatModel("J", i.ToString()));
+
+            }
+
+        }
+
+        private void AddRoom_AddRoom(object sender, System.EventArgs e)
+        {
+            //var roomToAdd = new RoomModel(AddRoomUC.TBRoomName.Text, AddRoomUC.TBRoomNumber.Text, AddRoomUC.CBFormatList.SelectedItem);
         }
     }
 }
