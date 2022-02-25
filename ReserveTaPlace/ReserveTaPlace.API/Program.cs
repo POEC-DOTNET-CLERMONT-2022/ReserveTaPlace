@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Net.Http.Headers;
+using ReserveTaPlace.API.Authorizations;
 using ReserveTaPlace.Data.ApplicationContext;
 using ReserveTaPlace.Data.Functions;
 using ReserveTaPlace.Data.Interfaces;
@@ -8,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 var devCorsPolicy = "devCorsPolicy";
 builder.Services.AddCors(options =>
 {
+    //Todo Less permissive policy
     options.AddPolicy(devCorsPolicy,
                       builder =>
                       {
@@ -15,7 +17,7 @@ builder.Services.AddCors(options =>
                       });
 });
 //todo
-//builder.Services.AddCors(a)
+//builder.Services.AddCors(a=>a.AddPolicy("mypolicy",b=>b.WithOrigins("https://localhost:7091/").AllowAnyMethod().AllowAnyHeader()));
 // Add services to the container.
 
 builder.Services.AddControllers().AddJsonOptions(options =>
@@ -38,6 +40,14 @@ builder.Services.AddHttpClient("Imdb", httpClient =>
 builder.Services.AddScoped(typeof(IGenericRepo<>), typeof(GenericFunctions<>));
 builder.Services.AddScoped<DbContext, ReserveTaPlaceContext>();
 builder.Services.AddDbContext<ReserveTaPlaceContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("RTPLocalDb")));
+
+
+//ToDO AUTH0 Policy
+//builder.Services.AddAuthorization(o => o.AddPolicy("myPolicy", b =>
+//{
+//    b.AddRequirements(new ReadWriteRequirement());
+//   b.RequireAssertion(c => c.User.Identity.Name == "toto");
+//}));
 
 var app = builder.Build();
 
