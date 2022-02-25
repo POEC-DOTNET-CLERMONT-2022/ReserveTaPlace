@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ReserveTaPlace.Models.WPFModels.StateManager;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -13,9 +14,7 @@ namespace ReserveTaPlace.Models.WPFModels
         private TheaterModel _currentTheater;
         private RoomModel _currentRoom;
         private TheaterModel _theaterToCreate;
-        private ObservableCollection<List<SeatModel>> _seatList;
-        private ObservableCollection<List<RoomModel>> _roomList;
-        private ObservableCollection<List<UserModel>> _userList;
+        private TheaterPageStateManager _stateManager;
         public TheaterModel CurrentTheater
         {
             get { return _currentTheater; }
@@ -52,51 +51,16 @@ namespace ReserveTaPlace.Models.WPFModels
                 }
             }
         }
-
-        public ObservableCollection<List<SeatModel>> SeatList
-        {
-            get { return _seatList; }
-            set
-            {
-                if (_seatList != value)
-                {
-                    _seatList = value;
-                    OnNotifyPropertyChanged();
-                }
-            }
-        }
-
-        public ObservableCollection<List<RoomModel>> RoomList
-        {
-            get { return _roomList; }
-            set 
-            { 
-                if(_roomList != value)
-                {
-                    _roomList = value;
-                    OnNotifyPropertyChanged();
-                }
-            }
-        }
-
-
-        public ObservableCollection<List<UserModel>> UserList
-        {
-            get { return _userList; }
-            set 
-            {
-                if(_userList != value)
-                {
-                    _userList = value;
-                    OnNotifyPropertyChanged();
-                }
-            }
-        }
         
         public TheaterModel TheaterToCreate
         {
             get { return _theaterToCreate; }
             set { _theaterToCreate = value; }
+        }
+        public TheaterPageStateManager StateManager
+        {
+            get { return _stateManager; }
+            set { _stateManager = value; OnNotifyPropertyChanged(); }
         }
     }
 }

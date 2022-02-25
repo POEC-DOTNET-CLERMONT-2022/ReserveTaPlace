@@ -17,9 +17,13 @@ namespace ReserveTaPlace.Models
         private List<SessionModel> _sessions;
         private Guid _theatreId;
 
-        public RoomModel()
+        public RoomModel(string? name, string number, FormatModel format, List<SeatModel> seats)
         {
-
+            _id = Guid.NewGuid();
+            _name = name;
+            _number = number;
+            _format = format;
+            _seats = seats;
         }
         [JsonConstructor]
         public RoomModel(Guid id, Guid? theatreId, string name, string number, FormatModel format, List<SeatModel>? seats, List<SessionModel>? sessions)
@@ -36,9 +40,8 @@ namespace ReserveTaPlace.Models
         public Guid TheaterId
         {
             get { return _theatreId; }
-            set { _theatreId = value; }
         }
-        public Guid Id { get => _id; set { _id = value; } }
+        public Guid Id { get => _id; }
         public string Name { get { return _name; } set { _name = value; } }
         public string Number { get { return _number; } set { _number = value; } }
         public FormatModel Format { get { return _format; } set { _format = value; } }
