@@ -11,50 +11,38 @@
              FontFamily="{materialDesign:MaterialDesignFont}"
              xmlns:local="clr-namespace:ReserveTaPlace.Wpf.User_Controls.TheaterUC" 
              xmlns:User_Controls="clr-namespace:ReserveTaPlace.Wpf.User_Controls"
-             xmlns:User_ControlsTheaterUC="clr-namespace:ReserveTaPlace.Wpf.User_Controls.TheaterUC" xmlns:User_ControlsRoomUC="clr-namespace:ReserveTaPlace.Wpf.User_Controls.RoomUC"
+             xmlns:User_ControlsTheaterUC="clr-namespace:ReserveTaPlace.Wpf.User_Controls.TheaterUC" 
+             xmlns:User_ControlsRoomUC="clr-namespace:ReserveTaPlace.Wpf.User_Controls.RoomUC" 
+             xmlns:Converters="clr-namespace:ReserveTaPlace.Wpf.Utils.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <Converters:VisibilityConverter x:Key="VisibilityConverter"/>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="4*"/>
-            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="6*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
             <RowDefinition Height="3*"/>
             <RowDefinition Height="3*"/>
             <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
+        <Button Visibility="Collapsed" Grid.Column="1" Click="Button_Click" Width="100"> generate seats</Button>
         <User_Controls:MainMenuUC Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" x:Name="MainMenuUC"></User_Controls:MainMenuUC>
-        <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
-            <TextBlock FontSize="18" FontWeight="Bold" VerticalAlignment="Center">Gestion des cinémas</TextBlock>
-            <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                    x:Name="BTNCreateTheater" Click="BTNCreateTheater_Click"
-                    Height="25"
-                    materialDesign:ButtonAssist.CornerRadius="25"
-                    ToolTip="Ajouter un cinéma"
-                    Margin="20 0 0 0" Cursor="Hand">
-                <TextBlock Text="Ajouter un cinéma" />
-            </Button>
+        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical" Visibility="{Binding StateManager.IsTheaterListVisible, Converter={StaticResource VisibilityConverter}}">
+            <User_ControlsTheaterUC:TheatersListUC CreateTheater="TheaterList_CreateTheater" SelectionChanged="TheaterListUC_SelectionChanged" x:Name="TheaterList"></User_ControlsTheaterUC:TheatersListUC>
         </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical">
-            <User_ControlsTheaterUC:TheatersListUC SelectionChanged="TheaterListUC_SelectionChanged" x:Name="TheaterListUC"></User_ControlsTheaterUC:TheatersListUC>
+        <StackPanel Grid.Row="1" Grid.Column="2" Grid.RowSpan="2" VerticalAlignment="Top"  Visibility="{Binding StateManager.IsTheaterDetailsVisible, Converter={StaticResource VisibilityConverter}}">
+            <User_ControlsTheaterUC:TheaterDetailsUC DataContext="{Binding TheaterViewModel}" x:Name="TheaterDetails"></User_ControlsTheaterUC:TheaterDetailsUC>
         </StackPanel>
-        <TextBlock Grid.Column="2" Grid.Row="0" FontSize="18" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center">Détails du cinéma</TextBlock>
-        <StackPanel Grid.Row="1" Grid.Column="2" Grid.RowSpan="2" x:Name="SPTheaterDetails" VerticalAlignment="Top" >
-            <User_ControlsTheaterUC:TheaterDetailsUC x:Name="TheaterDetailsUC" DataContext="{Binding TheaterViewModel}"></User_ControlsTheaterUC:TheaterDetailsUC>
+        <StackPanel Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Visibility="{Binding StateManager.IsAddTheaterVisible, Converter={StaticResource VisibilityConverter}}">
+            <User_ControlsTheaterUC:AddTheaterUC CreateRoom="AddTheater_CreateRoom" DataContext="{Binding TheaterViewModel}" x:Name="AddTheater" ></User_ControlsTheaterUC:AddTheaterUC>
         </StackPanel>
-        <StackPanel x:Name="SPAddTheater" Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" Visibility="Collapsed">
-            <User_ControlsTheaterUC:AddTheaterUC x:Name="AddTheaterUC" DataContext="{Binding TheaterViewModel}"></User_ControlsTheaterUC:AddTheaterUC>
-            <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" Height="40" Width="250" Margin="5"
-                    x:Name="BTNCreateRoom" Click="BTNCreateRoom_Click" materialDesign:ButtonAssist.CornerRadius="25" ToolTip="Ajouter une salle" Cursor="Hand">
-                <TextBlock Text="Ajouter une salle" />
-            </Button>
-        </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="2" Grid.RowSpan="2">
-            <User_ControlsRoomUC:AddRoomUC x:Name="AddRoomUC" DataContext="{Binding RoomViewModel}" Visibility="Collapsed"></User_ControlsRoomUC:AddRoomUC>
+        <StackPanel Grid.Row="2" Grid.Column="1" Visibility="{Binding StateManager.IsAddRoomVisible, Converter={StaticResource VisibilityConverter}}">
+            <User_ControlsRoomUC:AddRoomUC AddRoom="AddRoom_AddRoom" DataContext="{Binding RoomViewModel}" x:Name="AddRoomUC" ></User_ControlsRoomUC:AddRoomUC>
         </StackPanel>
     </Grid>
 </UserControl>

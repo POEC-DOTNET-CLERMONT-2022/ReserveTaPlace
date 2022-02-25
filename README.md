@@ -4,26 +4,28 @@
 1. [Présentation](#presentation)
     -  [ReserveTaPlace, c'est quoi ?](#ReserveTaPlace,-c'est-quoi-?)
     -  [Le client lourd, il sert à quoi ?](#Le-client-lourd,-il-sert-à-quoi-?)
-    -  [Les technoligie utilisés côté client lourd](#Les-technoligie-utilisés-côté-client-lourd)
+    -  [Les technoligies utilisés côté client lourd](#Les-technoligies-utilisés-côté-client-lourd)
     -  [La base de données](#La-base-de-données)
     -  [Et le client léger alors, ses technologies ?](#Et-le-client-léger-alors,-ses-technologies-?)
 2. [Travail réalisé](#Travail-réalisé)
     -  [Git et GitHub](#Git-et-GitHub)
     -  [Diagramme de cas d'utilisation](#Diagramme-de-cas-d'utilisation)
-    -  [Diagramme de claase](#Diagramme-de-classe)
+    -  [Diagramme de classe](#Diagramme-de-classe)
+    -  [Diagramme d'architecture](#Diagramme-architecture)
+    -  [Extrait de maquettes réalisées](#Maquette)
 
 # Présentation <a name="presentation"></a>
 
 ### ReserveTaPlace, c'est quoi ? <a name="ReserveTaPlace,-c'est-quoi-?"></a>
 
-Notre projet ReserveTaPlace consiste à mettre en place un client lourd, permettant aux cinémas (zone de Clermont-Ferrand pour commencer) de pouvoir proposer leur scéances sur une plateforme commune. Le client léger permettre la gestion des utilisateurs et leur droit.
+Notre projet ReserveTaPlace consiste à mettre en place un client lourd, permettant aux cinémas (zone de Clermont-Ferrand pour commencer) de pouvoir proposer leur scéances sur une plateforme commune. Le client léger permettra la gestion des utilisateurs et leur droit.
 
 ### Le client lourd, il sert à quoi ? <a name="Le-client-lourd,-il-sert-à-quoi-?"></a>
 
-Chaque gérant devra pouvoir choisir le film qu'il désire proposer, soit en le recherchant sur l'API IMBD en ligne, et dans ce cas le film pourra être ajouté sur le serveur en base de données afin que les autres gérant puisse aussi le récupèrer, soit le récupèrer directement sur la base de données.
-Chaque gérant pourra ensuite créer ses scéances de film avec ses horaires, dates, etc ...Une fois ajouteé, une séance sera visible sur une autre plateforme qui donnera la possibilité de reserver une place (cette partie ne sera pas développer lors de ce projet). 
+Chaque gérant devra pouvoir choisir le film qu'il désire proposer, soit en le recherchant sur l'API IMBD en ligne, et dans ce cas le film pourra être ajouté sur le serveur en base de données afin que les autres gérants puissent aussi le récupèrer, soit le récupèrer directement sur la base de données.
+Chaque gérant pourra ensuite créer ses scéances de film avec ses horaires, dates, etc ...Une fois ajouté, une séance sera visible sur une autre plateforme qui donnera la possibilité de reserver une place (cette partie ne sera pas développer lors de ce projet). 
 
-### Les technoligie utilisés côté client lourd <a name="Les-technoligie-utilisés-côté-client-lourd"></a>
+### Les technoligies utilisés côté client lourd <a name="Les-technoligies-utilisés-côté-client-lourd"></a>
 
 Afin de mener à bien ce projet, la partie client lourd sera réaliser en dotnet core 6, la base de donnée sera mise en place grâce a Entity Framwork Core et sera installé sur Microsoft SQL Server, et on mettra en place une API web ASP.NET Core. La vue du client lourd s'affichera grâce à un client WPF.
 
@@ -46,6 +48,17 @@ Afin de réaliser ce projet, nous devions utiliser Git pour gérer les versions 
 ![alt text](https://github.com/POEC-DOTNET-CLERMONT-2022/ReserveTaPlace/blob/2a564b79d3022adb4edb252483646e9151c721ed/Documentation/Images/UseCaseDiagramReserveTaPlace.svg)
 
 ### Diagramme de classe <a name="Diagramme-de-classe"></a>
+
+### Diagramme d'architecture <a name="Diagramme-architecture"></a>
+
+![alt text](https://github.com/POEC-DOTNET-CLERMONT-2022/ReserveTaPlace/blob/189ceb049cf0e0e27abcadcf997eb6db6ef41222/Documentation/Images/ArchiDiagram.drawio.png)
+
+### Extrait de maquettes réalisées <a name="Maquette"></a>
+
+![alt text](https://github.com/POEC-DOTNET-CLERMONT-2022/ReserveTaPlace/blob/a1281ec31f8d83f990e0752d64a3fcfdacabe254/Documentation/Images/Login.jpg)
+![alt text](https://github.com/POEC-DOTNET-CLERMONT-2022/ReserveTaPlace/blob/a1281ec31f8d83f990e0752d64a3fcfdacabe254/Documentation/Images/Gestion%20films%20Mettre%20un%20film%20a%20l'affiche.jpg)
+![alt text](https://github.com/POEC-DOTNET-CLERMONT-2022/ReserveTaPlace/blob/a1281ec31f8d83f990e0752d64a3fcfdacabe254/Documentation/Images/Gestion%20cin%C3%A9mas%20accueil.jpg)
+![alt text](https://github.com/POEC-DOTNET-CLERMONT-2022/ReserveTaPlace/blob/a1281ec31f8d83f990e0752d64a3fcfdacabe254/Documentation/Images/Gestion%20cin%C3%A9mas%20Ajouter%20un%20cin%C3%A9ma.jpg)
 
 Projet ReserveTaPlace.com 
 
