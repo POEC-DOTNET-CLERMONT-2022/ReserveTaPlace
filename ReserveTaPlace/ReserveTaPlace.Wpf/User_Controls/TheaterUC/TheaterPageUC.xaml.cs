@@ -3,6 +3,7 @@ using ReserveTaPlace.Logic.DataManager;
 using ReserveTaPlace.Models;
 using ReserveTaPlace.Models.WPFModels;
 using ReserveTaPlace.Models.WPFModels.StateManager;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -89,12 +90,26 @@ namespace ReserveTaPlace.Wpf.User_Controls.TheaterUC
                 var seats = await _seatDataManager.GetSeats(row);
                 roomSeats.AddRange(seats);
             }
-
             var roomToAdd = new RoomModel(AddRoomUC.TBRoomName.Text, AddRoomUC.TBRoomNumber.Text, AddRoomUC.CBFormatList.SelectedItem as FormatModel,roomSeats);
             var rooms = new List<RoomModel>();
             rooms.Add(roomToAdd);
             TheaterViewModel.Rooms.Add(roomToAdd);
             AddTheater.LBRooms.ItemsSource = TheaterViewModel.Rooms;
+        }
+
+        private async void AddTheater_CreateTheater(object sender, System.EventArgs e)
+        {
+            if (!String.IsNullOrEmpty(AddTheater.TBTheaterCity.Text)
+                && !String.IsNullOrEmpty(AddTheater.TBTheaterCounty.Text)
+                    && !String.IsNullOrEmpty(AddTheater.TBTheaterName.Text)
+                    && !String.IsNullOrEmpty(AddTheater.TBTheaterPostalCode.Text)
+                    && AddTheater.LBRooms.Items!=null)
+            {
+                var adress = new AddressModel(AddTheater.TBTheaterAddress1.Text, AddTheater.TBTheaterAddress2.Text, AddTheater.TBTheaterStreet.Text,
+                    AddTheater.TBTheaterCity.Text, AddTheater.TBTheaterPostalCode.Text, AddTheater.TBTheaterNumber.Text, AddTheater.TBTheaterCounty.Text);
+                var theater = new TheaterModel(AddTheater.TBTheaterName.Text, adress, TheaterViewModel.Rooms.ToList());
+                await _theaterDataManager.AddTheater(theater);
+            }
         }
     }
 }

@@ -17,11 +17,37 @@ namespace ReserveTaPlace.Data.Functions
             _dbContext = context;
             _theaters = new List<TheaterEntity>();
         }
-        public async Task<bool> Add(TheaterEntity theaterEntity)
+        public async Task<TheaterEntity> Add(TheaterEntity theaterEntity)
         {
-            await _dbContext.Set<TheaterEntity>().AddAsync(theaterEntity);
-            var result = await _dbContext.SaveChangesAsync();
-            return result > 0;
+            var adress = theaterEntity.Address;
+            var rooms = theaterEntity.Rooms;
+            var theater = new TheaterEntity();
+            theater.Id = theaterEntity.Id;
+            theater.Name = theaterEntity.Name;
+            await _dbContext.Set<TheaterEntity>().AddAsync(theater);
+            var availableTheater = await _dbContext.Set<TheaterEntity>().FindAsync(theater.Id);
+            adress.Theater=theater;
+            await _dbContext.Set<AddressEntity>().AddAsync(adress);
+            await _dbContext.SaveChangesAsync();
+            foreach (var room in rooms)
+            {
+                var seats = new List<SeatEntity>();
+
+                foreach (var seat in room.Seats)
+                {
+                    var availableSeat = await _dbContext.Set<SeatEntity>().FirstOrDefaultAsync(s => s.Id == seat.Id);
+                    seats.Add(availableSeat);
+                }
+                room.Seats.Clear();
+                room.Theater = theater;
+                room.Seats = seats;
+                room.Format = await _dbContext.Set<FormatEntity>().FindAsync(room.FormatId);
+                await _dbContext.Set<RoomEntity>().AddAsync(room);
+                await _dbContext.SaveChangesAsync();
+
+            }
+
+            return theaterEntity;
         }
 
         public async Task<bool> DeleteById(Guid id)

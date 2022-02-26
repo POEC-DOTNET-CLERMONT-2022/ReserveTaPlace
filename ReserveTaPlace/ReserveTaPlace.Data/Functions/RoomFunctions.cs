@@ -16,13 +16,6 @@ namespace ReserveTaPlace.Data.Functions
         {
             _dbContext=dbContext;
         }
-        public async Task<bool> AddRoomSession(Guid roomId, SessionEntity session)
-        {
-            RoomEntity room = await _dbContext.Set<RoomEntity>().FirstOrDefaultAsync(r=>r.Id==roomId);
-            room.Sessions.Add(session);
-            var result = await _dbContext.SaveChangesAsync();
-            return result > 0;
-        }
 
         public async Task<IEnumerable<RoomEntity>> GetAll()
         {

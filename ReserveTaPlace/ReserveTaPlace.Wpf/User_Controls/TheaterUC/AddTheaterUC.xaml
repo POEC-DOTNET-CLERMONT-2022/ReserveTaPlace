@@ -12,7 +12,8 @@
              xmlns:local="clr-namespace:ReserveTaPlace.Wpf.User_Controls.TheaterUC"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             x:Name="root">
+             x:Name="root"
+             Loaded="root_Loaded">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2*"/>
@@ -81,7 +82,7 @@
                     <TextBlock Text="Créer une salle" />
                 </Button>
                 <Button HorizontalAlignment="right" Style="{StaticResource MaterialDesignRaisedDarkButton}" MinHeight="40" MinWidth="250" Margin="150"
-                    x:Name="BTNCreateTheater" materialDesign:ButtonAssist.CornerRadius="25" ToolTip="Créer le cinéma" Cursor="Hand">
+                    x:Name="BTNCreateTheater" Click="BTNCreateTheater_Click" materialDesign:ButtonAssist.CornerRadius="25" ToolTip="Créer le cinéma" Cursor="Hand">
                     <TextBlock Text="Créer le cinéma" />
                 </Button>
             </WrapPanel>

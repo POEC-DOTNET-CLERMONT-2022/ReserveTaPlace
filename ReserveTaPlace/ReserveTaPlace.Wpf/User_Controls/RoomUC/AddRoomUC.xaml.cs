@@ -16,7 +16,6 @@ namespace ReserveTaPlace.Wpf.User_Controls.RoomUC
     /// </summary>
     public partial class AddRoomUC : UserControl, INotifyPropertyChanged
     {
-        //private static readonly DependencyProperty _roomViewModelProperty = DependencyProperty.Register("RoomViewModel", typeof(RoomViewModel), typeof(AddRoomUC));
         public RoomViewModel RoomViewModel { get; set; }
         private readonly IDataManager<FormatModel, FormatDto> _formatDataManager;
         private readonly IDataManager<SeatModel, SeatDto> _seatDataManager;
@@ -29,17 +28,6 @@ namespace ReserveTaPlace.Wpf.User_Controls.RoomUC
             RoomViewModel = new RoomViewModel();
             _rowModels = new List<RowModel>();
         }
-        //public RoomViewModel RoomViewModel
-        //{
-        //    get { return GetValue(_roomViewModelProperty) as RoomViewModel; }
-        //    set
-        //    {
-        //        if (_roomViewModel != value)
-        //        {
-        //            SetValue(_roomViewModelProperty, value);
-        //        }
-        //    }
-        //}
 
         public event PropertyChangedEventHandler? PropertyChanged;
 

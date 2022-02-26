@@ -37,12 +37,30 @@ namespace ReserveTaPlace.Wpf.User_Controls.TheaterUC
 
         [Browsable(true)]
         [Category("Action")]
-        [Description("Invoked when user clicks on button createTheater")]
+        [Description("Invoked when user clicks on button createRoom")]
         public event EventHandler CreateRoom;
         private void BTNCreateRoom_Click(object sender, RoutedEventArgs e)
         {
             if (this.CreateRoom != null)
                 this.CreateRoom(this, e);
+        }
+        [Browsable(true)]
+        [Category("Action")]
+        [Description("Invoked when user clicks on button createTheater")]
+        public event EventHandler CreateTheater;
+        private void BTNCreateTheater_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.CreateTheater != null)
+                this.CreateTheater(this, e);
+        }
+
+        private void root_Loaded(object sender, RoutedEventArgs e)
+        {
+            TBTheaterStreet.Text = "Av.Lavoisier";
+            TBTheaterPostalCode.Text = "63170";
+            TBTheaterCity.Text = "Aubière";
+            TBTheaterCounty.Text = "France";
+            TBTheaterName.Text = "Ciné Dôme";
         }
     }
 }

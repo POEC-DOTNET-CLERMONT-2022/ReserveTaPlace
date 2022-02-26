@@ -27,13 +27,13 @@ namespace ReserveTaPlace.Models
             _users = users;
         }
 
-        public TheaterModel(string name, AddressModel address)
+        public TheaterModel(string name, AddressModel address, List<RoomModel> rooms)
         {
             _id = Guid.NewGuid();
             _name = name;
             _address = address;
             _medias = new List<MediaModel>();
-            _rooms = new List<RoomModel>();
+            _rooms = rooms;
         }
 
         public Guid Id { get => _id; }

@@ -118,14 +118,16 @@ namespace ReserveTaPlace.Logic.DataManager
             return resultString == "true";
         }
 
-        public async Task<bool> AddRoomSession(TModel session)
+        public async Task<TModel> AddSession(TModel session)
         {
-            var _uri = new Uri(Uri + "/AddRoomSession");
+            var _uri = new Uri(Uri + "/AddSession");
             var sessionDto = Mapper.Map<TDto>(session);
             var response = await HttpClient.PostAsJsonAsync(_uri, sessionDto);
             response.EnsureSuccessStatusCode();
             var resultString = await response.Content.ReadAsStringAsync();
-            return resultString == "true";
+            var sessionCreated = JsonConvert.DeserializeObject<TDto>(resultString);
+            var sessionModel = Mapper.Map<TModel>(sessionCreated);
+            return sessionModel;
         }
 
         public async Task<string> GetUserHash(string email)
@@ -167,6 +169,17 @@ namespace ReserveTaPlace.Logic.DataManager
             var seats = JsonConvert.DeserializeObject<IEnumerable<TDto>>(resultString);
             var seatsModel = Mapper.Map<IEnumerable<TModel>>(seats);
             return seatsModel;
+        }
+
+        public async Task<TModel> AddTheater(TheaterModel theater)
+        {
+            var theaterDto = Mapper.Map<TDto>(theater);
+            var response = await HttpClient.PostAsJsonAsync(Uri, theaterDto);
+            response.EnsureSuccessStatusCode();
+            var resultString = await response.Content.ReadAsStringAsync();
+            var theaterCreated = JsonConvert.DeserializeObject<TDto>(resultString);
+            var theaterModel = Mapper.Map<TModel>(theaterCreated);
+            return theaterModel;
         }
     }
 }

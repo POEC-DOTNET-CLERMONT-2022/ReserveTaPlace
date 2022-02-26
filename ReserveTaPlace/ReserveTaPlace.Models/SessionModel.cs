@@ -16,7 +16,10 @@ namespace ReserveTaPlace.Models
         private Guid _roomId;
         private Guid _calendarId;
         private Guid _movieId;
-
+        public SessionModel()
+        {
+    
+        }
         public SessionModel(MovieModel movie, CalendarModel calendar, RoomModel room )
         {
             _id = Guid.NewGuid();

@@ -9,6 +9,7 @@ namespace ReserveTaPlace.Data.Interfaces
 {
     public interface ISessions
     {
+        Task<SessionEntity> AddSession(SessionEntity session);
         Task<bool> AddSessions(List<SessionEntity> sessionEntity);
         Task<IEnumerable<SessionEntity>> GetSessions();
     }

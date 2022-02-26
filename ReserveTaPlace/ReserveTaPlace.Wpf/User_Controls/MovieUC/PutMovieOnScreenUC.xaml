@@ -22,7 +22,7 @@
         <StackPanel Margin="10 0 0 0" Grid.Column="0">
             <TextBlock FontSize="20" Margin="0 0 0 10" TextWrapping="Wrap">Programmation</TextBlock>
             <StackPanel HorizontalAlignment="Left">
-                <ComboBox x:Name="CBTheaters" DataContext="{Binding .,ElementName=root}" ItemsSource="{Binding SessionViewModel.Theaters}" Margin="0 10 20 0" 
+                <ComboBox SelectionChanged="CBTheaters_SelectionChanged" x:Name="CBTheaters" DataContext="{Binding .,ElementName=root}" ItemsSource="{Binding SessionViewModel.Theaters}" Margin="0 10 20 0" 
                           MinWidth="150" materialDesign:HintAssist.Hint="Choisir le cinéma"
                           DisplayMemberPath="Name" SelectedValue="{Binding SessionViewModel.SelectedTheatre}">
                 </ComboBox>

@@ -39,7 +39,7 @@
             <User_ControlsTheaterUC:TheaterDetailsUC DataContext="{Binding TheaterViewModel}" x:Name="TheaterDetails"></User_ControlsTheaterUC:TheaterDetailsUC>
         </StackPanel>
         <StackPanel Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Visibility="{Binding StateManager.IsAddTheaterVisible, Converter={StaticResource VisibilityConverter}}">
-            <User_ControlsTheaterUC:AddTheaterUC CreateRoom="AddTheater_CreateRoom" DataContext="{Binding TheaterViewModel}" x:Name="AddTheater" ></User_ControlsTheaterUC:AddTheaterUC>
+            <User_ControlsTheaterUC:AddTheaterUC CreateRoom="AddTheater_CreateRoom" CreateTheater="AddTheater_CreateTheater" DataContext="{Binding TheaterViewModel}" x:Name="AddTheater" ></User_ControlsTheaterUC:AddTheaterUC>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="1" Visibility="{Binding StateManager.IsAddRoomVisible, Converter={StaticResource VisibilityConverter}}">
             <User_ControlsRoomUC:AddRoomUC AddRoom="AddRoom_AddRoom" DataContext="{Binding RoomViewModel}" x:Name="AddRoomUC" ></User_ControlsRoomUC:AddRoomUC>

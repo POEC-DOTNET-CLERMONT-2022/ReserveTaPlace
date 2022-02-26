@@ -17,6 +17,17 @@ namespace ReserveTaPlace.Models
         private string _number;
         private string _county;
 
+        public AddressModel( string address1, string address2, string street, string city, string postalCode, string number, string county)
+        {
+            _id = Guid.NewGuid();
+            _address1 = address1;
+            _address2 = address2;
+            _street = street;
+            _city = city;
+            _postalCode = postalCode;
+            _number = number;
+            _county = county;
+        }
         public AddressModel(Guid id, string address1, string address2, string street, string city, string postalCode, string number, string county)
         {
             _id = id;

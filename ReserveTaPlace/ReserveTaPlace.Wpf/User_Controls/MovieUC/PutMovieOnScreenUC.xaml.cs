@@ -129,14 +129,6 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
         private async void BTNCreateSessions_Click(object sender, RoutedEventArgs e)
         {
             //TODO : trop complexe
-            SessionViewModel.SelectedTheatre = CBTheaters.SelectedItem as TheaterModel;
-            foreach (var item in SessionViewModel.SelectedTheatre.Rooms)
-            {
-                if (item.Id== SessionViewModel.Room.Id)
-                {
-                    SessionViewModel.Room = item;
-                }
-            }
             var sessionsToAdd = new List<SessionModel>();
             foreach (var item in SessionViewModel.Calendars)
             {
@@ -145,17 +137,21 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
                 {
                     schedule.SessionId = session.Id;
                 }
-                session.Schedules = SessionViewModel.Schedules.ToList();
+                //session.Schedules = SessionViewModel.Schedules.ToList();
                 sessionsToAdd.Add(session);
-                //var result = await _sessionDataManager.AddRoomSession(session);
+                var result = await _sessionDataManager.AddSession(session);
             }
-
-            var result = await _sessionDataManager.AddSessions(sessionsToAdd);
+            //var result = await _sessionDataManager.AddSessions(sessionsToAdd);
         }
 
         private void CBRooms_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SessionViewModel.Room = CBRooms.SelectedItem as RoomModel;
+        }
+
+        private void CBTheaters_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SessionViewModel.SelectedTheatre = CBTheaters.SelectedItem as TheaterModel;
         }
     }
 }

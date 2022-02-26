@@ -16,12 +16,23 @@ namespace ReserveTaPlace.Data.Functions
         {
             _dbContext= DbContext;
         }
+        public async Task<SessionEntity> AddSession(SessionEntity session)
+        {
+            CalendarEntity calendar = await _dbContext.Set<CalendarEntity>().FindAsync(session.CalendarId);
+            session.Calendar = calendar;
+            await _dbContext.Set<SessionEntity>().AddAsync(session);
+            await _dbContext.SaveChangesAsync();
+            return session;
+        }
         public async Task<bool> AddSessions(List<SessionEntity> sessionEntities)
         {
-            var room = await _dbContext.Set<RoomEntity>().FirstOrDefaultAsync(r=>r.Id == sessionEntities[0].RoomId);
-            await _dbContext.Set<SessionEntity>().AddRangeAsync(sessionEntities);
-            var result = await _dbContext.SaveChangesAsync();
-            return result > 0;
+            foreach (var session in sessionEntities)
+            {
+                await AddSession(session);
+            }
+            //await _dbContext.Set<SessionEntity>().AddRangeAsync(sessionEntities);
+            //var result = await _dbContext.SaveChangesAsync();
+            return true;
         }
 
         public async Task<IEnumerable<SessionEntity>> GetSessions()

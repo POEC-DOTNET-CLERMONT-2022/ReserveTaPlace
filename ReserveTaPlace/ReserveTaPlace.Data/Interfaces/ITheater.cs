@@ -13,7 +13,7 @@ namespace ReserveTaPlace.Data.Interfaces
         Task<TheaterEntity> GetById(Guid id);
         Task<TheaterEntity> GetByName(string name);
         Task<bool> DeleteById(Guid id);
-        Task<bool> Add(TheaterEntity theater);
+        Task<TheaterEntity> Add(TheaterEntity theater);
         Task<TheaterEntity> Update(TheaterEntity theater);
     }
 }

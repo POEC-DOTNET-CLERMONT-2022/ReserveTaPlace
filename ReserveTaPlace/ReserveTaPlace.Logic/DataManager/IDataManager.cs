@@ -22,10 +22,11 @@ namespace ReserveTaPlace.Logic.DataManager
         Task<TModel> GetCalendarByDate(string date);
         Task<bool> AddCalendar(TModel Calendar);
         Task<bool> AddSessions(List<TModel> sessions);
-        Task<bool> AddRoomSession(TModel session);
+        Task<TModel> AddSession(TModel session);
         Task<string> GetUserHash(string email);
         Task<TModel> GetUserByEmail(string text);
         Task<bool> VerifyUser(UserToVerify userToVerify);
         Task<IEnumerable<TModel>> GetSeats(RowModel row);
+        Task<TModel> AddTheater(TheaterModel theater);
     }
 }

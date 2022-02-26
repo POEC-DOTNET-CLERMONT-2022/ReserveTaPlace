@@ -61,7 +61,6 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
             finally
             {
                 SPSearchMovie.Visibility = Visibility.Visible;
-                Gprogress.Visibility = Visibility.Collapsed;
                 MoviesListUC.Visibility = Visibility.Visible;
                 WPSearchMovie.Visibility = Visibility.Visible;
             }
@@ -133,8 +132,19 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
 
         private async void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            await LoadMovies();
-            await LoadTheaters();
+            try
+            {
+                AddMovieUC.Visibility = Visibility.Collapsed;
+                Gprogress.Visibility = Visibility.Visible;
+                await LoadMovies();
+                await LoadTheaters();
+            }
+            finally
+            {
+                Gprogress.Visibility = Visibility.Collapsed;
+
+            }
+
         }
 
         private async Task LoadTheaters()

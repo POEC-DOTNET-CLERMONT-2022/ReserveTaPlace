@@ -15,11 +15,9 @@ namespace ReserveTaPlace.API.Controllers
     {
         private IMapper _mapper;
         private ISessions _session;
-        private IRoom _room;
 
         public SessionController(IMapper mapper, DbContext context)
         {
-            _room = new RoomFunctions(context);
             _session = new SessionFunctions(context);
             _mapper = mapper;
 
@@ -40,11 +38,11 @@ namespace ReserveTaPlace.API.Controllers
             var result = await _session.GetSessions();
             return Ok(result);
         }
-        [HttpPost("AddRoomSession")]
-        public async Task<ActionResult> AddRoomSession([FromBody] SessionDto session)
+        [HttpPost("AddSession")]
+        public async Task<ActionResult> AddSession([FromBody] SessionDto session)
         {
             var sessionEntity = _mapper.Map<SessionEntity>(session);
-            var result = _room.AddRoomSession(session.RoomId, sessionEntity);
+            var result = await _session.AddSession(sessionEntity);
             return Ok(result);
         }
     }

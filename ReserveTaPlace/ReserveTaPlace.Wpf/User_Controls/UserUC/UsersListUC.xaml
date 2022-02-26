@@ -30,10 +30,12 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <materialDesign:Card MinHeight="150" Background="{DynamicResource MaterialDesignLightBackground}" Width="200" Padding="8" UniformCornerRadius="6">
-                        <WrapPanel HorizontalAlignment="Center">
-                            <materialDesign:PackIcon Kind="Account" />
-                            <TextBlock Margin="10 0" TextWrapping="Wrap" Text="{Binding FirstName}" />
-                            <TextBlock TextWrapping="Wrap" Text="{Binding LastName}" />
+                        <StackPanel HorizontalAlignment="Left">
+                            <WrapPanel HorizontalAlignment="Left">
+                                <materialDesign:PackIcon Kind="Account" />
+                                <TextBlock Margin="10 0" TextWrapping="Wrap" Text="{Binding FirstName}" />
+                                <TextBlock TextWrapping="Wrap" Text="{Binding LastName}" />
+                            </WrapPanel>
                             <TextBlock FontSize="12" TextWrapping="Wrap" Text="{Binding Email}" />
                             <WrapPanel MinWidth="150">
                                 <Expander HorizontalAlignment="Stretch" Header="Roles">
@@ -53,8 +55,8 @@
                                     </StackPanel>
                                 </Expander>
                             </WrapPanel>
+                        </StackPanel>
 
-                        </WrapPanel>
 
                     </materialDesign:Card>
 

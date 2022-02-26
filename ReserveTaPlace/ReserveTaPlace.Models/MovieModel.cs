@@ -24,7 +24,19 @@ namespace ReserveTaPlace.Models
         private string _released;
         private string _runtime;
         private bool _isMovieOnDisplay;
-
+        public MovieModel(Guid id, string title, string plot, string genre, string director, string poster, string imdbId, string released, string runtime)
+        {
+            _id = id;
+            _title = title;
+            _plot = plot;
+            _poster = poster;
+            _imdbId = imdbId;
+            _released = released;
+            _runtime = runtime;
+            _isMovieOnDisplay = false;
+            _genre = genre;
+            _director = director;
+        }
         [JsonConstructor]
         public MovieModel(string title, string plot, string genre, string director, string poster, string imdbId, string released, string runtime)
         {

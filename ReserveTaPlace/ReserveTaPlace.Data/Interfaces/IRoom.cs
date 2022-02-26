@@ -9,7 +9,6 @@ namespace ReserveTaPlace.Data.Interfaces
 {
     public interface IRoom
     {
-        Task<bool> AddRoomSession(Guid roomId, SessionEntity session);
         Task<IEnumerable<RoomEntity>> GetAll();
     }
 }
