@@ -43,7 +43,7 @@ namespace ReserveTaPlace.Wpf.User_Controls.TheaterUC
         private void TheaterListUC_SelectionChanged(object sender, System.EventArgs e)
         {
             TheaterViewModel.CurrentTheater = TheaterList.LVTheaters.SelectedItem as TheaterModel;
-            TheaterDetails.DataContext = TheaterViewModel.CurrentTheater;
+            TheaterDetails.TheaterViewModel = TheaterViewModel;
         }
 
         private void TheaterList_CreateTheater(object sender, System.EventArgs e)
