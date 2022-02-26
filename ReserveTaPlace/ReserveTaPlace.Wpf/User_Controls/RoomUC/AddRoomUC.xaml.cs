@@ -20,12 +20,14 @@ namespace ReserveTaPlace.Wpf.User_Controls.RoomUC
         public RoomViewModel RoomViewModel { get; set; }
         private readonly IDataManager<FormatModel, FormatDto> _formatDataManager;
         private readonly IDataManager<SeatModel, SeatDto> _seatDataManager;
+        private List<RowModel> _rowModels;
         public AddRoomUC()
         {
             InitializeComponent();
             _formatDataManager = ((App)Application.Current).FormatDataManager;
             _seatDataManager = ((App)Application.Current).SeatDataManager;
             RoomViewModel = new RoomViewModel();
+            _rowModels = new List<RowModel>();
         }
         //public RoomViewModel RoomViewModel
         //{
@@ -57,16 +59,16 @@ namespace ReserveTaPlace.Wpf.User_Controls.RoomUC
             var formats = await _formatDataManager.GetAll();
             RoomViewModel.Formats = new ObservableCollection<FormatModel>(formats);
             CBFormatList.ItemsSource = RoomViewModel.Formats;
+            CBRowName.ItemsSource = RoomViewModel.Row.RowLetters;
         }
 
         private void AddRow_Click(object sender, RoutedEventArgs e)
         {
-            if (!String.IsNullOrEmpty(UDTotalSeat.Text)&& !String.IsNullOrEmpty(TBRowName.Text))
+            if (!String.IsNullOrEmpty(UDTotalSeat.Text)&& !String.IsNullOrEmpty(CBRowName.Text))
             {
-                var row = new RowModel() { RowLetter = TBRowName.Text, TotalSeat = UDTotalSeat.Text };
-                var rowlist = new List<RowModel>();
-                rowlist.Add(row);
-                RoomViewModel.RowModels = new ObservableCollection<RowModel>(rowlist);
+                var row = new RowModel() { RowLetter = CBRowName.Text, TotalSeat = UDTotalSeat.Text };
+                _rowModels.Add(row);
+                RoomViewModel.RowModels = new ObservableCollection<RowModel>(_rowModels);
                 LBRowSeat.ItemsSource = RoomViewModel.RowModels;
             }
         }

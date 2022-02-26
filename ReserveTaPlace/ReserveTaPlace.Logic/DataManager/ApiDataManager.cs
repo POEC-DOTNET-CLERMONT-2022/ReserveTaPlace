@@ -157,5 +157,16 @@ namespace ReserveTaPlace.Logic.DataManager
             Boolean.TryParse(resultString, out bool result);
             return result;
         }
+
+        public async Task<IEnumerable<TModel>> GetSeats(RowModel row)
+        {
+            var _uri = new Uri(Uri + $"/SeatsByRowAndNumber/?row={row.RowLetter}&seats={row.TotalSeat}");
+            var response = await HttpClient.GetAsync(_uri);
+            response.EnsureSuccessStatusCode();
+            var resultString = await response.Content.ReadAsStringAsync();
+            var seats = JsonConvert.DeserializeObject<IEnumerable<TDto>>(resultString);
+            var seatsModel = Mapper.Map<IEnumerable<TModel>>(seats);
+            return seatsModel;
+        }
     }
 }

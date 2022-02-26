@@ -24,5 +24,11 @@ namespace ReserveTaPlace.Data.Functions
             _seats = await _dbContext.Set<SeatEntity>().ToListAsync();
             return _seats;
         }
+
+        public async Task<IEnumerable<SeatEntity>> GetSeatsByRowAndNumber(string row, string seats)
+        {
+            _seats = await _dbContext.Set<SeatEntity>().Where(s=> s.Row.ToLower() == row.ToLower() && Convert.ToInt32(s.Number)<= Convert.ToInt32(seats)).ToListAsync();
+            return _seats;
+        }
     }
 }

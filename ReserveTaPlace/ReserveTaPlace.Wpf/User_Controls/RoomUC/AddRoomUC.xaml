@@ -27,51 +27,50 @@
                     <RowDefinition Height="2*"/>
                     <RowDefinition Height="4*"/>
                 </Grid.RowDefinitions>
-                <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="0">
-                    <TextBlock Text="Numéro de la salle :" Margin="5"/>
-                    <TextBox x:Name="TBRoomNumber" Margin="5"/>
-                </StackPanel>
-                <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="0">
-                    <TextBlock Text="Nom de la salle :" Margin="5"/>
-                    <TextBox x:Name="TBRoomName" Margin="5" Cursor="IBeam"/>
-                </StackPanel>
-                <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="1">
-                    <TextBlock Text="Format de la salle :" Margin="5"/>
-                    <ComboBox DataContext="{Binding RoomViewModel}" x:Name="CBFormatList" materialDesign:HintAssist.Hint="Format" MinWidth="72" ItemsSource="{Binding Formats}"
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="0" MinWidth="250" MaxWidth="250">
+                    <TextBox x:Name="TBRoomNumber" materialDesign:HintAssist.Hint="Numéro de la salle"/>
+                    <TextBox x:Name="TBRoomName" materialDesign:HintAssist.Hint="Nom de la salle" Cursor="IBeam"/>
+                    <ComboBox DataContext="{Binding RoomViewModel}" x:Name="CBFormatList" materialDesign:HintAssist.Hint="Format de la salle " MinWidth="72" ItemsSource="{Binding Formats}"
                               DisplayMemberPath="Name" SelectedValuePath="Name" SelectedValue="{Binding RoomViewModel.RoomToCreate.Format}">
                     </ComboBox>
                 </StackPanel>
-                <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="2">
-                    <TextBlock Text="Selection des sièges :" Margin="5"/>
+
+                <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" MinWidth="250" MaxWidth="250">
+                    <ComboBox materialDesign:HintAssist.Hint="Lettre de la rangée" x:Name="CBRowName" ItemsSource="{Binding Row.RowLetters}"/>
                     <WrapPanel>
-                        <TextBox materialDesign:HintAssist.Hint="Lettre de rangée" x:Name="TBRowName"></TextBox>
+                        <TextBlock Text="Nombre de sièges pour la rangée : "/>
+                        <xctk:IntegerUpDown x:Name="UDTotalSeat" MaxHeight="100" MinWidth="50" MaxWidth="50" Maximum="49" Minimum="1" />
+                        <Button Margin="10 0" Width="30" Height="30" Style="{StaticResource MaterialDesignIconButton}" ToolTip="Ajouter un film" Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
+                    HorizontalAlignment="Right" Grid.Row="2" Click="AddRow_Click">
+                            <materialDesign:PackIcon Width="20" Height="30" Kind="PlusCircle" />
+                        </Button>
                     </WrapPanel>
-                    <WrapPanel>
-                        <TextBlock Text="indiquer le nombre de sièges pour la rangée :" Margin="5"/>
-                        <xctk:IntegerUpDown x:Name="UDTotalSeat" MinWidth="50" MaxWidth="50" />
-                        <Button Click="AddRow_Click" x:Name="AddRow"/>
-                    </WrapPanel>
-                    
                 </StackPanel>
-                <ListBox x:Name="LBRowSeat" SelectedItem="{Binding RoomViewModel.Row}" MaxWidth="200" Grid.Row="2" Grid.Column="1" >
+
+                <StackPanel HorizontalAlignment="Center" Grid.Column="1" Grid.Row="0">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="0">
+                        <TextBlock Text="{Binding ElementName=TBRoomNumber, Path=Text, StringFormat='Salle n° {0} : '}" FontSize="20"/>
+                        <TextBlock Text="{Binding ElementName=TBRoomName, Path=Text}" FontSize="20"/>
+                    </StackPanel>
+                    <TextBlock Text="{Binding ElementName=CBFormatList, Path=Text, StringFormat='Format : {0}'}" FontSize="20"/>
+                </StackPanel>
+                <ListBox Background="LightGray" x:Name="LBRowSeat" SelectedItem="{Binding RoomViewModel.Row}" ItemsSource="{Binding RowModels}" MinHeight="200" MaxHeight="200" MaxWidth="200" Grid.Row="2" Grid.Column="1" >
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <WrapPanel  HorizontalAlignment="Left">
+                            <WrapPanel  HorizontalAlignment="Center">
                             </WrapPanel>
                         </ItemsPanelTemplate>
                     </ListBox.ItemsPanel>
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel MinWidth="100">
                                 <TextBlock>
                                     <TextBlock.Text>
-                                        <MultiBinding StringFormat="{}Rangée {0}, {1} sièges ajoutées !">
+                                        <MultiBinding StringFormat="{}Rangée {0}, {1} sièges">
                                             <Binding Path="RowLetter"/>
                                             <Binding Path="TotalSeat"/>
                                         </MultiBinding>
                                     </TextBlock.Text>
                                 </TextBlock>
-                            </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>

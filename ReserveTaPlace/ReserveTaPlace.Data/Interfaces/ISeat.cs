@@ -10,5 +10,6 @@ namespace ReserveTaPlace.Data.Interfaces
     public interface ISeat
     {
         Task<IEnumerable<SeatEntity>> GetAll();
+        Task<IEnumerable<SeatEntity>> GetSeatsByRowAndNumber(string row, string seats);
     }
 }

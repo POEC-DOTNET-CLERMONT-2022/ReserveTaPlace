@@ -15,12 +15,22 @@ namespace ReserveTaPlace.API.Controllers
     public class SeatController : ControllerBase
     {
         private IGenericRepo<SeatEntity> _seat;
+        private ISeat _seatRepo;
         private IMapper _mapper;
 
         public SeatController(IMapper mapper, DbContext context)
         {
             _seat = new GenericFunctions<SeatEntity>(context);
             _mapper = mapper;
+            _seatRepo = new SeatFunctions(context);
+        }
+
+        [HttpGet("SeatsByRowAndNumber")]
+        public async Task<ActionResult> SeatsByRowAndNumber([FromQuery] string row, string seats)
+        {
+            var seatsList = await _seatRepo.GetSeatsByRowAndNumber(row, seats);
+            var seatsDto = _mapper.Map<IEnumerable<SeatDto>>(seatsList);
+            return Ok(seatsDto);
         }
         // GET: api/<SeatController>
         [HttpGet]

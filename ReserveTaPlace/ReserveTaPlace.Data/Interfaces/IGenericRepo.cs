@@ -12,7 +12,5 @@ namespace ReserveTaPlace.Data.Interfaces
         Task<bool> Add(T entity);
         Task<bool> Update(T entity);
         Task<bool> Delete(Guid id);
-
-
     }
 }

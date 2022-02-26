@@ -10,5 +10,7 @@ namespace ReserveTaPlace.Models.WPFModels
     {
         public string RowLetter { get; set; }
         public string TotalSeat { get; set; }
+        public List<string> RowLetters = new List<string> { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P","Q" };
+
     }
 }

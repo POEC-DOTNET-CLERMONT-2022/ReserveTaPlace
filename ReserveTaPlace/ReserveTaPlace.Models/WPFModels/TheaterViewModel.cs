@@ -15,6 +15,14 @@ namespace ReserveTaPlace.Models.WPFModels
         private RoomModel _currentRoom;
         private TheaterModel _theaterToCreate;
         private TheaterPageStateManager _stateManager;
+        private ObservableCollection<RoomModel> _rooms;
+
+        public ObservableCollection<RoomModel> Rooms
+        {
+            get { return _rooms; }
+            set { _rooms = value; OnNotifyPropertyChanged(); }
+        }
+
         public TheaterModel CurrentTheater
         {
             get { return _currentTheater; }
