@@ -71,9 +71,9 @@
                               HorizontalAlignment="Center">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding Format.Name}" Header="Format"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Format.Name}" Header="Format" />
                         <GridViewColumn DisplayMemberBinding="{Binding Number}" Header="Numéro"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Nom"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Nom" Width="200"/>
                         <GridViewColumn DisplayMemberBinding="{Binding Seats.Count}" Header="Nombre de sièges"/>
                         <GridViewColumn DisplayMemberBinding="{Binding Sessions.Count}" Header="Nombre de sessions"/>
                         <GridViewColumn Header="Action">
