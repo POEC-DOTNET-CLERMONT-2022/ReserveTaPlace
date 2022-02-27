@@ -20,6 +20,7 @@ namespace ReserveTaPlace.Data.Functions
         {
             CalendarEntity calendar = await _dbContext.Set<CalendarEntity>().FindAsync(session.CalendarId);
             session.Calendar = calendar;
+            var scheduleEntities = new List<ScheduleEntity>();
             await _dbContext.Set<SessionEntity>().AddAsync(session);
             await _dbContext.SaveChangesAsync();
             return session;

@@ -40,6 +40,8 @@ namespace ReserveTaPlace.Wpf
         public IDataManager<RoleModel, RoleDto> RoleDataManager { get; }
 
         public IDataManager<SeatModel, SeatDto> SeatDataManager { get; }
+        public IDataManager<ScheduleModel, ScheduleDto> ScheduleDataManager { get; }
+
 
         public INavigator Navigator { get; }
 
@@ -63,7 +65,7 @@ namespace ReserveTaPlace.Wpf
             FormatDataManager = new FormatDataManager(HttpClient, Mapper, SERVER_URL);
             RoleDataManager = new RoleDataManager(HttpClient, Mapper, SERVER_URL); 
             SeatDataManager = new SeatDataManager(HttpClient, Mapper, SERVER_URL);
-
+            ScheduleDataManager = new ScheduleDataManager(HttpClient, Mapper, SERVER_URL);
             Navigator = new Navigator();
 
         }

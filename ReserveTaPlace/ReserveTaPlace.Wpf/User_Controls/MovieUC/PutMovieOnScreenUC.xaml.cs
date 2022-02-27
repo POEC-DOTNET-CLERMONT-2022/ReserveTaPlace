@@ -20,10 +20,11 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
     {
         private static readonly DependencyProperty _sessionViewModelProperty = DependencyProperty.Register("SessionViewModel", typeof(SessionViewModel), typeof(PutMovieOnScreenUC));
         private SessionViewModel _sessionViewModel;
+        private List<ScheduleModel> _schedules;
+
         private IDataManager<CalendarModel, CalendarDto> _calendarDataManager;
         private IDataManager<SessionModel, SessionDto> _sessionDataManager;
-        IDataManager<RoomModel, RoomDto> _roomDataManager;
-
+        private IDataManager<ScheduleModel, ScheduleDto> _scheduleDataManager;
         public SessionViewModel SessionViewModel
         {
             get { return GetValue(_sessionViewModelProperty) as SessionViewModel; }
@@ -40,7 +41,8 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
             InitializeComponent();
             _calendarDataManager = ((App)Application.Current).CalendarDataManager;
             _sessionDataManager = ((App)Application.Current).SessionDataManager;
-            _roomDataManager = ((App)Application.Current).RoomDataManager;
+            _scheduleDataManager = ((App)Application.Current).ScheduleDataManager;
+            _schedules = new List<ScheduleModel>();
             DataContext = SessionViewModel;
             DPStartDate.DisplayDateStart = DateTime.Now;
             DPStartDate.DisplayDateEnd = DateTime.Now.Add(new TimeSpan(400, 0, 0, 0));
@@ -103,9 +105,8 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
                 DateTime startHour = DPStartHour.SelectedTime.Value;
                 DateTime endHour = DPEndHour.SelectedTime.Value;
                 var schedule = new ScheduleModel(startHour, endHour);
-                var schedules = new List<ScheduleModel>();
-                schedules.Add(schedule);
-                SessionViewModel.Schedules = new ObservableCollection<ScheduleModel>(schedules);
+                _schedules.Add(schedule);
+                SessionViewModel.Schedules= new ObservableCollection<ScheduleModel>(_schedules);
                 LBSchedules.Items.Add(schedule);
             }
 
@@ -135,13 +136,14 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
                 var session = new SessionModel(SessionViewModel.SelectedMovie, item, SessionViewModel.Room);
                 foreach (var schedule in SessionViewModel.Schedules.ToList())
                 {
-                    schedule.SessionId = session.Id;
+                    var newSchedule = new ScheduleModel(schedule.HourStart, schedule.HourEnd);
+                    //schedule.Sessions.Add(session);
+                    //await _scheduleDataManager.Add(schedule);
+                    session.Schedules.Add(newSchedule);
                 }
-                //session.Schedules = SessionViewModel.Schedules.ToList();
                 sessionsToAdd.Add(session);
                 var result = await _sessionDataManager.AddSession(session);
             }
-            //var result = await _sessionDataManager.AddSessions(sessionsToAdd);
         }
 
         private void CBRooms_SelectionChanged(object sender, SelectionChangedEventArgs e)
