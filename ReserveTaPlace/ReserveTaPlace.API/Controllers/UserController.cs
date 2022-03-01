@@ -63,6 +63,7 @@ namespace ReserveTaPlace.API.Controllers
         [HttpGet("VerifyUser")]
         public async Task<ActionResult> VerifyUser([FromQuery]string email,string password)
         {
+            // todo very important try catch
             var user = await _user.GetUserByMail(email);
             if (user == null) return BadRequest();
             var result = BCrypt.Net.BCrypt.Verify(password, user.Password);
