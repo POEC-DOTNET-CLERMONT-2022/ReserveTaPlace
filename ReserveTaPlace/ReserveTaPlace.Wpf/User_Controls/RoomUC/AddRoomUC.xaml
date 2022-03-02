@@ -54,7 +54,7 @@
                     </StackPanel>
                     <TextBlock Text="{Binding ElementName=CBFormatList, Path=Text, StringFormat='Format : {0}'}" FontSize="20"/>
                 </StackPanel>
-                <ListBox Background="LightGray" x:Name="LBRowSeat" SelectedItem="{Binding RoomViewModel.Row}" ItemsSource="{Binding RowModels}" MinHeight="200" MaxHeight="200" MaxWidth="200" Grid.Row="2" Grid.Column="1" >
+                <ListBox Background="LightGray" x:Name="LBRowSeat" SelectedItem="{Binding RoomViewModel.Row}" ItemsSource="{Binding RowModels}" MinHeight="150" MaxHeight="150" MaxWidth="200" Grid.Row="2" Grid.Column="1">
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel  HorizontalAlignment="Center">

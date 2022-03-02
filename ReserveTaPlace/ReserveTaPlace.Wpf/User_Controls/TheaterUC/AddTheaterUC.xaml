@@ -21,13 +21,13 @@
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
                     <RowDefinition Height="2*"/>
                     <RowDefinition Height="2*"/>
                     <RowDefinition Height="2*"/>
                     <RowDefinition Height="2*"/>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="2*"/>
-                </Grid.RowDefinitions>
+                    <RowDefinition Height="4*"/>
+        </Grid.RowDefinitions>
                 <StackPanel Grid.Row="0" Grid.ColumnSpan="3">
                     <TextBlock Text="Ajouter un cinéma" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold"/>
                     <TextBox x:Name="TBTheaterName" materialDesign:HintAssist.Hint="Nom du cinéma" Margin="5"/>
@@ -54,7 +54,8 @@
                 <StackPanel Orientation="Vertical" Grid.Column="2" Grid.Row="3">
                     <TextBox x:Name="TBTheaterCounty" materialDesign:HintAssist.Hint="Pays" Margin="5"/>
                 </StackPanel>
-                <StackPanel Margin="0 50" Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="5">
+                
+                <StackPanel Margin="0 50" Grid.ColumnSpan="3" Grid.Row="4">
             <TextBlock HorizontalAlignment="Center" FontSize="18" Text="Liste des salles :" />
             <ListBox Background="LightGray" x:Name="LBRooms"  MinHeight="130" MaxHeight="130" MaxWidth="1200">
                         <ListBox.ItemsPanel>
@@ -76,16 +77,18 @@
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
-            <WrapPanel Orientation="Horizontal">
-                <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" MinHeight="40" MinWidth="250"
+
+            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" HorizontalAlignment="Left" MinHeight="40" MaxWidth="250"
                     x:Name="BTNCreateRoom" Click="BTNCreateRoom_Click" materialDesign:ButtonAssist.CornerRadius="25" ToolTip="Créer une salle" Cursor="Hand">
                     <TextBlock Text="Créer une salle" />
                 </Button>
-                <Button HorizontalAlignment="right" Style="{StaticResource MaterialDesignRaisedDarkButton}" MinHeight="40" MinWidth="250" Margin="150"
+                <Button HorizontalAlignment="right" Style="{StaticResource MaterialDesignRaisedDarkButton}" MinHeight="40" MaxWidth="250" Margin="200 0"
                     x:Name="BTNCreateTheater" Click="BTNCreateTheater_Click" materialDesign:ButtonAssist.CornerRadius="25" ToolTip="Créer le cinéma" Cursor="Hand">
                     <TextBlock Text="Créer le cinéma" />
                 </Button>
             </WrapPanel>
         </StackPanel>
-            </Grid>
+
+    </Grid>
 </UserControl>
