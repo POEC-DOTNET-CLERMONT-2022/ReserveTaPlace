@@ -42,7 +42,10 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
         }
         private void ShowAddMovie_Click(object sender, RoutedEventArgs e)
         {
+            //PB LAstminute
             ListMovie.StateManager.Set(MoviePageState.AddMovieView);
+            SPAddmovie.Visibility = Visibility.Visible;
+            AddMovieUC.Visibility = Visibility.Visible;
             if (UCPutOnScreen.SessionViewModel != null)
             {
                 UCPutOnScreen.SessionViewModel.SelectedMovie = null;
@@ -156,6 +159,8 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
         private void AddMovieUC_GoPreviousPage(object sender, EventArgs e)
         {
             ListMovie.StateManager.Set(MoviePageState.MoviesListView);
+            SPAddmovie.Visibility = Visibility.Collapsed;
+            AddMovieUC.Visibility = Visibility.Collapsed;
         }
 
         private async void BTNReload_Click(object sender, RoutedEventArgs e)

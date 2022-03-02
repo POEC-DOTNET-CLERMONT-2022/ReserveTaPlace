@@ -21,7 +21,6 @@
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
 
-
         <StackPanel Grid.Column="1" x:Name="SPImbdResult" Visibility="Collapsed">
             <User_ControlsMovieUC:MovieDetailsUC DataContext="{Binding CurrentMovie}" x:Name="MovieDetailsUC" ></User_ControlsMovieUC:MovieDetailsUC>
             <Button VerticalAlignment="Bottom" Width="150" Margin="0 20 0 0" Click="Button_AddMovie" Cursor="Hand">Valider</Button>
