@@ -130,20 +130,20 @@ namespace ReserveTaPlace.Wpf.User_Controls.MovieUC
         private async void BTNCreateSessions_Click(object sender, RoutedEventArgs e)
         {
             //TODO : trop complexe
-            var sessionsToAdd = new List<SessionModel>();
-            foreach (var item in SessionViewModel.Calendars)
+            if (SessionViewModel.Calendars!=null && SessionViewModel.Room!=null)
             {
-                var session = new SessionModel(SessionViewModel.SelectedMovie, item, SessionViewModel.Room);
-                foreach (var schedule in SessionViewModel.Schedules.ToList())
+                foreach (var item in SessionViewModel.Calendars)
                 {
-                    var newSchedule = new ScheduleModel(schedule.HourStart, schedule.HourEnd);
-                    //schedule.Sessions.Add(session);
-                    //await _scheduleDataManager.Add(schedule);
-                    session.Schedules.Add(newSchedule);
+                    var session = new SessionModel(SessionViewModel.SelectedMovie, item, SessionViewModel.Room);
+                    foreach (var schedule in SessionViewModel.Schedules.ToList())
+                    {
+                        var newSchedule = new ScheduleModel(schedule.HourStart, schedule.HourEnd);
+                        session.Schedules.Add(newSchedule);
+                    }
+                    var result = await _sessionDataManager.AddSession(session);
                 }
-                sessionsToAdd.Add(session);
-                var result = await _sessionDataManager.AddSession(session);
             }
+
         }
 
         private void CBRooms_SelectionChanged(object sender, SelectionChangedEventArgs e)

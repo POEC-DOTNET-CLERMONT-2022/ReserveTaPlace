@@ -78,7 +78,7 @@
                     </ListBox>
             <WrapPanel Orientation="Horizontal">
                 <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" MinHeight="40" MinWidth="250"
-                    x:Name="BTNCreateRoom" Click="BTNCreateRoom_Click" materialDesign:ButtonAssist.CornerRadius="25" ToolTip="Ajouter une salle" Cursor="Hand">
+                    x:Name="BTNCreateRoom" Click="BTNCreateRoom_Click" materialDesign:ButtonAssist.CornerRadius="25" ToolTip="Créer une salle" Cursor="Hand">
                     <TextBlock Text="Créer une salle" />
                 </Button>
                 <Button HorizontalAlignment="right" Style="{StaticResource MaterialDesignRaisedDarkButton}" MinHeight="40" MinWidth="250" Margin="150"
