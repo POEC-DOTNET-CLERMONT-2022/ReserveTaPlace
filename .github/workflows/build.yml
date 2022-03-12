@@ -48,5 +48,5 @@ jobs:
         shell: powershell
         run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"POEC-DOTNET-CLERMONT-2022_ReserveTaPlace" /o:"poec-dotnet-clermont-2022" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
-          dotnet build ReserveTaPlaceConsole/ReserveTaPlaceConsole.sln
+          dotnet build ReserveTaPlace/ReserveTaPlace.sln
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
