@@ -39,7 +39,8 @@ namespace ReserveTaPlace.Data.Functions
         public async Task<IEnumerable<SessionEntity>> GetSessions()
         {
             var result = await _dbContext.Set<SessionEntity>()
-                //.Include(s=>s.Schedules)
+                .Include(s=>s.Schedules)
+
                 .ToListAsync();
             return result;
 
