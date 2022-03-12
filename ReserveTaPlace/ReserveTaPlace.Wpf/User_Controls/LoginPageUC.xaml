@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="ReserveTaPlace.Wpf.User_Controls.LoginPageUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             Background="{DynamicResource MaterialDesignPaper}"
+             TextElement.FontWeight="Medium"
+             TextElement.FontSize="14"
+             FontFamily="{materialDesign:MaterialDesignFont}"  
+             xmlns:local="clr-namespace:ReserveTaPlace.Wpf.User_Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid x:Name="LoginGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
+                <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Bienvenue" FontSize="20" FontWeight="Bold"/>
+                <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Veuillez vous connecter"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                    <TextBox x:Name ="TBLogin" TextWrapping="Wrap" MinWidth="150" materialDesign:HintAssist.Hint="E-Mail"/>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                    <PasswordBox x:Name ="TBPassword" MinWidth="150" materialDesign:HintAssist.Hint="Password"/>
+                </WrapPanel>
+            </StackPanel>
+            <WrapPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center"  VerticalAlignment="Center">
+                <Button x:Name="LoginBTN" Margin="10" Click="LoginBTN_Click">Se connecter</Button>
+                <TextBlock x:Name="ResultTB"/>
+            </WrapPanel>
+        </Grid>
+    </Grid>
+</UserControl>

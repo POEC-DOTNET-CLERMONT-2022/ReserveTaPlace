@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="ReserveTaPlace.Wpf.User_Controls.TheaterUC.TheaterPageUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             Background="{DynamicResource MaterialDesignPaper}"
+             TextElement.FontWeight="Medium"
+             TextElement.FontSize="14"
+             FontFamily="{materialDesign:MaterialDesignFont}"
+             xmlns:local="clr-namespace:ReserveTaPlace.Wpf.User_Controls.TheaterUC" 
+             xmlns:User_Controls="clr-namespace:ReserveTaPlace.Wpf.User_Controls"
+             xmlns:User_ControlsTheaterUC="clr-namespace:ReserveTaPlace.Wpf.User_Controls.TheaterUC" 
+             xmlns:User_ControlsRoomUC="clr-namespace:ReserveTaPlace.Wpf.User_Controls.RoomUC" 
+             xmlns:Converters="clr-namespace:ReserveTaPlace.Wpf.Utils.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <Converters:VisibilityConverter x:Key="VisibilityConverter"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="6*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <Button Visibility="Collapsed" Grid.Column="1" Click="Button_Click" Width="100"> generate seats</Button>
+        <User_Controls:MainMenuUC Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" x:Name="MainMenuUC"></User_Controls:MainMenuUC>
+        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical" Visibility="{Binding StateManager.IsTheaterListVisible, Converter={StaticResource VisibilityConverter}}">
+            <User_ControlsTheaterUC:TheatersListUC CreateTheater="TheaterList_CreateTheater" SelectionChanged="TheaterListUC_SelectionChanged" x:Name="TheaterList"></User_ControlsTheaterUC:TheatersListUC>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="2" Grid.RowSpan="2" VerticalAlignment="Top"  Visibility="{Binding StateManager.IsTheaterDetailsVisible, Converter={StaticResource VisibilityConverter}}">
+            <User_ControlsTheaterUC:TheaterDetailsUC DataContext="{Binding TheaterViewModel}" x:Name="TheaterDetails"></User_ControlsTheaterUC:TheaterDetailsUC>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Visibility="{Binding StateManager.IsAddTheaterVisible, Converter={StaticResource VisibilityConverter}}">
+            <User_ControlsTheaterUC:AddTheaterUC CreateRoom="AddTheater_CreateRoom" CreateTheater="AddTheater_CreateTheater" DataContext="{Binding TheaterViewModel}" x:Name="AddTheater" ></User_ControlsTheaterUC:AddTheaterUC>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="1" Visibility="{Binding StateManager.IsAddRoomVisible, Converter={StaticResource VisibilityConverter}}">
+            <User_ControlsRoomUC:AddRoomUC AddRoom="AddRoom_AddRoom" DataContext="{Binding RoomViewModel}" x:Name="AddRoomUC" ></User_ControlsRoomUC:AddRoomUC>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,85 @@
+﻿<UserControl x:Class="ReserveTaPlace.Wpf.User_Controls.RoomUC.AddRoomUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             Background="{DynamicResource MaterialDesignPaper}"
+             TextElement.FontWeight="Medium"
+             TextElement.FontSize="14"
+             FontFamily="{materialDesign:MaterialDesignFont}"
+             xmlns:local="clr-namespace:ReserveTaPlace.Wpf.User_Controls.RoomUC" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             Loaded="UserControl_Loaded"
+             x:Name="root">
+    <Grid DataContext="{Binding ., ElementName=root}">
+        <StackPanel>
+            <Grid DataContext="{Binding RoomViewModel}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="4*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="0" MinWidth="250" MaxWidth="250">
+                    <TextBox x:Name="TBRoomNumber" materialDesign:HintAssist.Hint="Numéro de la salle"/>
+                    <TextBox x:Name="TBRoomName" materialDesign:HintAssist.Hint="Nom de la salle" Cursor="IBeam"/>
+                    <ComboBox DataContext="{Binding RoomViewModel}" x:Name="CBFormatList" materialDesign:HintAssist.Hint="Format de la salle " MinWidth="72" ItemsSource="{Binding Formats}"
+                              DisplayMemberPath="Name" SelectedValuePath="Name" SelectedValue="{Binding RoomViewModel.RoomToCreate.Format}">
+                    </ComboBox>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" MinWidth="250" MaxWidth="250">
+                    <ComboBox materialDesign:HintAssist.Hint="Lettre de la rangée" x:Name="CBRowName" ItemsSource="{Binding Row.RowLetters}"/>
+                    <WrapPanel>
+                        <TextBlock Text="Nombre de sièges pour la rangée : "/>
+                        <xctk:IntegerUpDown x:Name="UDTotalSeat" MaxHeight="100" MinWidth="50" MaxWidth="50" Maximum="49" Minimum="1" />
+                        <Button Margin="10 0" Width="30" Height="30" Style="{StaticResource MaterialDesignIconButton}" ToolTip="Ajouter un film" Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
+                    HorizontalAlignment="Right" Grid.Row="2" Click="AddRow_Click">
+                            <materialDesign:PackIcon Width="20" Height="30" Kind="PlusCircle" />
+                        </Button>
+                    </WrapPanel>
+                </StackPanel>
+
+                <StackPanel HorizontalAlignment="Center" Grid.Column="1" Grid.Row="0">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="0">
+                        <TextBlock Text="{Binding ElementName=TBRoomNumber, Path=Text, StringFormat='Salle n° {0} : '}" FontSize="20"/>
+                        <TextBlock Text="{Binding ElementName=TBRoomName, Path=Text}" FontSize="20"/>
+                    </StackPanel>
+                    <TextBlock Text="{Binding ElementName=CBFormatList, Path=Text, StringFormat='Format : {0}'}" FontSize="20"/>
+                </StackPanel>
+                <ListBox Background="LightGray" x:Name="LBRowSeat" SelectedItem="{Binding RoomViewModel.Row}" ItemsSource="{Binding RowModels}" MinHeight="150" MaxHeight="150" MaxWidth="200" Grid.Row="2" Grid.Column="1">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel  HorizontalAlignment="Center">
+                            </WrapPanel>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                                <TextBlock>
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="{}Rangée {0}, {1} sièges">
+                                            <Binding Path="RowLetter"/>
+                                            <Binding Path="TotalSeat"/>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+            <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" Height="40" Width="250" Margin="5"
+                    x:Name="BTNAddRoom" Click="BTNAddRoom_Click"
+                    materialDesign:ButtonAssist.CornerRadius="25" ToolTip="Ajouter la salle">
+                <TextBlock Text="Ajouter la salle" />
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

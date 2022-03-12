@@ -1,0 +1,77 @@
+﻿<UserControl x:Class="ReserveTaPlace.Wpf.User_Controls.MovieUC.MoviePageUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             Background="{DynamicResource MaterialDesignPaper}"
+             TextElement.FontWeight="Medium"
+             TextElement.FontSize="14"
+             FontFamily="{materialDesign:MaterialDesignFont}"
+             xmlns:Converters="clr-namespace:ReserveTaPlace.Wpf.Utils.Converters"
+             xmlns:User_Controls="clr-namespace:ReserveTaPlace.Wpf.User_Controls"
+             xmlns:User_ControlsMovieUC="clr-namespace:ReserveTaPlace.Wpf.User_Controls.MovieUC"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <Converters:VisibilityConverter x:Key="VisibilityConverter"/>
+    </UserControl.Resources>
+        <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="6*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="1.1*"/>
+                <RowDefinition Height="5*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Column="1" Grid.Row="0" x:Name="SPSearchMovie">
+                <WrapPanel x:Name="WPSearchMovie" Visibility="{Binding StateManager.IsSPSearchVisible, Converter={StaticResource VisibilityConverter}}">
+                    <TextBox materialDesign:HintAssist.Hint="Titre du film" x:Name="TBMovieName" Margin="0,0,10,0" Width="150"></TextBox>
+                    <TextBox materialDesign:HintAssist.Hint="Année de sortie" x:Name="TBMovieYear" Margin="0,0,10,0" Width="150"></TextBox>
+                    <Button Width="30" Height="30" Style="{StaticResource MaterialDesignIconButton}" ToolTip="Rechercher dans la base de données" Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
+                    x:Name="BTNFindMovie" Margin="10" Click="BTNFindMovie_Click">
+                        <materialDesign:PackIcon Width="20" Height="30" Kind="DatabaseSearch" />
+                    </Button>
+                    <Button Width="30" Height="30" Style="{StaticResource MaterialDesignIconButton}" ToolTip="Ajouter un film" Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
+                    HorizontalAlignment="Right" Grid.Row="2" Click="ShowAddMovie_Click">
+                        <materialDesign:PackIcon Width="20" Height="30" Kind="PlusCircle" />
+                    </Button>
+                    <Button x:Name="BTNReload" Click="BTNReload_Click" Width="30" Height="30" Style="{StaticResource MaterialDesignIconButton}" ToolTip="Ajouter un film" Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
+                    HorizontalAlignment="Right" Grid.Row="2">
+                        <materialDesign:PackIcon Width="20" Height="30" Kind="Reload" />
+                    </Button>
+                </WrapPanel>
+                <TextBlock x:Name="TBUnfound" Visibility="Collapsed">Aucun film trouvé</TextBlock>
+            </StackPanel>
+            <User_ControlsMovieUC:MoviesListUC Grid.Row="1" SelectionChanged="MoviesListUC_SelectionChanged" Movies="{Binding Movies}" Visibility="{Binding StateManager.IsMoviesListVisible, Converter={StaticResource VisibilityConverter}}" x:Name="MoviesListUC"></User_ControlsMovieUC:MoviesListUC>
+            <StackPanel Grid.Row="2" Margin="0 10" Visibility="{Binding StateManager.IsMoviesPagerVisible, Converter={StaticResource VisibilityConverter}}">
+                <User_ControlsMovieUC:MoviesPagerUC  HorizontalAlignment="Center" PaginatedList="{Binding PaginatedMovies}" GoNextPage="pagerUC_GoNextPage" GoPreviousPage="pagerUC_GoPreviousPage" x:Name="pagerUC" Grid.Row="2" ></User_ControlsMovieUC:MoviesPagerUC>
+            </StackPanel> 
+            <StackPanel x:Name="SPAddmovie" Grid.Row="3" Visibility="{Binding StateManager.IsAddMovieVisible, Converter={StaticResource VisibilityConverter}}">
+                <User_ControlsMovieUC:AddMovieUC  GoPreviousPage="AddMovieUC_GoPreviousPage" x:Name="AddMovieUC"></User_ControlsMovieUC:AddMovieUC>
+            </StackPanel>
+            <Grid Grid.Row="3" Visibility="{Binding StateManager.IsPutOnScreenVisible, Converter={StaticResource VisibilityConverter}}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Visibility="{Binding StateManager.IsMovieDetailsVisible, Converter={StaticResource VisibilityConverter}}" x:Name="SPMovieDetails" >
+                    <User_ControlsMovieUC:MovieDetailsUC CurrentMovie="{Binding CurrentMovie}" ></User_ControlsMovieUC:MovieDetailsUC>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Visibility="{Binding StateManager.IsPutOnScreenVisible, Converter={StaticResource VisibilityConverter}}">
+                    <User_ControlsMovieUC:PutMovieOnScreenUC SessionViewModel="{Binding SessionViewModel}" x:Name="UCPutOnScreen"></User_ControlsMovieUC:PutMovieOnScreenUC>
+                </StackPanel>
+            </Grid>
+        </Grid>
+        <User_Controls:MainMenuUC Grid.Column="0" x:Name="MainMenuUC"></User_Controls:MainMenuUC>
+        <Grid  Grid.Column="1" Grid.Row="1" Visibility="Collapsed" x:Name="Gprogress" Background="Black" Opacity="0.2">
+            <ProgressBar Width="100" Value="0" IsIndeterminate="True" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource MaterialDesignCircularProgressBar}"/>
+        </Grid>
+    </Grid>
+</UserControl>
